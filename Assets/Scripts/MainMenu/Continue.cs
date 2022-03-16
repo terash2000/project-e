@@ -15,7 +15,7 @@ public class Continue : MonoBehaviour
     public void ContinueGame()
     {
         SaveSystem.Load();
-        PlayerData.previousScene = SceneManager.GetActiveScene().name;
+        SceneChanger.previousScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("MapScene");  
     }
 }

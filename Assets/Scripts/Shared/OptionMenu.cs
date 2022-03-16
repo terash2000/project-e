@@ -2,16 +2,28 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class ResetGame : MonoBehaviour
+public class OptionMenu : MonoBehaviour
 {
     public GameObject confirmationPopup;
+
+    public void Pause()
+    {
+        gameObject.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void Resume()
+    {
+        gameObject.SetActive(false);
+        Time.timeScale = 1f;
+    }
 
     public void Abandon(bool confirm = false)
     {
         if (confirm)
         {
             SaveSystem.DeleteSave();
-            PlayerData.previousScene = SceneManager.GetActiveScene().name;
+            SceneChanger.previousScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("MainMenuScene");
         }
         else

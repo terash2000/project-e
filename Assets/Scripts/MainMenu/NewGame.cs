@@ -18,7 +18,7 @@ public class NewGame : MonoBehaviour
             PlayerData.deck = starterDeck;
             SaveSystem.Save();
 
-            PlayerData.previousScene = SceneManager.GetActiveScene().name;
+            SceneChanger.previousScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("MapScene");
         }
         else
