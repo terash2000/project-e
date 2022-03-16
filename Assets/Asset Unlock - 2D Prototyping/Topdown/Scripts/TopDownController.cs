@@ -4,11 +4,12 @@ using UnityEngine;
 public class TopDownController : MonoBehaviour
 {
     // ========= MOVEMENT =================
-    public float speed = 4;
+    public float speed = 0.04f;
     
     // =========== MOVEMENT ==============
     Rigidbody2D rigidbody2d;
     private Vector2 movement;
+    private Vector2 newPosition;
 
     // ==== ANIMATION =====
     Animator animator;
@@ -26,11 +27,8 @@ public class TopDownController : MonoBehaviour
     void Update()
     {
         // ============== MOVEMENT ======================
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-                
-        movement = new Vector2(horizontal, vertical);
-        
+        if(newPosition != null) movement = new Vector2(newPosition.x-transform.position.x, newPosition.y-transform.position.y);
+
         if(!Mathf.Approximately(movement.x, 0.0f) || !Mathf.Approximately(movement.y, 0.0f))
         {
             lookDirection.Set(movement.x, movement.y);
@@ -51,5 +49,11 @@ public class TopDownController : MonoBehaviour
         position = position + movement * speed * Time.deltaTime;
         
         rigidbody2d.MovePosition(position);
+
+    }
+
+    public void setMovement(Vector3 newPosition)
+    {
+        this.newPosition = new Vector2(newPosition.x,newPosition.y);
     }
 }
