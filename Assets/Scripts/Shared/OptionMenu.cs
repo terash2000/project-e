@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class OptionMenu : MonoBehaviour
 {
-    public GameObject confirmationPopup;
+    [SerializeField] private GameObject confirmationPopup;
 
     public void Pause()
     {

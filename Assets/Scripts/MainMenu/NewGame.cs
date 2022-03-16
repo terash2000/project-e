@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class NewGame : MonoBehaviour
 {
-    public GameObject confirmationPopup;
+    [SerializeField] private GameObject confirmationPopup;
 
     public void StartNewGame(bool confirm = false)
     {
