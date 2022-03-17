@@ -472,7 +472,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -100}
+  m_LocalPosition: {x: 0, y: -1.51, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -724,6 +724,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arena
       objectReference: {fileID: 0}
+    - target: {fileID: 6375712948402535803, guid: af63116dff67885428aa9b9524ff86a0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -1603747937777870163, guid: af63116dff67885428aa9b9524ff86a0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: af63116dff67885428aa9b9524ff86a0, type: 3}
@@ -818,7 +823,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -848,7 +853,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1023, y: -435}
+  m_AnchoredPosition: {x: -1023, y: -541}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &663082508
@@ -901,6 +906,29 @@ Tilemap:
     type: 3}
   m_PrefabInstance: {fileID: 613455678}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1176385018 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4274500899322773726, guid: af63116dff67885428aa9b9524ff86a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 613455678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1176385020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176385018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 590948f64e81ddf44a046e7ae4e41141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTile: {fileID: 11400000, guid: 12aa0395a431bf84ebc8c16acf22d6e0, type: 2}
+  mOriginalTile: {fileID: 11400000, guid: 280139e3b62bbc847a41b67839fb86ea, type: 2}
+  grid: {fileID: 0}
+  tilemap: {fileID: 0}
+  hexBorder: {fileID: 0}
 --- !u!156049354 &1218942224 stripped
 Grid:
   m_CorrespondingSourceObject: {fileID: 4490715375880296012, guid: af63116dff67885428aa9b9524ff86a0,
@@ -1064,7 +1092,7 @@ PrefabInstance:
     - target: {fileID: 8560748829678191379, guid: 90350a423bc18bf4288caefda9a6638f,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8560748829678191381, guid: 90350a423bc18bf4288caefda9a6638f,
         type: 3}

@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // Create the board
-        mArena.Create();
+        //mArena.Create();
 
         // Create pieces
         //mPieceManager.Setup(mBoard);
