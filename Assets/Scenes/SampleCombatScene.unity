@@ -980,6 +980,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TopDownCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 8560748829678191377, guid: 90350a423bc18bf4288caefda9a6638f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8560748829678191378, guid: 90350a423bc18bf4288caefda9a6638f,
         type: 3}
       propertyPath: m_RootOrder
