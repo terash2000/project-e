@@ -8,7 +8,7 @@ public class QuoteText : MonoBehaviour
     private int currentCharacterIndex;
 	
 	void Update () {
-        GetComponent<Text>().text = dialog.Substring(0, currentCharacterIndex);
+        GetComponent<TMPro.TextMeshProUGUI>().text = dialog.Substring(0, currentCharacterIndex);
 	}
 
     public void StartTyping(){

@@ -6,8 +6,13 @@ public class Monster : MonoBehaviour
     public MonsterInfo info;
     public GridLayout mGrid;
     public Vector3Int currentTile;
+    public GameObject healthBar;
+    public GameObject healthText;
 
-    private  Animator animator;
+    private Animator animator;
+    private int healthAmount;
+    private Vector3 healthLocalScale;
+    private float healthBarSize;
 
     // =========== MOVEMENT ==============
     [SerializeField] private float speed;
@@ -24,6 +29,10 @@ public class Monster : MonoBehaviour
         animator.runtimeAnimatorController = info.animatorController;
 
         oldPosition = nextPosition = mGrid.CellToWorld(currentTile);
+        healthAmount = info.maxHealth;
+
+        healthLocalScale = healthBar.transform.localScale;
+        healthBarSize = healthLocalScale.x;
     }
 
     void Update()
@@ -51,6 +60,11 @@ public class Monster : MonoBehaviour
         animator.SetFloat("Look X", lookDirection.x);
         animator.SetFloat("Look Y", lookDirection.y);
         animator.SetFloat("Speed", movement.magnitude);
+
+        // ============== HEALTHBAR =======================
+        healthLocalScale.x = (float)healthAmount / (float)info.maxHealth * healthBarSize;
+        healthBar.transform.localScale = healthLocalScale;
+        healthText.GetComponent<TMPro.TextMeshProUGUI>().text = healthAmount.ToString();
     }
 
     public void SetMovement(Vector3Int tile)
@@ -71,5 +85,21 @@ public class Monster : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
         }
         radiant = 0f;
+    }
+
+    public int TakeDamage(int damage)
+    {
+        healthAmount -= damage;
+        if (healthAmount <= 0)
+        {
+            Die();
+            return 0;
+        }
+        return healthAmount;
+    }
+
+    private void Die()
+    {
+        Destroy (gameObject);
     }
 }

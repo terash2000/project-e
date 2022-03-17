@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e74efc22dee03b44a9d907fca74db3c, type: 3}
-  m_Name: Slime
+  m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
+  m_Name: 002
   m_EditorClassIdentifier: 
-  monsterName: Slime
-  maxHealth: 12
-  movement: 0
-  animatorController: {fileID: 9100000, guid: eb785a742a614ed4e8ebca3036090bc5, type: 2}
+  quote: Violets are blue.
+  child: {fileID: 0}
