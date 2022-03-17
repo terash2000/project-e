@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 365589358885336159}
   - component: {fileID: 365589358885336158}
   - component: {fileID: 365589358885336157}
-  - component: {fileID: 365589358885336152}
   - component: {fileID: 365589358885336154}
-  - component: {fileID: 8349451752660830396}
+  - component: {fileID: 6348237880709041128}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
@@ -106,19 +105,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &365589358885336152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 365589358885336156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db5140444534af746adfcc63ff16e4f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
 --- !u!50 &365589358885336154
 Rigidbody2D:
   serializedVersion: 4
@@ -140,7 +126,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8349451752660830396
+--- !u!114 &6348237880709041128
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,4 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad852a09630ab645b73e2c03cf39f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: {fileID: 11400000, guid: 16f5bc9b5a1686c499dc1bbd1f843cb5, type: 2}
+  info: {fileID: 0}
+  mGrid: {fileID: 0}
+  currentTile: {x: 0, y: 0, z: 0}
+  speed: 3
