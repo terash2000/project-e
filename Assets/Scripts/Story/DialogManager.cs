@@ -23,7 +23,8 @@ public class DialogManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || 
+        if (Input.GetMouseButtonUp(0) ||
+                Input.GetKeyDown(KeyCode.Space) ||
                 Input.GetKeyDown(KeyCode.Return) ||
                 Input.GetKeyDown(KeyCode.Z) && 
                 !quoteObj.IsTyping()){
