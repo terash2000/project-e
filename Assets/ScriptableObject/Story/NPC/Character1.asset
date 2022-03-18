@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
-  m_Name: 002
+  m_Script: {fileID: 11500000, guid: f0ead8f031bae784a8147890dab436a3, type: 3}
+  m_Name: Character1
   m_EditorClassIdentifier: 
-  quote: Violets are blue.
-  child: {fileID: 0}
+  characterName: Character 1

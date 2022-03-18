@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,8 @@ public class DialogManager : MonoBehaviour
     public DialogNode root;
     private DialogNode current;
     [SerializeField] private QuoteText quoteObj;
+    [SerializeField] private GameObject characterName;
+    private TextMeshProUGUI characterNameText;
 
     void Awake(){
         singleton = this;
@@ -16,9 +19,10 @@ public class DialogManager : MonoBehaviour
 
     void Start()
     {
+        characterNameText = characterName.transform.Find("Character Text").gameObject.GetComponent<TextMeshProUGUI>();
+
         current = root;
-        quoteObj.dialog = current.quote;
-        quoteObj.StartTyping();
+        UpdateText();
     }
 
     void Update()
@@ -31,8 +35,7 @@ public class DialogManager : MonoBehaviour
             if (current.child)
             {
                 current = current.child;
-                quoteObj.dialog = current.quote;
-                quoteObj.StartTyping();
+                UpdateText();
             }
             else
             {
@@ -40,5 +43,18 @@ public class DialogManager : MonoBehaviour
                 SceneManager.LoadScene(nextScene);
             }
         }
+    }
+
+    private void UpdateText()
+    {
+        if (current.character != null)
+        {
+            characterNameText.SetText(current.character.name);
+            characterName.SetActive(true);
+        }
+        else characterName.SetActive(false);
+
+        quoteObj.dialog = current.quote;
+        quoteObj.StartTyping();
     }
 }
