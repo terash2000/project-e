@@ -7,61 +7,16 @@ using UnityEngine.EventSystems;
 
 public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    public Tile mTile;
-
-    public Tile mOriginalTile;
-
-    public Tilemap mArena;
-    public GridLayout mGrid;
-    public GameObject mCharacter;
+    public GameObject mArena;
+    [HideInInspector]
+    public Arena arena;
     public int mRange;
+    public AreaShape mAreaShape;
     private bool selected = false;
     // Start is called before the first frame update
     void Start()
     {
-
-        
-    }
-
-    private void showRadius()
-    {
-        Vector3Int curPos = mGrid.WorldToCell(mCharacter.transform.position);
-        int k=1;
-        if(Mathf.Abs(curPos.y)%2==1)k=-1;
-        for(int x=-mRange;x<=mRange;x++)
-        {
-            for(int y=-mRange;y<=mRange;y++)
-            {
-                int temp = x;
-                if(Mathf.Abs(y)%2 == 1 && k*x>0) x+=k;
-                if(Mathf.Abs(x)+Mathf.Abs(y)/2<=mRange){
-                    x = temp;
-                    mArena.SetTile(new Vector3Int(x+curPos.x,y+curPos.y,0),mTile);
-                }
-                x = temp;
-            }
-        }
-    }
-
-    private void unShowRadius()
-    {
-        Vector3Int curPos = mGrid.WorldToCell(mCharacter.transform.position);
-        int k=1;
-        if(Mathf.Abs(curPos.y)%2==1)k=-1;
-        for(int x=-mRange;x<=mRange;x++)
-        {
-            for(int y=-mRange;y<=mRange;y++)
-            {
-                int temp = x;
-                if(Mathf.Abs(y)%2 == 1 && k*x>0) x+=k;
-                if(Mathf.Abs(x)+Mathf.Abs(y)/2<=mRange){
-                    x = temp;
-                    mArena.SetTile(new Vector3Int(x+curPos.x,y+curPos.y,0),mOriginalTile);
-                    Debug.Log("Yes");
-                }
-                x = temp;
-            }
-        }
+        arena = mArena.GetComponent<Arena>();
     }
 
     // Update is called once per frame
@@ -69,14 +24,14 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         if(Input.GetMouseButtonUp(0)&&selected){
             Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int mousePos = mGrid.WorldToCell(new Vector3(oriPos.x,oriPos.y,0));
-            Tile tile = (Tile)mArena.GetTile(mousePos);
-            if(tile.Equals(mTile))
+            Vector3Int mousePos = arena.grid.WorldToCell(new Vector3(oriPos.x,oriPos.y,0));
+            Tile tile = (Tile)arena.tilemap.GetTile(mousePos);
+            if(tile.Equals(arena.mTile))
             {
-                mCharacter.GetComponent<TopDownController>().setMovement(mGrid.CellToWorld(mousePos));
+                arena.mCharacter.GetComponent<TopDownController>().setMovement(arena.grid.CellToWorld(mousePos));
                 selected = false;
                 this.GetComponent<Image>().color = Color.white;
-                unShowRadius();
+                arena.hideRadius(mAreaShape,mRange);
             }
         }
         
@@ -85,14 +40,14 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerEnter(PointerEventData eventData)
     {
         this.GetComponent<Image>().color = Color.yellow;
-        showRadius();
+        arena.showRadius(mAreaShape,mRange);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if(selected) return;
         this.GetComponent<Image>().color = Color.white;
-        unShowRadius();
+        arena.hideRadius(mAreaShape,mRange);
     }
 
     public void OnPointerClick(PointerEventData eventData)
