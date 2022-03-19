@@ -1,90 +1,87 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public class Monster : MoveableSprite
 {
     public MonsterInfo info;
-    public GridLayout mGrid;
-    public Vector3Int currentTile;
     public GameObject healthBar;
     public GameObject healthText;
+    public bool moved;
 
-    private Animator animator;
     private int healthAmount;
     private Vector3 healthLocalScale;
     private float healthBarSize;
 
-    // =========== MOVEMENT ==============
-    [SerializeField] private float speed;
-    private Vector2 displacement;
-    private Vector2 movement;
-    private Vector2 oldPosition;
-    private Vector2 nextPosition;
-    private Vector2 lookDirection = new Vector2(0, -1);
-    private float radiant;
-
-    void Start()
+    protected override void Start()
     {
-        animator = GetComponent<Animator>();
+        base.Start();
+
         animator.runtimeAnimatorController = info.animatorController;
 
-        oldPosition = nextPosition = mGrid.CellToWorld(currentTile);
         healthAmount = info.maxHealth;
-
         healthLocalScale = healthBar.transform.localScale;
         healthBarSize = healthLocalScale.x;
     }
 
-    void Update()
+    protected override void Update()
     {
-        //if(Input.GetMouseButtonUp(0))
-        //{
-        //    Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //    Vector3Int pos = mGrid.WorldToCell(oriPos);
-        //    SetMovement(pos);
-        //}
+        base.Update();
 
-        // ============== MOVEMENT ======================
-        displacement = new Vector2(nextPosition.x-oldPosition.x, nextPosition.y-oldPosition.y);
-        transform.position = oldPosition + displacement * Mathf.Cos(radiant);
-        movement = displacement * Mathf.Sin(radiant);
-        
-        if(!Mathf.Approximately(movement.x, 0.0f) || !Mathf.Approximately(movement.y, 0.0f))
-        {
-            lookDirection.Set(movement.x, movement.y);
-            lookDirection.Normalize();
-        }
-        else lookDirection = new Vector2(0, -1);
-
-        // ============== ANIMATION =======================
-        animator.SetFloat("Look X", lookDirection.x);
-        animator.SetFloat("Look Y", lookDirection.y);
-        animator.SetFloat("Speed", movement.magnitude);
-
-        // ============== HEALTHBAR =======================
         healthLocalScale.x = (float)healthAmount / (float)info.maxHealth * healthBarSize;
         healthBar.transform.localScale = healthLocalScale;
         healthText.GetComponent<TMPro.TextMeshProUGUI>().text = healthAmount.ToString();
     }
 
-    public void SetMovement(Vector3Int tile)
+    public void Move()
     {
-        currentTile = tile;
-        Vector2 position = mGrid.CellToWorld(tile);
-        oldPosition = transform.position;
-        nextPosition = position;
-        radiant = Mathf.PI/2;
-        if (movement.magnitude == 0f)
-            StartCoroutine(Move());
-    }
+        if (moved) return;
+        moved = true;
 
-    IEnumerator Move()
-    {
-        while(radiant > 0f){
-            radiant -= Mathf.PI/2 * speed * Time.deltaTime;
-            yield return new WaitForSeconds(Time.deltaTime);
+        Vector3Int characterTile = MonsterManager.singleton.characterTile;
+        List<Vector3Int> targetTiles = new List<Vector3Int>();
+
+        switch(info.pattern)
+        {
+            case MonsterPattern.Basic:
+                List<Vector3Int> nearbyTiles = Arena.singleton.getPosListNear(currentTile);
+                nearbyTiles = nearbyTiles.FindAll(tile => tile != characterTile);
+                nearbyTiles.Add(currentTile);
+
+                int minDistance = int.MaxValue;
+
+                foreach(Vector3Int tile in nearbyTiles)
+                {
+                    int distance = CalDistance(tile, characterTile);
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        targetTiles = new List<Vector3Int> { tile };
+                    }
+                    else if (distance == minDistance) targetTiles.Add(tile);
+                }
+                break;
         }
-        radiant = 0f;
+
+        foreach(Vector3Int tile in new List<Vector3Int>(targetTiles))
+        {
+            if (tile == currentTile) continue;
+
+            Monster nearbyMonster = MonsterManager.singleton.FindMonsterByTile(tile);
+            if (nearbyMonster != null && !nearbyMonster.moved)
+            {
+                nearbyMonster.Move();
+            }
+        }
+
+        targetTiles = targetTiles.FindAll(tile => (
+            tile == currentTile ||
+            MonsterManager.singleton.FindMonsterByTile(tile) == null
+        ));
+
+        if (targetTiles.Count == 0) return;
+
+        Vector3Int destination = targetTiles[Random.Range(0, targetTiles.Count)];
+        SetMovement(destination);
     }
 
     public int TakeDamage(int damage)
@@ -100,6 +97,16 @@ public class Monster : MonoBehaviour
 
     private void Die()
     {
-        Destroy (gameObject);
+        Destroy(gameObject);
+    }
+
+    private int CalDistance(Vector3Int tile1, Vector3Int tile2)
+    {
+        float x1 = (float)tile1.x + 0.5f * (Mathf.Abs(tile1.y) % 2);
+        float x2 = (float)tile2.x + 0.5f * (Mathf.Abs(tile2.y) % 2);
+        float dy = Mathf.Abs((float)tile1.y - (float)tile2.y);
+        float dx = Mathf.Abs(x1 - x2);
+        int distance = (int) (dy + Mathf.Max(dx - dy/2, 0));
+        return distance;
     }
 }

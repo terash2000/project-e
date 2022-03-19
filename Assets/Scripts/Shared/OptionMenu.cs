@@ -23,8 +23,7 @@ public class OptionMenu : MonoBehaviour
         if (confirm)
         {
             SaveSystem.DeleteSave();
-            SceneChanger.previousScene = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene("MainMenuScene");
+            ReturnMainMenu();
         }
         else
         {
@@ -33,5 +32,17 @@ public class OptionMenu : MonoBehaviour
             UnityAction action = () => Abandon(true);
             newPopup.GetComponent<ConfirmationPopup>().Init(message, action);
         }
+    }
+
+    public void ReturnMainMenu()
+    {
+        SceneChanger.previousScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene("MainMenuScene");
+    }
+
+    public void ExitGame()
+    {
+        UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
     }
 }
