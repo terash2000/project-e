@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 
 public class Arena : MonoBehaviour
 {
+    public static Arena singleton;
+
     public Tile mTile;
     public Tile mOriginalTile;
     [HideInInspector]
@@ -15,6 +17,11 @@ public class Arena : MonoBehaviour
     [HideInInspector]
     public GameObject hexBorder;
     public GameObject mCharacter;
+
+    void Awake(){
+        singleton = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
