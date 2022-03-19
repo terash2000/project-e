@@ -1,5 +1,5 @@
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Monster : MoveableSprite
@@ -12,6 +12,7 @@ public class Monster : MoveableSprite
     private int healthAmount;
     private Vector3 healthLocalScale;
     private float healthBarSize;
+    protected float radiant2 = 0f;
 
     protected override void Start()
     {
@@ -28,6 +29,15 @@ public class Monster : MoveableSprite
     {
         base.Update();
 
+        // attack animation
+        if (radiant2 != 0f)
+        {
+            Vector3 characterPos = grid.CellToWorld(Arena.singleton.mCharacter.GetComponent<MoveableSprite>().currentTile);
+            Vector3 attackDirection = characterPos - transform.position;
+            attackDirection.Normalize();
+            transform.position = transform.position + attackDirection * 0.25f * Mathf.Sin(radiant2);
+        }
+
         healthLocalScale.x = (float)healthAmount / (float)info.maxHealth * healthBarSize;
         healthBar.transform.localScale = healthLocalScale;
         healthText.GetComponent<TMPro.TextMeshProUGUI>().text = healthAmount.ToString();
@@ -37,9 +47,9 @@ public class Monster : MoveableSprite
     {
         List<Vector3Int> area = new List<Vector3Int>();
 
-        switch(info.pattern)
+        switch(info.patterns[0].pattern)
         {
-            case MonsterPattern.Basic:
+            case MonsterPatternType.Basic:
                 area.AddRange(Arena.singleton.getPosListNear(currentTile));
                 area.Add(currentTile);
                 break;
@@ -58,9 +68,9 @@ public class Monster : MoveableSprite
         List<Vector3Int> targetTiles = new List<Vector3Int>();
         List<Vector3Int> moveableTiles = new List<Vector3Int> { currentTile };
 
-        switch(info.pattern)
+        switch(info.patterns[0].pattern)
         {
-            case MonsterPattern.Basic:
+            case MonsterPatternType.Basic:
                 moveableTiles.AddRange(Arena.singleton.getPosListNear(currentTile));
                 break;
         }
@@ -72,9 +82,9 @@ public class Monster : MoveableSprite
 
         while(moveableTiles.Count != 0)
         {
-            switch(info.pattern)
+            switch(info.patterns[0].pattern)
             {
-                case MonsterPattern.Basic:
+                case MonsterPatternType.Basic:
                     int minDistance = int.MaxValue;
 
                     foreach(Vector3Int tile in moveableTiles)
@@ -109,6 +119,28 @@ public class Monster : MoveableSprite
             SetMovement(destination);
             break;
         }
+    }
+
+    public bool Attack()
+    {
+        Vector3Int characterTile = Arena.singleton.mCharacter.GetComponent<MoveableSprite>().currentTile;
+        if(AttackArea().Contains(characterTile))
+        {
+            PlayerData.health -= info.patterns[0].damage;
+            StartCoroutine(AttackAnimation());
+            return true;
+        }
+        return false;
+    }
+
+    private IEnumerator AttackAnimation()
+    {
+        radiant2 = Mathf.PI;
+        while(radiant2 > 0f){
+            radiant2 -= Mathf.PI * 5 * Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        radiant2 = 0f;
     }
 
     public int TakeDamage(int damage)

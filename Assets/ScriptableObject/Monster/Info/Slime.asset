@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: Slime
   maxHealth: 12
-  movement: 0
+  patterns:
+  - pattern: 0
+    damage: 1
   animatorController: {fileID: 9100000, guid: eb785a742a614ed4e8ebca3036090bc5, type: 2}

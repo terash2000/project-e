@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ public class MonsterManager : MonoBehaviour
 {
     public static MonsterManager singleton;
     public Wave wave;
+    public bool isBusy = false;
     [SerializeField] private GameObject monsterPrefab;
     private List<Monster> monsters = new List<Monster>();
     private GridLayout grid;
@@ -22,7 +24,7 @@ public class MonsterManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)) MoveMonsters();
+        if(Input.GetKeyDown(KeyCode.Space) && !isBusy) StartAttacking();
     }
 
     public Monster FindMonsterByTile(Vector3Int tile)
@@ -35,6 +37,22 @@ public class MonsterManager : MonoBehaviour
         return null;
     }
 
+    public void StartAttacking()
+    {
+        StartCoroutine(Attack());
+    }
+
+    private IEnumerator Attack()
+    {
+        isBusy = true;
+        foreach(Monster monster in monsters)
+        {
+            if(monster.Attack()) yield return new WaitForSeconds(0.25f);
+        }
+        MoveMonsters();
+        isBusy = false;
+    }
+
     public void MoveMonsters()
     {
         foreach(Monster monster in monsters) monster.moved = false;
@@ -43,7 +61,7 @@ public class MonsterManager : MonoBehaviour
         HighlightAttackRange();
     }
 
-    public void HighlightAttackRange()
+    private void HighlightAttackRange()
     {
         foreach (Vector3Int tilePosition in Arena.singleton.tilemap.cellBounds.allPositionsWithin)
             Arena.singleton.tilemap.SetColor(tilePosition, Color.white);

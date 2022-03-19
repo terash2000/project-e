@@ -1036,7 +1036,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1460dbeeb4f59044ace7ed5298bc301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  confirmationPopup: {fileID: 5984139876473836622, guid: d17398450ca033342ae5014d530fb58f, type: 3}
+  starterHealth: 50
+  starterGold: 0
+  confirmationPopup: {fileID: 5984139876473836622, guid: d17398450ca033342ae5014d530fb58f,
+    type: 3}
 --- !u!1 &2094261974
 GameObject:
   m_ObjectHideFlags: 0

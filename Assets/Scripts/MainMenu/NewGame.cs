@@ -6,20 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class NewGame : MonoBehaviour
 {
+    [SerializeField] private int starterHealth;
+    [SerializeField] private int starterGold;
     [SerializeField] private GameObject confirmationPopup;
 
     public void StartNewGame(bool confirm = false)
     {
         if (confirm || !File.Exists(Application.persistentDataPath + "/SaveData.dat"))
         {
-            List<int> starterDeck = new List<int>();
 
-            PlayerData.gold = 0;
-            PlayerData.deck = starterDeck;
+            PlayerData.health = PlayerData.maxHealth = starterHealth;
+            PlayerData.gold = starterGold;
             SaveSystem.Save();
 
             SceneChanger.previousScene = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene("MapScene");
+            SceneManager.LoadScene("SampleCombatScene");
         }
         else
         {
