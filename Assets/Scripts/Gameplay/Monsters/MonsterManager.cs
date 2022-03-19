@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterManager : MonoBehaviour
+public class MonsterManager : MonoBehaviour, ITurnHandler
 {
     public static MonsterManager singleton;
     public Wave wave;
@@ -24,7 +24,7 @@ public class MonsterManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && !isBusy) StartAttacking();
+        //if(Input.GetKeyDown(KeyCode.Space) && !isBusy) StartAttacking();
     }
 
     public Monster FindMonsterByTile(Vector3Int tile)
@@ -82,5 +82,16 @@ public class MonsterManager : MonoBehaviour
         }
 
         HighlightAttackRange();
+    }
+
+    public void onStartTurn()
+    {
+        
+    }
+
+    public void onEndTurn()
+    {
+        MoveMonsters();
+        GameManager.singleton.startTurn();
     }
 }
