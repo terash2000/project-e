@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragCard : MonoBehaviour, IDragHandler, IPointerDownHandler
+public class DragCard : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler
 {
     [SerializeField] private RectTransform dragRectTransform;
     [SerializeField] private Canvas canvas;
+    private CanvasGroup canvasGroup;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class DragCard : MonoBehaviour, IDragHandler, IPointerDownHandler
                 testCanvasTransform = testCanvasTransform.parent;
             }
         }
+        canvasGroup = GetComponent<CanvasGroup>();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -38,5 +40,15 @@ public class DragCard : MonoBehaviour, IDragHandler, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         dragRectTransform.SetAsLastSibling();
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        canvasGroup.blocksRaycasts = false;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        canvasGroup.blocksRaycasts = true;
     }
 }
