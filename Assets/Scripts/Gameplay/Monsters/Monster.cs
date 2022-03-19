@@ -62,9 +62,13 @@ public class Monster : MoveableSprite
         {
             case MonsterPattern.Basic:
                 moveableTiles.AddRange(Arena.singleton.getPosListNear(currentTile));
-                moveableTiles = moveableTiles.FindAll(tile => tile != characterTile);
                 break;
         }
+
+        moveableTiles = moveableTiles.FindAll(tile => (
+            tile != characterTile &&
+            Arena.singleton.tilemap.GetTile(tile) != null
+        ));
 
         while(moveableTiles.Count != 0)
         {
