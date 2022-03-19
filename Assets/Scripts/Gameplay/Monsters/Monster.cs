@@ -33,6 +33,22 @@ public class Monster : MoveableSprite
         healthText.GetComponent<TMPro.TextMeshProUGUI>().text = healthAmount.ToString();
     }
 
+    public List<Vector3Int> AttackArea()
+    {
+        List<Vector3Int> area = new List<Vector3Int>();
+
+        switch(info.pattern)
+        {
+            case MonsterPattern.Basic:
+                area.AddRange(Arena.singleton.getPosListNear(currentTile));
+                area.Add(currentTile);
+                break;
+        }
+
+        return area;
+
+    }
+
     public void Move()
     {
         if (moved) return;
@@ -46,9 +62,13 @@ public class Monster : MoveableSprite
         {
             case MonsterPattern.Basic:
                 moveableTiles.AddRange(Arena.singleton.getPosListNear(currentTile));
-                moveableTiles = moveableTiles.FindAll(tile => tile != characterTile);
                 break;
         }
+
+        moveableTiles = moveableTiles.FindAll(tile => (
+            tile != characterTile &&
+            Arena.singleton.tilemap.GetTile(tile) != null
+        ));
 
         while(moveableTiles.Count != 0)
         {

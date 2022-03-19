@@ -84,7 +84,21 @@ public class Arena : MonoBehaviour
     {
         foreach(Vector3Int pos in posList)
         {
-            if(tilemap.GetTile(pos) != null) tilemap.SetTile(pos,tile);
+            if(tilemap.GetTile(pos) == null) continue;
+            Color color = tilemap.GetColor(pos);
+            tilemap.SetTile(pos, tile);
+            tilemap.SetTileFlags(pos, TileFlags.None);
+            tilemap.SetColor(pos, color);
+        }
+    }
+
+    public void setTileColor(Color color, List<Vector3Int> posList)
+    {
+        foreach(Vector3Int pos in posList)
+        {
+            if(tilemap.GetTile(pos) == null) continue;
+            tilemap.SetTileFlags(pos, TileFlags.None);
+            tilemap.SetColor(pos, color);
         }
     }
 
