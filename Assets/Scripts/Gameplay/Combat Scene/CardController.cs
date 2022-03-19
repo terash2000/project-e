@@ -28,10 +28,10 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             Tile tile = (Tile)arena.tilemap.GetTile(mousePos);
             if(tile.Equals(arena.mTile))
             {
-                arena.mCharacter.GetComponent<TopDownController>().setMovement(arena.grid.CellToWorld(mousePos));
                 selected = false;
                 this.GetComponent<Image>().color = Color.white;
                 arena.hideRadius(mAreaShape,mRange);
+                arena.mCharacter.GetComponent<MoveableSprite>().SetMovement(mousePos);
             }
         }
         

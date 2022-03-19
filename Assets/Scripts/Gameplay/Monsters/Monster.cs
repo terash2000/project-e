@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Monster : MoveableSprite
@@ -37,51 +38,57 @@ public class Monster : MoveableSprite
         if (moved) return;
         moved = true;
 
-        Vector3Int characterTile = MonsterManager.singleton.characterTile;
+        Vector3Int characterTile = Arena.singleton.mCharacter.GetComponent<MoveableSprite>().currentTile;
         List<Vector3Int> targetTiles = new List<Vector3Int>();
+        List<Vector3Int> moveableTiles = new List<Vector3Int> { currentTile };
 
         switch(info.pattern)
         {
             case MonsterPattern.Basic:
-                List<Vector3Int> nearbyTiles = Arena.singleton.getPosListNear(currentTile);
-                nearbyTiles = nearbyTiles.FindAll(tile => tile != characterTile);
-                nearbyTiles.Add(currentTile);
-
-                int minDistance = int.MaxValue;
-
-                foreach(Vector3Int tile in nearbyTiles)
-                {
-                    int distance = CalDistance(tile, characterTile);
-                    if (distance < minDistance)
-                    {
-                        minDistance = distance;
-                        targetTiles = new List<Vector3Int> { tile };
-                    }
-                    else if (distance == minDistance) targetTiles.Add(tile);
-                }
+                moveableTiles.AddRange(Arena.singleton.getPosListNear(currentTile));
+                moveableTiles = moveableTiles.FindAll(tile => tile != characterTile);
                 break;
         }
 
-        foreach(Vector3Int tile in new List<Vector3Int>(targetTiles))
+        while(moveableTiles.Count != 0)
         {
-            if (tile == currentTile) continue;
-
-            Monster nearbyMonster = MonsterManager.singleton.FindMonsterByTile(tile);
-            if (nearbyMonster != null && !nearbyMonster.moved)
+            switch(info.pattern)
             {
-                nearbyMonster.Move();
+                case MonsterPattern.Basic:
+                    int minDistance = int.MaxValue;
+
+                    foreach(Vector3Int tile in moveableTiles)
+                    {
+                        int distance = CalDistance(tile, characterTile);
+                        if(distance < minDistance)
+                        {
+                            minDistance = distance;
+                            targetTiles = new List<Vector3Int> { tile };
+                        }
+                        else if (distance == minDistance) targetTiles.Add(tile);
+                    }
+                    break;
             }
+
+            foreach(Vector3Int tile in targetTiles)
+            {
+                moveableTiles.Remove(tile);
+
+                Monster nearbyMonster = MonsterManager.singleton.FindMonsterByTile(tile);
+                if (nearbyMonster != null) nearbyMonster.Move();
+            }
+
+            targetTiles = targetTiles.FindAll(tile => (
+                tile == currentTile ||
+                MonsterManager.singleton.FindMonsterByTile(tile) == null
+            ));
+
+            if (targetTiles.Count == 0) continue;
+
+            Vector3Int destination = targetTiles[Random.Range(0, targetTiles.Count)];
+            SetMovement(destination);
+            break;
         }
-
-        targetTiles = targetTiles.FindAll(tile => (
-            tile == currentTile ||
-            MonsterManager.singleton.FindMonsterByTile(tile) == null
-        ));
-
-        if (targetTiles.Count == 0) return;
-
-        Vector3Int destination = targetTiles[Random.Range(0, targetTiles.Count)];
-        SetMovement(destination);
     }
 
     public int TakeDamage(int damage)
