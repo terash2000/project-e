@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragCard : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler
+public class DragCard : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private RectTransform dragRectTransform;
     [SerializeField] private Canvas canvas;
     private CanvasGroup canvasGroup;
+    private int siblingIndex;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class DragCard : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
             }
         }
         canvasGroup = GetComponent<CanvasGroup>();
+        siblingIndex = transform.GetSiblingIndex();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -50,5 +52,17 @@ public class DragCard : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = true;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        dragRectTransform.SetAsLastSibling();
+        dragRectTransform.localScale = new Vector3(1.05f, 1.05f, 1f);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        dragRectTransform.SetSiblingIndex(siblingIndex);
+        dragRectTransform.localScale = new Vector3(1f, 1f, 1f);
     }
 }
