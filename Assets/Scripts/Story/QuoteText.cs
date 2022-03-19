@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class QuoteText : MonoBehaviour
 {
@@ -22,7 +21,6 @@ public class QuoteText : MonoBehaviour
 
     IEnumerator BuildText()
     {
-        currentCharacterIndex = 0;
         while(IsTyping()){
             currentCharacterIndex += 1;
             yield return new WaitForSeconds(0.01f);

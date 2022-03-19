@@ -100,6 +100,6 @@ public class Monster : MonoBehaviour
 
     private void Die()
     {
-        Destroy (gameObject);
+        Destroy(gameObject);
     }
 }
