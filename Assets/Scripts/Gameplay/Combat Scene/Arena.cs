@@ -68,7 +68,8 @@ public class Arena : MonoBehaviour
 
     public void showRadius(AreaShape areaShape, int range)
     {
-        Vector3Int curPos = grid.WorldToCell(mCharacter.transform.position);
+        //Vector3Int curPos = grid.WorldToCell(mCharacter.transform.position);
+        Vector3Int curPos = mCharacter.GetComponent<MoveableSprite>().currentTile;
         List<Vector3Int> posList = getPosList(areaShape,range,curPos);
         foreach(Vector3Int pos in posList)
         {
@@ -80,7 +81,8 @@ public class Arena : MonoBehaviour
 
     public void hideRadius(AreaShape areaShape, int range)
     {
-        Vector3Int curPos = grid.WorldToCell(mCharacter.transform.position);
+        //Vector3Int curPos = grid.WorldToCell(mCharacter.transform.position);
+        Vector3Int curPos = mCharacter.GetComponent<MoveableSprite>().currentTile;
         setTile(mOriginalTile, getPosList(areaShape,range,curPos));
     }
 
