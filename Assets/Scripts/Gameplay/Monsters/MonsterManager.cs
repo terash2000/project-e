@@ -9,8 +9,6 @@ public class MonsterManager : MonoBehaviour
     private List<Monster> monsters = new List<Monster>();
     private GridLayout grid;
 
-    public Vector3Int characterTile;
-
     void Awake(){
         singleton = this;
     }
