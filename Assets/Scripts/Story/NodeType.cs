@@ -1,5 +1,5 @@
 public enum NodeType
 {
-    basic,
-    choice
+    Basic,
+    Choice
 }

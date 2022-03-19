@@ -5,6 +5,6 @@ public class MonsterInfo : ScriptableObject
 {
     public string monsterName;
     public int maxHealth;
-    public MonsterMovement movement;
+    public MonsterPattern pattern;
     public RuntimeAnimatorController animatorController;
 }

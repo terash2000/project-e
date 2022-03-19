@@ -19,7 +19,7 @@ public class QuoteText : MonoBehaviour
         return currentCharacterIndex < dialog.Length;
     }
 
-    IEnumerator BuildText()
+    private IEnumerator BuildText()
     {
         while(IsTyping()){
             currentCharacterIndex += 1;

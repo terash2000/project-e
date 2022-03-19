@@ -32,12 +32,10 @@ public class DialogManager : MonoBehaviour
     void Update()
     {
         if((Input.GetMouseButtonUp(0) ||
-                Input.GetKeyDown(KeyCode.Space) ||
-                Input.GetKeyDown(KeyCode.Return) ||
-                Input.GetKeyDown(KeyCode.Z)) && 
-                !quoteObj.IsTyping()){
-            Next();
-        }
+            Input.GetKeyDown(KeyCode.Space) ||
+            Input.GetKeyDown(KeyCode.Return) ||
+            Input.GetKeyDown(KeyCode.Z)) && 
+            !quoteObj.IsTyping()) Next();
     }
 
     private void Next()
@@ -46,10 +44,10 @@ public class DialogManager : MonoBehaviour
         {
             switch(current.type)
             {
-                case NodeType.basic:
+                case NodeType.Basic:
                     ChangeNode(current.child[0]);
                     break;
-                case NodeType.choice:
+                case NodeType.Choice:
                     break;
             }
         }
@@ -83,7 +81,7 @@ public class DialogManager : MonoBehaviour
             Destroy(choiceContainer.transform.GetChild(i).gameObject);
         }
 
-        if(current.type == NodeType.choice)
+        if(current.type == NodeType.Choice)
         {
             for(int i = 0; i < current.choice.Count; i++)
             {
