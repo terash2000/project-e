@@ -70,13 +70,7 @@ public class Arena : MonoBehaviour
     {
         //Vector3Int curPos = grid.WorldToCell(mCharacter.transform.position);
         Vector3Int curPos = mCharacter.GetComponent<MoveableSprite>().currentTile;
-        List<Vector3Int> posList = getPosList(areaShape,range,curPos);
-        foreach(Vector3Int pos in posList)
-        {
-            Debug.Log(pos.x+" "+pos.y);
-        }
-        //Debug.Log(posList.ToString());
-        setTile(mTile, posList);
+        setTile(mTile, getPosList(areaShape,range,curPos));
     }
 
     public void hideRadius(AreaShape areaShape, int range)
@@ -90,7 +84,7 @@ public class Arena : MonoBehaviour
     {
         foreach(Vector3Int pos in posList)
         {
-            tilemap.SetTile(new Vector3Int(pos.x,pos.y,0),tile);
+            if(tilemap.GetTile(pos) != null) tilemap.SetTile(pos,tile);
         }
     }
 
@@ -120,7 +114,7 @@ public class Arena : MonoBehaviour
                 if(Mathf.Abs(y)%2 == 1 && k*x>0) x+=k;
                 if(Mathf.Abs(x)+Mathf.Abs(y)/2<=range){
                     x = temp;
-                    posList.Add(new Vector3Int(x+curPos.x,y+curPos.y,curPos.z));
+                    posList.Add(new Vector3Int(x+curPos.x,y+curPos.y,0));
                 }
                 x = temp;
             }
