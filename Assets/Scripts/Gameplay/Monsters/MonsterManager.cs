@@ -8,6 +8,7 @@ public class MonsterManager : MonoBehaviour
     [SerializeField] private GameObject monsterPrefab;
     private List<Monster> monsters = new List<Monster>();
     private GridLayout grid;
+    private Color redHighlight = new Color(1f, 0.5f, 0.5f);
 
     void Awake(){
         singleton = this;
@@ -38,6 +39,17 @@ public class MonsterManager : MonoBehaviour
     {
         foreach(Monster monster in monsters) monster.moved = false;
         foreach(Monster monster in monsters) monster.Move();
+
+        HighlightAttackRange();
+    }
+
+    public void HighlightAttackRange()
+    {
+        foreach (Vector3Int tilePosition in Arena.singleton.tilemap.cellBounds.allPositionsWithin)
+            Arena.singleton.tilemap.SetColor(tilePosition, Color.white);
+
+        foreach(Monster monster in monsters)
+            Arena.singleton.setTileColor(redHighlight, monster.AttackArea());
     }
 
     private void SpawnWave()
@@ -50,5 +62,7 @@ public class MonsterManager : MonoBehaviour
 
             monsters.Add(monster);
         }
+
+        HighlightAttackRange();
     }
 }
