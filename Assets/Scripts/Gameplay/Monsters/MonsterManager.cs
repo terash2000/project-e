@@ -24,7 +24,7 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && !isBusy) StartAttacking();
+        // if(Input.GetKeyDown(KeyCode.Space) && !isBusy) StartAttacking();
     }
 
     public Monster FindMonsterByTile(Vector3Int tile)
