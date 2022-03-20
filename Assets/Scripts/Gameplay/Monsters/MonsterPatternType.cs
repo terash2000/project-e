@@ -1,4 +1,5 @@
 public enum MonsterPatternType
 {
-    Basic
+    Basic,
+    Range
 }

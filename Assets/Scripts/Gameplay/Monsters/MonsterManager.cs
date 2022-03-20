@@ -10,6 +10,7 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
     public bool isBusy = false;
     [SerializeField] private GameObject monsterPrefab;
     private GridLayout grid;
+    private List<Vector3Int> highlightedTiles = new List<Vector3Int>();
     private Color redHighlight = new Color(1f, 0.5f, 0.5f);
 
     void Awake(){
@@ -25,6 +26,18 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
     void Update()
     {
         // if(Input.GetKeyDown(KeyCode.Space) && !isBusy) StartAttacking();
+
+        Arena.singleton.setTileColor(Color.white, highlightedTiles);
+
+        Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3Int mousePos = grid.WorldToCell(new Vector3(oriPos.x,oriPos.y,0));
+        Monster monster = FindMonsterByTile(mousePos);
+        if(monster != null)
+        {
+            highlightedTiles = monster.AttackArea();
+            Arena.singleton.setTileColor(redHighlight, highlightedTiles);
+        }
+        else highlightedTiles.Clear();
     }
 
     public Monster FindMonsterByTile(Vector3Int tile)
@@ -47,7 +60,7 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
         isBusy = true;
         foreach(Monster monster in monsters)
         {
-            if(monster.Attack()) yield return new WaitForSeconds(0.25f);
+            if(monster.Attack()) yield return new WaitForSeconds(0.15f);
         }
         MoveMonsters();
         isBusy = false;
@@ -55,19 +68,10 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 
     public void MoveMonsters()
     {
-        foreach(Monster monster in monsters) monster.moved = false;
-        foreach(Monster monster in monsters) monster.Move();
-
-        HighlightAttackRange();
-    }
-
-    private void HighlightAttackRange()
-    {
-        foreach (Vector3Int tilePosition in Arena.singleton.tilemap.cellBounds.allPositionsWithin)
-            Arena.singleton.tilemap.SetColor(tilePosition, Color.white);
-
         foreach(Monster monster in monsters)
-            Arena.singleton.setTileColor(redHighlight, monster.AttackArea());
+        {
+            if (!monster.attacked || monster.CanMoveAfterAttack()) monster.Move();
+        }
     }
 
     private void SpawnWave()
@@ -80,13 +84,11 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 
             monsters.Add(monster);
         }
-
-        HighlightAttackRange();
     }
 
     public void onStartTurn()
     {
-        
+        foreach(Monster monster in monsters) monster.Refresh();
     }
 
     public void onEndTurn()

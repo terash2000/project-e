@@ -9,11 +9,13 @@ public class Monster : MoveableSprite
     public GameObject healthText;
     public GameObject damageText;
     public bool moved;
+    public bool attacked;
 
     private int healthAmount;
     private Vector3 healthLocalScale;
     private float healthBarSize;
-    protected float radiant2 = 0f;
+    private int attackDirection = -1;
+    private float radiant2 = 0f;
 
     protected override void Start()
     {
@@ -54,12 +56,13 @@ public class Monster : MoveableSprite
         {
             case MonsterPatternType.Basic:
                 area.AddRange(Arena.singleton.getPosListNear(currentTile));
-                area.Add(currentTile);
+                break;
+            case MonsterPatternType.Range:
+                area.AddRange(Arena.singleton.getPosListDirection(2, currentTile, attackDirection));
                 break;
         }
 
         return area;
-
     }
 
     public void Move()
@@ -74,6 +77,7 @@ public class Monster : MoveableSprite
         switch(info.patterns[0].pattern)
         {
             case MonsterPatternType.Basic:
+            case MonsterPatternType.Range:
                 moveableTiles.AddRange(Arena.singleton.getPosListNear(currentTile));
                 break;
         }
@@ -85,24 +89,20 @@ public class Monster : MoveableSprite
 
         while(moveableTiles.Count != 0)
         {
+            // choose target tiles to move
             switch(info.patterns[0].pattern)
             {
                 case MonsterPatternType.Basic:
-                    int minDistance = int.MaxValue;
-
-                    foreach(Vector3Int tile in moveableTiles)
-                    {
-                        int distance = CalDistance(tile, characterTile);
-                        if(distance < minDistance)
-                        {
-                            minDistance = distance;
-                            targetTiles = new List<Vector3Int> { tile };
-                        }
-                        else if (distance == minDistance) targetTiles.Add(tile);
-                    }
+                    targetTiles = ShortenDistance(moveableTiles, characterTile);
+                    break;
+                case MonsterPatternType.Range:
+                    targetTiles = StayDistance(2, moveableTiles, characterTile);
                     break;
             }
 
+            if (MoveIfEmpty(targetTiles)) break;
+
+            // try to move nearby monster
             foreach(Vector3Int tile in targetTiles)
             {
                 moveableTiles.Remove(tile);
@@ -111,16 +111,35 @@ public class Monster : MoveableSprite
                 if (nearbyMonster != null) nearbyMonster.Move();
             }
 
-            targetTiles = targetTiles.FindAll(tile => (
-                tile == currentTile ||
-                MonsterManager.singleton.FindMonsterByTile(tile) == null
-            ));
+            if (MoveIfEmpty(targetTiles)) break;
+            if (targetTiles.Contains(currentTile)) break;
+        }
 
-            if (targetTiles.Count == 0) continue;
+        attackDirection = CalAttackDirection();
+    }
 
-            Vector3Int destination = targetTiles[Random.Range(0, targetTiles.Count)];
-            SetMovement(destination);
-            break;
+    public void Refresh()
+    {
+        moved = false;
+        attacked = false;
+        attackDirection = CalAttackDirection();
+    }
+
+    private int CalAttackDirection()
+    {
+        Vector3Int characterTile = Arena.singleton.mCharacter.GetComponent<MoveableSprite>().currentTile;
+
+        switch(info.patterns[0].pattern)
+        {
+            case MonsterPatternType.Range:
+                for(int i = 0; i < 6; i++)
+                {
+                    if(Arena.singleton.getPosListDirection(2, currentTile, i).Contains(characterTile))
+                        return i;
+                }
+                return -1;
+            default:
+                return -1;
         }
     }
 
@@ -131,6 +150,7 @@ public class Monster : MoveableSprite
         {
             PlayerData.health -= info.patterns[0].damage;
             StartCoroutine(AttackAnimation());
+            attacked = true;
             return true;
         }
         return false;
@@ -157,6 +177,11 @@ public class Monster : MoveableSprite
         return healthAmount;
     }
 
+    public bool CanMoveAfterAttack()
+    {
+        return info.patterns.Count > 1;
+    }
+
     private void Die()
     {
         MonsterManager.singleton.monsters.Remove(this);
@@ -171,5 +196,47 @@ public class Monster : MoveableSprite
         float dx = Mathf.Abs(x1 - x2);
         int distance = (int) (dy + Mathf.Max(dx - dy/2, 0));
         return distance;
+    }
+
+    private List<Vector3Int> StayDistance(int idealDistance, List<Vector3Int> moveableTiles, Vector3Int characterTile)
+    {
+        List<Vector3Int> targetTiles = new List<Vector3Int>();
+        int minDistance = int.MaxValue;
+
+        foreach(Vector3Int tile in moveableTiles)
+        {
+            int distance = Mathf.Abs(CalDistance(tile, characterTile) - idealDistance);
+            if(distance < minDistance)
+            {
+                minDistance = distance;
+                targetTiles = new List<Vector3Int> { tile };
+            }
+            else if (distance == minDistance) targetTiles.Add(tile);
+        }
+        return targetTiles;
+    }
+
+    private List<Vector3Int> ShortenDistance(List<Vector3Int> moveableTiles, Vector3Int characterTile)
+    {
+        return StayDistance(0, moveableTiles, characterTile);
+    }
+
+    private bool MoveIfEmpty(List<Vector3Int> targetTiles)
+    {
+        List<Vector3Int> targetEmptyTiles = targetTiles.FindAll(tile => 
+            MonsterManager.singleton.FindMonsterByTile(tile) == null
+        );
+        if (targetEmptyTiles.Count != 0)
+        {
+            MoveRandom(targetEmptyTiles);
+            return true;
+        }
+        return false;
+    }
+
+    private void MoveRandom(List<Vector3Int> targetTiles)
+    {
+        Vector3Int destination = targetTiles[Random.Range(0, targetTiles.Count)];
+        SetMovement(destination);
     }
 }
