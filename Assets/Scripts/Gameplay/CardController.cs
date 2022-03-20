@@ -26,7 +26,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int mousePos = arena.grid.WorldToCell(new Vector3(oriPos.x,oriPos.y,0));
             Tile tile = (Tile)arena.tilemap.GetTile(mousePos);
-            if(tile.Equals(arena.mTile))
+            if(tile != null && tile.Equals(arena.mTile))
             {
                 selected = false;
                 this.GetComponent<Image>().color = Color.white;

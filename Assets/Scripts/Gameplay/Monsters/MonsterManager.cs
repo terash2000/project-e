@@ -6,9 +6,9 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 {
     public static MonsterManager singleton;
     public Wave wave;
+    public List<Monster> monsters = new List<Monster>();
     public bool isBusy = false;
     [SerializeField] private GameObject monsterPrefab;
-    private List<Monster> monsters = new List<Monster>();
     private GridLayout grid;
     private Color redHighlight = new Color(1f, 0.5f, 0.5f);
 
@@ -24,7 +24,7 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 
     void Update()
     {
-        //if(Input.GetKeyDown(KeyCode.Space) && !isBusy) StartAttacking();
+        if(Input.GetKeyDown(KeyCode.Space) && !isBusy) StartAttacking();
     }
 
     public Monster FindMonsterByTile(Vector3Int tile)
@@ -91,7 +91,7 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 
     public void onEndTurn()
     {
-        MoveMonsters();
+        StartAttacking();
         GameManager.singleton.startTurn();
     }
 }

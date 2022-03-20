@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.065000005, y: 0.34}
   m_AnchorMax: {x: 0.924, y: 0.87861663}
-  m_AnchoredPosition: {x: 0.273201, y: -0.048199654}
+  m_AnchoredPosition: {x: 0.27319336, y: -0.048199654}
   m_SizeDelta: {x: -0.21509981, y: -0.0083}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &59255085
@@ -291,9 +291,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.052364066, y: 0.33570078}
-  m_AnchorMax: {x: 0.27400002, y: 0.33570078}
-  m_AnchoredPosition: {x: 0.508667, y: 9.373901}
-  m_SizeDelta: {x: 1.4171, y: 41.1918}
+  m_AnchorMax: {x: 0.052364066, y: 0.33570078}
+  m_AnchoredPosition: {x: 55.310074, y: 9.373901}
+  m_SizeDelta: {x: 111.02, y: 41.1918}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &387871418
 MonoBehaviour:
@@ -823,7 +823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c84fe9988eb42c439ab958bd5ff2074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: MapScene
+  nextScene: SampleCombatScene
   root: {fileID: 11400000, guid: a2a9914673fb0274eb0420bdbb120e3e, type: 2}
   quoteObj: {fileID: 1175766101}
   characterName: {fileID: 387871416}

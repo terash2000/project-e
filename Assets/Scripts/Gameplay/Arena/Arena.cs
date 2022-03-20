@@ -57,7 +57,7 @@ public class Arena : MonoBehaviour
         Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int mousePos = grid.WorldToCell(new Vector3(oriPos.x,oriPos.y,0));
         Tile tile = (Tile)tilemap.GetTile(mousePos);
-        if(tile.Equals(mTile))
+        if(tile != null && tile.Equals(mTile))
         {
             hexBorder.GetComponent<MeshRenderer>().gameObject.SetActive(true);
             hexBorder.transform.position = grid.CellToWorld(mousePos);

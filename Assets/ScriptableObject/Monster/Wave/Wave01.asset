@@ -12,8 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16278ba643f4de64b842bc931527db2f, type: 3}
   m_Name: Wave01
   m_EditorClassIdentifier: 
-  monsters:
-  - monster: {fileID: 11400000, guid: 16f5bc9b5a1686c499dc1bbd1f843cb5, type: 2}
-    tile: {x: 2, y: -2}
-  - monster: {fileID: 11400000, guid: 16f5bc9b5a1686c499dc1bbd1f843cb5, type: 2}
-    tile: {x: 0, y: 3}
+  monsters: []

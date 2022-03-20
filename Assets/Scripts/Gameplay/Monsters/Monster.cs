@@ -156,6 +156,7 @@ public class Monster : MoveableSprite
 
     private void Die()
     {
+        MonsterManager.singleton.monsters.Remove(this);
         Destroy(gameObject);
     }
 
