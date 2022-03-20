@@ -1,11 +1,20 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Resource : MonoBehaviour
 {
+    private TextMeshProUGUI healthText;
+    private TextMeshProUGUI goldText;
+
+    void Start()
+    {
+        healthText = gameObject.transform.Find("Health").gameObject.GetComponent<TextMeshProUGUI>();
+        goldText = gameObject.transform.Find("Gold Quantity").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
+    }
+
     void Update()
     {
-        gameObject.transform.Find("Gold Quantity").gameObject.GetComponent<TMPro.TextMeshProUGUI>().text 
-            = PlayerData.gold.ToString();
+        healthText.text = PlayerData.health.ToString() + '/' + PlayerData.maxHealth.ToString();
+        goldText.text = PlayerData.gold.ToString();
     }
 }

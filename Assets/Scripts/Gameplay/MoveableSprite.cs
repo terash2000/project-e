@@ -12,7 +12,7 @@ public class MoveableSprite : MonoBehaviour
     protected Vector2 oldPosition;
     protected Vector2 nextPosition;
     protected Vector2 lookDirection = new Vector2(0, -1);
-    protected float radiant;
+    protected float radiant = 0f;
     protected Animator animator;
 
     protected virtual void Start()
@@ -24,6 +24,7 @@ public class MoveableSprite : MonoBehaviour
 
     protected virtual void Update()
     {
+        //Debug.Log(IsMoving());
         // ============== MOVEMENT ======================
         displacement = new Vector2(nextPosition.x-oldPosition.x, nextPosition.y-oldPosition.y);
         transform.position = oldPosition + displacement * Mathf.Cos(radiant);
@@ -51,8 +52,12 @@ public class MoveableSprite : MonoBehaviour
         oldPosition = transform.position;
         nextPosition = position;
         if (!IsMoving())
+        {
             StartCoroutine(Move());
+        }
         else radiant = Mathf.PI/2;
+
+        Debug.Log(currentTile);
     }
 
     public bool IsMoving() {

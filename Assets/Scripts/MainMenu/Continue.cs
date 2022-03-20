@@ -16,6 +16,6 @@ public class Continue : MonoBehaviour
     {
         SaveSystem.Load();
         SceneChanger.previousScene = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene("MapScene");  
+        SceneManager.LoadScene("SampleCombatScene");  
     }
 }

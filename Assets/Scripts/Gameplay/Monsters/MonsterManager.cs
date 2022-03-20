@@ -6,8 +6,9 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 {
     public static MonsterManager singleton;
     public Wave wave;
+    public List<Monster> monsters = new List<Monster>();
+    public bool isBusy = false;
     [SerializeField] private GameObject monsterPrefab;
-    private List<Monster> monsters = new List<Monster>();
     private GridLayout grid;
     private Color redHighlight = new Color(1f, 0.5f, 0.5f);
 
@@ -23,7 +24,7 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 
     void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.Space) && !isBusy) StartAttacking();
     }
 
     public Monster FindMonsterByTile(Vector3Int tile)
@@ -36,6 +37,22 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
         return null;
     }
 
+    public void StartAttacking()
+    {
+        StartCoroutine(Attack());
+    }
+
+    private IEnumerator Attack()
+    {
+        isBusy = true;
+        foreach(Monster monster in monsters)
+        {
+            if(monster.Attack()) yield return new WaitForSeconds(0.25f);
+        }
+        MoveMonsters();
+        isBusy = false;
+    }
+
     public void MoveMonsters()
     {
         foreach(Monster monster in monsters) monster.moved = false;
@@ -44,7 +61,7 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
         HighlightAttackRange();
     }
 
-    public void HighlightAttackRange()
+    private void HighlightAttackRange()
     {
         foreach (Vector3Int tilePosition in Arena.singleton.tilemap.cellBounds.allPositionsWithin)
             Arena.singleton.tilemap.SetColor(tilePosition, Color.white);
@@ -74,7 +91,7 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 
     public void onEndTurn()
     {
-        MoveMonsters();
+        StartAttacking();
         GameManager.singleton.startTurn();
     }
 }
