@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 public class OptionMenu : MonoBehaviour
 {
     [SerializeField] private GameObject confirmationPopup;
-
     public void Pause()
     {
         gameObject.SetActive(true);
@@ -22,6 +21,7 @@ public class OptionMenu : MonoBehaviour
     {
         if (confirm)
         {
+            Time.timeScale = 1f;
             SaveSystem.DeleteSave();
             ReturnMainMenu();
         }
@@ -36,13 +36,14 @@ public class OptionMenu : MonoBehaviour
 
     public void ReturnMainMenu()
     {
+        Time.timeScale = 1f;
         SceneChanger.previousScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("MainMenuScene");
     }
 
     public void ExitGame()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
 }
