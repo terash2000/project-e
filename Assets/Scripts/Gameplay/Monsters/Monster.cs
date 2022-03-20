@@ -7,6 +7,7 @@ public class Monster : MoveableSprite
     public MonsterInfo info;
     public GameObject healthBar;
     public GameObject healthText;
+    public GameObject damageText;
     public bool moved;
 
     private int healthAmount;
@@ -41,6 +42,8 @@ public class Monster : MoveableSprite
         healthLocalScale.x = (float)healthAmount / (float)info.maxHealth * healthBarSize;
         healthBar.transform.localScale = healthLocalScale;
         healthText.GetComponent<TMPro.TextMeshProUGUI>().text = healthAmount.ToString();
+
+        damageText.GetComponent<TMPro.TextMeshProUGUI>().text = info.patterns[0].damage.ToString();
     }
 
     public List<Vector3Int> AttackArea()
