@@ -12,7 +12,6 @@ public class EndTurnButton : MonoBehaviour, ITurnHandler
 
     public void onStartTurn()
     {
-        //Debug.Log(2);
         GetComponent<Button>().interactable = true;
     }
 }

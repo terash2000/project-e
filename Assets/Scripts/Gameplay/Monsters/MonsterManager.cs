@@ -94,6 +94,5 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
     public void onEndTurn()
     {
         StartAttacking();
-        GameManager.singleton.startTurn();
     }
 }
