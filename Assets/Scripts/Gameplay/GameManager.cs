@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq; 
 
@@ -7,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager singleton;
     //[HideInInspector]
     public int round;
-    [HideInInspector]
+    //[HideInInspector]
     public bool playerTurn;
     //public Arena mArena;
 
@@ -28,17 +29,23 @@ public class GameManager : MonoBehaviour
         var turnHandlerObjects = FindObjectsOfType<MonoBehaviour>().OfType<ITurnHandler>();
         foreach (ITurnHandler turnHandlerObject in turnHandlerObjects) {
             turnHandlerObject.onStartTurn();
-            Debug.Log(1);
         }
     }
 
     public void endTurn()
+    {
+        StartCoroutine(doeEndTurn());
+    }
+
+    private IEnumerator doeEndTurn()
     {
         playerTurn = false;
         var turnHandlerObjects = FindObjectsOfType<MonoBehaviour>().OfType<ITurnHandler>();
         foreach (ITurnHandler turnHandlerObject in turnHandlerObjects) {
             turnHandlerObject.onEndTurn();
         }
+        yield return new WaitForSeconds(1f);
+        startTurn();
     }
 
 
