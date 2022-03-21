@@ -138,27 +138,76 @@ public class Arena : MonoBehaviour
 
     public List<Vector3Int> getPosListNear(Vector3Int curPos)
     {
-        List<Vector3Int> posList = getPosListCircle(1, curPos);
-        posList.Remove(curPos);
+        List<Vector3Int> posList = new List<Vector3Int>();
+        for(int i=0;i<6;i++)
+        {
+            posList.Add(getPosDirection(curPos, i));
+        }
+
         return posList;
     }
 
     private List<Vector3Int> getPosListLine(int range, Vector3Int curPos)
     {
-        List<Vector3Int> posListNear = getPosListNear(curPos);
         List<Vector3Int> posList = new List<Vector3Int>();
         posList.Add(curPos);
-        for(int i=0;i<posListNear.Count;i++)
+        for(int i=0;i<6;i++)
         {
-            Vector3Int pos = posListNear[i];
-            posList.Add(pos);
-            for(int j=0;j<range-1;j++)
+            posList.AddRange(getPosListDirection(range, curPos, i));
+        }
+        return posList;
+    }
+
+    public List<Vector3Int> getPosListDirection(int range, Vector3Int curPos, int direction)
+    {
+        List<Vector3Int> posList = new List<Vector3Int>();
+        if (direction >= 0 && direction < 6)
+        {
+            Vector3Int pos = curPos;
+            for(int i=0;i<range;i++)
             {
-                pos = getPosListNear(pos)[i];
+                pos = getPosDirection(pos, direction);
                 posList.Add(pos);
             }
         }
         return posList;
     }
 
+    public Vector3Int getPosDirection(Vector3Int curPos, int direction)
+    {
+        Vector3Int pos = curPos;
+        switch(direction)
+        {
+            // right
+            case 0:
+                pos.x += 1;
+                return pos;
+            // upper right
+            case 1:
+                pos.x += Mathf.Abs(pos.y) % 2;
+                pos.y += 1;
+                return pos;
+            // upper left
+            case 2:
+                pos.x += Mathf.Abs(pos.y) % 2 -1;
+                pos.y += 1;
+                return pos;
+            // left
+            case 3:
+                pos.x -= 1;
+                return pos;
+            // lower left
+            case 4:
+                pos.x += Mathf.Abs(pos.y) % 2 -1;
+                pos.y -= 1;
+                return pos;
+            // lower right
+            case 5:
+                pos.x += Mathf.Abs(pos.y) % 2;
+                pos.y -= 1;
+                return pos;
+            default:
+                throw new Exception();
+        }
+    }
 }

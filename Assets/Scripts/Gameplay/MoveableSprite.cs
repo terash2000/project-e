@@ -56,8 +56,6 @@ public class MoveableSprite : MonoBehaviour
             StartCoroutine(Move());
         }
         else radiant = Mathf.PI/2;
-
-        Debug.Log(currentTile);
     }
 
     public bool IsMoving() {
