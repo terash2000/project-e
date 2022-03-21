@@ -23,6 +23,14 @@ public class GameManager : MonoBehaviour
     {
         round = 0;
         gameState = GameState.Running;
+
+        // start after init other object
+        StartCoroutine(LateStart());
+    }
+
+    IEnumerator LateStart()
+    {
+        yield return new WaitForEndOfFrame();
         startTurn();
     }
 
@@ -61,7 +69,7 @@ public class GameManager : MonoBehaviour
             turnHandlerObject.onEndTurn();
         }
         while (MonsterManager.singleton.isBusy)
-            yield return new WaitForSeconds(Time.deltaTime);
+            yield return new WaitForEndOfFrame();
         startTurn();
     }
 

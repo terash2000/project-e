@@ -115,8 +115,6 @@ public class Monster : MoveableSprite
             if (MoveIfEmpty(targetTiles)) break;
             if (targetTiles.Contains(currentTile)) break;
         }
-
-        attackDirection = CalAttackDirection();
     }
 
     public void Refresh()
