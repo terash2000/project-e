@@ -36,7 +36,7 @@ public class Monster : MoveableSprite
         // attack animation
         if (radiant2 != 0f)
         {
-            Vector3 characterPos = grid.CellToWorld(Arena.singleton.mCharacter.GetComponent<MoveableSprite>().currentTile);
+            Vector3 characterPos = grid.CellToWorld(PlayerManager.singleton.Player.currentTile);
             Vector3 attackDirection = characterPos - transform.position;
             attackDirection.Normalize();
             transform.position = transform.position + attackDirection * 0.25f * Mathf.Sin(radiant2);
@@ -71,7 +71,7 @@ public class Monster : MoveableSprite
         if (moved) return;
         moved = true;
 
-        Vector3Int characterTile = Arena.singleton.mCharacter.GetComponent<MoveableSprite>().currentTile;
+        Vector3Int characterTile = PlayerManager.singleton.Player.currentTile;
         List<Vector3Int> targetTiles = new List<Vector3Int>();
         List<Vector3Int> moveableTiles = new List<Vector3Int> { currentTile };
 
@@ -126,7 +126,7 @@ public class Monster : MoveableSprite
 
     private int CalAttackDirection()
     {
-        Vector3Int characterTile = Arena.singleton.mCharacter.GetComponent<MoveableSprite>().currentTile;
+        Vector3Int characterTile = PlayerManager.singleton.Player.currentTile;
 
         switch (info.patterns[0].pattern)
         {
@@ -150,7 +150,7 @@ public class Monster : MoveableSprite
 
     public bool Attack()
     {
-        Vector3Int characterTile = Arena.singleton.mCharacter.GetComponent<MoveableSprite>().currentTile;
+        Vector3Int characterTile = PlayerManager.singleton.Player.currentTile;
         if (AttackArea().Contains(characterTile))
         {
             PlayerData.health -= info.patterns[0].damage;

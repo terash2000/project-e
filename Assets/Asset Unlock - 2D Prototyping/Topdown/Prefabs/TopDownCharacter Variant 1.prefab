@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 8560748829678191377, guid: 90350a423bc18bf4288caefda9a6638f,
         type: 3}
       propertyPath: m_Name
-      value: TopDownCharacter
+      value: TopDownCharacter Variant 1
       objectReference: {fileID: 0}
     - target: {fileID: 8560748829678191377, guid: 90350a423bc18bf4288caefda9a6638f,
         type: 3}
@@ -119,7 +119,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6488326590893742910}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &953519218
+--- !u!114 &2624471321616676839
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3226487306374223919}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1f500ae669fe2459634b29efbc98b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bf23f80fccc1e34bbedbc1825600bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentTile: {x: 0, y: 0, z: 0}
