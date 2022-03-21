@@ -174,7 +174,7 @@ public class Monster : MoveableSprite
         Vector3Int characterTile = PlayerManager.singleton.Player.currentTile;
         if (AttackArea().Contains(characterTile))
         {
-            PlayerData.health -= info.patterns[0].damage;
+            PlayerManager.singleton.TakeDamage(info.patterns[0].damage);
             StartCoroutine(AttackAnimation());
             attacked = true;
             return true;

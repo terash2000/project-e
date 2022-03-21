@@ -12,11 +12,6 @@ public class PlayerManager : MonoBehaviour, ITurnHandler
         set { _player = value; }
     }
     private GridLayout _grid;
-    // private List<Vector3Int> _highlightedTiles = new List<Vector3Int>();
-    // private List<Vector3Int> _highlightedTiles2 = new List<Vector3Int>();
-    // private Color _blueHighlight = new Color(0.5f, 0.5f, 1f);
-    // private Color _blueHighlight2 = new Color(0.8f, 0.8f, 1f);
-
     [SerializeField] private GameObject _playerPrefabs;
 
     void Awake()
@@ -32,17 +27,7 @@ public class PlayerManager : MonoBehaviour, ITurnHandler
 
     void Update()
     {
-        // Arena.singleton.setTileColor(Color.white, _highlightedTiles);
-        // Arena.singleton.setTileColor(_blueHighlight2, _highlightedTiles2);
 
-        // Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        // Vector3Int mousePos = _grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
-        // if (_player.currentTile == mousePos)
-        // {
-        //     _highlightedTiles = _player.AttackArea();
-        //     Arena.singleton.setTileColor(_blueHighlight, _highlightedTiles);
-        // }
-        // else _highlightedTiles.Clear();
     }
 
     public void onStartTurn()
@@ -53,5 +38,11 @@ public class PlayerManager : MonoBehaviour, ITurnHandler
     public void onEndTurn()
     {
 
+    }
+
+    public void TakeDamage(int damage)
+    {
+        PlayerData.health -= damage;
+        if (PlayerData.health < 0) PlayerData.health = 0;
     }
 }
