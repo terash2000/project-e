@@ -13,9 +13,10 @@ public class GameResultPopup : MonoBehaviour
 
     void Start()
     {
-        text = gameObject.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>();
-        bg = gameObject.transform.Find("Panel").gameObject.GetComponent<Image>();
-        confirmButton = gameObject.transform.Find("Confirm").gameObject.GetComponent<Button>();
+        GameObject panel = gameObject.transform.Find("Panel").gameObject;
+        text = panel.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>();
+        bg = panel.GetComponent<Image>();
+        confirmButton = panel.transform.Find("Confirm").gameObject.GetComponent<Button>();
         gameObject.SetActive(false);
     }
     public void onLose()
