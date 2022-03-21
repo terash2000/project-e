@@ -10,7 +10,7 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
     public bool isBusy = false;
     [SerializeField] private GameObject monsterPrefab;
     private GridLayout grid;
-    private List<Vector3Int> highlightedTiles = new List<Vector3Int>();
+    public List<Vector3Int> highlightedTiles = new List<Vector3Int>();
     private List<Vector3Int> highlightedTiles2 = new List<Vector3Int>();
     private Color redHighlight = new Color(1f, 0.5f, 0.5f);
     private Color redHighlight2 = new Color(1f, 0.8f, 0.8f);
@@ -28,18 +28,36 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 
     void Update()
     {
-        Arena.singleton.setTileColor(Color.white, highlightedTiles);
-        Arena.singleton.setTileColor(redHighlight2, highlightedTiles2);
+        Arena.singleton.setTileColor(Color.white, highlightedTiles2);
+        Arena.singleton.setTileColor(redHighlight2, highlightedTiles);
 
         Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int mousePos = grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
         Monster monster = FindMonsterByTile(mousePos);
         if (monster != null)
         {
-            highlightedTiles = monster.AttackArea();
-            Arena.singleton.setTileColor(redHighlight, highlightedTiles);
+            highlightedTiles2 = monster.AttackArea();
+            Arena.singleton.setTileColor(redHighlight, highlightedTiles2);
         }
-        else highlightedTiles.Clear();
+        else highlightedTiles2.Clear();
+    }
+
+    public void onStartTurn()
+    {
+        Arena.singleton.setTileColor(Color.white, highlightedTiles);
+        highlightedTiles.Clear();
+
+        foreach (Monster monster in monsters)
+        {
+            monster.Refresh();
+            if (monster.ShowAttackArea())
+                highlightedTiles.AddRange(monster.AttackArea());
+        }
+    }
+
+    public void onEndTurn()
+    {
+        StartAttacking();
     }
 
     public Monster FindMonsterByTile(Vector3Int tile)
@@ -86,23 +104,5 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 
             monsters.Add(monster);
         }
-    }
-
-    public void onStartTurn()
-    {
-        Arena.singleton.setTileColor(Color.white, highlightedTiles2);
-        highlightedTiles2.Clear();
-
-        foreach (Monster monster in monsters)
-        {
-            monster.Refresh();
-            if (monster.ShowAttackArea())
-                highlightedTiles2.AddRange(monster.AttackArea());
-        }
-    }
-
-    public void onEndTurn()
-    {
-        StartAttacking();
     }
 }
