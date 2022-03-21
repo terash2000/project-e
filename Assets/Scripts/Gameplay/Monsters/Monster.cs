@@ -196,7 +196,19 @@ public class Monster : MoveableSprite
     private void Die()
     {
         MonsterManager.singleton.monsters.Remove(this);
+        RemoveHighlight();
         Destroy(gameObject);
+    }
+
+    private void RemoveHighlight()
+    {
+        if (ShowAttackArea())
+        {
+            foreach (Vector3Int tile in AttackArea())
+            {
+                MonsterManager.singleton.highlightedTiles.Remove(tile);
+            }
+        }
     }
 
     private int CalDistance(Vector3Int tile1, Vector3Int tile2)

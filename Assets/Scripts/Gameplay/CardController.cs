@@ -12,7 +12,8 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public Arena arena;
     public int mRange;
     public AreaShape mAreaShape;
-    private bool selected = false;
+    public static bool selected = false;
+    protected bool selectThisCard = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(0) && selected)
+        if (Input.GetMouseButtonUp(0) && selectThisCard)
         {
             Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int mousePos = arena.grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
@@ -30,6 +31,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             if (tile != null && tile.Equals(arena.mTile))
             {
                 selected = false;
+                selectThisCard = false;
                 this.GetComponent<Image>().color = Color.white;
                 arena.hideRadius(mAreaShape, mRange);
                 PlayerManager.singleton.Player.SetMovement(mousePos);
@@ -40,6 +42,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (selected) return;
         this.GetComponent<Image>().color = Color.yellow;
         arena.showRadius(mAreaShape, mRange);
     }
@@ -53,6 +56,15 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        selected = !selected;
+        if (selectThisCard)
+        {
+            selected = false;
+            selectThisCard = false;
+        }
+        else if (!selected)
+        {
+            selected = true;
+            selectThisCard = true;
+        }
     }
 }
