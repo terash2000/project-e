@@ -13,12 +13,20 @@ public class MoveableSprite : MonoBehaviour
     protected Vector2 nextPosition;
     protected Vector2 lookDirection = new Vector2(0, -1);
     protected float radiant = 0f;
+    protected GameObject sprite;
     protected Animator animator;
 
     protected virtual void Start()
     {
+        Transform spriteTransform = transform.Find("Sprite");
+        if (spriteTransform)
+        {
+            sprite = spriteTransform.gameObject;
+            animator = sprite.GetComponent<Animator>();
+        }
+        else animator = GetComponent<Animator>();
+
         grid = Arena.singleton.GetComponentInChildren<GridLayout>();
-        animator = GetComponent<Animator>();
         oldPosition = nextPosition = grid.CellToWorld(currentTile);
     }
 

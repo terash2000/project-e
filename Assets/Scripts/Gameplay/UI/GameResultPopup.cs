@@ -13,7 +13,7 @@ public class GameResultPopup : MonoBehaviour
 
     void Start()
     {
-        GameObject panel = gameObject.transform.Find("Panel").gameObject;
+        GameObject panel = transform.Find("Panel").gameObject;
         text = panel.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>();
         bg = panel.GetComponent<Image>();
         confirmButton = panel.transform.Find("Confirm").gameObject.GetComponent<Button>();

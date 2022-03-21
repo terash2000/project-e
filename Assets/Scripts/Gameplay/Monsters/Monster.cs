@@ -23,7 +23,8 @@ public class Monster : MoveableSprite
         base.Start();
 
         animator.runtimeAnimatorController = info.animatorController;
-        GetComponent<SpriteRenderer>().color = info.spriteColor;
+        sprite.GetComponent<SpriteRenderer>().color = info.spriteColor;
+        sprite.transform.localScale = new Vector3(info.spriteScale, info.spriteScale, transform.localScale.z);
 
         healthAmount = info.maxHealth;
         healthLocalScale = healthBar.transform.localScale;
