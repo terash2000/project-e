@@ -17,7 +17,8 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private GameObject choicePrefab;
     private TextMeshProUGUI characterNameText;
 
-    void Awake(){
+    void Awake()
+    {
         singleton = this;
     }
 
@@ -31,18 +32,18 @@ public class DialogManager : MonoBehaviour
 
     void Update()
     {
-        if((Input.GetMouseButtonUp(0) ||
+        if ((Input.GetMouseButtonUp(0) ||
             Input.GetKeyDown(KeyCode.Space) ||
             Input.GetKeyDown(KeyCode.Return) ||
-            Input.GetKeyDown(KeyCode.Z)) && 
+            Input.GetKeyDown(KeyCode.Z)) &&
             !quoteObj.IsTyping()) Next();
     }
 
     private void Next()
     {
-        if(current.child != null && current.child.Count != 0)
+        if (current.child != null && current.child.Count != 0)
         {
-            switch(current.type)
+            switch (current.type)
             {
                 case NodeType.Basic:
                     ChangeNode(current.child[0]);
@@ -66,7 +67,7 @@ public class DialogManager : MonoBehaviour
 
     private void UpdateText()
     {
-        if(current.character != null)
+        if (current.character != null)
         {
             characterNameText.SetText(current.character.name);
             characterName.SetActive(true);
@@ -76,14 +77,14 @@ public class DialogManager : MonoBehaviour
         quoteObj.dialog = current.quote;
         quoteObj.StartTyping();
 
-        for(int i = 0; i < choiceContainer.transform.childCount; i++)
+        for (int i = 0; i < choiceContainer.transform.childCount; i++)
         {
             Destroy(choiceContainer.transform.GetChild(i).gameObject);
         }
 
-        if(current.type == NodeType.Choice)
+        if (current.type == NodeType.Choice)
         {
-            for(int i = 0; i < current.choice.Count; i++)
+            for (int i = 0; i < current.choice.Count; i++)
             {
                 GameObject choiceButton = Instantiate(choicePrefab, choiceContainer.transform);
                 choiceButton.transform.Find("Text (TMP)").gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = current.choice[i];

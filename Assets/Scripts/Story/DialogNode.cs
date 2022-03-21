@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class DialogNode: ScriptableObject
+public class DialogNode : ScriptableObject
 {
     public NodeType type;
     public NonPlayerCharacter character;
