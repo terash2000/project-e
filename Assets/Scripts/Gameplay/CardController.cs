@@ -14,6 +14,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public AreaShape mAreaShape;
     public static bool selected = false;
     protected bool selectThisCard = false;
+    private int manaCost = 1; //temp
     // Start is called before the first frame update
     void Start()
     {
@@ -23,19 +24,11 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(0) && selectThisCard)
+        if (Input.GetMouseButtonUp(0) && selectThisCard && usable())
         {
             Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int mousePos = arena.grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
-            Tile tile = (Tile)arena.tilemap.GetTile(mousePos);
-            if (tile != null && tile.Equals(arena.mTile))
-            {
-                selected = false;
-                selectThisCard = false;
-                this.GetComponent<Image>().color = Color.white;
-                arena.hideRadius(mAreaShape, mRange);
-                PlayerManager.singleton.Player.SetMovement(mousePos);
-            }
+            if(onUse(mousePos)) PlayerData.mana -= manaCost;
         }
 
     }
@@ -66,5 +59,25 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             selected = true;
             selectThisCard = true;
         }
+    }
+
+    public virtual bool onUse(Vector3Int mousePos)
+    {
+        Tile tile = (Tile)arena.tilemap.GetTile(mousePos);
+        if (tile != null && tile.Equals(arena.mTile))
+        {
+            selected = false;
+            selectThisCard = false;
+            this.GetComponent<Image>().color = Color.white;
+            arena.hideRadius(mAreaShape, mRange);
+            PlayerManager.singleton.Player.SetMovement(mousePos);
+            return true;
+        }
+        return false;
+    }
+
+    public bool usable()
+    {
+        return manaCost <= PlayerData.mana;
     }
 }

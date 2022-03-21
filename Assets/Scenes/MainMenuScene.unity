@@ -1202,6 +1202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starterHealth: 50
+  starterMana: 3
   starterGold: 0
   confirmationPopup: {fileID: 5984139876473836622, guid: d17398450ca033342ae5014d530fb58f,
     type: 3}

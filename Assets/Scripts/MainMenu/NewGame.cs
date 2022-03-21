@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class NewGame : MonoBehaviour
 {
     [SerializeField] private int starterHealth;
+    [SerializeField] private int starterMana;
     [SerializeField] private int starterGold;
     [SerializeField] private GameObject confirmationPopup;
 
@@ -16,6 +17,7 @@ public class NewGame : MonoBehaviour
         {
 
             PlayerData.health = PlayerData.maxHealth = starterHealth;
+            PlayerData.mana = PlayerData.maxMana = starterMana;
             PlayerData.gold = starterGold;
             SaveSystem.Save();
 

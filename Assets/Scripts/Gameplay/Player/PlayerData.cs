@@ -5,5 +5,7 @@ public static class PlayerData
 {
     public static int maxHealth;
     public static int health;
+    public static int maxMana;
+    public static int mana;
     public static int gold;
 }
