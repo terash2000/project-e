@@ -15,6 +15,8 @@ MonoBehaviour:
   type: 0
   character: {fileID: 11400000, guid: 4973cfca5e80a5f41846f26a0c6122ed, type: 2}
   quote: Rose are red.
+  background: {fileID: 21300000, guid: 3fda5bf2366760f4b96758883eb55b18, type: 3}
+  sprite: {fileID: 21300000, guid: 493424d9a82c0ac4fba407dfbf40d9ea, type: 3}
   child:
   - {fileID: 11400000, guid: 6b33d74ec5b3def4b9d73f51e69fc74c, type: 2}
   choice: []
