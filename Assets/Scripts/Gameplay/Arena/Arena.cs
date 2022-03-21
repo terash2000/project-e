@@ -16,7 +16,7 @@ public class Arena : MonoBehaviour
     public Tilemap tilemap;
     [HideInInspector]
     public GameObject hexBorder;
-    public GameObject mCharacter;
+    public GameObject redHexBorder;
 
     void Awake()
     {
@@ -30,6 +30,8 @@ public class Arena : MonoBehaviour
         tilemap = grid.GetComponentInChildren<Tilemap>();
         hexBorder = transform.Find("hexBorder").gameObject;
         BakeLineDebuger(hexBorder);
+        redHexBorder = transform.Find("redHexBorder").gameObject;
+        BakeLineDebuger(redHexBorder);
     }
 
     public static void BakeLineDebuger(GameObject lineObj)
@@ -54,30 +56,41 @@ public class Arena : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("1");
         Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int mousePos = grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
         Tile tile = (Tile)tilemap.GetTile(mousePos);
-        if (tile != null && tile.Equals(mTile))
-        {
-            hexBorder.GetComponent<MeshRenderer>().gameObject.SetActive(true);
-            hexBorder.transform.position = grid.CellToWorld(mousePos);
 
+        if (MonsterManager.singleton.FindMonsterByTile(mousePos) != null)
+        {
+            // highlight monster
+            hexBorder.gameObject.SetActive(false);
+            redHexBorder.gameObject.SetActive(true);
+            redHexBorder.transform.position = grid.CellToWorld(mousePos);
         }
-        else hexBorder.GetComponent<MeshRenderer>().gameObject.SetActive(false);
+        else if (tile != null && tile.Equals(mTile))
+        {
+            redHexBorder.gameObject.SetActive(false);
+            hexBorder.gameObject.SetActive(true);
+            hexBorder.transform.position = grid.CellToWorld(mousePos);
+        }
+        else
+        {
+            hexBorder.gameObject.SetActive(false);
+            redHexBorder.gameObject.SetActive(false);
+        }
     }
 
     public void showRadius(AreaShape areaShape, int range)
     {
         //Vector3Int curPos = grid.WorldToCell(mCharacter.transform.position);
-        Vector3Int curPos = mCharacter.GetComponent<MoveableSprite>().currentTile;
+        Vector3Int curPos = PlayerManager.singleton.Player.currentTile;
         setTile(mTile, getPosList(areaShape, range, curPos));
     }
 
     public void hideRadius(AreaShape areaShape, int range)
     {
         //Vector3Int curPos = grid.WorldToCell(mCharacter.transform.position);
-        Vector3Int curPos = mCharacter.GetComponent<MoveableSprite>().currentTile;
+        Vector3Int curPos = PlayerManager.singleton.Player.currentTile;
         setTile(mOriginalTile, getPosList(areaShape, range, curPos));
     }
 
@@ -145,7 +158,6 @@ public class Arena : MonoBehaviour
         {
             posList.Add(getPosDirection(curPos, i));
         }
-
         return posList;
     }
 

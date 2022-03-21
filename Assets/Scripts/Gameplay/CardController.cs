@@ -32,7 +32,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                 selected = false;
                 this.GetComponent<Image>().color = Color.white;
                 arena.hideRadius(mAreaShape, mRange);
-                arena.mCharacter.GetComponent<MoveableSprite>().SetMovement(mousePos);
+                PlayerManager.singleton.Player.SetMovement(mousePos);
             }
         }
 
