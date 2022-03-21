@@ -773,6 +773,11 @@ PrefabInstance:
       objectReference: {fileID: 519420031}
     - target: {fileID: 1715171128512001521, guid: af63116dff67885428aa9b9524ff86a0,
         type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1715171128512001521, guid: af63116dff67885428aa9b9524ff86a0,
+        type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
@@ -901,9 +906,19 @@ PrefabInstance:
       propertyPath: m_CellSize.y
       value: 0.66
       objectReference: {fileID: 0}
+    - target: {fileID: 5874138442632888439, guid: af63116dff67885428aa9b9524ff86a0,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6375712948402535803, guid: af63116dff67885428aa9b9524ff86a0,
         type: 3}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7166366110650988074, guid: af63116dff67885428aa9b9524ff86a0,
+        type: 3}
+      propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7408094886821963636, guid: af63116dff67885428aa9b9524ff86a0,
@@ -3520,6 +3535,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8560748829678191380, guid: 90350a423bc18bf4288caefda9a6638f, type: 3}
-    - {fileID: 8560748829678191383, guid: 90350a423bc18bf4288caefda9a6638f, type: 3}
     - {fileID: 8560748829678191381, guid: 90350a423bc18bf4288caefda9a6638f, type: 3}
+    - {fileID: 8560748829678191383, guid: 90350a423bc18bf4288caefda9a6638f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 90350a423bc18bf4288caefda9a6638f, type: 3}

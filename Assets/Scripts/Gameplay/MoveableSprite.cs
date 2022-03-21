@@ -26,11 +26,11 @@ public class MoveableSprite : MonoBehaviour
     {
         //Debug.Log(IsMoving());
         // ============== MOVEMENT ======================
-        displacement = new Vector2(nextPosition.x-oldPosition.x, nextPosition.y-oldPosition.y);
+        displacement = new Vector2(nextPosition.x - oldPosition.x, nextPosition.y - oldPosition.y);
         transform.position = oldPosition + displacement * Mathf.Cos(radiant);
         movement = displacement * Mathf.Sin(radiant);
-        
-        if(!Mathf.Approximately(movement.x, 0.0f) || !Mathf.Approximately(movement.y, 0.0f))
+
+        if (!Mathf.Approximately(movement.x, 0.0f) || !Mathf.Approximately(movement.y, 0.0f))
         {
             lookDirection.Set(movement.x, movement.y);
             lookDirection.Normalize();
@@ -55,18 +55,20 @@ public class MoveableSprite : MonoBehaviour
         {
             StartCoroutine(Move());
         }
-        else radiant = Mathf.PI/2;
+        else radiant = Mathf.PI / 2;
     }
 
-    public bool IsMoving() {
+    public bool IsMoving()
+    {
         return radiant > 0f;
     }
 
     private IEnumerator Move()
     {
-        radiant = Mathf.PI/2;
-        while(radiant > 0f){
-            radiant -= Mathf.PI/2 * speed * Time.deltaTime;
+        radiant = Mathf.PI / 2;
+        while (radiant > 0f)
+        {
+            radiant -= Mathf.PI / 2 * speed * Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
         }
         radiant = 0f;
