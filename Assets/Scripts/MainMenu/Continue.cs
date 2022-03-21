@@ -8,7 +8,7 @@ public class Continue : MonoBehaviour
 {
     void Start()
     {
-        GetComponent<Button>().interactable = 
+        GetComponent<Button>().interactable =
             File.Exists(Application.persistentDataPath + "/SaveData.dat");
     }
 
@@ -16,6 +16,6 @@ public class Continue : MonoBehaviour
     {
         SaveSystem.Load();
         SceneChanger.previousScene = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene("SampleCombatScene");  
+        SceneManager.LoadScene("SampleCombatScene");
     }
 }

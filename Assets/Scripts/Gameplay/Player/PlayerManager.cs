@@ -5,10 +5,15 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour, ITurnHandler
 {
     public static PlayerManager singleton;
-    public Player player;
-    private GridLayout grid;
+    private Player _player;
+    public Player Player
+    {
+        get { return _player; }
+        set { _player = value; }
+    }
+    private GridLayout _grid;
 
-    [SerializeField] private GameObject playerPrefabs;
+    [SerializeField] private GameObject _playerPrefabs;
 
     void Awake()
     {
@@ -17,11 +22,8 @@ public class PlayerManager : MonoBehaviour, ITurnHandler
 
     void Start()
     {
-        player = gameObject.AddComponent<Player>();
-
-        grid = Arena.singleton.GetComponentInChildren<GridLayout>();
-
-        player = Instantiate(playerPrefabs, grid.transform).GetComponent<Player>();
+        _grid = Arena.singleton.GetComponentInChildren<GridLayout>();
+        _player = Instantiate(_playerPrefabs, _grid.transform).GetComponent<Player>();
     }
 
     void Update()

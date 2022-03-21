@@ -53,7 +53,7 @@ public class Monster : MoveableSprite
     {
         List<Vector3Int> area = new List<Vector3Int>();
 
-        switch(info.patterns[0].pattern)
+        switch (info.patterns[0].pattern)
         {
             case MonsterPatternType.Basic:
                 area.AddRange(Arena.singleton.getPosListNear(currentTile));
@@ -75,7 +75,7 @@ public class Monster : MoveableSprite
         List<Vector3Int> targetTiles = new List<Vector3Int>();
         List<Vector3Int> moveableTiles = new List<Vector3Int> { currentTile };
 
-        switch(info.patterns[0].pattern)
+        switch (info.patterns[0].pattern)
         {
             case MonsterPatternType.Basic:
             case MonsterPatternType.Range:
@@ -88,10 +88,10 @@ public class Monster : MoveableSprite
             Arena.singleton.tilemap.GetTile(tile) != null
         ));
 
-        while(moveableTiles.Count != 0)
+        while (moveableTiles.Count != 0)
         {
             // choose target tiles to move
-            switch(info.patterns[0].pattern)
+            switch (info.patterns[0].pattern)
             {
                 case MonsterPatternType.Basic:
                     targetTiles = ShortenDistance(moveableTiles, characterTile);
@@ -104,7 +104,7 @@ public class Monster : MoveableSprite
             if (MoveIfEmpty(targetTiles)) break;
 
             // try to move nearby monster
-            foreach(Vector3Int tile in targetTiles)
+            foreach (Vector3Int tile in targetTiles)
             {
                 moveableTiles.Remove(tile);
 
@@ -130,16 +130,16 @@ public class Monster : MoveableSprite
     {
         Vector3Int characterTile = Arena.singleton.mCharacter.GetComponent<MoveableSprite>().currentTile;
 
-        switch(info.patterns[0].pattern)
+        switch (info.patterns[0].pattern)
         {
             case MonsterPatternType.Range:
-                for(int i = 0; i < 6; i++)
+                for (int i = 0; i < 6; i++)
                 {
                     List<Vector3Int> attackableArea = Arena.singleton.getPosListDirection(2, currentTile, i);
-                    if(attackableArea.Contains(characterTile)) return i;
-                    if(Arena.singleton.getPosListNear(attackableArea[1]).Contains(characterTile))
+                    if (attackableArea.Contains(characterTile)) return i;
+                    if (Arena.singleton.getPosListNear(attackableArea[1]).Contains(characterTile))
                     {
-                        if(CalDistance(currentTile, characterTile) > 2)
+                        if (CalDistance(currentTile, characterTile) > 2)
                             return i;
                         return Random.Range(i, i + 2) % 6;
                     }
@@ -153,7 +153,7 @@ public class Monster : MoveableSprite
     public bool Attack()
     {
         Vector3Int characterTile = Arena.singleton.mCharacter.GetComponent<MoveableSprite>().currentTile;
-        if(AttackArea().Contains(characterTile))
+        if (AttackArea().Contains(characterTile))
         {
             PlayerData.health -= info.patterns[0].damage;
             StartCoroutine(AttackAnimation());
@@ -166,7 +166,8 @@ public class Monster : MoveableSprite
     private IEnumerator AttackAnimation()
     {
         radiant2 = Mathf.PI;
-        while(radiant2 > 0f){
+        while (radiant2 > 0f)
+        {
             radiant2 -= Mathf.PI * 5 * Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
         }
@@ -191,7 +192,7 @@ public class Monster : MoveableSprite
 
     public bool ShowAttackArea()
     {
-        return info.patterns[0].pattern  != MonsterPatternType.Basic;
+        return info.patterns[0].pattern != MonsterPatternType.Basic;
     }
 
     private void Die()
@@ -206,7 +207,7 @@ public class Monster : MoveableSprite
         float x2 = (float)tile2.x + 0.5f * (Mathf.Abs(tile2.y) % 2);
         float dy = Mathf.Abs((float)tile1.y - (float)tile2.y);
         float dx = Mathf.Abs(x1 - x2);
-        int distance = (int) (dy + Mathf.Max(dx - dy/2, 0));
+        int distance = (int)(dy + Mathf.Max(dx - dy / 2, 0));
         return distance;
     }
 
@@ -215,10 +216,10 @@ public class Monster : MoveableSprite
         List<Vector3Int> targetTiles = new List<Vector3Int>();
         int minDistance = int.MaxValue;
 
-        foreach(Vector3Int tile in moveableTiles)
+        foreach (Vector3Int tile in moveableTiles)
         {
             int distance = Mathf.Abs(CalDistance(tile, characterTile) - idealDistance);
-            if(distance < minDistance)
+            if (distance < minDistance)
             {
                 minDistance = distance;
                 targetTiles = new List<Vector3Int> { tile };
@@ -235,7 +236,7 @@ public class Monster : MoveableSprite
 
     private bool MoveIfEmpty(List<Vector3Int> targetTiles)
     {
-        List<Vector3Int> targetEmptyTiles = targetTiles.FindAll(tile => 
+        List<Vector3Int> targetEmptyTiles = targetTiles.FindAll(tile =>
             MonsterManager.singleton.FindMonsterByTile(tile) == null
         );
         if (targetEmptyTiles.Count != 0)

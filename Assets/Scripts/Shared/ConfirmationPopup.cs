@@ -8,7 +8,7 @@ public class ConfirmationPopup : MonoBehaviour
     {
         Text text = gameObject.transform.Find("Text").gameObject.GetComponent<Text>();
         text.text = message;
-        
+
         Button confirmButton = gameObject.transform.Find("Confirm").gameObject.GetComponent<Button>();
         confirmButton.onClick.AddListener(Listener);
     }

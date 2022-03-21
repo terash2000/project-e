@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq; 
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
 
     public GameState gameState;
 
-    void Awake(){
+    void Awake()
+    {
         singleton = this;
     }
 
@@ -27,8 +28,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(PlayerData.health<=0 && gameState == GameState.Running)
-        {   
+        if (PlayerData.health <= 0 && gameState == GameState.Running)
+        {
             GameResultPopup gameResultPopup = Resources.FindObjectsOfTypeAll<GameResultPopup>()[0];
             gameResultPopup.onLose();
             gameState = GameState.Lose;
@@ -40,7 +41,8 @@ public class GameManager : MonoBehaviour
         round++;
         playerTurn = true;
         var turnHandlerObjects = FindObjectsOfType<MonoBehaviour>().OfType<ITurnHandler>();
-        foreach (ITurnHandler turnHandlerObject in turnHandlerObjects) {
+        foreach (ITurnHandler turnHandlerObject in turnHandlerObjects)
+        {
             turnHandlerObject.onStartTurn();
         }
     }
@@ -54,10 +56,11 @@ public class GameManager : MonoBehaviour
     {
         playerTurn = false;
         var turnHandlerObjects = FindObjectsOfType<MonoBehaviour>().OfType<ITurnHandler>();
-        foreach (ITurnHandler turnHandlerObject in turnHandlerObjects) {
+        foreach (ITurnHandler turnHandlerObject in turnHandlerObjects)
+        {
             turnHandlerObject.onEndTurn();
         }
-        while(MonsterManager.singleton.isBusy)
+        while (MonsterManager.singleton.isBusy)
             yield return new WaitForSeconds(Time.deltaTime);
         startTurn();
     }

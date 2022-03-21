@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragCard : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
+public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private RectTransform dragRectTransform;
     [SerializeField] private Canvas canvas;
@@ -16,7 +16,7 @@ public class DragCard : MonoBehaviour,IBeginDragHandler, IEndDragHandler, IDragH
         {
             dragRectTransform = transform.GetComponent<RectTransform>();
         }
-        
+
         if (canvas == null)
         {
             Transform testCanvasTransform = transform.parent;
