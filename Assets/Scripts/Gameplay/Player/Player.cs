@@ -15,6 +15,12 @@ public class Player : MoveableSprite
     {
         base.Update();
     }
+    public List<Vector3Int> AttackArea()
+    {
+        List<Vector3Int> area = new List<Vector3Int>();
+        area.AddRange(Arena.singleton.getPosListNear(currentTile));
+        return area;
+    }
 
     public void OnMouseDown()
     {
