@@ -12,6 +12,8 @@ public class DialogManager : MonoBehaviour
     private DialogNode current;
     [SerializeField] private QuoteText quoteObj;
     [SerializeField] private GameObject characterName;
+    [SerializeField] private Image background;
+    [SerializeField] private Image sprite;
     [SerializeField] private VerticalLayoutGroup choiceContainer;
     [SerializeField] private GameObject choicePrefab;
     private TextMeshProUGUI characterNameText;
@@ -65,6 +67,10 @@ public class DialogManager : MonoBehaviour
 
     private void UpdateText()
     {
+        quoteObj.dialog = current.quote;
+        quoteObj.StartTyping();
+
+        // character name
         if (current.character != null)
         {
             characterNameText.SetText(current.character.name);
@@ -72,9 +78,16 @@ public class DialogManager : MonoBehaviour
         }
         else characterName.SetActive(false);
 
-        quoteObj.dialog = current.quote;
-        quoteObj.StartTyping();
+        // image
+        if (current.background != null) background.sprite = current.background;
+        if (current.sprite != null)
+        {
+            sprite.sprite = current.sprite;
+            sprite.gameObject.SetActive(true);
+        }
+        else sprite.gameObject.SetActive(false);
 
+        // choice
         for (int i = 0; i < choiceContainer.transform.childCount; i++)
         {
             Destroy(choiceContainer.transform.GetChild(i).gameObject);
@@ -91,6 +104,5 @@ public class DialogManager : MonoBehaviour
                 choiceButton.GetComponent<Button>().onClick.AddListener(listener);
             }
         }
-
     }
 }
