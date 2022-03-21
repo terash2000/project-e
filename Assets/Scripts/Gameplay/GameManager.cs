@@ -57,7 +57,8 @@ public class GameManager : MonoBehaviour
         foreach (ITurnHandler turnHandlerObject in turnHandlerObjects) {
             turnHandlerObject.onEndTurn();
         }
-        yield return new WaitForSeconds(1f);
+        while(MonsterManager.singleton.isBusy)
+            yield return new WaitForSeconds(Time.deltaTime);
         startTurn();
     }
 

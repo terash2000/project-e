@@ -22,6 +22,7 @@ public class Monster : MoveableSprite
         base.Start();
 
         animator.runtimeAnimatorController = info.animatorController;
+        GetComponent<SpriteRenderer>().color = info.spriteColor;
 
         healthAmount = info.maxHealth;
         healthLocalScale = healthBar.transform.localScale;
@@ -134,8 +135,14 @@ public class Monster : MoveableSprite
             case MonsterPatternType.Range:
                 for(int i = 0; i < 6; i++)
                 {
-                    if(Arena.singleton.getPosListDirection(2, currentTile, i).Contains(characterTile))
-                        return i;
+                    List<Vector3Int> attackableArea = Arena.singleton.getPosListDirection(2, currentTile, i);
+                    if(attackableArea.Contains(characterTile)) return i;
+                    if(Arena.singleton.getPosListNear(attackableArea[1]).Contains(characterTile))
+                    {
+                        if(CalDistance(currentTile, characterTile) > 2)
+                            return i;
+                        return Random.Range(i, i + 2) % 6;
+                    }
                 }
                 return -1;
             default:
@@ -180,6 +187,11 @@ public class Monster : MoveableSprite
     public bool CanMoveAfterAttack()
     {
         return info.patterns.Count > 1;
+    }
+
+    public bool ShowAttackArea()
+    {
+        return info.patterns[0].pattern  != MonsterPatternType.Basic;
     }
 
     private void Die()

@@ -11,7 +11,9 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
     [SerializeField] private GameObject monsterPrefab;
     private GridLayout grid;
     private List<Vector3Int> highlightedTiles = new List<Vector3Int>();
+    private List<Vector3Int> highlightedTiles2 = new List<Vector3Int>();
     private Color redHighlight = new Color(1f, 0.5f, 0.5f);
+    private Color redHighlight2 = new Color(1f, 0.8f, 0.8f);
 
     void Awake(){
         singleton = this;
@@ -25,9 +27,8 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 
     void Update()
     {
-        // if(Input.GetKeyDown(KeyCode.Space) && !isBusy) StartAttacking();
-
         Arena.singleton.setTileColor(Color.white, highlightedTiles);
+        Arena.singleton.setTileColor(redHighlight2, highlightedTiles2);
 
         Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int mousePos = grid.WorldToCell(new Vector3(oriPos.x,oriPos.y,0));
@@ -88,7 +89,15 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 
     public void onStartTurn()
     {
-        foreach(Monster monster in monsters) monster.Refresh();
+        Arena.singleton.setTileColor(Color.white, highlightedTiles2);
+        highlightedTiles2.Clear();
+
+        foreach(Monster monster in monsters)
+        {
+            monster.Refresh();
+            if(monster.ShowAttackArea())
+                highlightedTiles2.AddRange(monster.AttackArea());
+        }
     }
 
     public void onEndTurn()

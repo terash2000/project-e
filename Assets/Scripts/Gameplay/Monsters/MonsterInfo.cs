@@ -9,6 +9,7 @@ public class MonsterInfo : ScriptableObject
     public int maxHealth;
     public List<MonsterPattern> patterns;
     public RuntimeAnimatorController animatorController;
+    public Color spriteColor;
 
     [Serializable]
     public class MonsterPattern
