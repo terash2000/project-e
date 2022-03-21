@@ -15,7 +15,8 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
     private Color redHighlight = new Color(1f, 0.5f, 0.5f);
     private Color redHighlight2 = new Color(1f, 0.8f, 0.8f);
 
-    void Awake(){
+    void Awake()
+    {
         singleton = this;
     }
 
@@ -31,9 +32,9 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
         Arena.singleton.setTileColor(redHighlight2, highlightedTiles2);
 
         Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int mousePos = grid.WorldToCell(new Vector3(oriPos.x,oriPos.y,0));
+        Vector3Int mousePos = grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
         Monster monster = FindMonsterByTile(mousePos);
-        if(monster != null)
+        if (monster != null)
         {
             highlightedTiles = monster.AttackArea();
             Arena.singleton.setTileColor(redHighlight, highlightedTiles);
@@ -43,9 +44,9 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 
     public Monster FindMonsterByTile(Vector3Int tile)
     {
-        foreach(Monster monster in monsters)
+        foreach (Monster monster in monsters)
         {
-            if(monster.currentTile == tile)
+            if (monster.currentTile == tile)
                 return monster;
         }
         return null;
@@ -59,9 +60,9 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
     private IEnumerator Attack()
     {
         isBusy = true;
-        foreach(Monster monster in monsters)
+        foreach (Monster monster in monsters)
         {
-            if(monster.Attack()) yield return new WaitForSeconds(0.15f);
+            if (monster.Attack()) yield return new WaitForSeconds(0.15f);
         }
         MoveMonsters();
         isBusy = false;
@@ -69,7 +70,7 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 
     public void MoveMonsters()
     {
-        foreach(Monster monster in monsters)
+        foreach (Monster monster in monsters)
         {
             if (!monster.attacked || monster.CanMoveAfterAttack()) monster.Move();
         }
@@ -77,11 +78,11 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 
     private void SpawnWave()
     {
-        foreach(Wave.MonsterSpawner monsterSpawner in wave.monsters)
+        foreach (Wave.MonsterSpawner monsterSpawner in wave.monsters)
         {
             Monster monster = Instantiate(monsterPrefab, grid.transform).GetComponent<Monster>();
             monster.info = monsterSpawner.monster;
-            monster.currentTile = new Vector3Int(monsterSpawner.tile.x ,monsterSpawner.tile.y, 0);
+            monster.currentTile = new Vector3Int(monsterSpawner.tile.x, monsterSpawner.tile.y, 0);
 
             monsters.Add(monster);
         }
@@ -92,10 +93,10 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
         Arena.singleton.setTileColor(Color.white, highlightedTiles2);
         highlightedTiles2.Clear();
 
-        foreach(Monster monster in monsters)
+        foreach (Monster monster in monsters)
         {
             monster.Refresh();
-            if(monster.ShowAttackArea())
+            if (monster.ShowAttackArea())
                 highlightedTiles2.AddRange(monster.AttackArea());
         }
     }

@@ -22,32 +22,33 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonUp(0)&&selected){
+        if (Input.GetMouseButtonUp(0) && selected)
+        {
             Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int mousePos = arena.grid.WorldToCell(new Vector3(oriPos.x,oriPos.y,0));
+            Vector3Int mousePos = arena.grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
             Tile tile = (Tile)arena.tilemap.GetTile(mousePos);
-            if(tile != null && tile.Equals(arena.mTile))
+            if (tile != null && tile.Equals(arena.mTile))
             {
                 selected = false;
                 this.GetComponent<Image>().color = Color.white;
-                arena.hideRadius(mAreaShape,mRange);
+                arena.hideRadius(mAreaShape, mRange);
                 arena.mCharacter.GetComponent<MoveableSprite>().SetMovement(mousePos);
             }
         }
-        
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         this.GetComponent<Image>().color = Color.yellow;
-        arena.showRadius(mAreaShape,mRange);
+        arena.showRadius(mAreaShape, mRange);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if(selected) return;
+        if (selected) return;
         this.GetComponent<Image>().color = Color.white;
-        arena.hideRadius(mAreaShape,mRange);
+        arena.hideRadius(mAreaShape, mRange);
     }
 
     public void OnPointerClick(PointerEventData eventData)

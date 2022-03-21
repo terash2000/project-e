@@ -18,7 +18,8 @@ public class Arena : MonoBehaviour
     public GameObject hexBorder;
     public GameObject mCharacter;
 
-    void Awake(){
+    void Awake()
+    {
         singleton = this;
     }
 
@@ -47,7 +48,7 @@ public class Arena : MonoBehaviour
     }
     void OnMouseOver()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -55,9 +56,9 @@ public class Arena : MonoBehaviour
     {
         //Debug.Log("1");
         Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int mousePos = grid.WorldToCell(new Vector3(oriPos.x,oriPos.y,0));
+        Vector3Int mousePos = grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
         Tile tile = (Tile)tilemap.GetTile(mousePos);
-        if(tile != null && tile.Equals(mTile))
+        if (tile != null && tile.Equals(mTile))
         {
             hexBorder.GetComponent<MeshRenderer>().gameObject.SetActive(true);
             hexBorder.transform.position = grid.CellToWorld(mousePos);
@@ -70,21 +71,21 @@ public class Arena : MonoBehaviour
     {
         //Vector3Int curPos = grid.WorldToCell(mCharacter.transform.position);
         Vector3Int curPos = mCharacter.GetComponent<MoveableSprite>().currentTile;
-        setTile(mTile, getPosList(areaShape,range,curPos));
+        setTile(mTile, getPosList(areaShape, range, curPos));
     }
 
     public void hideRadius(AreaShape areaShape, int range)
     {
         //Vector3Int curPos = grid.WorldToCell(mCharacter.transform.position);
         Vector3Int curPos = mCharacter.GetComponent<MoveableSprite>().currentTile;
-        setTile(mOriginalTile, getPosList(areaShape,range,curPos));
+        setTile(mOriginalTile, getPosList(areaShape, range, curPos));
     }
 
     public void setTile(Tile tile, List<Vector3Int> posList)
     {
-        foreach(Vector3Int pos in posList)
+        foreach (Vector3Int pos in posList)
         {
-            if(tilemap.GetTile(pos) == null) continue;
+            if (tilemap.GetTile(pos) == null) continue;
             Color color = tilemap.GetColor(pos);
             tilemap.SetTile(pos, tile);
             tilemap.SetTileFlags(pos, TileFlags.None);
@@ -94,9 +95,9 @@ public class Arena : MonoBehaviour
 
     public void setTileColor(Color color, List<Vector3Int> posList)
     {
-        foreach(Vector3Int pos in posList)
+        foreach (Vector3Int pos in posList)
         {
-            if(tilemap.GetTile(pos) == null) continue;
+            if (tilemap.GetTile(pos) == null) continue;
             tilemap.SetTileFlags(pos, TileFlags.None);
             tilemap.SetColor(pos, color);
         }
@@ -104,7 +105,7 @@ public class Arena : MonoBehaviour
 
     public List<Vector3Int> getPosList(AreaShape areaShape, int range, Vector3Int curPos)
     {
-        switch(areaShape)
+        switch (areaShape)
         {
             case AreaShape.Hexagon:
                 return getPosListCircle(range, curPos);
@@ -118,17 +119,18 @@ public class Arena : MonoBehaviour
     private List<Vector3Int> getPosListCircle(int range, Vector3Int curPos)
     {
         List<Vector3Int> posList = new List<Vector3Int>();
-        int k=1;
-        if(Mathf.Abs(curPos.y)%2==1)k=-1;
-        for(int y=-range;y<=range;y++)
+        int k = 1;
+        if (Mathf.Abs(curPos.y) % 2 == 1) k = -1;
+        for (int y = -range; y <= range; y++)
         {
-            for(int x=-range;x<=range;x++)
+            for (int x = -range; x <= range; x++)
             {
                 int temp = x;
-                if(Mathf.Abs(y)%2 == 1 && k*x>0) x+=k;
-                if(Mathf.Abs(x)+Mathf.Abs(y)/2<=range){
+                if (Mathf.Abs(y) % 2 == 1 && k * x > 0) x += k;
+                if (Mathf.Abs(x) + Mathf.Abs(y) / 2 <= range)
+                {
                     x = temp;
-                    posList.Add(new Vector3Int(x+curPos.x,y+curPos.y,0));
+                    posList.Add(new Vector3Int(x + curPos.x, y + curPos.y, 0));
                 }
                 x = temp;
             }
@@ -139,7 +141,7 @@ public class Arena : MonoBehaviour
     public List<Vector3Int> getPosListNear(Vector3Int curPos)
     {
         List<Vector3Int> posList = new List<Vector3Int>();
-        for(int i=0;i<6;i++)
+        for (int i = 0; i < 6; i++)
         {
             posList.Add(getPosDirection(curPos, i));
         }
@@ -151,7 +153,7 @@ public class Arena : MonoBehaviour
     {
         List<Vector3Int> posList = new List<Vector3Int>();
         posList.Add(curPos);
-        for(int i=0;i<6;i++)
+        for (int i = 0; i < 6; i++)
         {
             posList.AddRange(getPosListDirection(range, curPos, i));
         }
@@ -164,7 +166,7 @@ public class Arena : MonoBehaviour
         if (direction >= 0 && direction < 6)
         {
             Vector3Int pos = curPos;
-            for(int i=0;i<range;i++)
+            for (int i = 0; i < range; i++)
             {
                 pos = getPosDirection(pos, direction);
                 posList.Add(pos);
@@ -176,7 +178,7 @@ public class Arena : MonoBehaviour
     public Vector3Int getPosDirection(Vector3Int curPos, int direction)
     {
         Vector3Int pos = curPos;
-        switch(direction)
+        switch (direction)
         {
             // right
             case 0:
@@ -189,7 +191,7 @@ public class Arena : MonoBehaviour
                 return pos;
             // upper left
             case 2:
-                pos.x += Mathf.Abs(pos.y) % 2 -1;
+                pos.x += Mathf.Abs(pos.y) % 2 - 1;
                 pos.y += 1;
                 return pos;
             // left
@@ -198,7 +200,7 @@ public class Arena : MonoBehaviour
                 return pos;
             // lower left
             case 4:
-                pos.x += Mathf.Abs(pos.y) % 2 -1;
+                pos.x += Mathf.Abs(pos.y) % 2 - 1;
                 pos.y -= 1;
                 return pos;
             // lower right
