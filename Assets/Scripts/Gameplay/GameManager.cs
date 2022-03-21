@@ -6,13 +6,14 @@ using System.Linq;
 public class GameManager : MonoBehaviour
 {
     public static GameManager singleton;
+    public static GameState gameState;
     [HideInInspector]
     public int round;
     [HideInInspector]
     public bool playerTurn;
     //public Arena mArena;
 
-    public GameState gameState;
+    public GameResultPopup gameResultPopup;
 
     void Awake()
     {
@@ -36,11 +37,19 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (PlayerData.health <= 0 && gameState == GameState.Running)
+        if (gameState == GameState.Running)
         {
-            GameResultPopup gameResultPopup = Resources.FindObjectsOfTypeAll<GameResultPopup>()[0];
-            gameResultPopup.onLose();
-            gameState = GameState.Lose;
+            if (PlayerData.health <= 0)
+            {
+                SaveSystem.DeleteSave();
+                gameResultPopup.onLose();
+                gameState = GameState.Lose;
+            }
+            else if (MonsterManager.singleton.monsters.Count == 0)
+            {
+                gameResultPopup.onWin();
+                gameState = GameState.Win;
+            }
         }
     }
 
@@ -72,6 +81,4 @@ public class GameManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         startTurn();
     }
-
-
 }

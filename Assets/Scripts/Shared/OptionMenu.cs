@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class OptionMenu : MonoBehaviour
 {
@@ -9,19 +8,20 @@ public class OptionMenu : MonoBehaviour
     {
         gameObject.SetActive(true);
         Time.timeScale = 0f;
+        GameManager.gameState = GameState.Pause;
     }
 
     public void Resume()
     {
         gameObject.SetActive(false);
         Time.timeScale = 1f;
+        GameManager.gameState = GameState.Running;
     }
 
     public void Abandon(bool confirm = false)
     {
         if (confirm)
         {
-            Time.timeScale = 1f;
             SaveSystem.DeleteSave();
             ReturnMainMenu();
         }
@@ -37,13 +37,11 @@ public class OptionMenu : MonoBehaviour
     public void ReturnMainMenu()
     {
         Time.timeScale = 1f;
-        SceneChanger.previousScene = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene("MainMenuScene");
+        SceneChanger.LoadScene("MainMenuScene");
     }
 
     public void ExitGame()
     {
-        //UnityEditor.EditorApplication.isPlaying = false;
-        Application.Quit();
+        SceneChanger.ExitGame();
     }
 }

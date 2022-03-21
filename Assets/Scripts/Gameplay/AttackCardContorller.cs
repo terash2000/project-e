@@ -20,7 +20,7 @@ public class AttackCardContorller : CardController
                 selectThisCard = false;
                 this.GetComponent<Image>().color = Color.white;
                 arena.hideRadius(mAreaShape, mRange);
-                monster.TakeDamage(1);
+                monster.TakeDamage(4);
             }
         }
     }

@@ -19,11 +19,12 @@ public class GameResultPopup : MonoBehaviour
         confirmButton = panel.transform.Find("Confirm").gameObject.GetComponent<Button>();
         gameObject.SetActive(false);
     }
+
     public void onLose()
     {
         text.text = "DEFEAT";
         bg.color = Color.red;
-        UnityAction action = () => Resources.FindObjectsOfTypeAll<OptionMenu>()[0].Abandon(true);
+        UnityAction action = () => ChangeScene("MainMenuScene");
         confirmButton.onClick.AddListener(action);
         gameObject.SetActive(true);
         Time.timeScale = 0f;
@@ -33,9 +34,15 @@ public class GameResultPopup : MonoBehaviour
     {
         text.text = "VICTORY";
         bg.color = Color.green;
-        gameObject.SetActive(true);
-        UnityAction action = () => Resources.FindObjectsOfTypeAll<OptionMenu>()[0].ReturnMainMenu();
+        UnityAction action = () => ChangeScene("MainMenuScene");
         confirmButton.onClick.AddListener(action);
+        gameObject.SetActive(true);
         Time.timeScale = 0f;
+    }
+
+    public void ChangeScene(string scenename)
+    {
+        Time.timeScale = 1f;
+        SceneChanger.LoadScene(scenename);
     }
 }

@@ -56,6 +56,8 @@ public class Arena : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.gameState != GameState.Running) return;
+
         Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int mousePos = grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
         Tile tile = (Tile)tilemap.GetTile(mousePos);
