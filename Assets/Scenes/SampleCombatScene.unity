@@ -446,7 +446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   round: 0
   playerTurn: 0
-  gameState: 0
+  gameResultPopup: {fileID: 8495098981698586526}
 --- !u!4 &424601450
 Transform:
   m_ObjectHideFlags: 0

@@ -28,6 +28,8 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 
     void Update()
     {
+        if (GameManager.gameState != GameState.Running) return;
+
         Arena.singleton.setTileColor(Color.white, highlightedTiles2);
         Arena.singleton.setTileColor(redHighlight2, highlightedTiles);
 

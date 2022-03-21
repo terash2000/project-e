@@ -10,6 +10,7 @@ public class Monster : MoveableSprite
     public GameObject damageText;
     public bool moved;
     public bool attacked;
+    public bool stuned;
 
     private int healthAmount;
     private Vector3 healthLocalScale;
@@ -46,12 +47,31 @@ public class Monster : MoveableSprite
         healthBar.transform.localScale = healthLocalScale;
         healthText.GetComponent<TMPro.TextMeshProUGUI>().text = healthAmount.ToString();
 
-        damageText.GetComponent<TMPro.TextMeshProUGUI>().text = info.patterns[0].damage.ToString();
+        int damage = stuned ? 0 : info.patterns[0].damage;
+        damageText.GetComponent<TMPro.TextMeshProUGUI>().text = damage.ToString();
+    }
+
+    public int TakeDamage(int damage)
+    {
+        healthAmount -= damage;
+        if (healthAmount <= 0)
+        {
+            Die();
+            return 0;
+        }
+        return healthAmount;
+    }
+
+    public void Stun()
+    {
+        RemoveHighlight();
+        stuned = true;
     }
 
     public List<Vector3Int> AttackArea()
     {
         List<Vector3Int> area = new List<Vector3Int>();
+        if (stuned) return area;
 
         switch (info.patterns[0].pattern)
         {
@@ -68,7 +88,7 @@ public class Monster : MoveableSprite
 
     public void Move()
     {
-        if (moved) return;
+        if (moved || stuned) return;
         moved = true;
 
         Vector3Int characterTile = PlayerManager.singleton.Player.currentTile;
@@ -121,6 +141,7 @@ public class Monster : MoveableSprite
     {
         moved = false;
         attacked = false;
+        stuned = false;
         attackDirection = CalAttackDirection();
     }
 
@@ -170,17 +191,6 @@ public class Monster : MoveableSprite
             yield return new WaitForSeconds(Time.deltaTime);
         }
         radiant2 = 0f;
-    }
-
-    public int TakeDamage(int damage)
-    {
-        healthAmount -= damage;
-        if (healthAmount <= 0)
-        {
-            Die();
-            return 0;
-        }
-        return healthAmount;
     }
 
     public bool CanMoveAfterAttack()

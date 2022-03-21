@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -54,8 +53,7 @@ public class DialogManager : MonoBehaviour
         }
         else
         {
-            SceneChanger.previousScene = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(nextScene);
+            SceneChanger.LoadScene(nextScene);
         }
     }
 
