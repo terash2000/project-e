@@ -64,12 +64,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public virtual bool onUse(Vector3Int mousePos)
     {
         Tile tile = (Tile)arena.tilemap.GetTile(mousePos);
-
-        // cannot move to monster tile
-        Monster monster = MonsterManager.singleton.FindMonsterByTile(mousePos);
-        if (monster != null) return false;
-
-        if (tile != null && tile.Equals(arena.mTile))
+        if (tile != null && tile.Equals(arena.mTile) && MonsterManager.singleton.FindMonsterByTile(mousePos) == null)
         {
             selected = false;
             selectThisCard = false;
