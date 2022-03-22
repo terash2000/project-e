@@ -12,7 +12,7 @@ Coding standardization can be seen everywhere in the software industry, hence, i
 
  1. There's no solid rule on when to use `MonoBehavior` or not but it's generally good to avoid using it in every class. Use it only when you need that class to interact with GameObject.
 2. Magic number should be avoided. Declare it as a `const` variable and assign a meaningful name to it (even if it's long).
-```
+```cs
 // Wrong
 if (_boss._health < 40.0f) // 40.0f is considered a magic number.
 {
@@ -52,7 +52,7 @@ All of the guideline below is taken from [**Microsoft Coding Convention**](https
  - Use parentheses to make clauses in the boolean expression more apparent.
  - Curly bracket should start on a new line.
  - After the end of the curly bracket, leave one new line after it (except for `if/else` and `try/catch`)
-```
+```cs
 // Example
 if (condition)
 {
@@ -104,7 +104,7 @@ Note that some elements from this Styleguide are grouped together, hence I'll un
  - You should always give `private` accessibility to every fields and methods as much as possible, even if you want another class to access the field. For fields, create getter and setter. For methods, just change it to `public`. This also apply to inherited method `Start()` and `Update()` from `MonoBehavior`.
  - Short getter and setter properties can use the same line curly bracket for both opening and closing
  - [SerializeField] should be put in separate line from field declaration.
-```
+```cs
 // All examples of cases. Imagining you're developing Hades
 public class PlayerManager : MonoBehavior
 {
@@ -169,7 +169,7 @@ public class Player : Entity, IControllable
 ```
 ## Singleton Usage with Unity
 Singleton is pretty straightforward by just declaring some static fields and setting it to `this`  inside the Awake() method.
-```
+```cs
 public class Singleton : MonoBehavior
 {
 	public static Singleton Instance;
@@ -184,7 +184,7 @@ Using simpleton with Unity is not that simple and it's come with the following p
  - Can lead to multiple instances of the same singletons.
  - Usually, we just put singleton class and attach to a GameObject that's created inside one scene, may be a few other scenes too but this will not persist whenever we change scenes.
  - The order that each `Awake()` will be called is unknown. It's not recommended to call `Singleton.Instance` in any `Awake()` which can read to Null Reference Exception.
-```
+```cs
 public class Singleton : MonoBehavior
 {
 	private static Singleton _instance;
@@ -223,7 +223,7 @@ public class Singleton : MonoBehavior
 }
 ```
  - To tackle all problems above, we must write a somewhat complicated singleton class and therefore we must copy and paste all of this code to another singleton class
-```
+```cs
 public class GenericSingleton<T> : MonoBehavior where T : Component
 {
 	private static T _instance;
