@@ -226,4 +226,10 @@ public class Arena : MonoBehaviour
                 throw new Exception();
         }
     }
+
+    public Vector2 getDirectionVector(int direction)
+    {
+        float radiant = direction * Mathf.PI / 3;
+        return new Vector2(Mathf.Cos(radiant), Mathf.Sin(radiant));
+    }
 }

@@ -17,5 +17,7 @@ public class MonsterInfo : ScriptableObject
     {
         public MonsterPatternType pattern;
         public int damage;
+        public int attackRange;
+        public int moveRange;
     }
 }

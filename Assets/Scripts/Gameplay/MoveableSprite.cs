@@ -27,12 +27,11 @@ public class MoveableSprite : MonoBehaviour
         else animator = GetComponent<Animator>();
 
         grid = Arena.singleton.GetComponentInChildren<GridLayout>();
-        oldPosition = nextPosition = grid.CellToWorld(currentTile);
+        transform.position = oldPosition = nextPosition = grid.CellToWorld(currentTile);
     }
 
     protected virtual void Update()
     {
-        //Debug.Log(IsMoving());
         // ============== MOVEMENT ======================
         displacement = new Vector2(nextPosition.x - oldPosition.x, nextPosition.y - oldPosition.y);
         transform.position = oldPosition + displacement * Mathf.Cos(radiant);
@@ -43,7 +42,6 @@ public class MoveableSprite : MonoBehaviour
             lookDirection.Set(movement.x, movement.y);
             lookDirection.Normalize();
         }
-        else lookDirection = new Vector2(0, -1);
 
         // ============== ANIMATION =======================
         animator.SetFloat("Look X", lookDirection.x);
@@ -54,11 +52,10 @@ public class MoveableSprite : MonoBehaviour
     public void SetMovement(Vector3Int tile)
     {
         if (currentTile == tile) return;
-
-        currentTile = tile;
         Vector2 position = grid.CellToWorld(tile);
-        oldPosition = transform.position;
+        oldPosition = grid.CellToWorld(currentTile);
         nextPosition = position;
+        currentTile = tile;
         if (!IsMoving())
         {
             StartCoroutine(Move());
@@ -76,8 +73,8 @@ public class MoveableSprite : MonoBehaviour
         radiant = Mathf.PI / 2;
         while (radiant > 0f)
         {
-            radiant -= Mathf.PI / 2 * speed * Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
+            radiant -= Mathf.PI / 2 * speed * Time.deltaTime;
         }
         radiant = 0f;
     }
