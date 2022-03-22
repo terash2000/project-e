@@ -10,8 +10,7 @@ public class Monster : MoveableSprite
     public GameObject damageText;
     public bool moved;
     public bool attacked;
-    public bool stuned;
-
+    private bool stuned;
     private int healthAmount;
     private Vector3 healthLocalScale;
     private float healthBarSize;
@@ -38,11 +37,13 @@ public class Monster : MoveableSprite
         // attack animation
         if (radiant2 != 0f)
         {
+            animator.SetBool("Attacking", true);
             Vector3 characterPos = grid.CellToWorld(PlayerManager.singleton.Player.currentTile);
             Vector3 attackDirection = characterPos - transform.position;
             attackDirection.Normalize();
             transform.position = transform.position + attackDirection * 0.25f * Mathf.Sin(radiant2);
         }
+        else animator.SetBool("Attacking", false);
 
         healthLocalScale.x = (float)healthAmount / (float)info.maxHealth * healthBarSize;
         healthBar.transform.localScale = healthLocalScale;
@@ -67,6 +68,7 @@ public class Monster : MoveableSprite
     {
         RemoveHighlight();
         stuned = true;
+        animator.SetBool("Stuned", true);
     }
 
     public List<Vector3Int> AttackArea()
@@ -144,6 +146,8 @@ public class Monster : MoveableSprite
         attacked = false;
         stuned = false;
         attackDirection = CalAttackDirection();
+
+        animator.SetBool("Stuned", false);
     }
 
     private int CalAttackDirection()

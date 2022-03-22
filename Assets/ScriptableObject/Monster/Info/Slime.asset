@@ -17,5 +17,6 @@ MonoBehaviour:
   patterns:
   - pattern: 0
     damage: 2
-  animatorController: {fileID: 9100000, guid: eb785a742a614ed4e8ebca3036090bc5, type: 2}
+  animatorController: {fileID: 9100000, guid: fd3d1d592b8fb114ba5d3d9aac1739ea, type: 2}
   spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  spriteScale: 3
