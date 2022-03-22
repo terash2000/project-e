@@ -5,12 +5,13 @@ using UnityEngine;
 public class Monster : MoveableSprite
 {
     public MonsterInfo info;
-    public GameObject healthBar;
-    public GameObject healthText;
-    public GameObject damageText;
     public bool moved;
     public bool attacked;
     private bool stuned;
+    [SerializeField] private GameObject healthBar;
+    [SerializeField] private GameObject healthText;
+    [SerializeField] private GameObject damageText;
+    [SerializeField] private SpriteRenderer damageIcon;
     private int healthAmount;
     private Vector3 healthLocalScale;
     private float healthBarSize;
@@ -159,6 +160,7 @@ public class Monster : MoveableSprite
         attacked = false;
         stuned = false;
         attackDirection = CalAttackDirection();
+        SetIcon(info.patterns[0].pattern);
 
         animator.SetBool("Stuned", false);
     }
@@ -299,5 +301,18 @@ public class Monster : MoveableSprite
     {
         Vector3Int destination = targetTiles[Random.Range(0, targetTiles.Count)];
         SetMovement(destination);
+    }
+
+    private void SetIcon(MonsterPatternType pattern)
+    {
+        switch (pattern)
+        {
+            case MonsterPatternType.Basic:
+                damageIcon.sprite = MonsterManager.singleton.SwordIcon;
+                break;
+            case MonsterPatternType.Range:
+                damageIcon.sprite = MonsterManager.singleton.BowIcon;
+                break;
+        }
     }
 }

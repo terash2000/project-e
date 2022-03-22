@@ -8,12 +8,14 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
     public Wave wave;
     public List<Monster> monsters = new List<Monster>();
     public bool isBusy = false;
+    public Sprite SwordIcon;
+    public Sprite BowIcon;
     [SerializeField] private GameObject monsterPrefab;
     private GridLayout grid;
     public List<Vector3Int> highlightedTiles = new List<Vector3Int>();
     private List<Vector3Int> highlightedTiles2 = new List<Vector3Int>();
-    private Color redHighlight = new Color(1f, 0.5f, 0.5f);
-    private Color redHighlight2 = new Color(1f, 0.8f, 0.8f);
+    private Color redHighlight = new Color(1f, 0.8f, 0.8f);
+    private Color redHighlight2 = new Color(1f, 0.5f, 0.5f);
 
     void Awake()
     {
@@ -31,7 +33,12 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
         if (GameManager.gameState != GameState.Running) return;
 
         Arena.singleton.setTileColor(Color.white, highlightedTiles2);
-        Arena.singleton.setTileColor(redHighlight2, highlightedTiles);
+
+        if (OptionMenu.showMonstersAttackArea)
+        {
+            Arena.singleton.setTileColor(redHighlight, highlightedTiles);
+        }
+        else Arena.singleton.setTileColor(Color.white, highlightedTiles);
 
         Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int mousePos = grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
@@ -39,7 +46,7 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
         if (monster != null)
         {
             highlightedTiles2 = monster.AttackArea();
-            Arena.singleton.setTileColor(redHighlight, highlightedTiles2);
+            Arena.singleton.setTileColor(redHighlight2, highlightedTiles2);
         }
         else highlightedTiles2.Clear();
     }

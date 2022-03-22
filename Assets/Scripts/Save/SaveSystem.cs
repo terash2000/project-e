@@ -41,4 +41,37 @@ public static class SaveSystem
             File.Delete(Application.persistentDataPath + "/SaveData.dat");
         }
     }
+
+    public static void SaveOptionMenu()
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/Setting.dat");
+
+        UserSetting setting = new UserSetting();
+        setting.autoEndTurn = OptionMenu.autoEndTurn;
+        setting.showMonstersAttackArea = OptionMenu.showMonstersAttackArea;
+
+        formatter.Serialize(file, setting);
+        file.Close();
+    }
+
+    public static void LoadOptionMenu()
+    {
+        if (File.Exists(Application.persistentDataPath + "/Setting.dat"))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath
+                    + "/Setting.dat", FileMode.Open);
+            UserSetting setting = (UserSetting)formatter.Deserialize(file);
+            file.Close();
+
+            OptionMenu.autoEndTurn = setting.autoEndTurn;
+            OptionMenu.showMonstersAttackArea = setting.showMonstersAttackArea;
+        }
+        else
+        {
+            OptionMenu.autoEndTurn = false;
+            OptionMenu.showMonstersAttackArea = true;
+        }
+    }
 }

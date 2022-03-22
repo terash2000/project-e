@@ -50,12 +50,12 @@ MonoBehaviour:
   currentTile: {x: 0, y: 0, z: 0}
   speed: 3
   info: {fileID: 0}
+  moved: 0
+  attacked: 0
   healthBar: {fileID: 5149273554269966856}
   healthText: {fileID: 3153039398249748871}
   damageText: {fileID: 1721798198429813714}
-  moved: 0
-  attacked: 0
-  stuned: 0
+  damageIcon: {fileID: 3581738963836795971}
 --- !u!1 &666563332887185344
 GameObject:
   m_ObjectHideFlags: 0
