@@ -9,12 +9,15 @@ public class MonsterInfo : ScriptableObject
     public int maxHealth;
     public List<MonsterPattern> patterns;
     public RuntimeAnimatorController animatorController;
-    public Color spriteColor;
+    public Color spriteColor = Color.white;
+    public float spriteScale = 1;
 
     [Serializable]
     public class MonsterPattern
     {
         public MonsterPatternType pattern;
         public int damage;
+        public int attackRange;
+        public int moveRange;
     }
 }

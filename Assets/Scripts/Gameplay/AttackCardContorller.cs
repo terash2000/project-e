@@ -13,6 +13,7 @@ public class AttackCardContorller : CardController
         {
             arena.hideRadius(mAreaShape, mRange);
             monster.TakeDamage(4);
+            // monster.Stun();
             return true;
         }
         return false;

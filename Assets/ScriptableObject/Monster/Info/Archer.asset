@@ -17,5 +17,8 @@ MonoBehaviour:
   patterns:
   - pattern: 1
     damage: 3
+    attackRange: 3
+    moveRange: 1
   animatorController: {fileID: 9100000, guid: eb785a742a614ed4e8ebca3036090bc5, type: 2}
   spriteColor: {r: 0.5882353, g: 0, b: 0, a: 1}
+  spriteScale: 1
