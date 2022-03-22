@@ -256,6 +256,7 @@ public class GenericSingleton<T> : MonoBehavior where T : Component
 		}
 	}
 }
+```
 
 ## Credits and Read More
  - Our senior's Github, [**pjumruspun**](https://github.com/pjumruspun)
