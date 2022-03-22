@@ -6,7 +6,7 @@ Coding standardization can be seen everywhere in the software industry, hence, i
  - Consistent code secures the scalability and the maintainability of our project.
  - Providing readability, therefore, reduce the time that will be wasted trying to understand parts of the project.
  - Intuitive code will let us see the relevant section of the code, what is linking together or referring to each other.
- - Overall, making our developing environment less stressful and fewer arguments over coding styles.
+ - Overall, making our developing environment less stressful and has fewer arguments over coding styles.
 
 ## General rules of thumb
 
@@ -26,8 +26,8 @@ if (_boss._health < BossStageOneHealthThreshold)
 	_boss.ChangeStage();
 }
 ```
- - A class should be doing its purposes and its fields and methods should be related to each other. (High Cohesion)
- - A class should not be trying to call another class's methods if it's unnecessary. (Low Coupling)
+ 3. A class should be doing its purposes and its fields and methods should be related to each other. (High Cohesion)
+ 4. A class should not be trying to call another class's methods if it's unnecessary. (Low Coupling)
 (ps. flashback to our software engineer class)
 ## Naming Convention
 ### Cases
@@ -79,13 +79,13 @@ Note that some elements from this Styleguide are grouped together, hence I'll un
 ### Within classes, structs and interfaces
  - Enums
  - Delegates
- - Events (not to be confused with Method that is event-related mentioned above)
+ - Events (not to be confused with Methods that is "event-related" mentioned above)
  - Constant Fields
  - Static Fields
  - Readonly Fields
  - Serialize Fields (Unity-specific)
  - Fields
- - Properties (such as shorthanded getter and setter)
+ - Properties (Such as shorthanded getter and setter)
  - Indexers (Similar to properties but for arrays, read more at Microsoft pages)
  - Constructors
  - Finalizers (Destructors)
@@ -102,7 +102,8 @@ Note that some elements from this Styleguide are grouped together, hence I'll un
 ### Elements Layout
  - Each and every group, either by element or accessibility should be followed with **one** blank line.
  - You should always give `private` accessibility to every fields and methods as much as possible, even if you want another class to access the field. For fields, create getter and setter. For methods, just change it to `public`. This also apply to inherited method `Start()` and `Update()` from `MonoBehavior`.
- - Short getter and setter properties can use same line curly bracket for both opening and closing
+ - Short getter and setter properties can use the same line curly bracket for both opening and closing
+ - [SerializeField] should be put in separate line from field declaration.
 ```
 // All examples of cases. Imagining you're developing Hades
 public class PlayerManager : MonoBehavior
@@ -130,6 +131,9 @@ public class PlayerManager : MonoBehavior
 
 public class Player : Entity, IControllable
 {
+	[SerializeField]
+	private GameObject _zagreusPrefabs;
+	
 	private int _health;
 	private sbyte _deathDefiance;
 	private sbyte _soulCast;
