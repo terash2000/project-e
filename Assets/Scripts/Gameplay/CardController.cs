@@ -14,6 +14,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public AreaShape mAreaShape;
     public static bool selected = false;
     protected bool selectThisCard = false;
+    private bool mouseOver = false;
     private int manaCost = 1; //temp
     // Start is called before the first frame update
     void Start()
@@ -24,17 +25,22 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(0) && selectThisCard && usable())
+        if (Input.GetMouseButtonUp(0) && selectThisCard && usable() && !mouseOver)
         {
+            this.GetComponent<Image>().color = Color.white;
             Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int mousePos = arena.grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
-            if(onUse(mousePos)) PlayerData.mana -= manaCost;
+            if (onUse(mousePos)) PlayerData.mana -= manaCost;
+            selected = false;
+            selectThisCard = false;
+            arena.hideRadius(mAreaShape, mRange);
         }
 
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        mouseOver = true;
         if (selected) return;
         this.GetComponent<Image>().color = Color.yellow;
         arena.showRadius(mAreaShape, mRange);
@@ -42,6 +48,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        mouseOver = false;
         if (selected) return;
         this.GetComponent<Image>().color = Color.white;
         arena.hideRadius(mAreaShape, mRange);
@@ -59,6 +66,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             selected = true;
             selectThisCard = true;
         }
+
     }
 
     public virtual bool onUse(Vector3Int mousePos)
@@ -66,9 +74,6 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         Tile tile = (Tile)arena.tilemap.GetTile(mousePos);
         if (tile != null && tile.Equals(arena.mTile) && MonsterManager.singleton.FindMonsterByTile(mousePos) == null)
         {
-            selected = false;
-            selectThisCard = false;
-            this.GetComponent<Image>().color = Color.white;
             arena.hideRadius(mAreaShape, mRange);
             PlayerManager.singleton.Player.SetMovement(mousePos);
             return true;

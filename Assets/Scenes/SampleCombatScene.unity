@@ -2409,8 +2409,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mArena: {fileID: 1176385018}
   arena: {fileID: 0}
-  mRange: 3
-  mAreaShape: 1
+  mRange: 1
+  mAreaShape: 0
 --- !u!65 &663082505
 BoxCollider:
   m_ObjectHideFlags: 0
