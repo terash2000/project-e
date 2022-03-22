@@ -10,13 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
-  m_Name: 01
+  m_Name: 03
   m_EditorClassIdentifier: 
-  type: 0
-  character: {fileID: 11400000, guid: 4973cfca5e80a5f41846f26a0c6122ed, type: 2}
-  quote: Rose are red.
-  background: {fileID: 21300000, guid: 3fda5bf2366760f4b96758883eb55b18, type: 3}
-  sprite: {fileID: 21300000, guid: 493424d9a82c0ac4fba407dfbf40d9ea, type: 3}
+  type: 1
+  character: {fileID: 0}
+  quote: Choose your color.
+  background: {fileID: 0}
+  sprite: {fileID: 0}
   child:
-  - {fileID: 11400000, guid: 4c8f3d4b9be77fd48b16efc8174c9d16, type: 2}
-  choice: []
+  - {fileID: 11400000, guid: 063149d0a7bbdb9449a8ec41ca9177d3, type: 2}
+  - {fileID: 11400000, guid: 72b0b25d2249cea4a943d2c27a4eb094, type: 2}
+  - {fileID: 11400000, guid: 10a84fd1dbecb624c9432f652388e958, type: 2}
+  choice:
+  - red
+  - blue
+  - green
