@@ -8,8 +8,8 @@ public class Resource : MonoBehaviour
 
     void Start()
     {
-        healthText = gameObject.transform.Find("Health").gameObject.GetComponent<TextMeshProUGUI>();
-        goldText = gameObject.transform.Find("Gold Quantity").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
+        healthText = transform.Find("Health").gameObject.GetComponent<TextMeshProUGUI>();
+        goldText = transform.Find("Gold Quantity").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
     }
 
     void Update()

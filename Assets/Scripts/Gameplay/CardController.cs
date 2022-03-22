@@ -28,7 +28,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int mousePos = arena.grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
-            if(onUse(mousePos)) PlayerData.mana -= manaCost;
+            if (onUse(mousePos)) PlayerData.mana -= manaCost;
         }
 
     }

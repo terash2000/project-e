@@ -10,8 +10,7 @@ public class Monster : MoveableSprite
     public GameObject damageText;
     public bool moved;
     public bool attacked;
-    public bool stuned;
-
+    private bool stuned;
     private int healthAmount;
     private Vector3 healthLocalScale;
     private float healthBarSize;
@@ -23,7 +22,13 @@ public class Monster : MoveableSprite
         base.Start();
 
         animator.runtimeAnimatorController = info.animatorController;
-        GetComponent<SpriteRenderer>().color = info.spriteColor;
+        sprite.GetComponent<SpriteRenderer>().color = info.spriteColor;
+        sprite.transform.localScale = new Vector3(info.spriteScale, info.spriteScale, transform.localScale.z);
+
+        // look at center of areana
+        Vector3 direction = -transform.position;
+        direction.Normalize();
+        lookDirection = direction;
 
         healthAmount = info.maxHealth;
         healthLocalScale = healthBar.transform.localScale;
@@ -37,10 +42,18 @@ public class Monster : MoveableSprite
         // attack animation
         if (radiant2 != 0f)
         {
+            animator.SetBool("Attacking", true);
             Vector3 characterPos = grid.CellToWorld(PlayerManager.singleton.Player.currentTile);
-            Vector3 attackDirection = characterPos - transform.position;
-            attackDirection.Normalize();
-            transform.position = transform.position + attackDirection * 0.25f * Mathf.Sin(radiant2);
+            Vector3 direction = characterPos - transform.position;
+            direction.Normalize();
+            transform.position = transform.position + direction * 0.25f * Mathf.Sin(radiant2);
+            lookDirection = direction;
+        }
+        else animator.SetBool("Attacking", false);
+
+        if (!IsMoving() && attackDirection != -1)
+        {
+            lookDirection = Arena.singleton.getDirectionVector(attackDirection);
         }
 
         healthLocalScale.x = (float)healthAmount / (float)info.maxHealth * healthBarSize;
@@ -66,6 +79,7 @@ public class Monster : MoveableSprite
     {
         RemoveHighlight();
         stuned = true;
+        animator.SetBool("Stuned", true);
     }
 
     public List<Vector3Int> AttackArea()
@@ -73,13 +87,14 @@ public class Monster : MoveableSprite
         List<Vector3Int> area = new List<Vector3Int>();
         if (stuned) return area;
 
-        switch (info.patterns[0].pattern)
+        MonsterInfo.MonsterPattern pattern = info.patterns[0];
+        switch (pattern.pattern)
         {
             case MonsterPatternType.Basic:
                 area.AddRange(Arena.singleton.getPosListNear(currentTile));
                 break;
             case MonsterPatternType.Range:
-                area.AddRange(Arena.singleton.getPosListDirection(2, currentTile, attackDirection));
+                area.AddRange(Arena.singleton.getPosListDirection(pattern.attackRange, currentTile, attackDirection));
                 break;
         }
 
@@ -94,12 +109,13 @@ public class Monster : MoveableSprite
         Vector3Int characterTile = PlayerManager.singleton.Player.currentTile;
         List<Vector3Int> targetTiles = new List<Vector3Int>();
         List<Vector3Int> moveableTiles = new List<Vector3Int> { currentTile };
+        MonsterInfo.MonsterPattern pattern = info.patterns[0];
 
-        switch (info.patterns[0].pattern)
+        switch (pattern.pattern)
         {
             case MonsterPatternType.Basic:
             case MonsterPatternType.Range:
-                moveableTiles.AddRange(Arena.singleton.getPosListNear(currentTile));
+                moveableTiles.AddRange(Arena.singleton.getPosList(AreaShape.Hexagon, pattern.moveRange, currentTile));
                 break;
         }
 
@@ -111,13 +127,13 @@ public class Monster : MoveableSprite
         while (moveableTiles.Count != 0)
         {
             // choose target tiles to move
-            switch (info.patterns[0].pattern)
+            switch (pattern.pattern)
             {
                 case MonsterPatternType.Basic:
                     targetTiles = ShortenDistance(moveableTiles, characterTile);
                     break;
                 case MonsterPatternType.Range:
-                    targetTiles = StayDistance(2, moveableTiles, characterTile);
+                    targetTiles = StayDistance(pattern.attackRange, moveableTiles, characterTile, true);
                     break;
             }
 
@@ -143,30 +159,36 @@ public class Monster : MoveableSprite
         attacked = false;
         stuned = false;
         attackDirection = CalAttackDirection();
+
+        animator.SetBool("Stuned", false);
     }
 
     private int CalAttackDirection()
     {
         Vector3Int characterTile = PlayerManager.singleton.Player.currentTile;
+        List<int> directionList = new List<int>();
+        MonsterInfo.MonsterPattern pattern = info.patterns[0];
 
-        switch (info.patterns[0].pattern)
+        switch (pattern.pattern)
         {
             case MonsterPatternType.Range:
                 for (int i = 0; i < 6; i++)
                 {
-                    List<Vector3Int> attackableArea = Arena.singleton.getPosListDirection(2, currentTile, i);
+                    List<Vector3Int> attackableArea = Arena.singleton.getPosListDirection(pattern.attackRange, currentTile, i);
                     if (attackableArea.Contains(characterTile)) return i;
-                    if (Arena.singleton.getPosListNear(attackableArea[1]).Contains(characterTile))
+                    for (int j = 1; j < pattern.attackRange; j++)
                     {
-                        if (CalDistance(currentTile, characterTile) > 2)
-                            return i;
-                        return Random.Range(i, i + 2) % 6;
+                        if (Arena.singleton.getPosListNear(attackableArea[j]).Contains(characterTile))
+                        {
+                            directionList.Add(i);
+                        }
                     }
                 }
-                return -1;
-            default:
-                return -1;
+                break;
         }
+
+        if (directionList.Count == 0) return -1;
+        return directionList[Random.Range(0, directionList.Count)];
     }
 
     public bool Attack()
@@ -187,8 +209,8 @@ public class Monster : MoveableSprite
         radiant2 = Mathf.PI;
         while (radiant2 > 0f)
         {
-            radiant2 -= Mathf.PI * 5 * Time.deltaTime;
             yield return new WaitForSeconds(Time.deltaTime);
+            radiant2 -= Mathf.PI * 5 * Time.deltaTime;
         }
         radiant2 = 0f;
     }
@@ -231,7 +253,7 @@ public class Monster : MoveableSprite
         return distance;
     }
 
-    private List<Vector3Int> StayDistance(int idealDistance, List<Vector3Int> moveableTiles, Vector3Int characterTile)
+    private List<Vector3Int> StayDistance(int idealDistance, List<Vector3Int> moveableTiles, Vector3Int characterTile, bool straightLine = false)
     {
         List<Vector3Int> targetTiles = new List<Vector3Int>();
         int minDistance = int.MaxValue;
@@ -239,6 +261,12 @@ public class Monster : MoveableSprite
         foreach (Vector3Int tile in moveableTiles)
         {
             int distance = Mathf.Abs(CalDistance(tile, characterTile) - idealDistance);
+
+            if (straightLine && Arena.singleton.getPosList(AreaShape.Line, idealDistance, tile).Contains(characterTile))
+            {
+                distance -= 99;
+            }
+
             if (distance < minDistance)
             {
                 minDistance = distance;

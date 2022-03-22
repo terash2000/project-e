@@ -16,6 +16,7 @@ public class AttackCardContorller : CardController
             this.GetComponent<Image>().color = Color.white;
             arena.hideRadius(mAreaShape, mRange);
             monster.TakeDamage(4);
+            // monster.Stun();
             return true;
         }
         return false;
