@@ -11,11 +11,9 @@ public class AttackCardContorller : CardController
         Monster monster = MonsterManager.singleton.FindMonsterByTile(mousePos);
         if (tile != null && monster != null && tile.Equals(arena.mTile))
         {
-            selected = false;
-            selectThisCard = false;
-            this.GetComponent<Image>().color = Color.white;
             arena.hideRadius(mAreaShape, mRange);
             monster.TakeDamage(4);
+            // monster.Stun();
             return true;
         }
         return false;
