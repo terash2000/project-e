@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        SaveSystem.LoadOptionMenu();
+
         round = 0;
         gameState = GameState.Running;
 

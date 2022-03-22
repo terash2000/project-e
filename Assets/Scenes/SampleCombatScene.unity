@@ -2599,6 +2599,8 @@ MonoBehaviour:
   wave: {fileID: 11400000, guid: 99422b7a3ab80cd488e078fd726f46df, type: 2}
   monsters: []
   isBusy: 0
+  SwordIcon: {fileID: 21300000, guid: a62e14f410ba5484881a9a9bd8b176f5, type: 3}
+  BowIcon: {fileID: 21300000, guid: 2c8152fa4cef17f4898ca394525bef1b, type: 3}
   monsterPrefab: {fileID: 365589358885336156, guid: 6666600362bc589428e8e65af920f735,
     type: 3}
   highlightedTiles: []
