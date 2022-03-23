@@ -1,20 +1,35 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
     public static string previousScene = "MainMenuScene";
+    public static List<string> nextScene = new List<string>();
 
     public static void LoadScene(string scenename)
     {
         SceneChanger.previousScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(scenename);
+        if (scenename == "MapScene") SaveSystem.Save();
+    }
+
+    public static void NextScene()
+    {
+        if (nextScene.Count > 0)
+        {
+            LoadScene(nextScene[0]);
+            nextScene.RemoveAt(0);
+        }
+        else LoadScene("MapScene");
     }
 
     public static void PreviousScene(string scenename)
     {
-        SceneManager.LoadScene(SceneChanger.previousScene);
+        LoadScene(SceneChanger.previousScene);
     }
+
+
 
     public static void ExitGame()
     {

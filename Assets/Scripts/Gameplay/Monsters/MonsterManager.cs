@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterManager : MonoBehaviour, ITurnHandler
 {
     public static MonsterManager singleton;
-    public Wave wave;
+    public static Wave wave;
     public List<Monster> monsters = new List<Monster>();
     public bool isBusy = false;
     public Sprite SwordIcon;

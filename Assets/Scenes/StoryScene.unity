@@ -975,7 +975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c84fe9988eb42c439ab958bd5ff2074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: SampleCombatScene
+  nextScene: CombatScene
   root: {fileID: 11400000, guid: a2a9914673fb0274eb0420bdbb120e3e, type: 2}
   quoteObj: {fileID: 1175766101}
   characterName: {fileID: 387871416}
