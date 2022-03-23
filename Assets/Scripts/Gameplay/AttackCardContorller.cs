@@ -7,11 +7,11 @@ public class AttackCardContorller : CardController
 {
     public override bool onUse(Vector3Int mousePos)
     {
-        Tile tile = (Tile)arena.tilemap.GetTile(mousePos);
+        Tile tile = (Tile)Arena.singleton.tilemap.GetTile(mousePos);
         Monster monster = MonsterManager.singleton.FindMonsterByTile(mousePos);
-        if (tile != null && monster != null && tile.Equals(arena.mTile))
+        if (tile != null && monster != null && tile.Equals(Arena.singleton.mTile))
         {
-            arena.hideRadius(mAreaShape, mRange);
+            Arena.singleton.hideRadius(mAreaShape, mRange);
             monster.TakeDamage(4);
             // monster.Stun();
             return true;

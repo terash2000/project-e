@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -16,7 +17,13 @@ public class Arena : MonoBehaviour
     public Tilemap tilemap;
     [HideInInspector]
     public GameObject hexBorder;
+    [HideInInspector]
+    public List<GameObject> hexBorderList;
+    [HideInInspector]
     public GameObject redHexBorder;
+    [HideInInspector]
+    public CardController SelectedCard;
+
 
     void Awake()
     {
@@ -30,8 +37,10 @@ public class Arena : MonoBehaviour
         tilemap = grid.GetComponentInChildren<Tilemap>();
         hexBorder = transform.Find("hexBorder").gameObject;
         BakeLineDebuger(hexBorder);
+        hexBorder.gameObject.SetActive(false);
         redHexBorder = transform.Find("redHexBorder").gameObject;
         BakeLineDebuger(redHexBorder);
+        SelectedCard = null;
     }
 
     public static void BakeLineDebuger(GameObject lineObj)
@@ -65,20 +74,54 @@ public class Arena : MonoBehaviour
         if (MonsterManager.singleton.FindMonsterByTile(mousePos) != null)
         {
             // highlight monster
-            hexBorder.gameObject.SetActive(false);
+            hideBorder();
             redHexBorder.gameObject.SetActive(true);
             redHexBorder.transform.position = grid.CellToWorld(mousePos);
         }
         else if (tile != null && tile.Equals(mTile))
         {
             redHexBorder.gameObject.SetActive(false);
-            hexBorder.gameObject.SetActive(true);
-            hexBorder.transform.position = grid.CellToWorld(mousePos);
+            showBorder(oriPos);
         }
         else
         {
-            hexBorder.gameObject.SetActive(false);
+            hideBorder();
             redHexBorder.gameObject.SetActive(false);
+        }
+    }
+
+    public void showBorder(Vector3 targetPos)
+    {
+        List<Vector3Int> posList = getPosListTarget(SelectedCard.mTargetShape, SelectedCard.mRange, PlayerManager.singleton.Player.currentTile, targetPos);
+        for (int i = 0; i < posList.Count; i++)
+        {
+            if (!tilemap.GetTile(posList[i]).Equals(mTile))
+            {
+                return;
+            }
+        }
+        for (int i = 0; i < posList.Count; i++)
+        {
+            GameObject border;
+            if (i >= hexBorderList.Count)
+            {
+                border = GameObject.Instantiate(hexBorder);
+                hexBorderList.Add(border);
+            }
+            else
+            {
+                border = hexBorderList[i];
+            }
+            border.gameObject.SetActive(true);
+            border.transform.position = grid.CellToWorld(posList[i]);
+        }
+    }
+
+    public void hideBorder()
+    {
+        foreach (GameObject border in hexBorderList)
+        {
+            border.gameObject.SetActive(false);
         }
     }
 
@@ -118,20 +161,37 @@ public class Arena : MonoBehaviour
         }
     }
 
-    public List<Vector3Int> getPosList(AreaShape areaShape, int range, Vector3Int curPos)
+    public List<Vector3Int> getPosListTarget(AreaShape areaShape, int range, Vector3Int curPos, Vector3 targetPos)
     {
+        Vector3Int targetPosCell = grid.WorldToCell(targetPos);
         switch (areaShape)
         {
+            case AreaShape.Cone:
+                return getPosListCone(range, curPos, targetPos);
+            default:
+                return getPosList(areaShape, range, targetPosCell);
+        }
+    }
+
+    public List<Vector3Int> getPosList(AreaShape areaShape, int range, Vector3Int curPos)
+    {
+
+        switch (areaShape)
+        {
+            case AreaShape.Single:
+                return getPosListHexagon(0, curPos);
             case AreaShape.Hexagon:
-                return getPosListCircle(range, curPos);
+                return getPosListHexagon(range, curPos);
             case AreaShape.Line:
                 return getPosListLine(range, curPos);
+            case AreaShape.Cone:
+                return getPosListCone(range, curPos, grid.CellToWorld(curPos));
             default:
                 return getPosListNear(curPos);
         }
     }
 
-    private List<Vector3Int> getPosListCircle(int range, Vector3Int curPos)
+    private List<Vector3Int> getPosListHexagon(int range, Vector3Int curPos)
     {
         List<Vector3Int> posList = new List<Vector3Int>();
         int k = 1;
@@ -231,5 +291,49 @@ public class Arena : MonoBehaviour
     {
         float radiant = direction * Mathf.PI / 3;
         return new Vector2(Mathf.Cos(radiant), Mathf.Sin(radiant));
+    }
+
+    public List<int> FindDirections(Vector3 oriPos, Vector3 targetPos)
+    {
+        Vector2 disPos = new Vector2(targetPos.x - oriPos.x, targetPos.y - oriPos.y);
+        Dictionary<int, float> dict = new Dictionary<int, float>();
+        List<int> direction = new List<int>();
+        for (int i = 0; i < 6; i++)
+        {
+            dict.Add(i, Vector2.Distance(getDirectionVector(i), disPos));
+        }
+        foreach (KeyValuePair<int, float> dis in dict.OrderBy(key => key.Value))
+        {
+            direction.Add(dis.Key);
+        }
+        return direction;
+    }
+
+    public List<Vector3Int> getPosListCone(int range, Vector3Int curPos, Vector3 targetPos)
+    {
+        int width = 2;
+        Vector3 playerPos = PlayerManager.singleton.Player.transform.position;
+        List<int> direction = Arena.singleton.FindDirections(playerPos, targetPos);
+        List<Vector3Int> posList = new List<Vector3Int>();
+        Queue<KeyValuePair<Vector3Int, int>> q = new Queue<KeyValuePair<Vector3Int, int>>();
+        Vector3Int pos = curPos;
+        q.Enqueue(new KeyValuePair<Vector3Int, int>(pos, 0));
+        while (q.Count > 0)
+        {
+            KeyValuePair<Vector3Int, int> p = q.Dequeue();
+            posList.Add(p.Key);
+            if (p.Value < range)
+            {
+                for (int i = 0; i < width; i++)
+                {
+                    pos = getPosDirection(p.Key, direction[i]);
+                    if (!posList.Contains(pos))
+                    {
+                        q.Enqueue(new KeyValuePair<Vector3Int, int>(pos, p.Value + 1));
+                    }
+                }
+            }
+        }
+        return posList;
     }
 }

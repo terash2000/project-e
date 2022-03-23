@@ -1,5 +1,7 @@
 public enum AreaShape
 {
+    Single,
     Hexagon,
-    Line
+    Line,
+    Cone
 }

@@ -7,11 +7,9 @@ using UnityEngine.EventSystems;
 
 public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    public GameObject mArena;
-    [HideInInspector]
-    public Arena arena;
     public int mRange;
     public AreaShape mAreaShape;
+    public AreaShape mTargetShape;
     public static bool selected = false;
     protected bool selectThisCard = false;
     private bool mouseOver = false;
@@ -19,7 +17,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     // Start is called before the first frame update
     void Start()
     {
-        arena = mArena.GetComponent<Arena>();
+
     }
 
     // Update is called once per frame
@@ -29,11 +27,12 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             this.GetComponent<Image>().color = Color.white;
             Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int mousePos = arena.grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
+            Vector3Int mousePos = Arena.singleton.grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
             if (onUse(mousePos)) PlayerData.mana -= manaCost;
             selected = false;
             selectThisCard = false;
-            arena.hideRadius(mAreaShape, mRange);
+            Arena.singleton.SelectedCard = null;
+            Arena.singleton.hideRadius(mAreaShape, mRange);
         }
 
     }
@@ -43,7 +42,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         mouseOver = true;
         if (selected) return;
         this.GetComponent<Image>().color = Color.yellow;
-        arena.showRadius(mAreaShape, mRange);
+        Arena.singleton.showRadius(mAreaShape, mRange);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -51,7 +50,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         mouseOver = false;
         if (selected) return;
         this.GetComponent<Image>().color = Color.white;
-        arena.hideRadius(mAreaShape, mRange);
+        Arena.singleton.hideRadius(mAreaShape, mRange);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -60,21 +59,23 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             selected = false;
             selectThisCard = false;
+            Arena.singleton.SelectedCard = null;
         }
         else if (!selected)
         {
             selected = true;
             selectThisCard = true;
+            Arena.singleton.SelectedCard = this;
         }
 
     }
 
     public virtual bool onUse(Vector3Int mousePos)
     {
-        Tile tile = (Tile)arena.tilemap.GetTile(mousePos);
-        if (tile != null && tile.Equals(arena.mTile) && MonsterManager.singleton.FindMonsterByTile(mousePos) == null)
+        Tile tile = (Tile)Arena.singleton.tilemap.GetTile(mousePos);
+        if (tile != null && tile.Equals(Arena.singleton.mTile) && MonsterManager.singleton.FindMonsterByTile(mousePos) == null)
         {
-            arena.hideRadius(mAreaShape, mRange);
+            Arena.singleton.hideRadius(mAreaShape, mRange);
             PlayerManager.singleton.Player.SetMovement(mousePos);
             return true;
         }
