@@ -12,6 +12,7 @@ public static class SaveSystem
         SaveData data = new SaveData();
         data.maxHealth = PlayerData.maxHealth;
         data.health = PlayerData.health;
+        data.maxMana = PlayerData.maxMana;
         data.gold = PlayerData.gold;
 
         formatter.Serialize(file, data);
@@ -30,6 +31,7 @@ public static class SaveSystem
 
             PlayerData.maxHealth = data.maxHealth;
             PlayerData.health = data.health;
+            PlayerData.maxMana = data.maxMana;
             PlayerData.gold = data.gold;
         }
     }

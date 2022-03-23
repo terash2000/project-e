@@ -6,5 +6,6 @@ public class SaveData
 {
     public int maxHealth;
     public int health;
+    public int maxMana;
     public int gold;
 }

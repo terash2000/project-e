@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,8 +8,7 @@ public class DialogManager : MonoBehaviour
 {
     public static DialogManager singleton;
 
-    public string nextScene;
-    public DialogNode root;
+    public static List<DialogNode> nextRoot = new List<DialogNode>();
     private DialogNode current;
     [SerializeField] private QuoteText quoteObj;
     [SerializeField] private GameObject characterName;
@@ -27,7 +27,8 @@ public class DialogManager : MonoBehaviour
     {
         characterNameText = characterName.transform.Find("Character Text").gameObject.GetComponent<TextMeshProUGUI>();
 
-        current = root;
+        current = nextRoot[0];
+        nextRoot.RemoveAt(0);
         UpdateText();
     }
 
@@ -55,7 +56,7 @@ public class DialogManager : MonoBehaviour
         }
         else
         {
-            SceneChanger.LoadScene(nextScene);
+            SceneChanger.NextScene();
         }
     }
 
