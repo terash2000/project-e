@@ -1,7 +1,6 @@
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Button))]
 public class Continue : MonoBehaviour
@@ -15,7 +14,6 @@ public class Continue : MonoBehaviour
     public void ContinueGame()
     {
         SaveSystem.Load();
-        SceneChanger.previousScene = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene("SampleCombatScene");
+        SceneChanger.NextScene();
     }
 }

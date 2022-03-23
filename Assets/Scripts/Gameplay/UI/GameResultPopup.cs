@@ -24,7 +24,7 @@ public class GameResultPopup : MonoBehaviour
     {
         text.text = "DEFEAT";
         bg.color = Color.red;
-        UnityAction action = () => ChangeScene("MainMenuScene");
+        UnityAction action = () => ReturnMainMenu();
         confirmButton.onClick.AddListener(action);
         gameObject.SetActive(true);
         Time.timeScale = 0f;
@@ -34,15 +34,21 @@ public class GameResultPopup : MonoBehaviour
     {
         text.text = "VICTORY";
         bg.color = Color.green;
-        UnityAction action = () => ChangeScene("MainMenuScene");
+        UnityAction action = () => NextScene();
         confirmButton.onClick.AddListener(action);
         gameObject.SetActive(true);
         Time.timeScale = 0f;
     }
 
-    public void ChangeScene(string scenename)
+    public void ReturnMainMenu()
     {
         Time.timeScale = 1f;
-        SceneChanger.LoadScene(scenename);
+        SceneChanger.LoadScene("MainMenuScene");
+    }
+
+    public void NextScene()
+    {
+        Time.timeScale = 1f;
+        SceneChanger.NextScene();
     }
 }
