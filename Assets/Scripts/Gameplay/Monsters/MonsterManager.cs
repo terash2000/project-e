@@ -110,6 +110,7 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
             Monster monster = Instantiate(monsterPrefab, grid.transform).GetComponent<Monster>();
             monster.info = monsterSpawner.monster;
             monster.currentTile = new Vector3Int(monsterSpawner.tile.x, monsterSpawner.tile.y, 0);
+            monster.currentMove = monsterSpawner.currentMove;
 
             monsters.Add(monster);
         }

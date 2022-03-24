@@ -12,5 +12,6 @@ public class Wave : ScriptableObject
     {
         public MonsterInfo monster;
         public Vector2Int tile;
+        public int currentMove;
     }
 }
