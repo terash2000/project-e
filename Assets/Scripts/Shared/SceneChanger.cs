@@ -24,7 +24,7 @@ public class SceneChanger : MonoBehaviour
         else LoadScene("MapScene");
     }
 
-    public static void PreviousScene(string scenename)
+    public static void PreviousScene()
     {
         LoadScene(SceneChanger.previousScene);
     }
