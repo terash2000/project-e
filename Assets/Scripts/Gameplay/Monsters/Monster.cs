@@ -5,6 +5,7 @@ using UnityEngine;
 public class Monster : MoveableSprite
 {
     public MonsterInfo info;
+    public int currentMove = 0;
     public bool moved;
     public bool attacked;
     private bool stuned;
@@ -61,7 +62,7 @@ public class Monster : MoveableSprite
         healthBar.transform.localScale = healthLocalScale;
         healthText.GetComponent<TMPro.TextMeshProUGUI>().text = healthAmount.ToString();
 
-        int damage = stuned ? 0 : info.patterns[0].damage;
+        int damage = stuned ? 0 : info.patterns[currentMove].damage;
         damageText.GetComponent<TMPro.TextMeshProUGUI>().text = damage.ToString();
     }
 
@@ -88,7 +89,7 @@ public class Monster : MoveableSprite
         List<Vector3Int> area = new List<Vector3Int>();
         if (stuned) return area;
 
-        MonsterInfo.MonsterPattern pattern = info.patterns[0];
+        MonsterInfo.MonsterPattern pattern = info.patterns[currentMove];
         switch (pattern.pattern)
         {
             case MonsterPatternType.Basic:
@@ -107,10 +108,12 @@ public class Monster : MoveableSprite
         if (moved || stuned) return;
         moved = true;
 
+        currentMove = (currentMove + 1) % info.patterns.Count;
+
         Vector3Int characterTile = PlayerManager.singleton.Player.currentTile;
         List<Vector3Int> targetTiles = new List<Vector3Int>();
         List<Vector3Int> moveableTiles = new List<Vector3Int> { currentTile };
-        MonsterInfo.MonsterPattern pattern = info.patterns[0];
+        MonsterInfo.MonsterPattern pattern = info.patterns[currentMove];
 
         switch (pattern.pattern)
         {
@@ -160,7 +163,7 @@ public class Monster : MoveableSprite
         attacked = false;
         stuned = false;
         attackDirection = CalAttackDirection();
-        SetIcon(info.patterns[0].pattern);
+        SetIcon(info.patterns[currentMove].pattern);
 
         animator.SetBool("Stuned", false);
     }
@@ -169,7 +172,7 @@ public class Monster : MoveableSprite
     {
         Vector3Int characterTile = PlayerManager.singleton.Player.currentTile;
         List<int> directionList = new List<int>();
-        MonsterInfo.MonsterPattern pattern = info.patterns[0];
+        MonsterInfo.MonsterPattern pattern = info.patterns[currentMove];
 
         switch (pattern.pattern)
         {
@@ -198,7 +201,7 @@ public class Monster : MoveableSprite
         Vector3Int characterTile = PlayerManager.singleton.Player.currentTile;
         if (AttackArea().Contains(characterTile))
         {
-            PlayerManager.singleton.TakeDamage(info.patterns[0].damage);
+            PlayerManager.singleton.TakeDamage(info.patterns[currentMove].damage);
             StartCoroutine(AttackAnimation());
             attacked = true;
             return true;
@@ -224,7 +227,7 @@ public class Monster : MoveableSprite
 
     public bool ShowAttackArea()
     {
-        return info.patterns[0].pattern != MonsterPatternType.Basic;
+        return info.patterns[currentMove].pattern != MonsterPatternType.Basic;
     }
 
     private void Die()
@@ -238,10 +241,7 @@ public class Monster : MoveableSprite
     {
         if (ShowAttackArea())
         {
-            foreach (Vector3Int tile in AttackArea())
-            {
-                MonsterManager.singleton.highlightedTiles.Remove(tile);
-            }
+            Arena.singleton.removeMonsterHighlight(AttackArea());
         }
     }
 
