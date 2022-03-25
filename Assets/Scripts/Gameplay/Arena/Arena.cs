@@ -24,6 +24,10 @@ public class Arena : MonoBehaviour
     public GameObject redHexBorder;
     [HideInInspector]
     public CardController SelectedCard;
+    public List<Vector3Int> monsterHighlight = new List<Vector3Int>();
+    public List<Vector3Int> monsterHighlight2 = new List<Vector3Int>();
+    private Color redHighlight = new Color(1f, 0.8f, 0.8f);
+    private Color redHighlight2 = new Color(1f, 0.5f, 0.5f);
 
 
     void Awake()
@@ -71,33 +75,45 @@ public class Arena : MonoBehaviour
 
         Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int mousePos = grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
+        Monster monster = MonsterManager.singleton.FindMonsterByTile(mousePos);
         Tile tile = (Tile)tilemap.GetTile(mousePos);
 
-        if (MonsterManager.singleton.FindMonsterByTile(mousePos) != null)
+        // clear old highlight
+        setTileColor(Color.white, monsterHighlight2);
+        hideTargetArea();
+        redHexBorder.gameObject.SetActive(false);
+
+        // highlight monster 1
+        if (OptionMenu.showMonstersAttackArea)
         {
-            // highlight monster
-            hideTargetArea();
-            //hexBorder.gameObject.SetActive(false);
-            redHexBorder.gameObject.SetActive(true);
-            redHexBorder.transform.position = grid.CellToWorld(mousePos);
+            setTileColor(redHighlight, monsterHighlight);
         }
-        else if (tile != null && tile.Equals(mTile))
+        else setTileColor(Color.white, monsterHighlight);
+
+        // highlight monster 2
+        if (monster != null)
         {
-            //hexBorder.gameObject.SetActive(true);
-            redHexBorder.gameObject.SetActive(false);
+            monsterHighlight2 = monster.AttackArea();
+            Arena.singleton.setTileColor(redHighlight2, monsterHighlight2);
+        }
+        else monsterHighlight2.Clear();
+
+        if (tile != null && tile.Equals(mTile))
+        {
+            // highlight card
             showTargetArea(oriPos);
         }
-        else
+        else if (MonsterManager.singleton.FindMonsterByTile(mousePos) != null)
         {
-            hideTargetArea();
-            //hexBorder.gameObject.SetActive(false);
-            redHexBorder.gameObject.SetActive(false);
+            // highlight monster border
+            redHexBorder.gameObject.SetActive(true);
+            redHexBorder.transform.position = grid.CellToWorld(mousePos);
         }
     }
 
     public void showTargetArea(Vector3 targetPos)
     {
-        hideTargetArea();
+        //hideTargetArea();
         TargetPosList = getPosListTarget(SelectedCard.mTargetShape, SelectedCard.mRange, PlayerManager.singleton.Player.currentTile, targetPos);
         setTileColor(Color.yellow, TargetPosList);
         /*for (int i = 0; i < TargetPosList.Count; i++)
@@ -136,9 +152,7 @@ public class Arena : MonoBehaviour
 
     public void showRadius(AreaShape areaShape, int range)
     {
-        //Vector3Int curPos = grid.WorldToCell(mCharacter.transform.position);
         Vector3Int curPos = PlayerManager.singleton.Player.currentTile;
-        hexBorder.gameObject.SetActive(true);
         List<Vector3Int> posList = getPosList(areaShape, range, curPos);
         posList.Remove(curPos);
         setTile(mTile, posList);
@@ -146,9 +160,7 @@ public class Arena : MonoBehaviour
 
     public void hideRadius(AreaShape areaShape, int range)
     {
-        //Vector3Int curPos = grid.WorldToCell(mCharacter.transform.position);
         Vector3Int curPos = PlayerManager.singleton.Player.currentTile;
-        hexBorder.gameObject.SetActive(false);
         setTile(mOriginalTile, getPosList(areaShape, range, curPos));
     }
 
@@ -171,6 +183,15 @@ public class Arena : MonoBehaviour
             if (tilemap.GetTile(pos) == null) continue;
             tilemap.SetTileFlags(pos, TileFlags.None);
             tilemap.SetColor(pos, color);
+        }
+    }
+
+    public void removeMonsterHighlight(List<Vector3Int> posList)
+    {
+        Arena.singleton.setTileColor(Color.white, posList);
+        foreach (Vector3Int pos in new List<Vector3Int>(posList))
+        {
+            Arena.singleton.monsterHighlight.Remove(pos);
         }
     }
 

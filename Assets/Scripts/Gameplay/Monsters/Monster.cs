@@ -241,10 +241,7 @@ public class Monster : MoveableSprite
     {
         if (ShowAttackArea())
         {
-            foreach (Vector3Int tile in AttackArea())
-            {
-                MonsterManager.singleton.highlightedTiles.Remove(tile);
-            }
+            Arena.singleton.removeMonsterHighlight(AttackArea());
         }
     }
 
