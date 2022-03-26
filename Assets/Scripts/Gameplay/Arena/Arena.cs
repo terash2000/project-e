@@ -83,6 +83,7 @@ public class Arena : MonoBehaviour
 
         // clear old highlight
         setTileColor(Color.white, monsterHighlight2);
+        monsterHighlight2.Clear();
         hideTargetArea();
         redHexBorder.gameObject.SetActive(false);
 
@@ -93,24 +94,19 @@ public class Arena : MonoBehaviour
         }
         else setTileColor(Color.white, monsterHighlight);
 
-        // highlight monster 2
-        if (monster != null)
-        {
-            monsterHighlight2 = monster.AttackArea();
-            Arena.singleton.setTileColor(redHighlight2, monsterHighlight2);
-        }
-        else monsterHighlight2.Clear();
-
-        if (tile != null && tile.Equals(mTile))
+        if (tile != null && AreaPosList.Contains(mousePos))
         {
             // highlight card
             showTargetArea(oriPos);
         }
-        else if (MonsterManager.singleton.FindMonsterByTile(mousePos) != null)
+        else if (monster != null)
         {
-            // highlight monster border
+            // highlight monster 2
             redHexBorder.gameObject.SetActive(true);
             redHexBorder.transform.position = grid.CellToWorld(mousePos);
+
+            monsterHighlight2 = monster.AttackArea();
+            Arena.singleton.setTileColor(redHighlight2, monsterHighlight2);
         }
 
         if (SelectedCard != null && IsDirectionTarget(SelectedCard.mTargetShape))

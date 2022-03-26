@@ -68,8 +68,10 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             selected = true;
             selectThisCard = true;
             Arena.singleton.SelectedCard = this;
-        }
 
+            this.GetComponent<Image>().color = Color.yellow;
+            Arena.singleton.showRadius(mAreaShape, mTargetShape, mRange);
+        }
     }
 
     public virtual bool onUse(Vector3Int mousePos)
