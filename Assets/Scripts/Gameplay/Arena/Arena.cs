@@ -19,6 +19,9 @@ public class Arena : MonoBehaviour
     public GameObject hexBorder;
     [HideInInspector]
     public List<GameObject> hexBorderList;
+    [HideInInspector]
+    public List<Vector3Int> AreaPosList;
+    [HideInInspector]
     public List<Vector3Int> TargetPosList;
     [HideInInspector]
     public GameObject redHexBorder;
@@ -109,6 +112,11 @@ public class Arena : MonoBehaviour
             redHexBorder.gameObject.SetActive(true);
             redHexBorder.transform.position = grid.CellToWorld(mousePos);
         }
+
+        if (SelectedCard != null && IsDirectionTarget(SelectedCard.mTargetShape))
+        {
+            showTargetArea(oriPos);
+        }
     }
 
     public void showTargetArea(Vector3 targetPos)
@@ -150,17 +158,22 @@ public class Arena : MonoBehaviour
         }
     }
 
-    public void showRadius(AreaShape areaShape, int range)
+    public void showRadius(AreaShape areaShape, AreaShape targetShape, int range)
     {
         Vector3Int curPos = PlayerManager.singleton.Player.currentTile;
-        List<Vector3Int> posList = getPosList(areaShape, range, curPos);
-        posList.Remove(curPos);
-        setTile(mTile, posList);
+        hexBorder.gameObject.SetActive(true);
+        hexBorder.transform.position = grid.CellToWorld(curPos);
+        AreaPosList = getPosList(areaShape, range, curPos);
+        AreaPosList.Remove(curPos);
+        if (!IsDirectionTarget(targetShape)) setTile(mTile, AreaPosList);
+        showTargetArea(grid.CellToWorld(curPos));
     }
 
     public void hideRadius(AreaShape areaShape, int range)
     {
         Vector3Int curPos = PlayerManager.singleton.Player.currentTile;
+        hexBorder.gameObject.SetActive(false);
+        AreaPosList.Clear();
         setTile(mOriginalTile, getPosList(areaShape, range, curPos));
     }
 
@@ -373,6 +386,12 @@ public class Arena : MonoBehaviour
                 }
             }
         }
+        posList.Remove(curPos);
         return posList;
+    }
+
+    public bool IsDirectionTarget(AreaShape targetShape)
+    {
+        return targetShape == AreaShape.Line || targetShape == AreaShape.Cone;
     }
 }

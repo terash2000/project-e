@@ -42,7 +42,8 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         mouseOver = true;
         if (selected) return;
         this.GetComponent<Image>().color = Color.yellow;
-        Arena.singleton.showRadius(mAreaShape, mRange);
+        Arena.singleton.SelectedCard = this;
+        Arena.singleton.showRadius(mAreaShape, mTargetShape, mRange);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -50,6 +51,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         mouseOver = false;
         if (selected) return;
         this.GetComponent<Image>().color = Color.white;
+        Arena.singleton.SelectedCard = null;
         Arena.singleton.hideRadius(mAreaShape, mRange);
     }
 
@@ -73,7 +75,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public virtual bool onUse(Vector3Int mousePos)
     {
         Tile tile = (Tile)Arena.singleton.tilemap.GetTile(mousePos);
-        if (tile != null && tile.Equals(Arena.singleton.mTile) && MonsterManager.singleton.FindMonsterByTile(mousePos) == null)
+        if (tile != null && Arena.singleton.AreaPosList.Contains(mousePos) && MonsterManager.singleton.FindMonsterByTile(mousePos) == null)
         {
             Arena.singleton.hideRadius(mAreaShape, mRange);
             PlayerManager.singleton.Player.SetMovement(mousePos);

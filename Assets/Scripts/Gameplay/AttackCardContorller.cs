@@ -9,7 +9,7 @@ public class AttackCardContorller : CardController
     {
         Tile tile = (Tile)Arena.singleton.tilemap.GetTile(mousePos);
         Monster monster = MonsterManager.singleton.FindMonsterByTile(mousePos);
-        if (tile != null && monster != null && tile.Equals(Arena.singleton.mTile))
+        if (tile != null && monster != null && Arena.singleton.AreaPosList.Contains(mousePos))
         {
             Arena.singleton.hideRadius(mAreaShape, mRange);
             monster.TakeDamage(4);
