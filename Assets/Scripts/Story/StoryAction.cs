@@ -24,6 +24,8 @@ public class StoryAction
                 break;
             case ActionType.ChangeHP:
                 PlayerData.Health += amount;
+                // player can't die in event
+                if (PlayerData.Health <= 0) PlayerData.Health = 1;
                 break;
         }
     }

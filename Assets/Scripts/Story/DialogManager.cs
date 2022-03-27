@@ -17,6 +17,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private VerticalLayoutGroup choiceContainer;
     [SerializeField] private GameObject choicePrefab;
     private TextMeshProUGUI characterNameText;
+    private bool isPause;
 
     void Awake()
     {
@@ -38,7 +39,14 @@ public class DialogManager : MonoBehaviour
             Input.GetKeyDown(KeyCode.Space) ||
             Input.GetKeyDown(KeyCode.Return) ||
             Input.GetKeyDown(KeyCode.Z)) &&
-            !quoteObj.IsTyping()) Next();
+            !quoteObj.IsTyping() &&
+            !isPause &&
+            Time.timeScale != 0)
+        {
+            Next();
+        }
+
+        isPause = Time.timeScale == 0;
     }
 
     private void Next()
