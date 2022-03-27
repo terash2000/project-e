@@ -17,5 +17,9 @@ MonoBehaviour:
   quote: You selected green
   background: {fileID: 0}
   sprite: {fileID: 21300000, guid: 493424d9a82c0ac4fba407dfbf40d9ea, type: 3}
+  action:
+    type: 0
+    amount: 0
+    name: 
   child: []
   choice: []

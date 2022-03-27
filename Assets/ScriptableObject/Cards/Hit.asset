@@ -17,3 +17,4 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 2ed835f019c1c6f439a6c17ac29c344b, type: 3}
   manaCost: 1
   attack: 5
+  needToUnlock: 0

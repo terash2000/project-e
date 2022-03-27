@@ -10,5 +10,5 @@ public class Card : ScriptableObject
     public Sprite artwork;
     public int manaCost;
     public int attack;
-
+    public bool needToUnlock;
 }

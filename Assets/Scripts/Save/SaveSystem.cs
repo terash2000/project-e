@@ -10,10 +10,10 @@ public static class SaveSystem
         FileStream file = File.Create(Application.persistentDataPath + "/SaveData.dat");
 
         SaveData data = new SaveData();
-        data.maxHealth = PlayerData.maxHealth;
-        data.health = PlayerData.health;
-        data.maxMana = PlayerData.maxMana;
-        data.gold = PlayerData.gold;
+        data.maxHealth = PlayerData.MaxHealth;
+        data.health = PlayerData.Health;
+        data.maxMana = PlayerData.MaxMana;
+        data.gold = PlayerData.Gold;
 
         formatter.Serialize(file, data);
         file.Close();
@@ -29,10 +29,10 @@ public static class SaveSystem
             SaveData data = (SaveData)formatter.Deserialize(file);
             file.Close();
 
-            PlayerData.maxHealth = data.maxHealth;
-            PlayerData.health = data.health;
-            PlayerData.maxMana = data.maxMana;
-            PlayerData.gold = data.gold;
+            PlayerData.MaxHealth = data.maxHealth;
+            PlayerData.Health = data.health;
+            PlayerData.MaxMana = data.maxMana;
+            PlayerData.Gold = data.gold;
         }
     }
 
@@ -74,6 +74,45 @@ public static class SaveSystem
         {
             OptionMenu.autoEndTurn = false;
             OptionMenu.showMonstersAttackArea = true;
+        }
+    }
+
+    public static void SaveUnlockData()
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/UnlockData.dat");
+
+        UnlockData data = new UnlockData();
+        data.unlockDict = CardCollection.unlockDict;
+
+        formatter.Serialize(file, data);
+        file.Close();
+    }
+
+    public static void LoadUnlockData()
+    {
+        if (File.Exists(Application.persistentDataPath + "/UnlockData.dat"))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath
+                    + "/UnlockData.dat", FileMode.Open);
+            UnlockData data = (UnlockData)formatter.Deserialize(file);
+            file.Close();
+
+            if (data.unlockDict.Count == CardCollection.singleton.allCards.Count)
+            {
+                CardCollection.unlockDict = data.unlockDict;
+            }
+            else
+            {
+                // corrupted data or old verision
+                File.Delete(Application.persistentDataPath + "/UnlockData.dat");
+                CardCollection.unlockDict = CardCollection.singleton.StarterCards();
+            }
+        }
+        else
+        {
+            CardCollection.unlockDict = CardCollection.singleton.StarterCards();
         }
     }
 }

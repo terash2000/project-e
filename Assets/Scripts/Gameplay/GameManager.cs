@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameState == GameState.Running)
         {
-            if (PlayerData.health <= 0)
+            if (PlayerData.Health <= 0)
             {
                 SaveSystem.DeleteSave();
                 gameResultPopup.onLose();
