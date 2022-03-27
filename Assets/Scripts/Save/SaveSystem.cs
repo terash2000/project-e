@@ -76,4 +76,43 @@ public static class SaveSystem
             OptionMenu.showMonstersAttackArea = true;
         }
     }
+
+    public static void SaveUnlockData()
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/UnlockData.dat");
+
+        UnlockData data = new UnlockData();
+        data.unlockDict = CardCollection.unlockDict;
+
+        formatter.Serialize(file, data);
+        file.Close();
+    }
+
+    public static void LoadUnlockData()
+    {
+        if (File.Exists(Application.persistentDataPath + "/UnlockData.dat"))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath
+                    + "/UnlockData.dat", FileMode.Open);
+            UnlockData data = (UnlockData)formatter.Deserialize(file);
+            file.Close();
+
+            if (data.unlockDict.Count == CardCollection.singleton.allCards.Count)
+            {
+                CardCollection.unlockDict = data.unlockDict;
+            }
+            else
+            {
+                // corrupted data or old verision
+                File.Delete(Application.persistentDataPath + "/UnlockData.dat");
+                CardCollection.unlockDict = CardCollection.singleton.StarterCards();
+            }
+        }
+        else
+        {
+            CardCollection.unlockDict = CardCollection.singleton.StarterCards();
+        }
+    }
 }

@@ -1547,10 +1547,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edec46f155ba00340af7f7e0d78fca2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commonCards:
+  allCards:
   - {fileID: 11400000, guid: 7c5bc709221dd2c43b7ec419a71ee3f1, type: 2}
-  rareCards: []
-  allCards: []
 --- !u!4 &1485529816
 Transform:
   m_ObjectHideFlags: 0

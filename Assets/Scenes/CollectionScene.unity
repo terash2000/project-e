@@ -742,7 +742,9 @@ MonoBehaviour:
   cardContainer: {fileID: 268537443}
   previousButton: {fileID: 710822213}
   nextButton: {fileID: 911058387}
-  collectionCardPrefab: {fileID: 1963681426241882848, guid: ebe0191d81bf8854d869cc1f21cfbb8b,
+  collectionCard: {fileID: 1963681426241882848, guid: ebe0191d81bf8854d869cc1f21cfbb8b,
+    type: 3}
+  lockedCard: {fileID: 302550942999638226, guid: 496208e3426d514418886023974f300a,
     type: 3}
 --- !u!4 &1400474526
 Transform:

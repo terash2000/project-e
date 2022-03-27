@@ -7,7 +7,8 @@ public class CollectionManager : MonoBehaviour
     [SerializeField] private GridLayoutGroup cardContainer;
     [SerializeField] private Button previousButton;
     [SerializeField] private Button nextButton;
-    [SerializeField] private GameObject collectionCardPrefab;
+    [SerializeField] private GameObject collectionCard;
+    [SerializeField] private GameObject lockedCard;
     private int currentPage = 0;
     private int maxPage = 1;
     private const int ContainerSize = 10;
@@ -45,8 +46,16 @@ public class CollectionManager : MonoBehaviour
         {
             int cardIndex = i + currentPage * ContainerSize;
             if (cardIndex >= CardCollection.singleton.allCards.Count) break;
+            Card card = CardCollection.singleton.allCards[cardIndex];
 
-            GameObject card = Instantiate(collectionCardPrefab, cardContainer.transform);
+            if (CardCollection.unlockDict[card.cardName])
+            {
+                GameObject cardObj = Instantiate(collectionCard, cardContainer.transform);
+            }
+            else
+            {
+                GameObject cardObj = Instantiate(lockedCard, cardContainer.transform);
+            }
         }
     }
 }
