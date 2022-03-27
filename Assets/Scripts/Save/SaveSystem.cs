@@ -10,10 +10,10 @@ public static class SaveSystem
         FileStream file = File.Create(Application.persistentDataPath + "/SaveData.dat");
 
         SaveData data = new SaveData();
-        data.maxHealth = PlayerData.maxHealth;
-        data.health = PlayerData.health;
-        data.maxMana = PlayerData.maxMana;
-        data.gold = PlayerData.gold;
+        data.maxHealth = PlayerData.MaxHealth;
+        data.health = PlayerData.Health;
+        data.maxMana = PlayerData.MaxMana;
+        data.gold = PlayerData.Gold;
 
         formatter.Serialize(file, data);
         file.Close();
@@ -29,10 +29,10 @@ public static class SaveSystem
             SaveData data = (SaveData)formatter.Deserialize(file);
             file.Close();
 
-            PlayerData.maxHealth = data.maxHealth;
-            PlayerData.health = data.health;
-            PlayerData.maxMana = data.maxMana;
-            PlayerData.gold = data.gold;
+            PlayerData.MaxHealth = data.maxHealth;
+            PlayerData.Health = data.health;
+            PlayerData.MaxMana = data.maxMana;
+            PlayerData.Gold = data.gold;
         }
     }
 

@@ -8,12 +8,12 @@ public class Mana : MonoBehaviour, ITurnHandler
     private TextMeshProUGUI ManaText;
     public void onEndTurn()
     {
-        
+
     }
 
     public void onStartTurn()
     {
-        PlayerData.mana = PlayerData.maxMana;
+        PlayerData.Mana = PlayerData.MaxMana;
     }
 
     // Start is called before the first frame update
@@ -25,6 +25,6 @@ public class Mana : MonoBehaviour, ITurnHandler
     // Update is called once per frame
     void Update()
     {
-        ManaText.text = PlayerData.mana.ToString() + '/' + PlayerData.maxMana.ToString();
+        ManaText.text = PlayerData.Mana.ToString() + '/' + PlayerData.MaxMana.ToString();
     }
 }

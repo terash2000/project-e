@@ -28,7 +28,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             this.GetComponent<Image>().color = Color.white;
             Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int mousePos = Arena.singleton.grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
-            if (onUse(mousePos)) PlayerData.mana -= manaCost;
+            if (onUse(mousePos)) PlayerData.Mana -= manaCost;
             selected = false;
             selectThisCard = false;
             Arena.singleton.SelectedCard = null;
@@ -88,6 +88,6 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public bool usable()
     {
-        return manaCost <= PlayerData.mana;
+        return manaCost <= PlayerData.Mana;
     }
 }

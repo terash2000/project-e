@@ -14,7 +14,7 @@ public class Resource : MonoBehaviour
 
     void Update()
     {
-        healthText.text = PlayerData.health.ToString() + '/' + PlayerData.maxHealth.ToString();
-        goldText.text = PlayerData.gold.ToString();
+        healthText.text = PlayerData.Health.ToString() + '/' + PlayerData.MaxHealth.ToString();
+        goldText.text = PlayerData.Gold.ToString();
     }
 }

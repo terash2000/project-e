@@ -29,7 +29,7 @@ public class DialogManager : MonoBehaviour
 
         current = nextRoot[0];
         nextRoot.RemoveAt(0);
-        UpdateText();
+        Render();
     }
 
     void Update()
@@ -63,11 +63,15 @@ public class DialogManager : MonoBehaviour
     private void ChangeNode(DialogNode node)
     {
         current = node;
-        UpdateText();
+        Render();
     }
 
-    private void UpdateText()
+    private void Render()
     {
+        // action
+        current.action.Trigger();
+
+        // dialog
         quoteObj.dialog = current.quote;
         quoteObj.StartTyping();
 

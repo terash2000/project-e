@@ -42,7 +42,6 @@ public class PlayerManager : MonoBehaviour, ITurnHandler
 
     public void TakeDamage(int damage)
     {
-        PlayerData.health -= damage;
-        if (PlayerData.health < 0) PlayerData.health = 0;
+        PlayerData.Health -= damage;
     }
 }

@@ -47,9 +47,9 @@ public class NewGame : MonoBehaviour
 
     private void MakeNewPlayerData()
     {
-        PlayerData.health = PlayerData.maxHealth = starterHealth;
-        PlayerData.mana = PlayerData.maxMana = starterMana;
-        PlayerData.gold = starterGold;
+        PlayerData.Health = PlayerData.MaxHealth = starterHealth;
+        PlayerData.Mana = PlayerData.MaxMana = starterMana;
+        PlayerData.Gold = starterGold;
     }
 
     private void StartTutorial()

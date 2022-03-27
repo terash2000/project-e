@@ -9,6 +9,7 @@ public class DialogNode : ScriptableObject
     public string quote;
     public Sprite background;
     public Sprite sprite;
+    public StoryAction action;
     public List<DialogNode> child;
     public List<string> choice;
 }

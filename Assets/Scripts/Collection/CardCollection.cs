@@ -37,5 +37,6 @@ public class CardCollection : MonoBehaviour
     {
         unlockDict[key] = true;
         SaveSystem.SaveUnlockData();
+        Debug.Log("Unlocked");
     }
 }
