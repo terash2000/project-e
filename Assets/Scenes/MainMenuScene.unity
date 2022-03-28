@@ -1529,7 +1529,7 @@ GameObject:
   - component: {fileID: 1485529816}
   - component: {fileID: 1485529815}
   m_Layer: 0
-  m_Name: Collection
+  m_Name: CardCollection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1549,6 +1549,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allCards:
   - {fileID: 11400000, guid: 7c5bc709221dd2c43b7ec419a71ee3f1, type: 2}
+  newCardPopup: {fileID: 5781192978451266083, guid: 4fa99ae6d71c4e440b36df87a482ac4a,
+    type: 3}
+  cardPrefab: {fileID: 1963681426241882848, guid: ebe0191d81bf8854d869cc1f21cfbb8b,
+    type: 3}
+  lockedCard: {fileID: 302550942999638226, guid: 496208e3426d514418886023974f300a,
+    type: 3}
 --- !u!4 &1485529816
 Transform:
   m_ObjectHideFlags: 0

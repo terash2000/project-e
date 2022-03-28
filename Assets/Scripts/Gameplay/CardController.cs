@@ -13,6 +13,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public static bool selected = false;
     protected bool selectThisCard = false;
     private bool mouseOver = false;
+    protected int damage; //temp
     private int manaCost = 1; //temp
     // Start is called before the first frame update
     void Start()
@@ -89,5 +90,10 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public bool usable()
     {
         return manaCost <= PlayerData.Mana;
+    }
+
+    public int getDamage()
+    {
+        return damage;
     }
 }

@@ -13,6 +13,7 @@ public class Monster : MoveableSprite
     [SerializeField] private GameObject healthText;
     [SerializeField] private GameObject damageText;
     [SerializeField] private SpriteRenderer damageIcon;
+    [SerializeField] private GameObject previewDamage;
     private int healthAmount;
     private Vector3 healthLocalScale;
     private float healthBarSize;
@@ -64,6 +65,17 @@ public class Monster : MoveableSprite
 
         int damage = stuned ? 0 : info.patterns[currentMove].damage;
         damageText.GetComponent<TMPro.TextMeshProUGUI>().text = damage.ToString();
+
+        // preview damage
+        if (Arena.singleton.TargetPosList.Contains(currentTile) &&
+            CardController.selected &&
+            Arena.singleton.SelectedCard.getDamage() > 0)
+        {
+            previewDamage.SetActive(true);
+            string cardDamage = Arena.singleton.SelectedCard.getDamage().ToString();
+            previewDamage.GetComponent<TMPro.TextMeshProUGUI>().text = cardDamage;
+        }
+        else previewDamage.SetActive(false);
     }
 
     public int TakeDamage(int damage)

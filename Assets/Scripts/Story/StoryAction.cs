@@ -12,6 +12,7 @@ public class StoryAction
     {
         None,
         UnlockCard,
+        AddCardToDeck,
         ChangeHP
     }
 
@@ -21,9 +22,15 @@ public class StoryAction
         {
             case ActionType.UnlockCard:
                 CardCollection.singleton.UnlockCard(name);
+                DialogManager.singleton.ShowPopup("Unlock!", name);
+                break;
+            case ActionType.AddCardToDeck:
+                DialogManager.singleton.ShowPopup("Acquire", name);
                 break;
             case ActionType.ChangeHP:
                 PlayerData.Health += amount;
+                // player can't die in event
+                if (PlayerData.Health <= 0) PlayerData.Health = 1;
                 break;
         }
     }

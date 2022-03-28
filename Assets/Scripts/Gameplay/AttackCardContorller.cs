@@ -5,6 +5,11 @@ using UnityEngine.UI;
 // sample card for demo
 public class AttackCardContorller : CardController
 {
+    void Start()
+    {
+        damage = 4;
+    }
+
     public override bool onUse(Vector3Int mousePos)
     {
         Tile tile = (Tile)Arena.singleton.tilemap.GetTile(mousePos);
@@ -15,7 +20,7 @@ public class AttackCardContorller : CardController
             Monster monster = MonsterManager.singleton.FindMonsterByTile(pos);
             if (monster != null)
             {
-                monster.TakeDamage(4);
+                monster.TakeDamage(damage);
                 // monster.Stun();
                 success = true;
             }

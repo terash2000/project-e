@@ -16,7 +16,9 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private Image sprite;
     [SerializeField] private VerticalLayoutGroup choiceContainer;
     [SerializeField] private GameObject choicePrefab;
+    [SerializeField] private Transform canvas;
     private TextMeshProUGUI characterNameText;
+    private bool isPause;
 
     void Awake()
     {
@@ -38,7 +40,20 @@ public class DialogManager : MonoBehaviour
             Input.GetKeyDown(KeyCode.Space) ||
             Input.GetKeyDown(KeyCode.Return) ||
             Input.GetKeyDown(KeyCode.Z)) &&
-            !quoteObj.IsTyping()) Next();
+            !quoteObj.IsTyping() &&
+            !isPause &&
+            Time.timeScale != 0)
+        {
+            Next();
+        }
+
+        isPause = Time.timeScale == 0;
+    }
+
+    public void ShowPopup(string header, string cardname)
+    {
+        GameObject newPopup = Instantiate(CardCollection.singleton.newCardPopup, canvas);
+        newPopup.GetComponent<NewCardPopup>().Init(header, cardname);
     }
 
     private void Next()

@@ -26,8 +26,8 @@ public class QuoteText : MonoBehaviour
     {
         while (IsTyping())
         {
-            currentCharacterIndex += 1;
             yield return new WaitForSeconds(0.01f);
+            currentCharacterIndex += 1;
         }
     }
 }

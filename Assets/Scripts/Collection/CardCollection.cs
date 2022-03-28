@@ -1,12 +1,14 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class CardCollection : MonoBehaviour
 {
     public static CardCollection singleton;
-    public List<Card> allCards;
     public static Dictionary<string, bool> unlockDict;
+    public List<Card> allCards;
+    public GameObject newCardPopup;
+    public GameObject cardPrefab;
+    public GameObject lockedCard;
 
     void Awake()
     {
@@ -37,6 +39,5 @@ public class CardCollection : MonoBehaviour
     {
         unlockDict[key] = true;
         SaveSystem.SaveUnlockData();
-        Debug.Log("Unlocked");
     }
 }
