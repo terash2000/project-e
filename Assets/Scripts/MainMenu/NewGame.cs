@@ -50,6 +50,7 @@ public class NewGame : MonoBehaviour
         PlayerData.Health = PlayerData.MaxHealth = starterHealth;
         PlayerData.Mana = PlayerData.MaxMana = starterMana;
         PlayerData.Gold = starterGold;
+        PlayerData.seedJSON = JsonUtility.ToJson(Random.state);
     }
 
     private void StartTutorial()

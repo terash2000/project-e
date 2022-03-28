@@ -15,6 +15,12 @@ public class Map : MonoBehaviour
 
     void Start()
     {
+        // load seed
+        if (PlayerData.seedJSON != null)
+        {
+            Random.state = JsonUtility.FromJson<Random.State>(PlayerData.seedJSON);
+        }
+
         GenerateMap();
     }
 

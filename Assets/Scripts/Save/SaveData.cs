@@ -8,4 +8,5 @@ public class SaveData
     public int health;
     public int maxMana;
     public int gold;
+    public string seedJSON;
 }
