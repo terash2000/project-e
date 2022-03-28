@@ -37,14 +37,6 @@ public static class PlayerData
             if (maxMana < 0) maxMana = 0;
         }
     }
-    public static int Mana
-    {
-        get { return mana; }
-        set
-        {
-            mana = value;
-            if (mana > maxMana) mana = maxMana;
-        }
-    }
+    public static int Mana { get; set; }
     public static int Gold { get; set; }
 }

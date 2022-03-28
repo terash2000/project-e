@@ -1108,6 +1108,7 @@ MonoBehaviour:
   choiceContainer: {fileID: 1673940399}
   choicePrefab: {fileID: 2875474485247495826, guid: 87620b5933a7d304aaec8c38fe1e9f19,
     type: 3}
+  canvas: {fileID: 1898571177}
 --- !u!4 &2066668881
 Transform:
   m_ObjectHideFlags: 0

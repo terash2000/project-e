@@ -16,6 +16,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private Image sprite;
     [SerializeField] private VerticalLayoutGroup choiceContainer;
     [SerializeField] private GameObject choicePrefab;
+    [SerializeField] private Transform canvas;
     private TextMeshProUGUI characterNameText;
     private bool isPause;
 
@@ -47,6 +48,12 @@ public class DialogManager : MonoBehaviour
         }
 
         isPause = Time.timeScale == 0;
+    }
+
+    public void ShowPopup(string header, string cardname)
+    {
+        GameObject newPopup = Instantiate(CardCollection.singleton.newCardPopup, canvas);
+        newPopup.GetComponent<NewCardPopup>().Init(header, cardname);
     }
 
     private void Next()
