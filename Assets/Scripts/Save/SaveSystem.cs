@@ -14,6 +14,7 @@ public static class SaveSystem
         data.health = PlayerData.Health;
         data.maxMana = PlayerData.MaxMana;
         data.gold = PlayerData.Gold;
+        data.seedJSON = PlayerData.seedJSON;
 
         formatter.Serialize(file, data);
         file.Close();
@@ -33,6 +34,7 @@ public static class SaveSystem
             PlayerData.Health = data.health;
             PlayerData.MaxMana = data.maxMana;
             PlayerData.Gold = data.gold;
+            PlayerData.seedJSON = data.seedJSON;
         }
     }
 

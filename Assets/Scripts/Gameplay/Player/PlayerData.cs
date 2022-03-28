@@ -8,6 +8,7 @@ public static class PlayerData
     private static int maxMana;
     private static int mana;
     private static int gold;
+    public static string seedJSON;
 
     public static int MaxHealth
     {
