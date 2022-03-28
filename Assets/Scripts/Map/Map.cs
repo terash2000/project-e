@@ -15,6 +15,8 @@ public class Map : MonoBehaviour
 
     void Start()
     {
+        Random.State originalState = Random.state;
+
         // load seed
         if (PlayerData.seedJSON != null)
         {
@@ -22,6 +24,7 @@ public class Map : MonoBehaviour
         }
 
         GenerateMap();
+        Random.state = originalState;
     }
 
     public void GenerateMap()
