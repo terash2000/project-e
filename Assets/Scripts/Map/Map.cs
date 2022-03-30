@@ -54,6 +54,8 @@ public class Map : MonoBehaviour
             Nodes.Add(node.GetComponent<Node>());
         }
         Nodes = Nodes.OrderByDescending(x => x.gameObject.transform.position.x).ToList();
+        Nodes[0].transform.position = new Vector3(Nodes[0].transform.position.x, 0, transform.position.z);
+        Nodes.Last().transform.position = new Vector3(Nodes.Last().transform.position.x, 0, transform.position.z);
 
         for (int i = 1; i < numNode; i++)
         {
@@ -67,7 +69,7 @@ public class Map : MonoBehaviour
 
         Nodes = Nodes.OrderBy(x => x.gameObject.transform.position.x).ToList();
 
-        for (int i = 3; i < numNode; i++)
+        for (int i = 1; i < numNode; i++)
         {
             if (Nodes[i].Prev.Count > 0) continue;
             GameObject edge = Instantiate(edgePrefab);
@@ -119,7 +121,7 @@ public class Map : MonoBehaviour
 
     public bool Connectable(Node a, Node b)
     {
-        return Mathf.Abs(a.transform.position.x - b.transform.position.x) > minGap;
+        return Mathf.Abs(a.transform.position.x - b.transform.position.x) > minGap / 2;
     }
 
     public List<Node> FindStartNodes()

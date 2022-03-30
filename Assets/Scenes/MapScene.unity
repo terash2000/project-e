@@ -328,7 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Nodes: []
   Edges: []
-  minGap: 0.5
+  minGap: 1
   maxGap: 0
   numNode: 20
   nodePrefab: {fileID: 5473315819909535326, guid: fb71de6a55a4b394495faeca8532b9bb,
