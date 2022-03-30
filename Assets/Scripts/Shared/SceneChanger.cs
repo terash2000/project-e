@@ -12,7 +12,6 @@ public class SceneChanger : MonoBehaviour
         Time.timeScale = 1f;
         SceneChanger.previousScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(scenename);
-        if (scenename == "MapScene") SaveSystem.Save();
     }
 
     public static void NextScene()

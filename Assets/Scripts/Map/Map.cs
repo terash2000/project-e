@@ -34,7 +34,7 @@ public class Map : MonoBehaviour
 
         GenerateMap();
 
-        if (PlayerData.path != null)
+        if (PlayerData.path != null && PlayerData.path.Count > 0)
         {
             curNode = Nodes[PlayerData.path.Last()];
             ShowPath();
@@ -47,6 +47,8 @@ public class Map : MonoBehaviour
 
         // re-randomize
         Random.InitState(System.Environment.TickCount);
+
+        SaveSystem.Save();
     }
 
     public void GenerateMap()
@@ -56,7 +58,7 @@ public class Map : MonoBehaviour
             GameObject node = Instantiate(nodePrefab);
             node.GetComponent<Node>().Init();
             node.transform.position = RandomPos();
-            node.transform.parent = gameObject.transform;
+            node.transform.SetParent(gameObject.transform);
             Nodes.Add(node.GetComponent<Node>());
         }
         Nodes = Nodes.OrderByDescending(x => x.gameObject.transform.position.x).ToList();
@@ -66,7 +68,7 @@ public class Map : MonoBehaviour
         for (int i = 1; i < numNode; i++)
         {
             GameObject edge = Instantiate(edgePrefab);
-            edge.transform.parent = gameObject.transform;
+            edge.transform.SetParent(gameObject.transform);
             Edges.Add(edge.GetComponent<LineRenderer>());
             Node nextNode = FindNearestNode(Nodes[i], Nodes.GetRange(0, i));
             ConnectNodes(Nodes[i], nextNode);
@@ -79,7 +81,7 @@ public class Map : MonoBehaviour
         {
             if (Nodes[i].Prev.Count > 0) continue;
             GameObject edge = Instantiate(edgePrefab);
-            edge.transform.parent = gameObject.transform;
+            edge.transform.SetParent(gameObject.transform);
             Edges.Add(edge.GetComponent<LineRenderer>());
             Node prevNode = FindNearestNode(Nodes[i], Nodes.GetRange(0, i));
             ConnectNodes(prevNode, Nodes[i]);
@@ -218,7 +220,7 @@ public class Map : MonoBehaviour
         Edges.Remove(line);
         GameObject.Destroy(line.gameObject);
         GameObject edge = Instantiate(edgePrefab);
-        edge.transform.parent = gameObject.transform;
+        edge.transform.SetParent(gameObject.transform);
         Edges.Add(edge.GetComponent<LineRenderer>());
         Edges.Last().SetPositions(pos);
     }

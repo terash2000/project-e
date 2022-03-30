@@ -17,8 +17,8 @@ public class Arena : MonoBehaviour
     public Tilemap tilemap;
     [HideInInspector]
     public GameObject hexBorder;
-    [HideInInspector]
-    public List<GameObject> hexBorderList;
+    // [HideInInspector]
+    // public List<GameObject> hexBorderList;
     [HideInInspector]
     public List<Vector3Int> AreaPosList;
     [HideInInspector]
@@ -27,7 +27,9 @@ public class Arena : MonoBehaviour
     public GameObject redHexBorder;
     [HideInInspector]
     public CardController SelectedCard;
+    [HideInInspector]
     public List<Vector3Int> monsterHighlight = new List<Vector3Int>();
+    [HideInInspector]
     public List<Vector3Int> monsterHighlight2 = new List<Vector3Int>();
     private Color redHighlight = new Color(1f, 0.8f, 0.8f);
     private Color redHighlight2 = new Color(1f, 0.5f, 0.5f);
@@ -117,17 +119,10 @@ public class Arena : MonoBehaviour
 
     public void showTargetArea(Vector3 targetPos)
     {
-        //hideTargetArea();
         TargetPosList = getPosListTarget(SelectedCard.mTargetShape, SelectedCard.mRange, PlayerManager.singleton.Player.currentTile, targetPos);
         setTileColor(Color.yellow, TargetPosList);
+
         /*for (int i = 0; i < TargetPosList.Count; i++)
-        {
-            if (!tilemap.GetTile(TargetPosList[i]).Equals(mTile))
-            {
-                return;
-            }
-        }*/
-        for (int i = 0; i < TargetPosList.Count; i++)
         {
             GameObject border;
             if (i >= hexBorderList.Count)
@@ -142,16 +137,16 @@ public class Arena : MonoBehaviour
             }
             border.gameObject.SetActive(true);
             border.transform.position = grid.CellToWorld(TargetPosList[i]);
-        }
+        }*/
     }
 
     public void hideTargetArea()
     {
         setTileColor(Color.white, TargetPosList);
-        foreach (GameObject border in hexBorderList)
-        {
-            border.gameObject.SetActive(false);
-        }
+        // foreach (GameObject border in hexBorderList)
+        // {
+        //     border.gameObject.SetActive(false);
+        // }
     }
 
     public void showRadius(AreaShape areaShape, AreaShape targetShape, int range)
@@ -162,6 +157,8 @@ public class Arena : MonoBehaviour
         AreaPosList = getPosList(areaShape, range, curPos);
         AreaPosList.Remove(curPos);
         if (!IsDirectionTarget(targetShape)) setTile(mTile, AreaPosList);
+
+        hideTargetArea();
         showTargetArea(grid.CellToWorld(curPos));
     }
 
