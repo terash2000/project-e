@@ -38,7 +38,11 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 
     public void onEndTurn()
     {
-        StartAttacking();
+        foreach (Monster monster in new List<Monster>(monsters))
+        {
+            monster.TriggerStatus();
+        }
+        StartCoroutine(Attack());
     }
 
     public Monster FindMonsterByTile(Vector3Int tile)
@@ -49,11 +53,6 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
                 return monster;
         }
         return null;
-    }
-
-    public void StartAttacking()
-    {
-        StartCoroutine(Attack());
     }
 
     private IEnumerator Attack()

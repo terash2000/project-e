@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     public int round;
     [HideInInspector]
     public bool playerTurn;
-    //public Arena mArena;
+    public Sprite AcidIcon;
+    public Color AcidColor;
 
     public GameResultPopup gameResultPopup;
 
