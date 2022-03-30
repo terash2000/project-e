@@ -6,6 +6,7 @@ using UnityEngine;
 public class Wave : ScriptableObject
 {
     public List<MonsterSpawner> monsters;
+    public bool reward;
 
     [Serializable]
     public class MonsterSpawner

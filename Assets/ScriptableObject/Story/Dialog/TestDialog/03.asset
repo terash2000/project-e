@@ -17,6 +17,10 @@ MonoBehaviour:
   quote: Choose your color.
   background: {fileID: 0}
   sprite: {fileID: 0}
+  action:
+    type: 0
+    amount: 0
+    name: 
   child:
   - {fileID: 11400000, guid: 063149d0a7bbdb9449a8ec41ca9177d3, type: 2}
   - {fileID: 11400000, guid: 72b0b25d2249cea4a943d2c27a4eb094, type: 2}

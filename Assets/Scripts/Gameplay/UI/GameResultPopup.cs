@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -24,7 +22,7 @@ public class GameResultPopup : MonoBehaviour
     {
         text.text = "DEFEAT";
         bg.color = Color.red;
-        UnityAction action = () => ReturnMainMenu();
+        UnityAction action = () => SceneChanger.LoadScene("MainMenuScene");
         confirmButton.onClick.AddListener(action);
         gameObject.SetActive(true);
         Time.timeScale = 0f;
@@ -34,21 +32,15 @@ public class GameResultPopup : MonoBehaviour
     {
         text.text = "VICTORY";
         bg.color = Color.green;
-        UnityAction action = () => NextScene();
+        UnityAction action = () => ChooseNewCard();
         confirmButton.onClick.AddListener(action);
         gameObject.SetActive(true);
         Time.timeScale = 0f;
     }
 
-    public void ReturnMainMenu()
+    public void ChooseNewCard()
     {
-        Time.timeScale = 1f;
-        SceneChanger.LoadScene("MainMenuScene");
-    }
-
-    public void NextScene()
-    {
-        Time.timeScale = 1f;
-        SceneChanger.NextScene();
+        GameObject chooseCardPopup = Instantiate(CardCollection.singleton.chooseCardPopup, transform.parent);
+        chooseCardPopup.GetComponent<ChooseCardPopup>().Init();
     }
 }
