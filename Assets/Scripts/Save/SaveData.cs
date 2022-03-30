@@ -9,4 +9,5 @@ public class SaveData
     public int maxMana;
     public int gold;
     public string seedJSON;
+    public List<int> path;
 }

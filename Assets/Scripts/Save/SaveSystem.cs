@@ -15,6 +15,7 @@ public static class SaveSystem
         data.maxMana = PlayerData.MaxMana;
         data.gold = PlayerData.Gold;
         data.seedJSON = PlayerData.seedJSON;
+        data.path = PlayerData.path;
 
         formatter.Serialize(file, data);
         file.Close();
@@ -35,6 +36,7 @@ public static class SaveSystem
             PlayerData.MaxMana = data.maxMana;
             PlayerData.Gold = data.gold;
             PlayerData.seedJSON = data.seedJSON;
+            PlayerData.path = data.path;
         }
     }
 

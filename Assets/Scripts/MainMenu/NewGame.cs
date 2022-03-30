@@ -51,6 +51,7 @@ public class NewGame : MonoBehaviour
         PlayerData.Mana = PlayerData.MaxMana = starterMana;
         PlayerData.Gold = starterGold;
         PlayerData.seedJSON = JsonUtility.ToJson(Random.state);
+        PlayerData.path = null;
     }
 
     private void StartTutorial()
