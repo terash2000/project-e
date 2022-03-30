@@ -25,7 +25,11 @@ public class StoryAction
                 DialogManager.singleton.ShowPopup("Unlock!", name);
                 break;
             case ActionType.AddCardToDeck:
-                DialogManager.singleton.ShowPopup("Acquire", name);
+                // TODO add the card to deck
+
+                string header = "Acquire";
+                if (amount > 1) header += " x" + amount.ToString();
+                DialogManager.singleton.ShowPopup(header, name);
                 break;
             case ActionType.ChangeHP:
                 PlayerData.Health += amount;

@@ -9,6 +9,7 @@ public class SceneChanger : MonoBehaviour
 
     public static void LoadScene(string scenename)
     {
+        Time.timeScale = 1f;
         SceneChanger.previousScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(scenename);
         if (scenename == "MapScene") SaveSystem.Save();
