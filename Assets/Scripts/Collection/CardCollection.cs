@@ -7,6 +7,7 @@ public class CardCollection : MonoBehaviour
     public static Dictionary<string, bool> unlockDict;
     public List<Card> allCards;
     public GameObject newCardPopup;
+    public GameObject chooseCardPopup;
     public GameObject cardPrefab;
     public GameObject lockedCard;
 

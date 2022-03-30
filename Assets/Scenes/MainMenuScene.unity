@@ -1551,7 +1551,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7c5bc709221dd2c43b7ec419a71ee3f1, type: 2}
   newCardPopup: {fileID: 5781192978451266083, guid: 4fa99ae6d71c4e440b36df87a482ac4a,
     type: 3}
-  cardPrefab: {fileID: 1963681426241882848, guid: ebe0191d81bf8854d869cc1f21cfbb8b,
+  chooseCardPopup: {fileID: 1809415070924254837, guid: aa97780a3a93ac44ba69e5b07b7a07e7,
+    type: 3}
+  cardPrefab: {fileID: 302550942999638226, guid: 496208e3426d514418886023974f300a,
     type: 3}
   lockedCard: {fileID: 302550942999638226, guid: 496208e3426d514418886023974f300a,
     type: 3}

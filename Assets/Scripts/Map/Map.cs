@@ -22,14 +22,18 @@ public class Map : MonoBehaviour
 
     void Start()
     {
-        Random.State originalState = Random.state;
-
         // load seed
         if (PlayerData.seedJSON != null)
         {
             Random.state = JsonUtility.FromJson<Random.State>(PlayerData.seedJSON);
         }
+        else
+        {
+            PlayerData.seedJSON = JsonUtility.ToJson(Random.state);
+        }
+
         GenerateMap();
+
         if (PlayerData.path != null)
         {
             curNode = Nodes[PlayerData.path.Last()];
@@ -40,7 +44,9 @@ public class Map : MonoBehaviour
             PlayerData.path = new List<int>();
             ShowStartNodes();
         }
-        Random.state = originalState;
+
+        // re-randomize
+        Random.InitState(System.Environment.TickCount);
     }
 
     public void GenerateMap()
@@ -176,6 +182,7 @@ public class Map : MonoBehaviour
         UpdateOldPath(node);
         curNode = node;
         ShowUpdatePath();
+        SaveSystem.Save();
     }
 
     public void UpdateOldPath(Node newCurNode)
