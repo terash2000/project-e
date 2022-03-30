@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
+    public static Map singleton;
     public List<Node> Nodes;
     public List<LineRenderer> Edges;
     [SerializeField] private float minGap;
@@ -12,6 +13,12 @@ public class Map : MonoBehaviour
     [SerializeField] private int numNode;
     [SerializeField] private GameObject nodePrefab;
     [SerializeField] private GameObject edgePrefab;
+    private Node curNode;
+
+    void Awake()
+    {
+        singleton = this;
+    }
 
     void Start()
     {
@@ -22,8 +29,17 @@ public class Map : MonoBehaviour
         {
             Random.state = JsonUtility.FromJson<Random.State>(PlayerData.seedJSON);
         }
-
         GenerateMap();
+        if (PlayerData.path != null)
+        {
+            curNode = Nodes[PlayerData.path.Last()];
+            ShowPath();
+        }
+        else
+        {
+            PlayerData.path = new List<int>();
+            ShowStartNodes();
+        }
         Random.state = originalState;
     }
 
@@ -32,6 +48,7 @@ public class Map : MonoBehaviour
         for (int i = 0; i < numNode; i++)
         {
             GameObject node = Instantiate(nodePrefab);
+            node.GetComponent<Node>().Init();
             node.transform.position = RandomPos();
             node.transform.parent = gameObject.transform;
             Nodes.Add(node.GetComponent<Node>());
@@ -105,4 +122,95 @@ public class Map : MonoBehaviour
         return Mathf.Abs(a.transform.position.x - b.transform.position.x) > minGap;
     }
 
+    public List<Node> FindStartNodes()
+    {
+        return Nodes.Where(x => x.Prev.Count == 0).ToList();
+    }
+
+    public void ShowStartNodes()
+    {
+        foreach (Node node in FindStartNodes())
+        {
+            node.OnClickable();
+        }
+    }
+
+    public void ShowPath()
+    {
+        int prev = -1;
+        foreach (int i in PlayerData.path)
+        {
+            if (prev >= 0)
+            {
+                LineRenderer line = FindEdge(Nodes[prev], Nodes[i]);
+                line.startColor = Color.green;
+                line.endColor = Color.green;
+            }
+            Nodes[i].OnPass();
+        }
+        foreach (Node node in curNode.Next)
+        {
+            LineRenderer line = FindEdge(curNode, node);
+            line.startColor = Color.cyan;
+            line.endColor = Color.cyan;
+            node.OnClickable();
+        }
+    }
+
+    public void ShowUpdatePath()
+    {
+        curNode.OnPass();
+        foreach (Node node in curNode.Next)
+        {
+            LineRenderer line = FindEdge(curNode, node);
+            line.startColor = Color.cyan;
+            line.endColor = Color.cyan;
+            node.OnClickable();
+        }
+    }
+
+    public void AddNodeToPath(Node node)
+    {
+        //if (FindStartNodes().Contains(node)) 
+        PlayerData.path.Add(Nodes.IndexOf(node));
+        UpdateOldPath(node);
+        curNode = node;
+        ShowUpdatePath();
+    }
+
+    public void UpdateOldPath(Node newCurNode)
+    {
+        List<Node> removeClickableNodes;
+        if (curNode == null) removeClickableNodes = FindStartNodes();
+        else
+        {
+            removeClickableNodes = curNode.Next;
+            LineRenderer line = FindEdge(curNode, newCurNode);
+            line.startColor = Color.green;
+            line.endColor = Color.green;
+        }
+        removeClickableNodes.Remove(newCurNode);
+        foreach (Node node in removeClickableNodes)
+        {
+            node.OnReset();
+            if (curNode != null) ResetEdge(FindEdge(curNode, node));
+        }
+    }
+
+    public LineRenderer FindEdge(Node oriNode, Node desNode)
+    {
+        return Edges.Find(x => x.GetPosition(0).Equals(oriNode.transform.position) && x.GetPosition(1).Equals(desNode.transform.position));
+    }
+
+    public void ResetEdge(LineRenderer line)
+    {
+        Vector3[] pos = new Vector3[2];
+        line.GetPositions(pos);
+        Edges.Remove(line);
+        GameObject.Destroy(line.gameObject);
+        GameObject edge = Instantiate(edgePrefab);
+        edge.transform.parent = gameObject.transform;
+        Edges.Add(edge.GetComponent<LineRenderer>());
+        Edges.Last().SetPositions(pos);
+    }
 }

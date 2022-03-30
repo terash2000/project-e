@@ -9,6 +9,7 @@ public static class PlayerData
     private static int mana;
     private static int gold;
     public static string seedJSON;
+    public static List<int> path;
 
     public static int MaxHealth
     {
