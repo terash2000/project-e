@@ -220,7 +220,7 @@ public class Map : MonoBehaviour
         Edges.Remove(line);
         GameObject.Destroy(line.gameObject);
         GameObject edge = Instantiate(edgePrefab);
-        edge.transform.parent = gameObject.transform;
+        edge.transform.SetParent(gameObject.transform);
         Edges.Add(edge.GetComponent<LineRenderer>());
         Edges.Last().SetPositions(pos);
     }
