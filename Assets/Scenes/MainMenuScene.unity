@@ -1078,7 +1078,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Skip Tutorial
+  m_Text: Skip Prologue
 --- !u!222 &699998808
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1098,7 +1098,7 @@ GameObject:
   - component: {fileID: 734557234}
   - component: {fileID: 734557235}
   m_Layer: 5
-  m_Name: SkipTutorial
+  m_Name: SkipPrologue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1174,8 +1174,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2052182260}
         m_TargetAssemblyTypeName: NewGame, Assembly-CSharp
-        m_MethodName: TogSkipTutorial
-        m_Mode: 0
+        m_MethodName: TogSkipPrologue
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1856,13 +1856,7 @@ MonoBehaviour:
   starterGold: 0
   confirmationPopup: {fileID: 5984139876473836622, guid: d17398450ca033342ae5014d530fb58f,
     type: 3}
-  tutorialSceneOrder:
-  - StoryScene
-  - CombatScene
-  - StoryScene
-  tutorial:
-  - {fileID: 11400000, guid: a2a9914673fb0274eb0420bdbb120e3e, type: 2}
-  - {fileID: 11400000, guid: 5159bda60ae4b3f44a3b85c6cdbb23d0, type: 2}
+  prologue: {fileID: 11400000, guid: a2a9914673fb0274eb0420bdbb120e3e, type: 2}
   tutorialWave: {fileID: 11400000, guid: 99422b7a3ab80cd488e078fd726f46df, type: 2}
 --- !u!1 &2094261974
 GameObject:

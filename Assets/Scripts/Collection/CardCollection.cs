@@ -10,6 +10,12 @@ public class CardCollection : MonoBehaviourSingletonPersistent<CardCollection>
     public GameObject cardPrefab;
     public GameObject lockedCard;
 
+    public override void Awake()
+    {
+        base.Awake();
+        SaveSystem.LoadUnlockData();
+    }
+
     public Dictionary<string, bool> StarterCards()
     {
         Dictionary<string, bool> dict = new Dictionary<string, bool>();

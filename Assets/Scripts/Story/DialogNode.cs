@@ -12,4 +12,5 @@ public class DialogNode : ScriptableObject
     public StoryAction action;
     public List<DialogNode> child;
     public List<string> choice;
+    public Wave nextWave;
 }

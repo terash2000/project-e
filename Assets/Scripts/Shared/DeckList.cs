@@ -7,29 +7,29 @@ public class DeckList : MonoBehaviour
     [SerializeField] private GridLayoutGroup cardContainer;
     [SerializeField] private Button previousButton;
     [SerializeField] private Button nextButton;
-    private int currentPage = 0;
+    private int currentPage;
     private int maxPage = 1;
     private const int ContainerSize = 10;
 
-    private List<Card> deck = new List<Card>(); // temp
+    private List<Card> deck; // temp
 
-    void Start()
+    public void Open()
     {
+        // temp deck
+        deck = new List<Card>();
         // add 16 cards to test deck
         for (int i = 0; i < 16; i++)
         {
             deck.Add(CardCollection.Instance.allCards[0]);
         }
 
-        maxPage = (deck.Count - 1) / ContainerSize;
-        RenderCard();
-    }
-
-    public void Open()
-    {
         gameObject.SetActive(true);
         Time.timeScale = 0f;
         GameManager.gameState = GameState.Pause;
+
+        currentPage = 0;
+        maxPage = (deck.Count - 1) / ContainerSize;
+        RenderCard();
     }
 
     public void Close()

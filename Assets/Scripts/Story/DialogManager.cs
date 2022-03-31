@@ -51,7 +51,18 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
 
     private void Next()
     {
-        if (current.child != null && current.child.Count != 0)
+        if (current.nextWave != null)
+        {
+            if (current.child != null && current.child.Count != 0)
+            {
+                SceneChanger.nextScene.Add("StoryScene");
+                DialogManager.nextRoot.Insert(0, current.child[0]);
+            }
+            MonsterManager.wave = current.nextWave;
+            SceneChanger.LoadScene("CombatScene");
+
+        }
+        else if (current.child != null && current.child.Count != 0)
         {
             switch (current.type)
             {
