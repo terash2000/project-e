@@ -9,17 +9,10 @@ public class DamagePopup : MonoBehaviour
     private const float INITIAL_TEXT_VELOCITY = 4f;
 
     private TextMeshProUGUI _textMesh;
-    private bool _isRunningAnimation;
     private float _disappearTimer;
     private float _disappearSpeed;
     private Color _textColor;
     private Vector3 _moveVector;
-
-    public bool IsRunningAnimation
-    {
-        get { return _isRunningAnimation; }
-        set { }
-    }
 
     public void Start()
     {
