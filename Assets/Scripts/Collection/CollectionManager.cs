@@ -7,7 +7,7 @@ public class CollectionManager : MonoBehaviour
     [SerializeField] private Button previousButton;
     [SerializeField] private Button nextButton;
     private int currentPage = 0;
-    private int maxPage = 1;
+    private int maxPage;
     private const int ContainerSize = 10;
 
     void Start()
