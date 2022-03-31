@@ -46,7 +46,7 @@ public class TopDownController : MonoBehaviour
     {
         Vector2 position = rigidbody2d.position;
 
-        position = position + movement * speed * Time.deltaTime;
+        position = position + speed * Time.deltaTime * movement;
 
         rigidbody2d.MovePosition(position);
 

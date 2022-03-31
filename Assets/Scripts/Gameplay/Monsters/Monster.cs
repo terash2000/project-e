@@ -54,7 +54,7 @@ public class Monster : MoveableSprite
             Vector3 characterPos = grid.CellToWorld(PlayerManager.Instance.Player.currentTile);
             Vector3 direction = characterPos - transform.position;
             direction.Normalize();
-            transform.position = transform.position + direction * 0.25f * Mathf.Sin(radiant2);
+            transform.position = transform.position + 0.25f * Mathf.Sin(radiant2) * direction;
             lookDirection = direction;
         }
         else animator.SetBool("Attacking", false);
