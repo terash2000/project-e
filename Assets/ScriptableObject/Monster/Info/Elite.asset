@@ -29,4 +29,4 @@ MonoBehaviour:
     moveRange: 3
   animatorController: {fileID: 9100000, guid: eb785a742a614ed4e8ebca3036090bc5, type: 2}
   spriteColor: {r: 1, g: 0.9320468, b: 0, a: 1}
-  spriteScale: 1
+  spriteScale: 0.9

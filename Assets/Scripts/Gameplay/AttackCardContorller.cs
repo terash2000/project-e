@@ -22,6 +22,7 @@ public class AttackCardContorller : CardController
             {
                 monster.TakeDamage(damage);
                 // monster.Stun();
+                monster.GainStatus(Status.Acid, 2);
                 success = true;
             }
         }

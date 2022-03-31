@@ -149,15 +149,15 @@ RectTransform:
   m_GameObject: {fileID: 268537441}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -269.57724}
-  m_LocalScale: {x: 0.59125, y: 0.59125, z: 0.59125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 489719815}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 14, y: 0}
-  m_SizeDelta: {x: 1160.5476, y: 136.3101}
+  m_AnchoredPosition: {x: 19, y: 1.7888184}
+  m_SizeDelta: {x: 660, y: -116.422424}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &268537443
 MonoBehaviour:
@@ -172,17 +172,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 40
+    m_Left: 0
     m_Right: 0
-    m_Top: 50
+    m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 120, y: 160}
-  m_Spacing: {x: 120, y: 160}
-  m_Constraint: 0
-  m_ConstraintCount: 2
+  m_Spacing: {x: 15, y: 25}
+  m_Constraint: 1
+  m_ConstraintCount: 5
 --- !u!1 &489719811
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,9 +436,9 @@ RectTransform:
   m_Father: {fileID: 489719815}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -353.8, y: -0.000019073}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 50, y: 0}
   m_SizeDelta: {x: 30, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &710822213
@@ -568,9 +568,9 @@ RectTransform:
   m_Father: {fileID: 489719815}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 376.6, y: -0.000012398}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -25, y: 0}
   m_SizeDelta: {x: 30, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &911058387
@@ -742,10 +742,6 @@ MonoBehaviour:
   cardContainer: {fileID: 268537443}
   previousButton: {fileID: 710822213}
   nextButton: {fileID: 911058387}
-  collectionCard: {fileID: 1963681426241882848, guid: ebe0191d81bf8854d869cc1f21cfbb8b,
-    type: 3}
-  lockedCard: {fileID: 302550942999638226, guid: 496208e3426d514418886023974f300a,
-    type: 3}
 --- !u!4 &1400474526
 Transform:
   m_ObjectHideFlags: 0

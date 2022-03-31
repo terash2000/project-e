@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CollectionManager : MonoBehaviour
+public class DeckList : MonoBehaviour
 {
     [SerializeField] private GridLayoutGroup cardContainer;
     [SerializeField] private Button previousButton;
@@ -10,10 +11,32 @@ public class CollectionManager : MonoBehaviour
     private int maxPage = 1;
     private const int ContainerSize = 10;
 
+    private List<Card> deck = new List<Card>(); // temp
+
     void Start()
     {
-        maxPage = (CardCollection.singleton.allCards.Count - 1) / ContainerSize;
+        // add 16 cards to test deck
+        for (int i = 0; i < 16; i++)
+        {
+            deck.Add(CardCollection.singleton.allCards[0]);
+        }
+
+        maxPage = (deck.Count - 1) / ContainerSize;
         RenderCard();
+    }
+
+    public void Open()
+    {
+        gameObject.SetActive(true);
+        Time.timeScale = 0f;
+        GameManager.gameState = GameState.Pause;
+    }
+
+    public void Close()
+    {
+        gameObject.SetActive(false);
+        Time.timeScale = 1f;
+        GameManager.gameState = GameState.Running;
     }
 
     public void NextPage()
@@ -42,17 +65,9 @@ public class CollectionManager : MonoBehaviour
         for (int i = 0; i < ContainerSize; i++)
         {
             int cardIndex = i + currentPage * ContainerSize;
-            if (cardIndex >= CardCollection.singleton.allCards.Count) break;
-            Card card = CardCollection.singleton.allCards[cardIndex];
-
-            if (CardCollection.unlockDict[card.cardName])
-            {
-                GameObject cardObj = Instantiate(CardCollection.singleton.cardPrefab, cardContainer.transform);
-            }
-            else
-            {
-                GameObject cardObj = Instantiate(CardCollection.singleton.lockedCard, cardContainer.transform);
-            }
+            if (cardIndex >= deck.Count) break;
+            Card card = deck[cardIndex];
+            GameObject cardObj = Instantiate(CardCollection.singleton.cardPrefab, cardContainer.transform);
         }
     }
 }

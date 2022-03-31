@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Monster : MoveableSprite
 {
@@ -9,11 +11,14 @@ public class Monster : MoveableSprite
     public bool moved;
     public bool attacked;
     private bool stuned;
+    private Dictionary<Status, int> statusDict = new Dictionary<Status, int>();
     [SerializeField] private GameObject healthBar;
     [SerializeField] private GameObject healthText;
     [SerializeField] private GameObject damageText;
     [SerializeField] private SpriteRenderer damageIcon;
     [SerializeField] private GameObject previewDamage;
+    [SerializeField] private HorizontalLayoutGroup statusContainer;
+    [SerializeField] private GameObject statusPrefab;
     private int healthAmount;
     private Vector3 healthLocalScale;
     private float healthBarSize;
@@ -89,13 +94,6 @@ public class Monster : MoveableSprite
         return healthAmount;
     }
 
-    public void Stun()
-    {
-        RemoveHighlight();
-        stuned = true;
-        animator.SetBool("Stuned", true);
-    }
-
     public List<Vector3Int> AttackArea()
     {
         List<Vector3Int> area = new List<Vector3Int>();
@@ -113,6 +111,54 @@ public class Monster : MoveableSprite
         }
 
         return area;
+    }
+
+    public void GainStatus(Status status, int amount)
+    {
+        switch (status)
+        {
+            case Status.Stun:
+                Stun();
+                break;
+            default:
+                if (!statusDict.ContainsKey(status))
+                {
+                    statusDict.Add(status, amount);
+                }
+                else statusDict[status] += amount;
+
+                UpdateStatusIcon();
+                break;
+        }
+    }
+
+    public void Stun()
+    {
+        RemoveHighlight();
+        stuned = true;
+        animator.SetBool("Stuned", true);
+    }
+
+    public bool TriggerStatus()
+    {
+        if (statusDict.Count == 0) return false;
+
+        foreach (KeyValuePair<Status, int> status in statusDict)
+        {
+            switch (status.Key)
+            {
+                case Status.Acid:
+                case Status.Burn:
+                    TakeDamage(status.Value);
+                    break;
+            }
+        }
+
+        statusDict = statusDict.Where(i => i.Value > 1)
+            .ToDictionary(i => i.Key, i => i.Value - 1);
+
+        UpdateStatusIcon();
+        return true;
     }
 
     public void Move()
@@ -175,7 +221,7 @@ public class Monster : MoveableSprite
         attacked = false;
         stuned = false;
         attackDirection = CalAttackDirection();
-        SetIcon(info.patterns[currentMove].pattern);
+        SetAttackIcon(info.patterns[currentMove].pattern);
 
         animator.SetBool("Stuned", false);
     }
@@ -315,7 +361,7 @@ public class Monster : MoveableSprite
         SetMovement(destination);
     }
 
-    private void SetIcon(MonsterPatternType pattern)
+    private void SetAttackIcon(MonsterPatternType pattern)
     {
         switch (pattern)
         {
@@ -325,6 +371,20 @@ public class Monster : MoveableSprite
             case MonsterPatternType.Range:
                 damageIcon.sprite = MonsterManager.singleton.BowIcon;
                 break;
+        }
+    }
+
+    private void UpdateStatusIcon()
+    {
+        for (int i = 0; i < statusContainer.transform.childCount; i++)
+        {
+            Destroy(statusContainer.transform.GetChild(i).gameObject);
+        }
+
+        foreach (KeyValuePair<Status, int> status in statusDict)
+        {
+            GameObject statusObj = Instantiate(statusPrefab, statusContainer.transform);
+            statusObj.GetComponent<MonsterStatus>().Init(status.Key, status.Value);
         }
     }
 }

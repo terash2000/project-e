@@ -38,7 +38,11 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 
     public void onEndTurn()
     {
-        StartAttacking();
+        foreach (Monster monster in new List<Monster>(monsters))
+        {
+            monster.TriggerStatus();
+        }
+        StartCoroutine(Attack());
     }
 
     public Monster FindMonsterByTile(Vector3Int tile)
@@ -49,11 +53,6 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
                 return monster;
         }
         return null;
-    }
-
-    public void StartAttacking()
-    {
-        StartCoroutine(Attack());
     }
 
     private IEnumerator Attack()
@@ -77,14 +76,17 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
 
     private void SpawnWave()
     {
-        foreach (Wave.MonsterSpawner monsterSpawner in wave.monsters)
+        if (wave != null)
         {
-            Monster monster = Instantiate(monsterPrefab, grid.transform).GetComponent<Monster>();
-            monster.info = monsterSpawner.monster;
-            monster.currentTile = new Vector3Int(monsterSpawner.tile.x, monsterSpawner.tile.y, 0);
-            monster.currentMove = monsterSpawner.currentMove;
+            foreach (Wave.MonsterSpawner monsterSpawner in wave.monsters)
+            {
+                Monster monster = Instantiate(monsterPrefab, grid.transform).GetComponent<Monster>();
+                monster.info = monsterSpawner.monster;
+                monster.currentTile = new Vector3Int(monsterSpawner.tile.x, monsterSpawner.tile.y, 0);
+                monster.currentMove = monsterSpawner.currentMove;
 
-            monsters.Add(monster);
+                monsters.Add(monster);
+            }
         }
     }
 }

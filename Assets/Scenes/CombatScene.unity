@@ -446,6 +446,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   round: 0
   playerTurn: 0
+  acidIcon: {fileID: 21300000, guid: df5748f20dcb76b44982827f0cf52127, type: 3}
+  acidColor: {r: 0.78431374, g: 1, b: 0, a: 1}
+  burnIcon: {fileID: 21300000, guid: 3068b0e02813be54bb651355d4590437, type: 3}
+  burnColor: {r: 1, g: 0.39215687, b: 0, a: 1}
   gameResultPopup: {fileID: 8495098981698586526}
 --- !u!4 &424601450
 Transform:
@@ -775,6 +779,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930544672991026043, guid: af63116dff67885428aa9b9524ff86a0,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2930544672991026043, guid: af63116dff67885428aa9b9524ff86a0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2930544672991026043, guid: af63116dff67885428aa9b9524ff86a0,
         type: 3}
