@@ -21,4 +21,4 @@ MonoBehaviour:
     moveRange: 1
   animatorController: {fileID: 9100000, guid: fd3d1d592b8fb114ba5d3d9aac1739ea, type: 2}
   spriteColor: {r: 1, g: 1, b: 1, a: 1}
-  spriteScale: 2.8
+  spriteScale: 2

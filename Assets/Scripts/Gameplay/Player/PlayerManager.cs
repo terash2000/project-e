@@ -19,6 +19,9 @@ public class PlayerManager : MonoBehaviourSingleton<PlayerManager>, ITurnHandler
     {
         _grid = Arena.Instance.GetComponentInChildren<GridLayout>();
         _player = Instantiate(_playerPrefabs, _grid.transform).GetComponent<Player>();
+
+        // set local scale
+        _player.transform.localScale = new Vector3(0.75f, 0.75f, 1);
     }
 
     void Update()
