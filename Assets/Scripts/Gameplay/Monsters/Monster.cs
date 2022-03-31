@@ -296,6 +296,7 @@ public class Monster : MoveableSprite
 
     private void Die()
     {
+        damagePopup.transform.SetParent(Arena.Instance.transform);
         MonsterManager.Instance.monsters.Remove(this);
         RemoveHighlight();
         Destroy(gameObject);

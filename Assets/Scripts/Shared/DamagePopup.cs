@@ -20,7 +20,7 @@ public class DamagePopup : MonoBehaviour
         _disappearTimer = DISAPPEAR_TIMER_MAX;
         _disappearSpeed = DISAPPEAR_SPEED;
         _textColor = _textMesh.faceColor;
-        _moveVector = new Vector3(0.3f, 1f) * INITIAL_TEXT_VELOCITY;
+        _moveVector = new Vector3(Random.Range(0.2f, 0.5f), 1f) * INITIAL_TEXT_VELOCITY;
     }
 
     public void Update()
