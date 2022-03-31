@@ -28,12 +28,12 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             this.GetComponent<Image>().color = Color.white;
             Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int mousePos = Arena.singleton.grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
+            Vector3Int mousePos = Arena.Instance.grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
             if (onUse(mousePos)) PlayerData.Mana -= manaCost;
             selected = false;
             selectThisCard = false;
-            Arena.singleton.SelectedCard = null;
-            Arena.singleton.hideRadius(mAreaShape, mRange);
+            Arena.Instance.SelectedCard = null;
+            Arena.Instance.hideRadius(mAreaShape, mRange);
         }
 
     }
@@ -43,8 +43,8 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         mouseOver = true;
         if (selected) return;
         this.GetComponent<Image>().color = Color.yellow;
-        Arena.singleton.SelectedCard = this;
-        Arena.singleton.showRadius(mAreaShape, mTargetShape, mRange);
+        Arena.Instance.SelectedCard = this;
+        Arena.Instance.showRadius(mAreaShape, mTargetShape, mRange);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -52,8 +52,8 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         mouseOver = false;
         if (selected) return;
         this.GetComponent<Image>().color = Color.white;
-        Arena.singleton.SelectedCard = null;
-        Arena.singleton.hideRadius(mAreaShape, mRange);
+        Arena.Instance.SelectedCard = null;
+        Arena.Instance.hideRadius(mAreaShape, mRange);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -62,25 +62,25 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             selected = false;
             selectThisCard = false;
-            Arena.singleton.SelectedCard = null;
+            Arena.Instance.SelectedCard = null;
         }
         else if (!selected)
         {
             selected = true;
             selectThisCard = true;
-            Arena.singleton.SelectedCard = this;
+            Arena.Instance.SelectedCard = this;
 
             this.GetComponent<Image>().color = Color.yellow;
-            Arena.singleton.showRadius(mAreaShape, mTargetShape, mRange);
+            Arena.Instance.showRadius(mAreaShape, mTargetShape, mRange);
         }
     }
 
     public virtual bool onUse(Vector3Int mousePos)
     {
-        Tile tile = (Tile)Arena.singleton.tilemap.GetTile(mousePos);
-        if (tile != null && Arena.singleton.AreaPosList.Contains(mousePos) && MonsterManager.singleton.FindMonsterByTile(mousePos) == null)
+        Tile tile = (Tile)Arena.Instance.tilemap.GetTile(mousePos);
+        if (tile != null && Arena.Instance.AreaPosList.Contains(mousePos) && MonsterManager.Instance.FindMonsterByTile(mousePos) == null)
         {
-            Arena.singleton.hideRadius(mAreaShape, mRange);
+            Arena.Instance.hideRadius(mAreaShape, mRange);
             PlayerManager.Instance.Player.SetMovement(mousePos);
             return true;
         }

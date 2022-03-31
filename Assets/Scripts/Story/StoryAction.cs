@@ -21,15 +21,15 @@ public class StoryAction
         switch (type)
         {
             case ActionType.UnlockCard:
-                CardCollection.singleton.UnlockCard(name);
-                DialogManager.singleton.ShowPopup("Unlock!", name);
+                CardCollection.Instance.UnlockCard(name);
+                DialogManager.Instance.ShowPopup("Unlock!", name);
                 break;
             case ActionType.AddCardToDeck:
                 // TODO add the card to deck
 
                 string header = "Acquire";
                 if (amount > 1) header += " x" + amount.ToString();
-                DialogManager.singleton.ShowPopup(header, name);
+                DialogManager.Instance.ShowPopup(header, name);
                 break;
             case ActionType.ChangeHP:
                 PlayerData.Health += amount;

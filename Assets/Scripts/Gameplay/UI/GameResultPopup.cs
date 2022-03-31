@@ -40,7 +40,7 @@ public class GameResultPopup : MonoBehaviour
 
     public void ChooseNewCard()
     {
-        GameObject chooseCardPopup = Instantiate(CardCollection.singleton.chooseCardPopup, transform.parent);
+        GameObject chooseCardPopup = Instantiate(CardCollection.Instance.chooseCardPopup, transform.parent);
         chooseCardPopup.GetComponent<ChooseCardPopup>().Init();
     }
 }

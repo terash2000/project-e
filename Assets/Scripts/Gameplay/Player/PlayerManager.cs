@@ -17,7 +17,7 @@ public class PlayerManager : MonoBehaviourSingleton<PlayerManager>, ITurnHandler
 
     void Start()
     {
-        _grid = Arena.singleton.GetComponentInChildren<GridLayout>();
+        _grid = Arena.Instance.GetComponentInChildren<GridLayout>();
         _player = Instantiate(_playerPrefabs, _grid.transform).GetComponent<Player>();
     }
 

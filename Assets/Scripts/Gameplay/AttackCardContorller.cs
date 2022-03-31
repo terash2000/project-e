@@ -12,12 +12,12 @@ public class AttackCardContorller : CardController
 
     public override bool onUse(Vector3Int mousePos)
     {
-        Tile tile = (Tile)Arena.singleton.tilemap.GetTile(mousePos);
+        Tile tile = (Tile)Arena.Instance.tilemap.GetTile(mousePos);
         if (tile == null) return false;
         bool success = false;
-        foreach (Vector3Int pos in Arena.singleton.TargetPosList)
+        foreach (Vector3Int pos in Arena.Instance.TargetPosList)
         {
-            Monster monster = MonsterManager.singleton.FindMonsterByTile(pos);
+            Monster monster = MonsterManager.Instance.FindMonsterByTile(pos);
             if (monster != null)
             {
                 monster.TakeDamage(damage);

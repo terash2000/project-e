@@ -1,30 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardCollection : MonoBehaviour
+public class CardCollection : MonoBehaviourSingleton<CardCollection>
 {
-    public static CardCollection singleton;
     public static Dictionary<string, bool> unlockDict;
     public List<Card> allCards;
     public GameObject newCardPopup;
     public GameObject chooseCardPopup;
     public GameObject cardPrefab;
     public GameObject lockedCard;
-
-    void Awake()
-    {
-        if (singleton == null)
-        {
-            singleton = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (singleton != this)
-        {
-            Destroy(gameObject);
-        }
-
-        SaveSystem.LoadUnlockData();
-    }
 
     public Dictionary<string, bool> StarterCards()
     {

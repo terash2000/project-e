@@ -15,7 +15,7 @@ public class NewCardPopup : MonoBehaviour
         {
             Destroy(cardContainer.transform.GetChild(i).gameObject);
         }
-        GameObject cardObj = Instantiate(CardCollection.singleton.cardPrefab, cardContainer.transform);
+        GameObject cardObj = Instantiate(CardCollection.Instance.cardPrefab, cardContainer.transform);
 
         Time.timeScale = 0f;
     }
