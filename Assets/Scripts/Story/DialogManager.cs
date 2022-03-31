@@ -45,7 +45,7 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
 
     public void ShowPopup(string header, string cardname)
     {
-        GameObject newPopup = Instantiate(CardCollection.Instance.newCardPopup, canvas);
+        GameObject newPopup = Instantiate(CardCollection.Instance.NewCardPopup, canvas);
         newPopup.GetComponent<NewCardPopup>().Init(header, cardname);
     }
 
