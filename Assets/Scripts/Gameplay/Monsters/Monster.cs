@@ -19,6 +19,7 @@ public class Monster : MoveableSprite
     [SerializeField] private GameObject previewDamage;
     [SerializeField] private HorizontalLayoutGroup statusContainer;
     [SerializeField] private GameObject statusPrefab;
+    private DamagePopup damagePopup;
     private int healthAmount;
     private Vector3 healthLocalScale;
     private float healthBarSize;
@@ -85,6 +86,11 @@ public class Monster : MoveableSprite
 
     public int TakeDamage(int damage)
     {
+        GameObject dp = Instantiate(previewDamage, GetComponentInChildren<Canvas>().transform);
+        dp.SetActive(true);
+        dp.GetComponent<TMPro.TextMeshProUGUI>().text = damage.ToString();
+        damagePopup = dp.AddComponent<DamagePopup>();
+
         healthAmount -= damage;
         if (healthAmount <= 0)
         {
