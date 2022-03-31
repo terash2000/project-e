@@ -20,7 +20,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
     [HideInInspector]
     public List<Vector3Int> AreaPosList;
     [HideInInspector]
-    public List<Vector3Int> TarGetPosList;
+    public List<Vector3Int> TargetPosList;
     [HideInInspector]
     public GameObject redHexBorder;
     [HideInInspector]
@@ -111,10 +111,10 @@ public class Arena : MonoBehaviourSingleton<Arena>
 
     public void ShowTargetArea(Vector3 targetPos)
     {
-        TarGetPosList = GetPosListTarget(SelectedCard.mTargetShape, SelectedCard.mRange, PlayerManager.Instance.Player.currentTile, targetPos);
-        SetTileColor(Color.yellow, TarGetPosList);
+        TargetPosList = GetPosListTarget(SelectedCard.mTargetShape, SelectedCard.mRange, PlayerManager.Instance.Player.currentTile, targetPos);
+        SetTileColor(Color.yellow, TargetPosList);
 
-        /*for (int i = 0; i < TarGetPosList.Count; i++)
+        /*for (int i = 0; i < TargetPosList.Count; i++)
         {
             GameObject border;
             if (i >= hexBorderList.Count)
@@ -128,13 +128,13 @@ public class Arena : MonoBehaviourSingleton<Arena>
                 border = hexBorderList[i];
             }
             border.gameObject.SetActive(true);
-            border.transform.position = grid.CellToWorld(TarGetPosList[i]);
+            border.transform.position = grid.CellToWorld(TargetPosList[i]);
         }*/
     }
 
     public void HideTargetArea()
     {
-        SetTileColor(Color.white, TarGetPosList);
+        SetTileColor(Color.white, TargetPosList);
         // foreach (GameObject border in hexBorderList)
         // {
         //     border.gameObject.SetActive(false);

@@ -15,7 +15,7 @@ public class AttackCardContorller : CardController
         Tile tile = (Tile)Arena.Instance.tilemap.GetTile(mousePos);
         if (tile == null) return false;
         bool success = false;
-        foreach (Vector3Int pos in Arena.Instance.TarGetPosList)
+        foreach (Vector3Int pos in Arena.Instance.TargetPosList)
         {
             Monster monster = MonsterManager.Instance.FindMonsterByTile(pos);
             if (monster != null)

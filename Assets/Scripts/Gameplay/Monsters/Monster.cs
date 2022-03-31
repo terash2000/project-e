@@ -72,7 +72,7 @@ public class Monster : MoveableSprite
         damageText.GetComponent<TMPro.TextMeshProUGUI>().text = damage.ToString();
 
         // preview damage
-        if (Arena.Instance.TarGetPosList.Contains(currentTile) &&
+        if (Arena.Instance.TargetPosList.Contains(currentTile) &&
             CardController.selected &&
             Arena.Instance.SelectedCard.GetDamage() > 0)
         {
