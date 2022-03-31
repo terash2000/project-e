@@ -1,5 +1,6 @@
 public enum Status
 {
     Stun,
-    Acid
+    Acid,
+    Burn,
 }

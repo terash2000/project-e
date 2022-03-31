@@ -148,6 +148,7 @@ public class Monster : MoveableSprite
             switch (status.Key)
             {
                 case Status.Acid:
+                case Status.Burn:
                     TakeDamage(status.Value);
                     break;
             }

@@ -11,8 +11,10 @@ public class GameManager : MonoBehaviour
     public int round;
     [HideInInspector]
     public bool playerTurn;
-    public Sprite AcidIcon;
-    public Color AcidColor;
+    public Sprite acidIcon;
+    public Color acidColor;
+    public Sprite burnIcon;
+    public Color burnColor;
 
     public GameResultPopup gameResultPopup;
 
