@@ -48,6 +48,7 @@ public class CollectionManager : MonoBehaviour
             if (CardCollection.unlockDict[card.cardName])
             {
                 GameObject cardObj = Instantiate(CardCollection.Instance.cardPrefab, cardContainer.transform);
+                cardObj.GetComponent<CardDisplay>().card = card;
             }
             else
             {

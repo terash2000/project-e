@@ -16,6 +16,20 @@ public class CardCollection : MonoBehaviourSingletonPersistent<CardCollection>
         SaveSystem.LoadUnlockData();
     }
 
+    public Card FindCardByName(string cardName)
+    {
+        foreach (Card card in allCards)
+        {
+            if (card.cardName == cardName) return card;
+        }
+        return null;
+    }
+
+    public Card RandomCard()
+    {
+        return allCards[Random.Range(0, allCards.Count)];
+    }
+
     public Dictionary<string, bool> StarterCards()
     {
         Dictionary<string, bool> dict = new Dictionary<string, bool>();

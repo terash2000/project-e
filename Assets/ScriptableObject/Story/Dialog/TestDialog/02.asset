@@ -24,3 +24,4 @@ MonoBehaviour:
   child:
   - {fileID: 11400000, guid: 6b33d74ec5b3def4b9d73f51e69fc74c, type: 2}
   choice: []
+  nextWave: {fileID: 0}
