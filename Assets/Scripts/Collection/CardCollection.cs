@@ -3,12 +3,24 @@ using UnityEngine;
 
 public class CardCollection : MonoBehaviourSingletonPersistent<CardCollection>
 {
+    [SerializeField]
+    private GameObject _newCardPopup;
+    [SerializeField]
+    private GameObject _chooseCardPopup;
+    [SerializeField]
+    private GameObject _cardPrefab;
+    [SerializeField]
+    private GameObject _lockedCardPrefab;
+
     public static Dictionary<string, bool> unlockDict;
     public List<Card> allCards;
-    public GameObject newCardPopup;
-    public GameObject chooseCardPopup;
-    public GameObject cardPrefab;
-    public GameObject lockedCard;
+
+    public GameObject NewCardPopup { get { return _newCardPopup; } }
+    public GameObject ChooseCardPopup { get { return _chooseCardPopup; } }
+    public GameObject CardPrefab { get { return _cardPrefab; } }
+    public GameObject LockedCardPrefab { get { return _lockedCardPrefab; } }
+
+
 
     public override void Awake()
     {

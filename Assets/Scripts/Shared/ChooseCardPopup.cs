@@ -15,7 +15,7 @@ public class ChooseCardPopup : MonoBehaviour
         }
         for (int i = 0; i < amount; i++)
         {
-            GameObject cardObj = Instantiate(CardCollection.Instance.cardPrefab, cardContainer.transform);
+            GameObject cardObj = Instantiate(CardCollection.Instance.CardPrefab, cardContainer.transform);
             cardObj.AddComponent(typeof(ChooseCardHandle));
         }
     }

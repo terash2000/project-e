@@ -47,11 +47,11 @@ public class CollectionManager : MonoBehaviour
 
             if (CardCollection.unlockDict[card.cardName])
             {
-                GameObject cardObj = Instantiate(CardCollection.Instance.cardPrefab, cardContainer.transform);
+                GameObject cardObj = Instantiate(CardCollection.Instance.CardPrefab, cardContainer.transform);
             }
             else
             {
-                GameObject cardObj = Instantiate(CardCollection.Instance.lockedCard, cardContainer.transform);
+                GameObject cardObj = Instantiate(CardCollection.Instance.LockedCardPrefab, cardContainer.transform);
             }
         }
     }
