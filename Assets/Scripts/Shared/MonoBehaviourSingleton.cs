@@ -22,24 +22,10 @@ public class MonoBehaviourSingleton<T> : MonoBehaviour where T : Component
                     GameObject newSingletonObject = new GameObject();
                     newSingletonObject.name = typeof(T).Name;
                     _instance = newSingletonObject.AddComponent<T>();
-                    DontDestroyOnLoad(newSingletonObject);
                 }
                 return _instance;
             }
             return _instance;
-        }
-    }
-
-    protected virtual void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this as T;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
         }
     }
 }

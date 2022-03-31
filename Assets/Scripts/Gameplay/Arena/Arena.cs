@@ -119,7 +119,7 @@ public class Arena : MonoBehaviour
 
     public void showTargetArea(Vector3 targetPos)
     {
-        TargetPosList = getPosListTarget(SelectedCard.mTargetShape, SelectedCard.mRange, PlayerManager.singleton.Player.currentTile, targetPos);
+        TargetPosList = getPosListTarget(SelectedCard.mTargetShape, SelectedCard.mRange, PlayerManager.Instance.Player.currentTile, targetPos);
         setTileColor(Color.yellow, TargetPosList);
 
         /*for (int i = 0; i < TargetPosList.Count; i++)
@@ -151,7 +151,7 @@ public class Arena : MonoBehaviour
 
     public void showRadius(AreaShape areaShape, AreaShape targetShape, int range)
     {
-        Vector3Int curPos = PlayerManager.singleton.Player.currentTile;
+        Vector3Int curPos = PlayerManager.Instance.Player.currentTile;
         hexBorder.gameObject.SetActive(true);
         hexBorder.transform.position = grid.CellToWorld(curPos);
         AreaPosList = getPosList(areaShape, range, curPos);
@@ -164,7 +164,7 @@ public class Arena : MonoBehaviour
 
     public void hideRadius(AreaShape areaShape, int range)
     {
-        Vector3Int curPos = PlayerManager.singleton.Player.currentTile;
+        Vector3Int curPos = PlayerManager.Instance.Player.currentTile;
         hexBorder.gameObject.SetActive(false);
         AreaPosList.Clear();
         setTile(mOriginalTile, getPosList(areaShape, range, curPos));
@@ -203,7 +203,7 @@ public class Arena : MonoBehaviour
 
     public List<Vector3Int> getPosListTarget(AreaShape areaShape, int range, Vector3Int curPos, Vector3 targetPos)
     {
-        Vector3 playerPos = PlayerManager.singleton.Player.transform.position;
+        Vector3 playerPos = PlayerManager.Instance.Player.transform.position;
         List<int> directions = Arena.singleton.FindDirections(playerPos, targetPos);
         switch (areaShape)
         {

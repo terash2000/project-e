@@ -81,7 +81,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         if (tile != null && Arena.singleton.AreaPosList.Contains(mousePos) && MonsterManager.singleton.FindMonsterByTile(mousePos) == null)
         {
             Arena.singleton.hideRadius(mAreaShape, mRange);
-            PlayerManager.singleton.Player.SetMovement(mousePos);
+            PlayerManager.Instance.Player.SetMovement(mousePos);
             return true;
         }
         return false;
