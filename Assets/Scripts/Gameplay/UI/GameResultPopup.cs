@@ -18,7 +18,7 @@ public class GameResultPopup : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void onLose()
+    public void OnLose()
     {
         text.text = "DEFEAT";
         bg.color = Color.red;
@@ -28,12 +28,12 @@ public class GameResultPopup : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    public void onWin()
+    public void OnWin()
     {
         text.text = "VICTORY";
         bg.color = Color.green;
         UnityAction action = () => ChooseNewCard();
-        confirmButton.onClick.AddListener(action);
+        confirmButton.onClick.AddListener(ChooseNewCard);
         gameObject.SetActive(true);
         Time.timeScale = 0f;
     }

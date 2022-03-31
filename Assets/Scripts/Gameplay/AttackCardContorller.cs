@@ -10,7 +10,7 @@ public class AttackCardContorller : CardController
         damage = 4;
     }
 
-    public override bool onUse(Vector3Int mousePos)
+    public override bool OnUse(Vector3Int mousePos)
     {
         Tile tile = (Tile)Arena.Instance.tilemap.GetTile(mousePos);
         if (tile == null) return false;

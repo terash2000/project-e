@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class EndTurnButton : MonoBehaviour, ITurnHandler
 {
-    public void onEndTurn()
+    public void OnEndTurn()
     {
         GetComponent<Button>().interactable = false;
     }
 
-    public void onStartTurn()
+    public void OnStartTurn()
     {
         GetComponent<Button>().interactable = true;
     }

@@ -5,7 +5,7 @@ public class TopDownController : MonoBehaviour
 {
     // ========= MOVEMENT =================
     public float speed = 0.04f;
-    
+
     // =========== MOVEMENT ==============
     Rigidbody2D rigidbody2d;
     private Vector2 movement;
@@ -19,7 +19,7 @@ public class TopDownController : MonoBehaviour
     {
         // =========== MOVEMENT ==============
         rigidbody2d = GetComponent<Rigidbody2D>();
-        
+
         // ==== ANIMATION =====
         animator = GetComponent<Animator>();
     }
@@ -27,9 +27,9 @@ public class TopDownController : MonoBehaviour
     void Update()
     {
         // ============== MOVEMENT ======================
-        if(newPosition != null) movement = new Vector2(newPosition.x-transform.position.x, newPosition.y-transform.position.y);
+        if (newPosition != null) movement = new Vector2(newPosition.x - transform.position.x, newPosition.y - transform.position.y);
 
-        if(!Mathf.Approximately(movement.x, 0.0f) || !Mathf.Approximately(movement.y, 0.0f))
+        if (!Mathf.Approximately(movement.x, 0.0f) || !Mathf.Approximately(movement.y, 0.0f))
         {
             lookDirection.Set(movement.x, movement.y);
             lookDirection.Normalize();
@@ -45,15 +45,15 @@ public class TopDownController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 position = rigidbody2d.position;
-        
-        position = position + movement * speed * Time.deltaTime;
-        
+
+        position = position + speed * Time.deltaTime * movement;
+
         rigidbody2d.MovePosition(position);
 
     }
 
-    public void setMovement(Vector3 newPosition)
+    public void SetMovement(Vector3 newPosition)
     {
-        this.newPosition = new Vector2(newPosition.x,newPosition.y);
+        this.newPosition = new Vector2(newPosition.x, newPosition.y);
     }
 }

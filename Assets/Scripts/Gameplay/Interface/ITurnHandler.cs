@@ -5,6 +5,6 @@ using System.Collections;
 //method.
 public interface ITurnHandler
 {
-    void onStartTurn();
-    void onEndTurn();
+    void OnStartTurn();
+    void OnEndTurn();
 }

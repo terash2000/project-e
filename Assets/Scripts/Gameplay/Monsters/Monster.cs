@@ -54,14 +54,14 @@ public class Monster : MoveableSprite
             Vector3 characterPos = grid.CellToWorld(PlayerManager.Instance.Player.currentTile);
             Vector3 direction = characterPos - transform.position;
             direction.Normalize();
-            transform.position = transform.position + direction * 0.25f * Mathf.Sin(radiant2);
+            transform.position = transform.position + 0.25f * Mathf.Sin(radiant2) * direction;
             lookDirection = direction;
         }
         else animator.SetBool("Attacking", false);
 
         if (!IsMoving() && attackDirection != -1)
         {
-            lookDirection = Arena.Instance.getDirectionVector(attackDirection);
+            lookDirection = Arena.Instance.GetDirectionVector(attackDirection);
         }
 
         healthLocalScale.x = (float)healthAmount / (float)info.maxHealth * healthBarSize;
@@ -74,10 +74,10 @@ public class Monster : MoveableSprite
         // preview damage
         if (Arena.Instance.TargetPosList.Contains(currentTile) &&
             CardController.selected &&
-            Arena.Instance.SelectedCard.getDamage() > 0)
+            Arena.Instance.SelectedCard.GetDamage() > 0)
         {
             previewDamage.SetActive(true);
-            string cardDamage = Arena.Instance.SelectedCard.getDamage().ToString();
+            string cardDamage = Arena.Instance.SelectedCard.GetDamage().ToString();
             previewDamage.GetComponent<TMPro.TextMeshProUGUI>().text = cardDamage;
         }
         else previewDamage.SetActive(false);
@@ -103,10 +103,10 @@ public class Monster : MoveableSprite
         switch (pattern.pattern)
         {
             case MonsterPatternType.Basic:
-                area.AddRange(Arena.Instance.getPosListNear(currentTile));
+                area.AddRange(Arena.Instance.GetPosListNear(currentTile));
                 break;
             case MonsterPatternType.Range:
-                area.AddRange(Arena.Instance.getPosListDirection(pattern.attackRange, currentTile, attackDirection));
+                area.AddRange(Arena.Instance.GetPosListDirection(pattern.attackRange, currentTile, attackDirection));
                 break;
         }
 
@@ -177,7 +177,7 @@ public class Monster : MoveableSprite
         {
             case MonsterPatternType.Basic:
             case MonsterPatternType.Range:
-                moveableTiles.AddRange(Arena.Instance.getPosList(AreaShape.Hexagon, pattern.moveRange, currentTile));
+                moveableTiles.AddRange(Arena.Instance.GetPosList(AreaShape.Hexagon, pattern.moveRange, currentTile));
                 break;
         }
 
@@ -237,11 +237,11 @@ public class Monster : MoveableSprite
             case MonsterPatternType.Range:
                 for (int i = 0; i < 6; i++)
                 {
-                    List<Vector3Int> attackableArea = Arena.Instance.getPosListDirection(pattern.attackRange, currentTile, i);
+                    List<Vector3Int> attackableArea = Arena.Instance.GetPosListDirection(pattern.attackRange, currentTile, i);
                     if (attackableArea.Contains(characterTile)) return i;
                     for (int j = 1; j < pattern.attackRange; j++)
                     {
-                        if (Arena.Instance.getPosListNear(attackableArea[j]).Contains(characterTile))
+                        if (Arena.Instance.GetPosListNear(attackableArea[j]).Contains(characterTile))
                         {
                             directionList.Add(i);
                         }
@@ -299,7 +299,7 @@ public class Monster : MoveableSprite
     {
         if (ShowAttackArea())
         {
-            Arena.Instance.removeMonsterHighlight(AttackArea());
+            Arena.Instance.RemoveMonsterHighlight(AttackArea());
         }
     }
 
@@ -322,7 +322,7 @@ public class Monster : MoveableSprite
         {
             int distance = Mathf.Abs(CalDistance(tile, characterTile) - idealDistance);
 
-            if (straightLine && Arena.Instance.getPosList(AreaShape.Line, idealDistance, tile).Contains(characterTile))
+            if (straightLine && Arena.Instance.GetPosList(AreaShape.Line, idealDistance, tile).Contains(characterTile))
             {
                 distance -= 99;
             }
