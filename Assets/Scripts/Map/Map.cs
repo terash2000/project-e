@@ -31,14 +31,13 @@ public class Map : MonoBehaviourSingleton<Map>
         if (PlayerData.path != null && PlayerData.path.Count > 0)
         {
             curNode = Nodes[PlayerData.path.Last()];
-            ShowPath();
         }
         else
         {
             PlayerData.path = new List<int>();
-            ShowStartNodes();
+            AddNodeToPath(Nodes[0]);
         }
-
+        ShowPath();
         // re-randomize
         Random.InitState(System.Environment.TickCount);
 
@@ -85,8 +84,8 @@ public class Map : MonoBehaviourSingleton<Map>
 
     public Vector3 RandomPos()
     {
-        float x = Random.Range(-GetComponent<RectTransform>().sizeDelta.x / 2, GetComponent<RectTransform>().sizeDelta.x / 2);
-        float y = Random.Range(-GetComponent<RectTransform>().sizeDelta.y / 2, GetComponent<RectTransform>().sizeDelta.y / 2);
+        float x = Random.Range(-GetMapSize().x / 2, GetMapSize().x / 2);
+        float y = Random.Range(-GetMapSize().y / 2, GetMapSize().y / 2);
         foreach (Node node in Nodes)
         {
             if (Mathf.Abs(x - node.transform.position.x) < minGap && Mathf.Abs(y - node.transform.position.y) < minGap)
@@ -129,14 +128,6 @@ public class Map : MonoBehaviourSingleton<Map>
     public List<Node> FindStartNodes()
     {
         return Nodes.Where(x => x.Prev.Count == 0).ToList();
-    }
-
-    public void ShowStartNodes()
-    {
-        foreach (Node node in FindStartNodes())
-        {
-            node.OnClickable();
-        }
     }
 
     public void ShowPath()
@@ -217,5 +208,10 @@ public class Map : MonoBehaviourSingleton<Map>
         edge.transform.SetParent(gameObject.transform);
         Edges.Add(edge.GetComponent<LineRenderer>());
         Edges.Last().SetPositions(pos);
+    }
+
+    public Vector2 GetMapSize()
+    {
+        return GetComponent<RectTransform>().sizeDelta;
     }
 }
