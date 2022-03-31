@@ -20,7 +20,8 @@ public class NewGame : MonoBehaviour
             MakeNewPlayerData();
             if (!skipPrologue)
             {
-                StartTutorial();
+                DialogManager.nextRoot.Add(prologue);
+                SceneChanger.LoadScene("StoryScene");
             }
             else
             {
@@ -51,11 +52,5 @@ public class NewGame : MonoBehaviour
         PlayerData.Gold = starterGold;
         PlayerData.seedJSON = JsonUtility.ToJson(Random.state);
         PlayerData.path = null;
-    }
-
-    private void StartTutorial()
-    {
-        DialogManager.nextRoot.Add(prologue);
-        SceneChanger.LoadScene("StoryScene");
     }
 }
