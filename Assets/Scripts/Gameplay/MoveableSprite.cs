@@ -26,7 +26,7 @@ public class MoveableSprite : MonoBehaviour
         }
         else animator = GetComponent<Animator>();
 
-        grid = Arena.singleton.GetComponentInChildren<GridLayout>();
+        grid = Arena.Instance.GetComponentInChildren<GridLayout>();
         transform.position = oldPosition = nextPosition = grid.CellToWorld(currentTile);
     }
 

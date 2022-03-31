@@ -37,7 +37,7 @@ public class Node : MonoBehaviour
 
     void OnMouseDown()
     {
-        Map.singleton.AddNodeToPath(this);
+        Map.Instance.AddNodeToPath(this);
     }
 
     public void OnClickable()

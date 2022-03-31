@@ -20,7 +20,7 @@ public class DeckList : MonoBehaviour
         // add 16 cards to test deck
         for (int i = 0; i < 16; i++)
         {
-            deck.Add(CardCollection.singleton.allCards[0]);
+            deck.Add(CardCollection.Instance.allCards[0]);
         }
 
         gameObject.SetActive(true);
@@ -67,7 +67,7 @@ public class DeckList : MonoBehaviour
             int cardIndex = i + currentPage * ContainerSize;
             if (cardIndex >= deck.Count) break;
             Card card = deck[cardIndex];
-            GameObject cardObj = Instantiate(CardCollection.singleton.cardPrefab, cardContainer.transform);
+            GameObject cardObj = Instantiate(CardCollection.Instance.cardPrefab, cardContainer.transform);
         }
     }
 }

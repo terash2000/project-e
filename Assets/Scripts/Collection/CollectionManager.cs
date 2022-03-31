@@ -12,7 +12,7 @@ public class CollectionManager : MonoBehaviour
 
     void Start()
     {
-        maxPage = (CardCollection.singleton.allCards.Count - 1) / ContainerSize;
+        maxPage = (CardCollection.Instance.allCards.Count - 1) / ContainerSize;
         RenderCard();
     }
 
@@ -42,16 +42,16 @@ public class CollectionManager : MonoBehaviour
         for (int i = 0; i < ContainerSize; i++)
         {
             int cardIndex = i + currentPage * ContainerSize;
-            if (cardIndex >= CardCollection.singleton.allCards.Count) break;
-            Card card = CardCollection.singleton.allCards[cardIndex];
+            if (cardIndex >= CardCollection.Instance.allCards.Count) break;
+            Card card = CardCollection.Instance.allCards[cardIndex];
 
             if (CardCollection.unlockDict[card.cardName])
             {
-                GameObject cardObj = Instantiate(CardCollection.singleton.cardPrefab, cardContainer.transform);
+                GameObject cardObj = Instantiate(CardCollection.Instance.cardPrefab, cardContainer.transform);
             }
             else
             {
-                GameObject cardObj = Instantiate(CardCollection.singleton.lockedCard, cardContainer.transform);
+                GameObject cardObj = Instantiate(CardCollection.Instance.lockedCard, cardContainer.transform);
             }
         }
     }

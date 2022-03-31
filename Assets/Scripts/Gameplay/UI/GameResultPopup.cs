@@ -42,7 +42,7 @@ public class GameResultPopup : MonoBehaviour
     {
         if (MonsterManager.wave.reward)
         {
-            GameObject chooseCardPopup = Instantiate(CardCollection.singleton.chooseCardPopup, transform.parent);
+            GameObject chooseCardPopup = Instantiate(CardCollection.Instance.chooseCardPopup, transform.parent);
             chooseCardPopup.GetComponent<ChooseCardPopup>().Init();
         }
         else

@@ -51,7 +51,7 @@ public class Monster : MoveableSprite
         if (radiant2 != 0f)
         {
             animator.SetBool("Attacking", true);
-            Vector3 characterPos = grid.CellToWorld(PlayerManager.singleton.Player.currentTile);
+            Vector3 characterPos = grid.CellToWorld(PlayerManager.Instance.Player.currentTile);
             Vector3 direction = characterPos - transform.position;
             direction.Normalize();
             transform.position = transform.position + direction * 0.25f * Mathf.Sin(radiant2);
@@ -61,7 +61,7 @@ public class Monster : MoveableSprite
 
         if (!IsMoving() && attackDirection != -1)
         {
-            lookDirection = Arena.singleton.getDirectionVector(attackDirection);
+            lookDirection = Arena.Instance.getDirectionVector(attackDirection);
         }
 
         healthLocalScale.x = (float)healthAmount / (float)info.maxHealth * healthBarSize;
@@ -72,12 +72,12 @@ public class Monster : MoveableSprite
         damageText.GetComponent<TMPro.TextMeshProUGUI>().text = damage.ToString();
 
         // preview damage
-        if (Arena.singleton.TargetPosList.Contains(currentTile) &&
+        if (Arena.Instance.TargetPosList.Contains(currentTile) &&
             CardController.selected &&
-            Arena.singleton.SelectedCard.getDamage() > 0)
+            Arena.Instance.SelectedCard.getDamage() > 0)
         {
             previewDamage.SetActive(true);
-            string cardDamage = Arena.singleton.SelectedCard.getDamage().ToString();
+            string cardDamage = Arena.Instance.SelectedCard.getDamage().ToString();
             previewDamage.GetComponent<TMPro.TextMeshProUGUI>().text = cardDamage;
         }
         else previewDamage.SetActive(false);
@@ -103,10 +103,10 @@ public class Monster : MoveableSprite
         switch (pattern.pattern)
         {
             case MonsterPatternType.Basic:
-                area.AddRange(Arena.singleton.getPosListNear(currentTile));
+                area.AddRange(Arena.Instance.getPosListNear(currentTile));
                 break;
             case MonsterPatternType.Range:
-                area.AddRange(Arena.singleton.getPosListDirection(pattern.attackRange, currentTile, attackDirection));
+                area.AddRange(Arena.Instance.getPosListDirection(pattern.attackRange, currentTile, attackDirection));
                 break;
         }
 
@@ -168,7 +168,7 @@ public class Monster : MoveableSprite
 
         currentMove = (currentMove + 1) % info.patterns.Count;
 
-        Vector3Int characterTile = PlayerManager.singleton.Player.currentTile;
+        Vector3Int characterTile = PlayerManager.Instance.Player.currentTile;
         List<Vector3Int> targetTiles = new List<Vector3Int>();
         List<Vector3Int> moveableTiles = new List<Vector3Int> { currentTile };
         MonsterInfo.MonsterPattern pattern = info.patterns[currentMove];
@@ -177,13 +177,13 @@ public class Monster : MoveableSprite
         {
             case MonsterPatternType.Basic:
             case MonsterPatternType.Range:
-                moveableTiles.AddRange(Arena.singleton.getPosList(AreaShape.Hexagon, pattern.moveRange, currentTile));
+                moveableTiles.AddRange(Arena.Instance.getPosList(AreaShape.Hexagon, pattern.moveRange, currentTile));
                 break;
         }
 
         moveableTiles = moveableTiles.FindAll(tile => (
             tile != characterTile &&
-            Arena.singleton.tilemap.GetTile(tile) != null
+            Arena.Instance.tilemap.GetTile(tile) != null
         ));
 
         while (moveableTiles.Count != 0)
@@ -206,7 +206,7 @@ public class Monster : MoveableSprite
             {
                 moveableTiles.Remove(tile);
 
-                Monster nearbyMonster = MonsterManager.singleton.FindMonsterByTile(tile);
+                Monster nearbyMonster = MonsterManager.Instance.FindMonsterByTile(tile);
                 if (nearbyMonster != null) nearbyMonster.Move();
             }
 
@@ -228,7 +228,7 @@ public class Monster : MoveableSprite
 
     private int CalAttackDirection()
     {
-        Vector3Int characterTile = PlayerManager.singleton.Player.currentTile;
+        Vector3Int characterTile = PlayerManager.Instance.Player.currentTile;
         List<int> directionList = new List<int>();
         MonsterInfo.MonsterPattern pattern = info.patterns[currentMove];
 
@@ -237,11 +237,11 @@ public class Monster : MoveableSprite
             case MonsterPatternType.Range:
                 for (int i = 0; i < 6; i++)
                 {
-                    List<Vector3Int> attackableArea = Arena.singleton.getPosListDirection(pattern.attackRange, currentTile, i);
+                    List<Vector3Int> attackableArea = Arena.Instance.getPosListDirection(pattern.attackRange, currentTile, i);
                     if (attackableArea.Contains(characterTile)) return i;
                     for (int j = 1; j < pattern.attackRange; j++)
                     {
-                        if (Arena.singleton.getPosListNear(attackableArea[j]).Contains(characterTile))
+                        if (Arena.Instance.getPosListNear(attackableArea[j]).Contains(characterTile))
                         {
                             directionList.Add(i);
                         }
@@ -256,10 +256,10 @@ public class Monster : MoveableSprite
 
     public bool Attack()
     {
-        Vector3Int characterTile = PlayerManager.singleton.Player.currentTile;
+        Vector3Int characterTile = PlayerManager.Instance.Player.currentTile;
         if (AttackArea().Contains(characterTile))
         {
-            PlayerManager.singleton.TakeDamage(info.patterns[currentMove].damage);
+            PlayerManager.Instance.TakeDamage(info.patterns[currentMove].damage);
             StartCoroutine(AttackAnimation());
             attacked = true;
             return true;
@@ -290,7 +290,7 @@ public class Monster : MoveableSprite
 
     private void Die()
     {
-        MonsterManager.singleton.monsters.Remove(this);
+        MonsterManager.Instance.monsters.Remove(this);
         RemoveHighlight();
         Destroy(gameObject);
     }
@@ -299,7 +299,7 @@ public class Monster : MoveableSprite
     {
         if (ShowAttackArea())
         {
-            Arena.singleton.removeMonsterHighlight(AttackArea());
+            Arena.Instance.removeMonsterHighlight(AttackArea());
         }
     }
 
@@ -322,7 +322,7 @@ public class Monster : MoveableSprite
         {
             int distance = Mathf.Abs(CalDistance(tile, characterTile) - idealDistance);
 
-            if (straightLine && Arena.singleton.getPosList(AreaShape.Line, idealDistance, tile).Contains(characterTile))
+            if (straightLine && Arena.Instance.getPosList(AreaShape.Line, idealDistance, tile).Contains(characterTile))
             {
                 distance -= 99;
             }
@@ -345,7 +345,7 @@ public class Monster : MoveableSprite
     private bool MoveIfEmpty(List<Vector3Int> targetTiles)
     {
         List<Vector3Int> targetEmptyTiles = targetTiles.FindAll(tile =>
-            MonsterManager.singleton.FindMonsterByTile(tile) == null
+            MonsterManager.Instance.FindMonsterByTile(tile) == null
         );
         if (targetEmptyTiles.Count != 0)
         {
@@ -366,10 +366,10 @@ public class Monster : MoveableSprite
         switch (pattern)
         {
             case MonsterPatternType.Basic:
-                damageIcon.sprite = MonsterManager.singleton.SwordIcon;
+                damageIcon.sprite = MonsterManager.Instance.SwordIcon;
                 break;
             case MonsterPatternType.Range:
-                damageIcon.sprite = MonsterManager.singleton.BowIcon;
+                damageIcon.sprite = MonsterManager.Instance.BowIcon;
                 break;
         }
     }

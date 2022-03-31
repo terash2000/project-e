@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Map : MonoBehaviour
+public class Map : MonoBehaviourSingleton<Map>
 {
-    public static Map singleton;
     public List<Node> Nodes;
     public List<LineRenderer> Edges;
     [SerializeField] private float minGap;
@@ -14,11 +13,6 @@ public class Map : MonoBehaviour
     [SerializeField] private GameObject nodePrefab;
     [SerializeField] private GameObject edgePrefab;
     private Node curNode;
-
-    void Awake()
-    {
-        singleton = this;
-    }
 
     void Start()
     {

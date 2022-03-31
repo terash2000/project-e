@@ -4,10 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class DialogManager : MonoBehaviour
+public class DialogManager : MonoBehaviourSingleton<DialogManager>
 {
-    public static DialogManager singleton;
-
     public static List<DialogNode> nextRoot = new List<DialogNode>();
     private DialogNode current;
     [SerializeField] private QuoteText quoteObj;
@@ -19,11 +17,6 @@ public class DialogManager : MonoBehaviour
     [SerializeField] private Transform canvas;
     private TextMeshProUGUI characterNameText;
     private bool isPause;
-
-    void Awake()
-    {
-        singleton = this;
-    }
 
     void Start()
     {
@@ -52,7 +45,7 @@ public class DialogManager : MonoBehaviour
 
     public void ShowPopup(string header, string cardname)
     {
-        GameObject newPopup = Instantiate(CardCollection.singleton.newCardPopup, canvas);
+        GameObject newPopup = Instantiate(CardCollection.Instance.newCardPopup, canvas);
         newPopup.GetComponent<NewCardPopup>().Init(header, cardname);
     }
 

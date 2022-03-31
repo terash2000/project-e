@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterManager : MonoBehaviour, ITurnHandler
+public class MonsterManager : MonoBehaviourSingleton<MonsterManager>, ITurnHandler
 {
-    public static MonsterManager singleton;
     public static Wave wave;
     public List<Monster> monsters = new List<Monster>();
     public bool isBusy = false;
@@ -13,26 +12,21 @@ public class MonsterManager : MonoBehaviour, ITurnHandler
     [SerializeField] private GameObject monsterPrefab;
     private GridLayout grid;
 
-    void Awake()
-    {
-        singleton = this;
-    }
-
     void Start()
     {
-        grid = Arena.singleton.GetComponentInChildren<GridLayout>();
+        grid = Arena.Instance.GetComponentInChildren<GridLayout>();
         SpawnWave();
     }
 
     public void onStartTurn()
     {
-        Arena.singleton.removeMonsterHighlight(Arena.singleton.monsterHighlight);
+        Arena.Instance.removeMonsterHighlight(Arena.Instance.monsterHighlight);
 
         foreach (Monster monster in monsters)
         {
             monster.Refresh();
             if (monster.ShowAttackArea())
-                Arena.singleton.monsterHighlight.AddRange(monster.AttackArea());
+                Arena.Instance.monsterHighlight.AddRange(monster.AttackArea());
         }
     }
 

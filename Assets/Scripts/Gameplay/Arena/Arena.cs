@@ -5,10 +5,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Arena : MonoBehaviour
+public class Arena : MonoBehaviourSingleton<Arena>
 {
-    public static Arena singleton;
-
     public Tile mTile;
     public Tile mOriginalTile;
     [HideInInspector]
@@ -33,12 +31,6 @@ public class Arena : MonoBehaviour
     public List<Vector3Int> monsterHighlight2 = new List<Vector3Int>();
     private Color redHighlight = new Color(1f, 0.8f, 0.8f);
     private Color redHighlight2 = new Color(1f, 0.5f, 0.5f);
-
-
-    void Awake()
-    {
-        singleton = this;
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -80,7 +72,7 @@ public class Arena : MonoBehaviour
 
         Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int mousePos = grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
-        Monster monster = MonsterManager.singleton.FindMonsterByTile(mousePos);
+        Monster monster = MonsterManager.Instance.FindMonsterByTile(mousePos);
         Tile tile = (Tile)tilemap.GetTile(mousePos);
 
         // clear old highlight
@@ -108,7 +100,7 @@ public class Arena : MonoBehaviour
             redHexBorder.transform.position = grid.CellToWorld(mousePos);
 
             monsterHighlight2 = monster.AttackArea();
-            Arena.singleton.setTileColor(redHighlight2, monsterHighlight2);
+            Arena.Instance.setTileColor(redHighlight2, monsterHighlight2);
         }
 
         if (SelectedCard != null && IsDirectionTarget(SelectedCard.mTargetShape))
@@ -119,7 +111,7 @@ public class Arena : MonoBehaviour
 
     public void showTargetArea(Vector3 targetPos)
     {
-        TargetPosList = getPosListTarget(SelectedCard.mTargetShape, SelectedCard.mRange, PlayerManager.singleton.Player.currentTile, targetPos);
+        TargetPosList = getPosListTarget(SelectedCard.mTargetShape, SelectedCard.mRange, PlayerManager.Instance.Player.currentTile, targetPos);
         setTileColor(Color.yellow, TargetPosList);
 
         /*for (int i = 0; i < TargetPosList.Count; i++)
@@ -151,7 +143,7 @@ public class Arena : MonoBehaviour
 
     public void showRadius(AreaShape areaShape, AreaShape targetShape, int range)
     {
-        Vector3Int curPos = PlayerManager.singleton.Player.currentTile;
+        Vector3Int curPos = PlayerManager.Instance.Player.currentTile;
         hexBorder.gameObject.SetActive(true);
         hexBorder.transform.position = grid.CellToWorld(curPos);
         AreaPosList = getPosList(areaShape, range, curPos);
@@ -164,7 +156,7 @@ public class Arena : MonoBehaviour
 
     public void hideRadius(AreaShape areaShape, int range)
     {
-        Vector3Int curPos = PlayerManager.singleton.Player.currentTile;
+        Vector3Int curPos = PlayerManager.Instance.Player.currentTile;
         hexBorder.gameObject.SetActive(false);
         AreaPosList.Clear();
         setTile(mOriginalTile, getPosList(areaShape, range, curPos));
@@ -194,17 +186,17 @@ public class Arena : MonoBehaviour
 
     public void removeMonsterHighlight(List<Vector3Int> posList)
     {
-        Arena.singleton.setTileColor(Color.white, posList);
+        Arena.Instance.setTileColor(Color.white, posList);
         foreach (Vector3Int pos in new List<Vector3Int>(posList))
         {
-            Arena.singleton.monsterHighlight.Remove(pos);
+            Arena.Instance.monsterHighlight.Remove(pos);
         }
     }
 
     public List<Vector3Int> getPosListTarget(AreaShape areaShape, int range, Vector3Int curPos, Vector3 targetPos)
     {
-        Vector3 playerPos = PlayerManager.singleton.Player.transform.position;
-        List<int> directions = Arena.singleton.FindDirections(playerPos, targetPos);
+        Vector3 playerPos = PlayerManager.Instance.Player.transform.position;
+        List<int> directions = Arena.Instance.FindDirections(playerPos, targetPos);
         switch (areaShape)
         {
             case AreaShape.Line:

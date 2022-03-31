@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourSingleton<GameManager>
 {
-    public static GameManager singleton;
     public static GameState gameState;
     [HideInInspector]
     public int round;
@@ -17,11 +16,6 @@ public class GameManager : MonoBehaviour
     public Color burnColor;
 
     public GameResultPopup gameResultPopup;
-
-    void Awake()
-    {
-        singleton = this;
-    }
 
     void Start()
     {
@@ -50,7 +44,7 @@ public class GameManager : MonoBehaviour
                 gameResultPopup.onLose();
                 gameState = GameState.Lose;
             }
-            else if (MonsterManager.singleton.monsters.Count == 0)
+            else if (MonsterManager.Instance.monsters.Count == 0)
             {
                 gameResultPopup.onWin();
                 gameState = GameState.Win;
@@ -82,7 +76,7 @@ public class GameManager : MonoBehaviour
         {
             turnHandlerObject.onEndTurn();
         }
-        while (MonsterManager.singleton.isBusy)
+        while (MonsterManager.Instance.isBusy)
             yield return new WaitForEndOfFrame();
         startTurn();
     }

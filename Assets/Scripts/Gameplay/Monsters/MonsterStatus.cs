@@ -12,14 +12,14 @@ public class MonsterStatus : MonoBehaviour
         switch (status)
         {
             case Status.Acid:
-                icon.sprite = GameManager.singleton.acidIcon;
-                icon.color = GameManager.singleton.acidColor;
-                amountText.color = GameManager.singleton.acidColor;
+                icon.sprite = GameManager.Instance.acidIcon;
+                icon.color = GameManager.Instance.acidColor;
+                amountText.color = GameManager.Instance.acidColor;
                 break;
             case Status.Burn:
-                icon.sprite = GameManager.singleton.burnIcon;
-                icon.color = GameManager.singleton.burnColor;
-                amountText.color = GameManager.singleton.burnColor;
+                icon.sprite = GameManager.Instance.burnIcon;
+                icon.color = GameManager.Instance.burnColor;
+                amountText.color = GameManager.Instance.burnColor;
                 break;
         }
         amountText.text = amount.ToString();

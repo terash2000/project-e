@@ -103,7 +103,7 @@ public static class SaveSystem
             UnlockData data = (UnlockData)formatter.Deserialize(file);
             file.Close();
 
-            if (data.unlockDict.Count == CardCollection.singleton.allCards.Count)
+            if (data.unlockDict.Count == CardCollection.Instance.allCards.Count)
             {
                 CardCollection.unlockDict = data.unlockDict;
             }
@@ -111,12 +111,12 @@ public static class SaveSystem
             {
                 // corrupted data or old verision
                 File.Delete(Application.persistentDataPath + "/UnlockData.dat");
-                CardCollection.unlockDict = CardCollection.singleton.StarterCards();
+                CardCollection.unlockDict = CardCollection.Instance.StarterCards();
             }
         }
         else
         {
-            CardCollection.unlockDict = CardCollection.singleton.StarterCards();
+            CardCollection.unlockDict = CardCollection.Instance.StarterCards();
         }
     }
 }
