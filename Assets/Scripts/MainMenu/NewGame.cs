@@ -9,17 +9,16 @@ public class NewGame : MonoBehaviour
     [SerializeField] private int starterMana;
     [SerializeField] private int starterGold;
     [SerializeField] private GameObject confirmationPopup;
-    [SerializeField] private List<string> tutorialSceneOrder;
-    [SerializeField] private List<DialogNode> tutorial;
+    [SerializeField] private DialogNode prologue;
     [SerializeField] private Wave tutorialWave;
-    private bool skipTutorial = true;
+    private bool skipPrologue = true;
 
     public void StartNewGame(bool confirm = false)
     {
         if (confirm || !File.Exists(Application.persistentDataPath + "/SaveData.dat"))
         {
             MakeNewPlayerData();
-            if (!skipTutorial)
+            if (!skipPrologue)
             {
                 StartTutorial();
             }
@@ -40,9 +39,9 @@ public class NewGame : MonoBehaviour
         }
     }
 
-    public void TogSkipTutorial(bool tog)
+    public void TogSkipPrologue(bool tog)
     {
-        skipTutorial = tog;
+        skipPrologue = tog;
     }
 
     private void MakeNewPlayerData()
@@ -56,9 +55,7 @@ public class NewGame : MonoBehaviour
 
     private void StartTutorial()
     {
-        SceneChanger.nextScene = tutorialSceneOrder;
-        DialogManager.nextRoot = tutorial;
-        MonsterManager.wave = tutorialWave;
-        SceneChanger.NextScene();
+        DialogManager.nextRoot.Add(prologue);
+        SceneChanger.LoadScene("StoryScene");
     }
 }
