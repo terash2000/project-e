@@ -4337,7 +4337,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 424601449}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: endTurn
+        m_MethodName: EndTurn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
