@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class MonoBehaviourSingletonPersistent<T> : MonoBehaviour where T : Component
+public class MonoBehaviourSingletonPersistent<T> : MonoBehaviourSingleton<T> where T : Component
 {
-    public static T Instance { get; private set; }
+    public static new T Instance { get; private set; }
 
     public virtual void Awake()
     {
@@ -11,7 +11,7 @@ public class MonoBehaviourSingletonPersistent<T> : MonoBehaviour where T : Compo
             Instance = this as T;
             DontDestroyOnLoad(gameObject);
         }
-        else
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }

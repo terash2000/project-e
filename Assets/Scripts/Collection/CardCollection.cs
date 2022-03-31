@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardCollection : MonoBehaviourSingleton<CardCollection>
+public class CardCollection : MonoBehaviourSingletonPersistent<CardCollection>
 {
     public static Dictionary<string, bool> unlockDict;
     public List<Card> allCards;

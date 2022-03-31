@@ -23,9 +23,14 @@ public class MonoBehaviourSingleton<T> : MonoBehaviour where T : Component
                     newSingletonObject.name = typeof(T).Name;
                     _instance = newSingletonObject.AddComponent<T>();
                 }
+                Debug.Log("Dynamic Instantiate " + _instance.name);
                 return _instance;
             }
             return _instance;
+        }
+        set
+        {
+            _instance = value;
         }
     }
 }
