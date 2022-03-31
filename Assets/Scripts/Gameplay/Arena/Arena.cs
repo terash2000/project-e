@@ -20,7 +20,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
     [HideInInspector]
     public List<Vector3Int> AreaPosList;
     [HideInInspector]
-    public List<Vector3Int> TargetPosList;
+    public List<Vector3Int> TarGetPosList;
     [HideInInspector]
     public GameObject redHexBorder;
     [HideInInspector]
@@ -76,22 +76,22 @@ public class Arena : MonoBehaviourSingleton<Arena>
         Tile tile = (Tile)tilemap.GetTile(mousePos);
 
         // clear old highlight
-        setTileColor(Color.white, monsterHighlight2);
+        SetTileColor(Color.white, monsterHighlight2);
         monsterHighlight2.Clear();
-        hideTargetArea();
+        HideTargetArea();
         redHexBorder.gameObject.SetActive(false);
 
         // highlight monster 1
         if (OptionMenu.showMonstersAttackArea)
         {
-            setTileColor(redHighlight, monsterHighlight);
+            SetTileColor(redHighlight, monsterHighlight);
         }
-        else setTileColor(Color.white, monsterHighlight);
+        else SetTileColor(Color.white, monsterHighlight);
 
         if (tile != null && AreaPosList.Contains(mousePos))
         {
             // highlight card
-            showTargetArea(oriPos);
+            ShowTargetArea(oriPos);
         }
         else if (monster != null)
         {
@@ -100,21 +100,21 @@ public class Arena : MonoBehaviourSingleton<Arena>
             redHexBorder.transform.position = grid.CellToWorld(mousePos);
 
             monsterHighlight2 = monster.AttackArea();
-            Arena.Instance.setTileColor(redHighlight2, monsterHighlight2);
+            Arena.Instance.SetTileColor(redHighlight2, monsterHighlight2);
         }
 
         if (SelectedCard != null && IsDirectionTarget(SelectedCard.mTargetShape))
         {
-            showTargetArea(oriPos);
+            ShowTargetArea(oriPos);
         }
     }
 
-    public void showTargetArea(Vector3 targetPos)
+    public void ShowTargetArea(Vector3 targetPos)
     {
-        TargetPosList = getPosListTarget(SelectedCard.mTargetShape, SelectedCard.mRange, PlayerManager.Instance.Player.currentTile, targetPos);
-        setTileColor(Color.yellow, TargetPosList);
+        TarGetPosList = GetPosListTarget(SelectedCard.mTargetShape, SelectedCard.mRange, PlayerManager.Instance.Player.currentTile, targetPos);
+        SetTileColor(Color.yellow, TarGetPosList);
 
-        /*for (int i = 0; i < TargetPosList.Count; i++)
+        /*for (int i = 0; i < TarGetPosList.Count; i++)
         {
             GameObject border;
             if (i >= hexBorderList.Count)
@@ -128,41 +128,41 @@ public class Arena : MonoBehaviourSingleton<Arena>
                 border = hexBorderList[i];
             }
             border.gameObject.SetActive(true);
-            border.transform.position = grid.CellToWorld(TargetPosList[i]);
+            border.transform.position = grid.CellToWorld(TarGetPosList[i]);
         }*/
     }
 
-    public void hideTargetArea()
+    public void HideTargetArea()
     {
-        setTileColor(Color.white, TargetPosList);
+        SetTileColor(Color.white, TarGetPosList);
         // foreach (GameObject border in hexBorderList)
         // {
         //     border.gameObject.SetActive(false);
         // }
     }
 
-    public void showRadius(AreaShape areaShape, AreaShape targetShape, int range)
+    public void ShowRadius(AreaShape areaShape, AreaShape targetShape, int range)
     {
         Vector3Int curPos = PlayerManager.Instance.Player.currentTile;
         hexBorder.gameObject.SetActive(true);
         hexBorder.transform.position = grid.CellToWorld(curPos);
-        AreaPosList = getPosList(areaShape, range, curPos);
+        AreaPosList = GetPosList(areaShape, range, curPos);
         AreaPosList.Remove(curPos);
-        if (!IsDirectionTarget(targetShape)) setTile(mTile, AreaPosList);
+        if (!IsDirectionTarget(targetShape)) SetTile(mTile, AreaPosList);
 
-        hideTargetArea();
-        showTargetArea(grid.CellToWorld(curPos));
+        HideTargetArea();
+        ShowTargetArea(grid.CellToWorld(curPos));
     }
 
-    public void hideRadius(AreaShape areaShape, int range)
+    public void HideRadius(AreaShape areaShape, int range)
     {
         Vector3Int curPos = PlayerManager.Instance.Player.currentTile;
         hexBorder.gameObject.SetActive(false);
         AreaPosList.Clear();
-        setTile(mOriginalTile, getPosList(areaShape, range, curPos));
+        SetTile(mOriginalTile, GetPosList(areaShape, range, curPos));
     }
 
-    public void setTile(Tile tile, List<Vector3Int> posList)
+    public void SetTile(Tile tile, List<Vector3Int> posList)
     {
         foreach (Vector3Int pos in posList)
         {
@@ -174,7 +174,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
         }
     }
 
-    public void setTileColor(Color color, List<Vector3Int> posList)
+    public void SetTileColor(Color color, List<Vector3Int> posList)
     {
         foreach (Vector3Int pos in posList)
         {
@@ -184,49 +184,49 @@ public class Arena : MonoBehaviourSingleton<Arena>
         }
     }
 
-    public void removeMonsterHighlight(List<Vector3Int> posList)
+    public void RemoveMonsterHighlight(List<Vector3Int> posList)
     {
-        Arena.Instance.setTileColor(Color.white, posList);
+        Arena.Instance.SetTileColor(Color.white, posList);
         foreach (Vector3Int pos in new List<Vector3Int>(posList))
         {
             Arena.Instance.monsterHighlight.Remove(pos);
         }
     }
 
-    public List<Vector3Int> getPosListTarget(AreaShape areaShape, int range, Vector3Int curPos, Vector3 targetPos)
+    public List<Vector3Int> GetPosListTarget(AreaShape areaShape, int range, Vector3Int curPos, Vector3 targetPos)
     {
         Vector3 playerPos = PlayerManager.Instance.Player.transform.position;
         List<int> directions = Arena.Instance.FindDirections(playerPos, targetPos);
         switch (areaShape)
         {
             case AreaShape.Line:
-                return getPosListDirection(range, curPos, directions[0]);
+                return GetPosListDirection(range, curPos, directions[0]);
             case AreaShape.Cone:
-                return getPosListCone(range, curPos, directions);
+                return GetPosListCone(range, curPos, directions);
             default:
-                return getPosList(areaShape, range, grid.WorldToCell(targetPos));
+                return GetPosList(areaShape, range, grid.WorldToCell(targetPos));
         }
     }
 
-    public List<Vector3Int> getPosList(AreaShape areaShape, int range, Vector3Int curPos)
+    public List<Vector3Int> GetPosList(AreaShape areaShape, int range, Vector3Int curPos)
     {
 
         switch (areaShape)
         {
             case AreaShape.Single:
-                return getPosListHexagon(0, curPos);
+                return GetPosListHexagon(0, curPos);
             case AreaShape.Hexagon:
-                return getPosListHexagon(range, curPos);
+                return GetPosListHexagon(range, curPos);
             case AreaShape.Line:
-                return getPosListLine(range, curPos);
+                return GetPosListLine(range, curPos);
             case AreaShape.Cone:
-                return getPosListCone(range, curPos);
+                return GetPosListCone(range, curPos);
             default:
-                return getPosListNear(curPos);
+                return GetPosListNear(curPos);
         }
     }
 
-    private List<Vector3Int> getPosListHexagon(int range, Vector3Int curPos)
+    private List<Vector3Int> GetPosListHexagon(int range, Vector3Int curPos)
     {
         List<Vector3Int> posList = new List<Vector3Int>();
         int k = 1;
@@ -248,28 +248,28 @@ public class Arena : MonoBehaviourSingleton<Arena>
         return posList;
     }
 
-    public List<Vector3Int> getPosListNear(Vector3Int curPos)
+    public List<Vector3Int> GetPosListNear(Vector3Int curPos)
     {
         List<Vector3Int> posList = new List<Vector3Int>();
         for (int i = 0; i < 6; i++)
         {
-            posList.Add(getPosDirection(curPos, i));
+            posList.Add(GetPosDirection(curPos, i));
         }
         return posList;
     }
 
-    private List<Vector3Int> getPosListLine(int range, Vector3Int curPos)
+    private List<Vector3Int> GetPosListLine(int range, Vector3Int curPos)
     {
         List<Vector3Int> posList = new List<Vector3Int>();
         posList.Add(curPos);
         for (int i = 0; i < 6; i++)
         {
-            posList.AddRange(getPosListDirection(range, curPos, i));
+            posList.AddRange(GetPosListDirection(range, curPos, i));
         }
         return posList;
     }
 
-    public List<Vector3Int> getPosListDirection(int range, Vector3Int curPos, int direction)
+    public List<Vector3Int> GetPosListDirection(int range, Vector3Int curPos, int direction)
     {
         List<Vector3Int> posList = new List<Vector3Int>();
         if (direction >= 0 && direction < 6)
@@ -277,14 +277,14 @@ public class Arena : MonoBehaviourSingleton<Arena>
             Vector3Int pos = curPos;
             for (int i = 0; i < range; i++)
             {
-                pos = getPosDirection(pos, direction);
+                pos = GetPosDirection(pos, direction);
                 posList.Add(pos);
             }
         }
         return posList;
     }
 
-    public Vector3Int getPosDirection(Vector3Int curPos, int direction)
+    public Vector3Int GetPosDirection(Vector3Int curPos, int direction)
     {
         Vector3Int pos = curPos;
         switch (direction)
@@ -322,7 +322,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
         }
     }
 
-    public Vector2 getDirectionVector(int direction)
+    public Vector2 GetDirectionVector(int direction)
     {
         float radiant = direction * Mathf.PI / 3;
         return new Vector2(Mathf.Cos(radiant), Mathf.Sin(radiant));
@@ -335,7 +335,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
         List<int> directions = new List<int>();
         for (int i = 0; i < 6; i++)
         {
-            dict.Add(i, Vector2.Distance(getDirectionVector(i), disPos));
+            dict.Add(i, Vector2.Distance(GetDirectionVector(i), disPos));
         }
         foreach (KeyValuePair<int, float> dis in dict.OrderBy(key => key.Value))
         {
@@ -344,7 +344,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
         return directions;
     }
 
-    public List<Vector3Int> getPosListCone(int range, Vector3Int curPos, List<int> directions = null)
+    public List<Vector3Int> GetPosListCone(int range, Vector3Int curPos, List<int> directions = null)
     {
         int width = 2;
         if (directions == null)
@@ -363,7 +363,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
             {
                 for (int i = 0; i < width; i++)
                 {
-                    pos = getPosDirection(p.Key, directions[i]);
+                    pos = GetPosDirection(p.Key, directions[i]);
                     if (!posList.Contains(pos))
                     {
                         q.Enqueue(new KeyValuePair<Vector3Int, int>(pos, p.Value + 1));

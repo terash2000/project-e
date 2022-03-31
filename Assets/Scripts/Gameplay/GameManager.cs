@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     IEnumerator LateStart()
     {
         yield return new WaitForEndOfFrame();
-        startTurn();
+        StartTurn();
     }
 
     void Update()
@@ -41,43 +41,43 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
             if (PlayerData.Health <= 0)
             {
                 SaveSystem.DeleteSave();
-                gameResultPopup.onLose();
+                gameResultPopup.OnLose();
                 gameState = GameState.Lose;
             }
             else if (MonsterManager.Instance.monsters.Count == 0)
             {
-                gameResultPopup.onWin();
+                gameResultPopup.OnWin();
                 gameState = GameState.Win;
             }
         }
     }
 
-    public void startTurn()
+    public void StartTurn()
     {
         round++;
         playerTurn = true;
         var turnHandlerObjects = FindObjectsOfType<MonoBehaviour>().OfType<ITurnHandler>();
         foreach (ITurnHandler turnHandlerObject in turnHandlerObjects)
         {
-            turnHandlerObject.onStartTurn();
+            turnHandlerObject.OnStartTurn();
         }
     }
 
-    public void endTurn()
+    public void EndTurn()
     {
-        StartCoroutine(doeEndTurn());
+        StartCoroutine(DoeEndTurn());
     }
 
-    private IEnumerator doeEndTurn()
+    private IEnumerator DoeEndTurn()
     {
         playerTurn = false;
         var turnHandlerObjects = FindObjectsOfType<MonoBehaviour>().OfType<ITurnHandler>();
         foreach (ITurnHandler turnHandlerObject in turnHandlerObjects)
         {
-            turnHandlerObject.onEndTurn();
+            turnHandlerObject.OnEndTurn();
         }
         while (MonsterManager.Instance.isBusy)
             yield return new WaitForEndOfFrame();
-        startTurn();
+        StartTurn();
     }
 }

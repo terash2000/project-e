@@ -6,12 +6,12 @@ using UnityEngine;
 public class Mana : MonoBehaviour, ITurnHandler
 {
     private TextMeshProUGUI ManaText;
-    public void onEndTurn()
+    public void OnEndTurn()
     {
 
     }
 
-    public void onStartTurn()
+    public void OnStartTurn()
     {
         PlayerData.Mana = PlayerData.MaxMana;
     }

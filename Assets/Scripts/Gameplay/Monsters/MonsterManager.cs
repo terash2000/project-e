@@ -18,9 +18,9 @@ public class MonsterManager : MonoBehaviourSingleton<MonsterManager>, ITurnHandl
         SpawnWave();
     }
 
-    public void onStartTurn()
+    public void OnStartTurn()
     {
-        Arena.Instance.removeMonsterHighlight(Arena.Instance.monsterHighlight);
+        Arena.Instance.RemoveMonsterHighlight(Arena.Instance.monsterHighlight);
 
         foreach (Monster monster in monsters)
         {
@@ -30,7 +30,7 @@ public class MonsterManager : MonoBehaviourSingleton<MonsterManager>, ITurnHandl
         }
     }
 
-    public void onEndTurn()
+    public void OnEndTurn()
     {
         foreach (Monster monster in new List<Monster>(monsters))
         {

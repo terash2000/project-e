@@ -10,12 +10,12 @@ public class AttackCardContorller : CardController
         damage = 4;
     }
 
-    public override bool onUse(Vector3Int mousePos)
+    public override bool OnUse(Vector3Int mousePos)
     {
         Tile tile = (Tile)Arena.Instance.tilemap.GetTile(mousePos);
         if (tile == null) return false;
         bool success = false;
-        foreach (Vector3Int pos in Arena.Instance.TargetPosList)
+        foreach (Vector3Int pos in Arena.Instance.TarGetPosList)
         {
             Monster monster = MonsterManager.Instance.FindMonsterByTile(pos);
             if (monster != null)

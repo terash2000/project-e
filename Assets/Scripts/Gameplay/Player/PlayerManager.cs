@@ -26,12 +26,12 @@ public class PlayerManager : MonoBehaviourSingleton<PlayerManager>, ITurnHandler
 
     }
 
-    public void onStartTurn()
+    public void OnStartTurn()
     {
 
     }
 
-    public void onEndTurn()
+    public void OnEndTurn()
     {
 
     }
