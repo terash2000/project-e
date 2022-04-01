@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Monster : MoveableSprite
 {
     private const float ATTACK_ANIMATION_RANGE = 0.4f;
-    private const float DAMAGE_COOLDOWN_TIME = 0.2f;
+    public const float DAMAGE_COOLDOWN_TIME = 0.2f;
 
     public MonsterInfo info;
     public int currentMove = 0;
@@ -32,6 +32,24 @@ public class Monster : MoveableSprite
     private float radiant2 = 0f;
     private float damagePopupCooldown = 0f;
     private Queue<KeyValuePair<int, Color>> damageQueue = new Queue<KeyValuePair<int, Color>>();
+    private float delayDeathForDamagePopup = 0f;
+
+    public Dictionary<Status, int> StatusDict
+    {
+        get { return statusDict; }
+        set { }
+    }
+    public float DelayDeathForDamagePopup
+    {
+        get { return delayDeathForDamagePopup; }
+        set { delayDeathForDamagePopup = value; }
+    }
+
+    public int HealthAmount
+    {
+        get { return healthAmount; }
+        set { healthAmount = value; }
+    }
 
     protected override void Start()
     {
@@ -119,7 +137,8 @@ public class Monster : MoveableSprite
         healthAmount -= damage;
         if (healthAmount <= 0)
         {
-            Die();
+            healthAmount = 0;
+            StartCoroutine(Die());
             return 0;
         }
         return healthAmount;
@@ -328,11 +347,15 @@ public class Monster : MoveableSprite
         return info.patterns[currentMove].pattern != MonsterPatternType.Basic;
     }
 
-    private void Die()
+    private IEnumerator Die()
     {
-        MonsterManager.Instance.monsters.Remove(this);
-        RemoveHighlight();
-        Destroy(gameObject);
+        if (damageQueue.Count == 0)
+        {
+            MonsterManager.Instance.monsters.Remove(this);
+            RemoveHighlight();
+            yield return new WaitForSeconds(delayDeathForDamagePopup);
+            Destroy(gameObject);
+        }
     }
 
     private void RemoveHighlight()

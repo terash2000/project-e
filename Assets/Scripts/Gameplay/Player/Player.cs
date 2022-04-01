@@ -59,6 +59,8 @@ public class Player : MoveableSprite
             switch (status.Key)
             {
                 case Status.Acid:
+                    TakeDamage(status.Value);
+                    break;
                 case Status.Burn:
                     TakeDamage(status.Value);
                     break;
