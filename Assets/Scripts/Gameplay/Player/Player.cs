@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class Player : MoveableSprite
 {
-    private Dictionary<Status, int> statusDict = new Dictionary<Status, int>();
+    private Dictionary<Status, int> _statusDict = new Dictionary<Status, int>();
 
     protected override void Start()
     {
@@ -32,11 +32,11 @@ public class Player : MoveableSprite
                 Stun();
                 break;
             default:
-                if (!statusDict.ContainsKey(status))
+                if (!_statusDict.ContainsKey(status))
                 {
-                    statusDict.Add(status, amount);
+                    _statusDict.Add(status, amount);
                 }
-                else statusDict[status] += amount;
+                else _statusDict[status] += amount;
 
                 break;
         }
@@ -52,9 +52,9 @@ public class Player : MoveableSprite
 
     public bool TriggerStatus()
     {
-        if (statusDict.Count == 0) return false;
+        if (_statusDict.Count == 0) return false;
 
-        foreach (KeyValuePair<Status, int> status in statusDict)
+        foreach (KeyValuePair<Status, int> status in _statusDict)
         {
             switch (status.Key)
             {
@@ -65,7 +65,7 @@ public class Player : MoveableSprite
             }
         }
 
-        statusDict = statusDict.Where(i => i.Value > 1)
+        _statusDict = _statusDict.Where(i => i.Value > 1)
             .ToDictionary(i => i.Key, i => i.Value - 1);
 
         return true;

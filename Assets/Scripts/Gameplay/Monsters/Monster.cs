@@ -294,6 +294,12 @@ public class Monster : MoveableSprite
         if (AttackArea().Contains(characterTile))
         {
             PlayerManager.Instance.Player.TakeDamage(info.patterns[currentMove].damage);
+            foreach (Status status in info.patterns[currentMove].attackStatusEffect.Keys)
+            {
+                int strength = info.patterns[currentMove].attackStatusEffect[status];
+                Debug.Log("Acid Slime with properties " + status + " " + strength);
+                PlayerManager.Instance.Player.GainStatus(status, strength);
+            }
             StartCoroutine(AttackAnimation());
             attacked = true;
             return true;
