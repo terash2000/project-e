@@ -1,0 +1,1965 @@
+fileFormatVersion: 2
+guid: f5f33843ecc72a94a87911aec118e57c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -840862632704222317
+    second: Mecha-stone Golem_0
+  - first:
+      213: 67742794127372257
+    second: Mecha-stone Golem_1
+  - first:
+      213: 3756464934302560837
+    second: Mecha-stone Golem_2
+  - first:
+      213: 1414679519730698711
+    second: Mecha-stone Golem_3
+  - first:
+      213: 4232883064110365412
+    second: Mecha-stone Golem_4
+  - first:
+      213: 2438658799289694147
+    second: Mecha-stone Golem_5
+  - first:
+      213: -7774955298374267437
+    second: Mecha-stone Golem_6
+  - first:
+      213: -4194830614787874800
+    second: Mecha-stone Golem_7
+  - first:
+      213: -1949238667174715604
+    second: Mecha-stone Golem_8
+  - first:
+      213: 4094361943134464991
+    second: Mecha-stone Golem_9
+  - first:
+      213: -358921545698318757
+    second: Mecha-stone Golem_10
+  - first:
+      213: 7848418398900791412
+    second: Mecha-stone Golem_11
+  - first:
+      213: 5329742081640407527
+    second: Mecha-stone Golem_12
+  - first:
+      213: -7504046974099273851
+    second: Mecha-stone Golem_13
+  - first:
+      213: 8663719240646908493
+    second: Mecha-stone Golem_14
+  - first:
+      213: -4491351964947112990
+    second: Mecha-stone Golem_15
+  - first:
+      213: 6510120603742826939
+    second: Mecha-stone Golem_16
+  - first:
+      213: -6328432111052699669
+    second: Mecha-stone Golem_17
+  - first:
+      213: 7656483352121921982
+    second: Mecha-stone Golem_18
+  - first:
+      213: -4821587870709909115
+    second: Mecha-stone Golem_19
+  - first:
+      213: -3458885301162950363
+    second: Mecha-stone Golem_20
+  - first:
+      213: 2625430396167416885
+    second: Mecha-stone Golem_21
+  - first:
+      213: -6203182241998978346
+    second: Mecha-stone Golem_22
+  - first:
+      213: 1823529064434579851
+    second: Mecha-stone Golem_23
+  - first:
+      213: 141750184764769075
+    second: Mecha-stone Golem_24
+  - first:
+      213: 8655031100054338845
+    second: Mecha-stone Golem_25
+  - first:
+      213: 1143152177632837723
+    second: Mecha-stone Golem_26
+  - first:
+      213: -840167090164287735
+    second: Mecha-stone Golem_27
+  - first:
+      213: 7382953571839637454
+    second: Mecha-stone Golem_28
+  - first:
+      213: 1275384278746713485
+    second: Mecha-stone Golem_29
+  - first:
+      213: -6074729008301682446
+    second: Mecha-stone Golem_30
+  - first:
+      213: -7868610500804851602
+    second: Mecha-stone Golem_31
+  - first:
+      213: -1256743628826416772
+    second: Mecha-stone Golem_32
+  - first:
+      213: -9178054898115826600
+    second: Mecha-stone Golem_33
+  - first:
+      213: -4084772484938459486
+    second: Mecha-stone Golem_34
+  - first:
+      213: 8101638130627453392
+    second: Mecha-stone Golem_35
+  - first:
+      213: 2778440068206878684
+    second: Mecha-stone Golem_36
+  - first:
+      213: 4233334199752383780
+    second: Mecha-stone Golem_37
+  - first:
+      213: 7569421856012643911
+    second: Mecha-stone Golem_38
+  - first:
+      213: 5167949028097746409
+    second: Mecha-stone Golem_39
+  - first:
+      213: -6157322843872992571
+    second: Mecha-stone Golem_40
+  - first:
+      213: -253171401785044709
+    second: Mecha-stone Golem_41
+  - first:
+      213: 2548682988713681222
+    second: Mecha-stone Golem_42
+  - first:
+      213: 8981638911972769779
+    second: Mecha-stone Golem_43
+  - first:
+      213: -1810219122824705055
+    second: Mecha-stone Golem_44
+  - first:
+      213: 4249770689720055650
+    second: Mecha-stone Golem_45
+  - first:
+      213: -5127670772808408123
+    second: Mecha-stone Golem_46
+  - first:
+      213: -220294556493873223
+    second: Mecha-stone Golem_47
+  - first:
+      213: -2768739078729334611
+    second: Mecha-stone Golem_48
+  - first:
+      213: 290876405613903394
+    second: Mecha-stone Golem_49
+  - first:
+      213: -8400188191852668885
+    second: Mecha-stone Golem_50
+  - first:
+      213: 3305043304342980295
+    second: Mecha-stone Golem_51
+  - first:
+      213: 3337920121792070961
+    second: Mecha-stone Golem_52
+  - first:
+      213: 1312728359454804827
+    second: Mecha-stone Golem_53
+  - first:
+      213: -5737706508627048418
+    second: Mecha-stone Golem_54
+  - first:
+      213: -92914988102434252
+    second: Mecha-stone Golem_55
+  - first:
+      213: -5706079715359945930
+    second: Mecha-stone Golem_56
+  - first:
+      213: -3848816913816480184
+    second: Mecha-stone Golem_57
+  - first:
+      213: -5290282397455905285
+    second: Mecha-stone Golem_58
+  - first:
+      213: 8656183596883161922
+    second: Mecha-stone Golem_59
+  - first:
+      213: -3164637711698666423
+    second: Mecha-stone Golem_60
+  - first:
+      213: 7340793060384776084
+    second: Mecha-stone Golem_61
+  - first:
+      213: 8092096720300601354
+    second: Mecha-stone Golem_62
+  - first:
+      213: 8853222817226570538
+    second: Mecha-stone Golem_63
+  - first:
+      213: -2409540923585698000
+    second: Mecha-stone Golem_64
+  - first:
+      213: 4753901991800430908
+    second: Mecha-stone Golem_65
+  - first:
+      213: 6751697390227600410
+    second: Mecha-stone Golem_66
+  - first:
+      213: 8687849386081147216
+    second: Mecha-stone Golem_67
+  - first:
+      213: -1436168511106219994
+    second: Mecha-stone Golem_68
+  - first:
+      213: -6513068635600209753
+    second: Mecha-stone Golem_69
+  - first:
+      213: -4098607859545341407
+    second: Mecha-stone Golem_70
+  - first:
+      213: -9217273806531066033
+    second: Mecha-stone Golem_71
+  - first:
+      213: -4181139259461931244
+    second: Mecha-stone Golem_72
+  - first:
+      213: -8357125371458098256
+    second: Left Mecha-stone Golem_0
+  - first:
+      213: 3127021410349734411
+    second: Left Mecha-stone Golem_1
+  - first:
+      213: 3955053203004935658
+    second: Left Mecha-stone Golem_1
+  - first:
+      213: 6806095911964119872
+    second: Left Mecha-stone Golem_0
+  - first:
+      213: -1292154010910872389
+    second: Left Mecha-stone Golem_4
+  - first:
+      213: -5502401109542134458
+    second: Left Mecha-stone Golem_5
+  - first:
+      213: 4684889025296434589
+    second: Left Mecha-stone Golem_6
+  - first:
+      213: -1357423915995002997
+    second: Left Mecha-stone Golem_7
+  - first:
+      213: -78537411542083075
+    second: Left Mecha-stone Golem_7
+  - first:
+      213: -6572562986251478767
+    second: Left Mecha-stone Golem_6
+  - first:
+      213: -9142638723772627239
+    second: Left Mecha-stone Golem_5
+  - first:
+      213: -3543133076403179710
+    second: Left Mecha-stone Golem_4
+  - first:
+      213: -1240147026486018169
+    second: Left Mecha-stone Golem_12
+  - first:
+      213: -7089422734950237888
+    second: Left Mecha-stone Golem_13
+  - first:
+      213: -7650136958110489070
+    second: Left Mecha-stone Golem_14
+  - first:
+      213: 3890993895350023168
+    second: Left Mecha-stone Golem_15
+  - first:
+      213: 8582777643515499540
+    second: Left Mecha-stone Golem_16
+  - first:
+      213: 847578798200405916
+    second: Left Mecha-stone Golem_17
+  - first:
+      213: 2261791496386036367
+    second: Left Mecha-stone Golem_18
+  - first:
+      213: -8078497677054045180
+    second: Left Mecha-stone Golem_19
+  - first:
+      213: -481706753469208584
+    second: Left Mecha-stone Golem_20
+  - first:
+      213: 7612920444369340357
+    second: Left Mecha-stone Golem_21
+  - first:
+      213: -3787639807438255086
+    second: Left Mecha-stone Golem_22
+  - first:
+      213: 5065459661801163899
+    second: Left Mecha-stone Golem_23
+  - first:
+      213: 541693140184004332
+    second: Left Mecha-stone Golem_24
+  - first:
+      213: 8568325600427628885
+    second: Left Mecha-stone Golem_25
+  - first:
+      213: 13178385445511789
+    second: Left Mecha-stone Golem_26
+  - first:
+      213: -456750133034788134
+    second: Left Mecha-stone Golem_27
+  - first:
+      213: 2797004746024448095
+    second: Left Mecha-stone Golem_28
+  - first:
+      213: -8056726821910688246
+    second: Left Mecha-stone Golem_29
+  - first:
+      213: -1576782278327768368
+    second: Left Mecha-stone Golem_30
+  - first:
+      213: 3293249427724961442
+    second: Left Mecha-stone Golem_31
+  - first:
+      213: 8289753187663976173
+    second: Left Mecha-stone Golem_32
+  - first:
+      213: 7328221980574053512
+    second: Left Mecha-stone Golem_33
+  - first:
+      213: -5804980147104389068
+    second: Left Mecha-stone Golem_32
+  - first:
+      213: 6454912808704208959
+    second: Left Mecha-stone Golem_31
+  - first:
+      213: -3855924988026193962
+    second: Left Mecha-stone Golem_30
+  - first:
+      213: 5652087819464548122
+    second: Left Mecha-stone Golem_37
+  - first:
+      213: 8062924839513769708
+    second: Left Mecha-stone Golem_38
+  - first:
+      213: -1422740000425975152
+    second: Left Mecha-stone Golem_39
+  - first:
+      213: -4959882888292296206
+    second: Left Mecha-stone Golem_40
+  - first:
+      213: 7120395285515218813
+    second: Left Mecha-stone Golem_41
+  - first:
+      213: 4052665208913106477
+    second: Left Mecha-stone Golem_42
+  - first:
+      213: -4453619608276415994
+    second: Left Mecha-stone Golem_43
+  - first:
+      213: 400776803741231274
+    second: Left Mecha-stone Golem_44
+  - first:
+      213: 2767365192483127065
+    second: Left Mecha-stone Golem_45
+  - first:
+      213: 3007971581290956855
+    second: Left Mecha-stone Golem_46
+  - first:
+      213: 991448183044706102
+    second: Left Mecha-stone Golem_47
+  - first:
+      213: 772726404482566572
+    second: Left Mecha-stone Golem_48
+  - first:
+      213: 5828105080514574396
+    second: Left Mecha-stone Golem_49
+  - first:
+      213: -4304981903470361233
+    second: Left Mecha-stone Golem_50
+  - first:
+      213: -339867460245932029
+    second: Left Mecha-stone Golem_51
+  - first:
+      213: -6788661978087062108
+    second: Left Mecha-stone Golem_52
+  - first:
+      213: 3261663357240305026
+    second: Left Mecha-stone Golem_53
+  - first:
+      213: 6273071021993414647
+    second: Left Mecha-stone Golem_54
+  - first:
+      213: 1650422342852344464
+    second: Left Mecha-stone Golem_55
+  - first:
+      213: 7136111634860262042
+    second: Left Mecha-stone Golem_56
+  - first:
+      213: 4046638357144582117
+    second: Left Mecha-stone Golem_57
+  - first:
+      213: 5082786836907974607
+    second: Left Mecha-stone Golem_58
+  - first:
+      213: 7308360961356236392
+    second: Left Mecha-stone Golem_59
+  - first:
+      213: 1176461101737577513
+    second: Left Mecha-stone Golem_60
+  - first:
+      213: -7642415673196511597
+    second: Left Mecha-stone Golem_61
+  - first:
+      213: -3913742868645732884
+    second: Left Mecha-stone Golem_62
+  - first:
+      213: 4163902932096828583
+    second: Left Mecha-stone Golem_63
+  - first:
+      213: 8144357837503626261
+    second: Left Mecha-stone Golem_64
+  - first:
+      213: 8815489242958013356
+    second: Left Mecha-stone Golem_65
+  - first:
+      213: 1555181344880090032
+    second: Left Mecha-stone Golem_66
+  - first:
+      213: 8488226736200783728
+    second: Left Mecha-stone Golem_67
+  - first:
+      213: -5513724349183122928
+    second: Left Mecha-stone Golem_69
+  - first:
+      213: 8874412947324669565
+    second: Left Mecha-stone Golem_71
+  - first:
+      213: -4430933782258635555
+    second: Left Mecha-stone Golem_70
+  - first:
+      213: -7797873231466261977
+    second: Left Mecha-stone Golem_71
+  - first:
+      213: 8373467016496973360
+    second: Left Mecha-stone Golem_69
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_3
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 930
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bbe5daa0c6850c80800000000000000
+      internalID: -8357125371458098256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_2
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 930
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0adfe0b769656b20800000000000000
+      internalID: 3127021410349734411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_1
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 931
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aed41e0feeb23e630800000000000000
+      internalID: 3955053203004935658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_0
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 930
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0431cd3fb2c147e50800000000000000
+      internalID: 6806095911964119872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_11
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 830
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbcaf80f5c8511ee0800000000000000
+      internalID: -1292154010910872389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_10
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 830
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64d9606085b83a3b0800000000000000
+      internalID: -5502401109542134458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_9
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 830
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d958be43fb1140140800000000000000
+      internalID: 4684889025296434589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_8
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 830
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b878f7de326792de0800000000000000
+      internalID: -1357423915995002997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_7
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 830
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df9947be3aaf8eef0800000000000000
+      internalID: -78537411542083075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_6
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 830
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 119999479c099c4a0800000000000000
+      internalID: -6572562986251478767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_5
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 830
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d64dcf3582de1180800000000000000
+      internalID: -9142638723772627239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_4
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 830
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24f2d054d3344dec0800000000000000
+      internalID: -3543133076403179710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_12
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 730
+        width: 49
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78f3b0999dc1acee0800000000000000
+      internalID: -1240147026486018169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_13
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 730
+        width: 70
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04976bc759f4d9d90800000000000000
+      internalID: -7089422734950237888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_14
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 730
+        width: 68
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 216acb008f045d590800000000000000
+      internalID: -7650136958110489070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_15
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 730
+        width: 68
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0043d8b15569ff530800000000000000
+      internalID: 3890993895350023168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_16
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 730
+        width: 66
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 414d7e31bc62c1770800000000000000
+      internalID: 8582777643515499540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_17
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 730
+        width: 66
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9f33e12d6433cb00800000000000000
+      internalID: 847578798200405916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_18
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 730
+        width: 57
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f82c61ae16f736f10800000000000000
+      internalID: 2261791496386036367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_19
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 730
+        width: 51
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40410681a2963ef80800000000000000
+      internalID: -8078497677054045180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_20
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 730
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f7af898242a059f0800000000000000
+      internalID: -481706753469208584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_21
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 630
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c781f52fc686a960800000000000000
+      internalID: 7612920444369340357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_22
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 630
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21c8384b9a99f6bc0800000000000000
+      internalID: -3787639807438255086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_23
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 630
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7c8ab579b02c4640800000000000000
+      internalID: 5065459661801163899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_24
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 630
+        width: 34
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce6feed7a0b748700800000000000000
+      internalID: 541693140184004332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_25
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 630
+        width: 36
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 559df559cbec8e670800000000000000
+      internalID: 8568325600427628885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_26
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 630
+        width: 40
+        height: 44
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d626137fba1de2000800000000000000
+      internalID: 13178385445511789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_27
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 630
+        width: 44
+        height: 45
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ada59598c2c49a9f0800000000000000
+      internalID: -456750133034788134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_28
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 630
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f507ed15ff4f0d620800000000000000
+      internalID: 2797004746024448095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_36
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 527
+        width: 61
+        height: 48
+      alignment: 9
+      pivot: {x: 0.60490495, y: 0.04215749}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0da642c3fd42e1ae0800000000000000
+      internalID: -1576782278327768368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_35
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 531
+        width: 49
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a60e48f7e8f3bd20800000000000000
+      internalID: 3293249427724961442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_34
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 530
+        width: 47
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de69f5a6a9e1b0370800000000000000
+      internalID: 8289753187663976173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_33
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 530
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8847353901313b560800000000000000
+      internalID: 7328221980574053512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_32
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 530
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 438e5a3ff41907fa0800000000000000
+      internalID: -5804980147104389068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_31
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 530
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f30feeafff4749950800000000000000
+      internalID: 6454912808704208959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_30
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 530
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d7752827a00d7ac0800000000000000
+      internalID: -3855924988026193962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_37
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 430
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1f1f7efcef307e40800000000000000
+      internalID: 5652087819464548122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_38
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 430
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce644ed1c6345ef60800000000000000
+      internalID: 8062924839513769708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_39
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 430
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 092eed2f189614ce0800000000000000
+      internalID: -1422740000425975152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_40
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 430
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f99ccbaac4fa2bb0800000000000000
+      internalID: -4959882888292296206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_41
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 430
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7f208569c9b0d260800000000000000
+      internalID: 7120395285515218813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_42
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 430
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2699da1985fd3830800000000000000
+      internalID: 4052665208913106477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_43
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 430
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60a48f300909132c0800000000000000
+      internalID: -4453619608276415994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_44
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 330
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa8663d2168df8500800000000000000
+      internalID: 400776803741231274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_45
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 330
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91fbcbdfaf7a76620800000000000000
+      internalID: 2767365192483127065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_46
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 330
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 738415d57367eb920800000000000000
+      internalID: 3007971581290956855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_47
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 330
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63f069b9ed452cd00800000000000000
+      internalID: 991448183044706102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_48
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 330
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca98fbf129649ba00800000000000000
+      internalID: 772726404482566572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_49
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 326
+        width: 48
+        height: 50
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3878bd21b691e050800000000000000
+      internalID: 5828105080514574396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_50
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 330
+        width: 44
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f650a2f74c1a144c0800000000000000
+      internalID: -4304981903470361233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_51
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 330
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 308b359785c884bf0800000000000000
+      internalID: -339867460245932029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_52
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 330
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a58be716e3d9c1a0800000000000000
+      internalID: -6788661978087062108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_53
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 330
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2856739da81c34d20800000000000000
+      internalID: 3261663357240305026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_55
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 207
+        width: 47
+        height: 63
+      alignment: 9
+      pivot: {x: 0.4880005, y: 0.27057636}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09af413606a77e610800000000000000
+      internalID: 1650422342852344464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_58
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 208
+        width: 44
+        height: 62
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2588031}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcf5eeac2bfa98640800000000000000
+      internalID: 5082786836907974607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_60
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 217
+        width: 44
+        height: 53
+      alignment: 9
+      pivot: {x: 0.49899465, y: 0.13353312}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92c022d8321a35010800000000000000
+      internalID: 1176461101737577513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_61
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 224
+        width: 44
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39e7e3dbf6fa0f590800000000000000
+      internalID: -7642415673196511597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_62
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 227
+        width: 46
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ced172cc8979fa9c0800000000000000
+      internalID: -3913742868645732884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_63
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 229
+        width: 46
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a4c6dac7a729c930800000000000000
+      internalID: 4163902932096828583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_64
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 230
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51c72147d42960170800000000000000
+      internalID: 8144357837503626261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_65
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 230
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca32acf82c8e65a70800000000000000
+      internalID: 8815489242958013356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_66
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 230
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bb54e6813d159510800000000000000
+      internalID: 1555181344880090032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_67
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 230
+        width: 48
+        height: 46
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07798387e3d3cc570800000000000000
+      internalID: 8488226736200783728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_72
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 107
+        width: 47
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 012a489dae05b73b0800000000000000
+      internalID: -5513724349183122928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_71
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 107
+        width: 47
+        height: 36
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7e0a639e8f382b70800000000000000
+      internalID: 8874412947324669565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_70
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 106
+        width: 47
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddc223d73392282c0800000000000000
+      internalID: -4430933782258635555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left Mecha-stone Golem_69
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 107
+        width: 47
+        height: 59
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03680c013e7843470800000000000000
+      internalID: 8373467016496973360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

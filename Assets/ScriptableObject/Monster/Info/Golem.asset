@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e74efc22dee03b44a9d907fca74db3c, type: 3}
-  m_Name: Slime
+  m_Name: Golem
   m_EditorClassIdentifier: 
-  monsterName: Slime
-  maxHealth: 12
+  monsterName: Golem
+  maxHealth: 25
   patterns:
   - pattern: 0
-    damage: 2
+    damage: 3
     attackRange: 0
     moveRange: 1
-  animatorController: {fileID: 9100000, guid: fd3d1d592b8fb114ba5d3d9aac1739ea, type: 2}
+  animatorController: {fileID: 9100000, guid: 052e0a63b40d70e44bd7c941d67e4a26, type: 2}
   spriteColor: {r: 1, g: 1, b: 1, a: 1}
-  spriteScale: 1.8
+  spriteScale: 1.35
