@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviourSingleton<PlayerManager>, ITurnHandler
 {
+    private const float PLAYER_SCALE = 0.75f;
+
     [SerializeField]
     private GameObject _playerPrefabs;
 
@@ -21,7 +23,7 @@ public class PlayerManager : MonoBehaviourSingleton<PlayerManager>, ITurnHandler
         _player = Instantiate(_playerPrefabs, _grid.transform).GetComponent<Player>();
 
         // set local scale
-        _player.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+        _player.transform.localScale = new Vector3(PLAYER_SCALE, PLAYER_SCALE, 1);
     }
 
     void Update()

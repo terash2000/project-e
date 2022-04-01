@@ -4,12 +4,13 @@ using UnityEngine.UI;
 
 public class DeckList : MonoBehaviour
 {
+    private const int CONTAINER_SIZE = 10;
+
     [SerializeField] private GridLayoutGroup cardContainer;
     [SerializeField] private Button previousButton;
     [SerializeField] private Button nextButton;
     private int currentPage;
     private int maxPage = 1;
-    private const int ContainerSize = 10;
 
     private List<Card> deck; // temp
 
@@ -28,7 +29,7 @@ public class DeckList : MonoBehaviour
         GameManager.gameState = GameState.Pause;
 
         currentPage = 0;
-        maxPage = (deck.Count - 1) / ContainerSize;
+        maxPage = (deck.Count - 1) / CONTAINER_SIZE;
         RenderCard();
     }
 
@@ -62,9 +63,9 @@ public class DeckList : MonoBehaviour
             Destroy(cardContainer.transform.GetChild(i).gameObject);
         }
 
-        for (int i = 0; i < ContainerSize; i++)
+        for (int i = 0; i < CONTAINER_SIZE; i++)
         {
-            int cardIndex = i + currentPage * ContainerSize;
+            int cardIndex = i + currentPage * CONTAINER_SIZE;
             if (cardIndex >= deck.Count) break;
             GameObject cardObj = Instantiate(CardCollection.Instance.CardPrefab, cardContainer.transform);
             cardObj.GetComponent<CardDisplay>().card = deck[cardIndex];
