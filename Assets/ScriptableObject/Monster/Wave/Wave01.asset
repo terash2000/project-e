@@ -20,9 +20,9 @@ MonoBehaviour:
     tile: {x: 0, y: 3}
     currentMove: 0
   - monster: {fileID: 11400000, guid: 16f5bc9b5a1686c499dc1bbd1f843cb5, type: 2}
-    tile: {x: 2, y: -2}
+    tile: {x: 1, y: -2}
     currentMove: 0
   - monster: {fileID: 11400000, guid: 16f5bc9b5a1686c499dc1bbd1f843cb5, type: 2}
-    tile: {x: 3, y: 0}
+    tile: {x: 2, y: 0}
     currentMove: 0
   reward: 1

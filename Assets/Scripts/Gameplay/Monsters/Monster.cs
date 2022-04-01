@@ -6,10 +6,13 @@ using UnityEngine.UI;
 
 public class Monster : MoveableSprite
 {
+    private const float ATTACK_ANIMATION_RANGE = 0.4f;
+
     public MonsterInfo info;
     public int currentMove = 0;
     public bool moved;
     public bool attacked;
+
     private bool stuned;
     private Dictionary<Status, int> statusDict = new Dictionary<Status, int>();
     [SerializeField] private GameObject healthBar;
@@ -55,7 +58,7 @@ public class Monster : MoveableSprite
             Vector3 characterPos = grid.CellToWorld(PlayerManager.Instance.Player.currentTile);
             Vector3 direction = characterPos - transform.position;
             direction.Normalize();
-            transform.position = transform.position + 0.25f * Mathf.Sin(radiant2) * direction;
+            transform.position = transform.position + ATTACK_ANIMATION_RANGE * Mathf.Sin(radiant2) * direction;
             lookDirection = direction;
         }
         else animator.SetBool("Attacking", false);

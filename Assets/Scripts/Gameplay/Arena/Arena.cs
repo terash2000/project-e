@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,6 +6,8 @@ using UnityEngine.Tilemaps;
 
 public class Arena : MonoBehaviourSingleton<Arena>
 {
+    private const int TOTAL_DIRECTION = 6;
+
     public Tile mTile;
     public Tile mOriginalTile;
     [HideInInspector]
@@ -15,8 +16,6 @@ public class Arena : MonoBehaviourSingleton<Arena>
     public Tilemap tilemap;
     [HideInInspector]
     public GameObject hexBorder;
-    // [HideInInspector]
-    // public List<GameObject> hexBorderList;
     [HideInInspector]
     public List<Vector3Int> AreaPosList;
     [HideInInspector]
@@ -29,6 +28,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
     public List<Vector3Int> monsterHighlight = new List<Vector3Int>();
     [HideInInspector]
     public List<Vector3Int> monsterHighlight2 = new List<Vector3Int>();
+
     private Color redHighlight = new Color(1f, 0.8f, 0.8f);
     private Color redHighlight2 = new Color(1f, 0.5f, 0.5f);
 
@@ -113,32 +113,11 @@ public class Arena : MonoBehaviourSingleton<Arena>
     {
         TargetPosList = GetPosListTarget(SelectedCard.mTargetShape, SelectedCard.mRange, PlayerManager.Instance.Player.currentTile, targetPos);
         SetTileColor(Color.yellow, TargetPosList);
-
-        /*for (int i = 0; i < TargetPosList.Count; i++)
-        {
-            GameObject border;
-            if (i >= hexBorderList.Count)
-            {
-                border = GameObject.Instantiate(hexBorder);
-                border.GetComponent<MeshRenderer>().enabled = false;
-                hexBorderList.Add(border);
-            }
-            else
-            {
-                border = hexBorderList[i];
-            }
-            border.gameObject.SetActive(true);
-            border.transform.position = grid.CellToWorld(TargetPosList[i]);
-        }*/
     }
 
     public void HideTargetArea()
     {
         SetTileColor(Color.white, TargetPosList);
-        // foreach (GameObject border in hexBorderList)
-        // {
-        //     border.gameObject.SetActive(false);
-        // }
     }
 
     public void ShowRadius(AreaShape areaShape, AreaShape targetShape, int range)
@@ -251,7 +230,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
     public List<Vector3Int> GetPosListNear(Vector3Int curPos)
     {
         List<Vector3Int> posList = new List<Vector3Int>();
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < TOTAL_DIRECTION; i++)
         {
             posList.Add(GetPosDirection(curPos, i));
         }
@@ -262,7 +241,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
     {
         List<Vector3Int> posList = new List<Vector3Int>();
         posList.Add(curPos);
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < TOTAL_DIRECTION; i++)
         {
             posList.AddRange(GetPosListDirection(range, curPos, i));
         }
@@ -272,7 +251,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
     public List<Vector3Int> GetPosListDirection(int range, Vector3Int curPos, int direction)
     {
         List<Vector3Int> posList = new List<Vector3Int>();
-        if (direction >= 0 && direction < 6)
+        if (direction >= 0 && direction < TOTAL_DIRECTION)
         {
             Vector3Int pos = curPos;
             for (int i = 0; i < range; i++)
@@ -333,7 +312,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
         Vector2 disPos = new Vector2(targetPos.x - oriPos.x, targetPos.y - oriPos.y);
         Dictionary<int, float> dict = new Dictionary<int, float>();
         List<int> directions = new List<int>();
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < TOTAL_DIRECTION; i++)
         {
             dict.Add(i, Vector2.Distance(GetDirectionVector(i), disPos));
         }
