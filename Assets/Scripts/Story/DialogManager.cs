@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviourSingleton<DialogManager>
 {
-    public static List<DialogNode> nextRoot = new List<DialogNode>();
+    public static Stack<DialogNode> nextRoot = new Stack<DialogNode>();
     private DialogNode current;
     [SerializeField] private QuoteText quoteObj;
     [SerializeField] private GameObject characterName;
@@ -22,8 +22,8 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
     {
         characterNameText = characterName.transform.Find("Character Text").gameObject.GetComponent<TextMeshProUGUI>();
 
-        current = nextRoot[0];
-        nextRoot.RemoveAt(0);
+        current = nextRoot.Peek();
+        nextRoot.Pop();
         Render();
     }
 
@@ -55,8 +55,8 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
         {
             if (current.child != null && current.child.Count != 0)
             {
-                SceneChanger.nextScene.Add("StoryScene");
-                DialogManager.nextRoot.Insert(0, current.child[0]);
+                SceneChanger.nextScene.Push("StoryScene");
+                DialogManager.nextRoot.Push(current.child[0]);
             }
             MonsterManager.wave = current.nextWave;
             SceneChanger.LoadScene("CombatScene");

@@ -19,7 +19,7 @@ public class NewGame : MonoBehaviour
             MakeNewPlayerData();
             if (!skipPrologue)
             {
-                DialogManager.nextRoot.Add(prologue);
+                DialogManager.nextRoot.Push(prologue);
                 SceneChanger.LoadScene("StoryScene");
             }
             else

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Monster : MoveableSprite
 {
     private const float ATTACK_ANIMATION_RANGE = 0.4f;
+    private const float DAMAGE_COOLDOWN_TIME = 0.2f;
 
     public MonsterInfo info;
     public int currentMove = 0;
@@ -22,12 +24,14 @@ public class Monster : MoveableSprite
     [SerializeField] private GameObject previewDamage;
     [SerializeField] private HorizontalLayoutGroup statusContainer;
     [SerializeField] private GameObject statusPrefab;
-    private DamagePopup damagePopup;
+    [SerializeField] private Color damageColor;
     private int healthAmount;
     private Vector3 healthLocalScale;
     private float healthBarSize;
     private int attackDirection = -1;
     private float radiant2 = 0f;
+    private float damagePopupCooldown = 0f;
+    private Queue<KeyValuePair<int, Color>> damageQueue = new Queue<KeyValuePair<int, Color>>();
 
     protected override void Start()
     {
@@ -68,12 +72,22 @@ public class Monster : MoveableSprite
             lookDirection = Arena.Instance.GetDirectionVector(attackDirection);
         }
 
+        // hp
         healthLocalScale.x = (float)healthAmount / (float)info.maxHealth * healthBarSize;
         healthBar.transform.localScale = healthLocalScale;
-        healthText.GetComponent<TMPro.TextMeshProUGUI>().text = healthAmount.ToString();
+        healthText.GetComponent<TextMeshProUGUI>().text = healthAmount.ToString();
 
-        int damage = stuned ? 0 : info.patterns[currentMove].damage;
-        damageText.GetComponent<TMPro.TextMeshProUGUI>().text = damage.ToString();
+        // attack damage
+        if (stuned)
+        {
+            damageText.SetActive(false);
+        }
+        else
+        {
+            damageText.SetActive(true);
+            int damage = info.patterns[currentMove].damage;
+            damageText.GetComponent<TextMeshProUGUI>().text = damage.ToString();
+        }
 
         // preview damage
         if (Arena.Instance.TargetPosList.Contains(currentTile) &&
@@ -82,17 +96,25 @@ public class Monster : MoveableSprite
         {
             previewDamage.SetActive(true);
             string cardDamage = Arena.Instance.SelectedCard.GetDamage().ToString();
-            previewDamage.GetComponent<TMPro.TextMeshProUGUI>().text = cardDamage;
+            previewDamage.GetComponent<TextMeshProUGUI>().text = cardDamage;
         }
         else previewDamage.SetActive(false);
+
+        // damage popup
+        if (damagePopupCooldown > 0)
+        {
+            damagePopupCooldown -= Time.deltaTime;
+        }
+        else if (damageQueue.Count != 0)
+        {
+            CreateDamagePopup(damageQueue.Dequeue());
+        }
     }
 
-    public int TakeDamage(int damage)
+    public int TakeDamage(int damage, Color? color = null)
     {
-        GameObject dp = Instantiate(previewDamage, GetComponentInChildren<Canvas>().transform);
-        dp.SetActive(true);
-        dp.GetComponent<TMPro.TextMeshProUGUI>().text = damage.ToString();
-        damagePopup = dp.AddComponent<DamagePopup>();
+        KeyValuePair<int, Color> damagePair = new KeyValuePair<int, Color>(damage, color ?? damageColor);
+        CreateDamagePopup(damagePair);
 
         healthAmount -= damage;
         if (healthAmount <= 0)
@@ -122,7 +144,7 @@ public class Monster : MoveableSprite
         return area;
     }
 
-    public void GainStatus(Status status, int amount)
+    public void GainStatus(Status status, int amount = 1)
     {
         switch (status)
         {
@@ -143,9 +165,10 @@ public class Monster : MoveableSprite
 
     public void Stun()
     {
-        RemoveHighlight();
         stuned = true;
         animator.SetBool("Stuned", true);
+        RemoveHighlight();
+        SetAttackIcon();
     }
 
     public bool TriggerStatus()
@@ -157,8 +180,10 @@ public class Monster : MoveableSprite
             switch (status.Key)
             {
                 case Status.Acid:
+                    TakeDamage(status.Value, GameManager.Instance.acidColor);
+                    break;
                 case Status.Burn:
-                    TakeDamage(status.Value);
+                    TakeDamage(status.Value, GameManager.Instance.burnColor);
                     break;
             }
         }
@@ -230,7 +255,7 @@ public class Monster : MoveableSprite
         attacked = false;
         stuned = false;
         attackDirection = CalAttackDirection();
-        SetAttackIcon(info.patterns[currentMove].pattern);
+        SetAttackIcon();
 
         animator.SetBool("Stuned", false);
     }
@@ -299,7 +324,6 @@ public class Monster : MoveableSprite
 
     private void Die()
     {
-        damagePopup.transform.SetParent(Arena.Instance.transform);
         MonsterManager.Instance.monsters.Remove(this);
         RemoveHighlight();
         Destroy(gameObject);
@@ -371,9 +395,14 @@ public class Monster : MoveableSprite
         SetMovement(destination);
     }
 
-    private void SetAttackIcon(MonsterPatternType pattern)
+    private void SetAttackIcon()
     {
-        switch (pattern)
+        if (stuned)
+        {
+            damageIcon.sprite = MonsterManager.Instance.StunIcon;
+            return;
+        }
+        switch (info.patterns[currentMove].pattern)
         {
             case MonsterPatternType.Basic:
                 damageIcon.sprite = MonsterManager.Instance.SwordIcon;
@@ -396,5 +425,27 @@ public class Monster : MoveableSprite
             GameObject statusObj = Instantiate(statusPrefab, statusContainer.transform);
             statusObj.GetComponent<MonsterStatus>().Init(status.Key, status.Value);
         }
+    }
+
+    private void CreateDamagePopup(KeyValuePair<int, Color> damage)
+    {
+        if (damagePopupCooldown > 0)
+        {
+            damageQueue.Enqueue(damage);
+        }
+        else
+        {
+            GameObject damagePopup = Instantiate(previewDamage, GetComponentInChildren<Canvas>().transform);
+            damagePopup.SetActive(true);
+
+            TextMeshProUGUI damagePopupText = damagePopup.GetComponent<TextMeshProUGUI>();
+            damagePopupText.text = damage.Key.ToString();
+            damagePopupText.color = damage.Value;
+
+            damagePopup.AddComponent<DamagePopup>();
+            damagePopup.transform.SetParent(Arena.Instance.transform);
+        }
+
+        damagePopupCooldown = DAMAGE_COOLDOWN_TIME;
     }
 }

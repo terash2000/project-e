@@ -3939,6 +3939,7 @@ MonoBehaviour:
   isBusy: 0
   SwordIcon: {fileID: 21300000, guid: a62e14f410ba5484881a9a9bd8b176f5, type: 3}
   BowIcon: {fileID: 21300000, guid: 2c8152fa4cef17f4898ca394525bef1b, type: 3}
+  StunIcon: {fileID: 21300000, guid: 2d502ea4565b65141a071f2b75650972, type: 3}
   monsterPrefab: {fileID: 365589358885336156, guid: 6666600362bc589428e8e65af920f735,
     type: 3}
 --- !u!4 &1288408019
