@@ -134,6 +134,10 @@ public class Monster : MoveableSprite
         KeyValuePair<int, Color> damagePair = new KeyValuePair<int, Color>(damage, color ?? damageColor);
         CreateDamagePopup(damagePair);
 
+        // Prevent Die() from being executed twice when the monster has more than one status effect
+        if (healthAmount == 0)
+            return 0;
+
         healthAmount -= damage;
         if (healthAmount <= 0)
         {
@@ -349,13 +353,10 @@ public class Monster : MoveableSprite
 
     private IEnumerator Die()
     {
-        if (damageQueue.Count == 0)
-        {
-            MonsterManager.Instance.monsters.Remove(this);
-            RemoveHighlight();
-            yield return new WaitForSeconds(delayDeathForDamagePopup);
-            Destroy(gameObject);
-        }
+        MonsterManager.Instance.monsters.Remove(this);
+        RemoveHighlight();
+        yield return new WaitForSeconds(delayDeathForDamagePopup);
+        Destroy(gameObject);
     }
 
     private void RemoveHighlight()
