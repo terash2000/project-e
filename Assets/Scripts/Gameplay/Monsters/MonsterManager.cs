@@ -35,7 +35,7 @@ public class MonsterManager : MonoBehaviourSingleton<MonsterManager>, ITurnHandl
     {
         foreach (Monster monster in new List<Monster>(monsters))
         {
-            monster.DelayDeathForDamagePopup = monster.StatusDict.Count * Monster.DAMAGE_COOLDOWN_TIME;
+            monster.DelayDeathForDamagePopup = (monster.StatusDict.Count - 1) * Monster.DAMAGE_COOLDOWN_TIME;
             monster.TriggerStatus();
         }
         StartCoroutine(Attack());
