@@ -3,16 +3,17 @@ using UnityEngine.UI;
 
 public class CollectionManager : MonoBehaviour
 {
+    private const int CONTAINER_SIZE = 10;
+
     [SerializeField] private GridLayoutGroup cardContainer;
     [SerializeField] private Button previousButton;
     [SerializeField] private Button nextButton;
     private int currentPage = 0;
     private int maxPage;
-    private const int ContainerSize = 10;
 
     void Start()
     {
-        maxPage = (CardCollection.Instance.allCards.Count - 1) / ContainerSize;
+        maxPage = (CardCollection.Instance.allCards.Count - 1) / CONTAINER_SIZE;
         RenderCard();
     }
 
@@ -39,9 +40,9 @@ public class CollectionManager : MonoBehaviour
             Destroy(cardContainer.transform.GetChild(i).gameObject);
         }
 
-        for (int i = 0; i < ContainerSize; i++)
+        for (int i = 0; i < CONTAINER_SIZE; i++)
         {
-            int cardIndex = i + currentPage * ContainerSize;
+            int cardIndex = i + currentPage * CONTAINER_SIZE;
             if (cardIndex >= CardCollection.Instance.allCards.Count) break;
             Card card = CardCollection.Instance.allCards[cardIndex];
 
