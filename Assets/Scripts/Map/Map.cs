@@ -10,12 +10,16 @@ public class Map : MonoBehaviourSingleton<Map>
     [SerializeField] private float minGap;
     [SerializeField] private float maxGap;
     [SerializeField] private int numNode;
+    [SerializeField] private int numLayer;
+    [SerializeField] private float layerWidth;
     [SerializeField] private GameObject nodePrefab;
     [SerializeField] private GameObject edgePrefab;
     private Node curNode;
+    [HideInInspector] public float WidthScale;
 
     void Start()
     {
+        SetMapSize();
         // load seed
         if (PlayerData.seedJSON != null)
         {
@@ -43,6 +47,7 @@ public class Map : MonoBehaviourSingleton<Map>
 
         SaveSystem.Save();
     }
+
 
     public void GenerateMap()
     {
@@ -84,7 +89,7 @@ public class Map : MonoBehaviourSingleton<Map>
 
     public Vector3 RandomPos()
     {
-        float x = Random.Range(-GetMapSize().x / 2, GetMapSize().x / 2);
+        float x = Random.Range(transform.position.x - GetMapSize().x / 2, transform.position.x + GetMapSize().x / 2);
         float y = Random.Range(-GetMapSize().y / 2, GetMapSize().y / 2);
         foreach (Node node in Nodes)
         {
@@ -215,4 +220,17 @@ public class Map : MonoBehaviourSingleton<Map>
     {
         return GetComponent<RectTransform>().sizeDelta;
     }
+
+    public void SetMapSize()
+    {
+        Vector2 size = GetMapSize();
+        float oriWidth = size.x;
+        size.x = numLayer * layerWidth;
+        WidthScale = size.x / oriWidth;
+        GetComponent<RectTransform>().sizeDelta = size;
+        Vector3 pos = transform.position;
+        pos.x = (numLayer * layerWidth - oriWidth) / 2;
+        GetComponent<RectTransform>().position = pos;
+    }
+
 }

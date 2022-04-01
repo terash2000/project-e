@@ -12,7 +12,7 @@ public class CameraMovement : MonoBehaviour
     private Rect rectOrigin;
     void Start()
     {
-        rectOrigin = GetArea();
+        rectOrigin = GetArea(Map.Instance.WidthScale);
     }
 
     void Update()
@@ -32,25 +32,19 @@ public class CameraMovement : MonoBehaviour
         {
             Camera.main.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * step / 2;
             Camera.main.orthographicSize = Mathf.Max(Camera.main.orthographicSize, minZoom);
-            Vector3 oldPos = transform.position;
             transform.position = Vector3.MoveTowards(transform.position, Scrolldirection, Input.GetAxis("Mouse ScrollWheel") * step);
-            if (InsideArea(GetArea()).Contains(false))
-            {
-                if (InsideArea(GetArea())[0]) Scrolldirection.y = oldPos.y;
-                else if (InsideArea(GetArea())[1]) Scrolldirection.x = oldPos.x;
-                else Scrolldirection = oldPos;
-                transform.position = Vector3.MoveTowards(transform.position, Scrolldirection, Input.GetAxis("Mouse ScrollWheel") * step);
-            }
+            BoundCameraPos();
         }
         if (Input.GetAxis("Mouse ScrollWheel") < 0 && Camera.main.orthographicSize < maxZoom)
         {
             Camera.main.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * step / 2;
             Camera.main.orthographicSize = Mathf.Min(Camera.main.orthographicSize, maxZoom);
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(0, 0, transform.position.z), -Input.GetAxis("Mouse ScrollWheel") * step);
+            transform.position = Vector3.MoveTowards(transform.position, Scrolldirection, Input.GetAxis("Mouse ScrollWheel") * step);
+            BoundCameraPos();
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(0, 0, transform.position.z), -Input.GetAxis("Mouse ScrollWheel") * step);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 0, transform.position.z), -Input.GetAxis("Mouse ScrollWheel") * step);
         }
     }
 
@@ -63,22 +57,38 @@ public class CameraMovement : MonoBehaviour
         }
         if (!Input.GetMouseButton(0)) return;
         Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
-        Vector3 move = new Vector3(-pos.x * dragSpeed, -pos.y * dragSpeed, 0);
+        Vector3 move = new Vector3(-pos.x * dragSpeed * Camera.main.orthographicSize / maxZoom, -pos.y * dragSpeed * Camera.main.orthographicSize / maxZoom, 0);
         dragOrigin = Input.mousePosition;
         transform.Translate(move, Space.World);
         if (InsideArea(GetArea()).Contains(false)) transform.Translate(-move, Space.World);
     }
 
-    public Rect GetArea()
+    public Rect GetArea(float widthScale = 1)
     {
         Vector3 posTopLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
         Vector3 posBottomRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, Camera.main.nearClipPlane));
-        return new Rect(posTopLeft.x, posTopLeft.y, posBottomRight.x - posTopLeft.x, posBottomRight.y - posTopLeft.y);
+        return new Rect(posTopLeft.x, posTopLeft.y, (posBottomRight.x - posTopLeft.x) * widthScale, posBottomRight.y - posTopLeft.y);
     }
 
     public List<bool> InsideArea(Rect rect)
     {
-        Debug.Log(rect);
-        return new List<bool>() { rectOrigin.xMin < rect.xMin && rectOrigin.xMax > rect.xMax, rectOrigin.yMin < rect.yMin && rectOrigin.yMax > rect.yMax };
+        return new List<bool>() { rectOrigin.xMin <= rect.xMin, rectOrigin.xMax >= rect.xMax, rectOrigin.yMin <= rect.yMin, rectOrigin.yMax >= rect.yMax };
+    }
+
+    public void BoundCameraPos()
+    {
+        if (rectOrigin.width - GetArea().width < 0.002f || rectOrigin.height - GetArea().height < 0.002f) return;
+        while (InsideArea(GetArea()).Contains(false))
+        {
+            List<bool> inside = InsideArea(GetArea());
+            if (!inside[0] && !inside[1]) return;
+            if (!inside[2] && !inside[3]) return;
+            Vector3 pos = transform.position;
+            if (!inside[0]) pos.x += 0.001f;
+            if (!inside[1]) pos.x -= 0.001f;
+            if (!inside[2]) pos.y += 0.001f;
+            if (!inside[3]) pos.y -= 0.001f;
+            transform.position = pos;
+        }
     }
 }
