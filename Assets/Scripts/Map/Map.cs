@@ -142,6 +142,7 @@ public class Map : MonoBehaviourSingleton<Map>
                 line.endColor = Color.green;
             }
             Nodes[i].OnPass();
+            prev = i;
         }
         foreach (Node node in curNode.Next)
         {
