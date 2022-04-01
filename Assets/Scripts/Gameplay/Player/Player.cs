@@ -15,4 +15,9 @@ public class Player : MoveableSprite
     {
         base.Update();
     }
+
+    public void TakeDamage(int damage)
+    {
+        PlayerData.Health -= damage;
+    }
 }

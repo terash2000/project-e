@@ -265,7 +265,7 @@ public class Monster : MoveableSprite
         Vector3Int characterTile = PlayerManager.Instance.Player.currentTile;
         if (AttackArea().Contains(characterTile))
         {
-            PlayerManager.Instance.TakeDamage(info.patterns[currentMove].damage);
+            PlayerManager.Instance.Player.TakeDamage(info.patterns[currentMove].damage);
             StartCoroutine(AttackAnimation());
             attacked = true;
             return true;

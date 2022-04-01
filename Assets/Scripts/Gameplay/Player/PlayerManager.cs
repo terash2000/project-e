@@ -38,9 +38,4 @@ public class PlayerManager : MonoBehaviourSingleton<PlayerManager>, ITurnHandler
     {
 
     }
-
-    public void TakeDamage(int damage)
-    {
-        PlayerData.Health -= damage;
-    }
 }
