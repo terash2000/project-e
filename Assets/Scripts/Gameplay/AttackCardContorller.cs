@@ -21,8 +21,9 @@ public class AttackCardContorller : CardController
             if (monster != null)
             {
                 monster.TakeDamage(damage);
-                // monster.Stun();
+                // monster.GainStatus(Status.Stun);
                 monster.GainStatus(Status.Acid, 2);
+                monster.GainStatus(Status.Burn, 3);
                 success = true;
             }
         }

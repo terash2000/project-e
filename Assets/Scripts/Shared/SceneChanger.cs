@@ -5,12 +5,18 @@ using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour
 {
     public static string previousScene = "MainMenuScene";
-    public static List<string> nextScene = new List<string>();
+    public static Stack<string> nextScene = new Stack<string>();
 
     public static void LoadScene(string scenename)
     {
         Time.timeScale = 1f;
         SceneChanger.previousScene = SceneManager.GetActiveScene().name;
+        if (scenename == "MainMenuScene")
+        {
+            nextScene.Clear();
+            DialogManager.nextRoot.Clear();
+        }
+
         SceneManager.LoadScene(scenename);
     }
 
@@ -18,8 +24,8 @@ public class SceneChanger : MonoBehaviour
     {
         if (nextScene.Count > 0)
         {
-            LoadScene(nextScene[0]);
-            nextScene.RemoveAt(0);
+            LoadScene(nextScene.Peek());
+            nextScene.Pop();
         }
         else LoadScene("MapScene");
     }
@@ -29,13 +35,9 @@ public class SceneChanger : MonoBehaviour
         LoadScene(SceneChanger.previousScene);
     }
 
-
-
     public static void ExitGame()
     {
         //UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
-
-
 }
