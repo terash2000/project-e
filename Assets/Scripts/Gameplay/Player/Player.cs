@@ -24,7 +24,7 @@ public class Player : MoveableSprite
         PlayerData.Health -= damage;
     }
 
-    public void GainStatus(Status status, int amount)
+    public void GainStatus(Status status, int amount = 1)
     {
         switch (status)
         {

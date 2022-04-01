@@ -72,12 +72,22 @@ public class Monster : MoveableSprite
             lookDirection = Arena.Instance.GetDirectionVector(attackDirection);
         }
 
+        // hp
         healthLocalScale.x = (float)healthAmount / (float)info.maxHealth * healthBarSize;
         healthBar.transform.localScale = healthLocalScale;
         healthText.GetComponent<TextMeshProUGUI>().text = healthAmount.ToString();
 
-        int damage = stuned ? 0 : info.patterns[currentMove].damage;
-        damageText.GetComponent<TextMeshProUGUI>().text = damage.ToString();
+        // attack damage
+        if (stuned)
+        {
+            damageText.SetActive(false);
+        }
+        else
+        {
+            damageText.SetActive(true);
+            int damage = info.patterns[currentMove].damage;
+            damageText.GetComponent<TextMeshProUGUI>().text = damage.ToString();
+        }
 
         // preview damage
         if (Arena.Instance.TargetPosList.Contains(currentTile) &&
@@ -155,9 +165,10 @@ public class Monster : MoveableSprite
 
     public void Stun()
     {
-        RemoveHighlight();
         stuned = true;
         animator.SetBool("Stuned", true);
+        RemoveHighlight();
+        SetAttackIcon();
     }
 
     public bool TriggerStatus()
@@ -244,7 +255,7 @@ public class Monster : MoveableSprite
         attacked = false;
         stuned = false;
         attackDirection = CalAttackDirection();
-        SetAttackIcon(info.patterns[currentMove].pattern);
+        SetAttackIcon();
 
         animator.SetBool("Stuned", false);
     }
@@ -384,9 +395,14 @@ public class Monster : MoveableSprite
         SetMovement(destination);
     }
 
-    private void SetAttackIcon(MonsterPatternType pattern)
+    private void SetAttackIcon()
     {
-        switch (pattern)
+        if (stuned)
+        {
+            damageIcon.sprite = MonsterManager.Instance.StunIcon;
+            return;
+        }
+        switch (info.patterns[currentMove].pattern)
         {
             case MonsterPatternType.Basic:
                 damageIcon.sprite = MonsterManager.Instance.SwordIcon;

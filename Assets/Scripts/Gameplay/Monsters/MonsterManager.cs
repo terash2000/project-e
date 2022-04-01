@@ -9,6 +9,7 @@ public class MonsterManager : MonoBehaviourSingleton<MonsterManager>, ITurnHandl
     public bool isBusy = false;
     public Sprite SwordIcon;
     public Sprite BowIcon;
+    public Sprite StunIcon;
     [SerializeField] private GameObject monsterPrefab;
     private GridLayout grid;
 
