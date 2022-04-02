@@ -61,7 +61,7 @@ MonoBehaviour:
   statusContainer: {fileID: 3860768395001408724}
   statusPrefab: {fileID: 6856852969724268857, guid: 14bc24ca722539040a141d8fca53c8c6,
     type: 3}
-  damageColor: {r: 1, g: 0.78431374, b: 0, a: 1}
+  damageColor: {r: 0.9960785, g: 0.9686275, b: 0.72156864, a: 1}
 --- !u!1 &666563332887185344
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,8 +239,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278239999
-  m_fontColor: {r: 1, g: 0.76114666, b: 0, a: 1}
+    rgba: 4290312191
+  m_fontColor: {r: 1, g: 0.9692574, b: 0.7216981, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

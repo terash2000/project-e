@@ -33,11 +33,11 @@ public class PlayerManager : MonoBehaviourSingleton<PlayerManager>, ITurnHandler
 
     public void OnStartTurn()
     {
-        Player.TriggerStatus();
+
     }
 
     public void OnEndTurn()
     {
-
+        Player.TriggerStatus();
     }
 }
