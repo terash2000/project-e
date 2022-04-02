@@ -81,8 +81,11 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
 
     private void ChangeNode(DialogNode node)
     {
-        current = node;
-        Render();
+        if (!quoteObj.IsTyping())
+        {
+            current = node;
+            Render();
+        }
     }
 
     private void Render()
@@ -91,8 +94,11 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
         current.action.Trigger();
 
         // dialog
-        quoteObj.dialog = current.quote;
-        quoteObj.StartTyping();
+        if (current.quote != "")
+        {
+            quoteObj.dialog = current.quote;
+            quoteObj.StartTyping();
+        }
 
         // character name
         if (current.character != null)
