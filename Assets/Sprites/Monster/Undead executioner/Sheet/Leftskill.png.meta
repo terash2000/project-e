@@ -1,0 +1,402 @@
+fileFormatVersion: 2
+guid: 088b1cd700eaed443bf493a977e5f88a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2833775182555582667
+    second: skill1_0
+  - first:
+      213: -5708941596360452247
+    second: skill1_1
+  - first:
+      213: -6852985128836715184
+    second: skill1_2
+  - first:
+      213: -706068992433645699
+    second: skill1_3
+  - first:
+      213: 6341960913417918139
+    second: skill1_4
+  - first:
+      213: 3594819719720684759
+    second: skill1_5
+  - first:
+      213: -5259044502740863221
+    second: skill1_6
+  - first:
+      213: 391909082404558028
+    second: skill1_7
+  - first:
+      213: 6694025853591573197
+    second: skill1_8
+  - first:
+      213: 2365104174983624309
+    second: skill1_9
+  - first:
+      213: -6857078158124440818
+    second: skill1_10
+  - first:
+      213: -2682086547265108738
+    second: skill1_11
+  - first:
+      213: 3982978125037959646
+    second: Leftskill_0
+  - first:
+      213: 2038783759790369615
+    second: Leftskill_1
+  - first:
+      213: 8090163948830545292
+    second: Leftskill_2
+  - first:
+      213: 7966334419376048672
+    second: Leftskill_2
+  - first:
+      213: 4776146162265971777
+    second: Leftskill_1
+  - first:
+      213: 5767973773072605672
+    second: Leftskill_0
+  - first:
+      213: 7525990051393541487
+    second: Leftskill_6
+  - first:
+      213: -3317542763842754345
+    second: Leftskill_7
+  - first:
+      213: -6549837579559331023
+    second: Leftskill_8
+  - first:
+      213: -7673948811960221536
+    second: Leftskill_8
+  - first:
+      213: 8834297249607936019
+    second: Leftskill_7
+  - first:
+      213: 6503847530330393226
+    second: Leftskill_6
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Leftskill_5
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 118
+        width: 33
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed9f9038081664730800000000000000
+      internalID: 3982978125037959646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftskill_4
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 117
+        width: 31
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4be32017073b4c10800000000000000
+      internalID: 2038783759790369615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftskill_3
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 117
+        width: 30
+        height: 65
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8557b87f39064070800000000000000
+      internalID: 8090163948830545292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftskill_2
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 116
+        width: 30
+        height: 65
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02a80ec62fa1e8e60800000000000000
+      internalID: 7966334419376048672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftskill_1
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 117
+        width: 48
+        height: 67
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14c553521a7484240800000000000000
+      internalID: 4776146162265971777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftskill_0
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 117
+        width: 45
+        height: 62
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e123c92695fb0050800000000000000
+      internalID: 5767973773072605672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftskill_11
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 16
+        width: 48
+        height: 67
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f659f6cc310b17860800000000000000
+      internalID: 7525990051393541487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftskill_10
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 16
+        width: 31
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d82cf1fe68b5f1d0800000000000000
+      internalID: -3317542763842754345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftskill_9
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 17
+        width: 33
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13b9cd58c6d4a15a0800000000000000
+      internalID: -6549837579559331023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftskill_8
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 17
+        width: 52
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a0849eb638a08590800000000000000
+      internalID: -7673948811960221536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
