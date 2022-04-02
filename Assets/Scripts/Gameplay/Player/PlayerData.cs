@@ -17,7 +17,8 @@ public static class PlayerData
         set
         {
             maxHealth = value;
-            if (maxHealth < 0) maxHealth = 0;
+            if (maxHealth < 1) maxHealth = 1;
+            if (health > maxHealth) health = maxHealth;
         }
     }
     public static int Health
