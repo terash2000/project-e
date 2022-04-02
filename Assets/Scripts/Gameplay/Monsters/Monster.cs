@@ -31,13 +31,6 @@ public class Monster : GameCharacter
     private float radiant2 = 0f;
     private float damagePopupCooldown = 0f;
     private Queue<KeyValuePair<int, Color>> damageQueue = new Queue<KeyValuePair<int, Color>>();
-    private float delayDeathForDamagePopup = 0f;
-
-    public float DelayDeathForDamagePopup
-    {
-        get { return delayDeathForDamagePopup; }
-        set { delayDeathForDamagePopup = value; }
-    }
 
     public int HealthAmount
     {
@@ -318,7 +311,12 @@ public class Monster : GameCharacter
     {
         MonsterManager.Instance.monsters.Remove(this);
         RemoveHighlight();
-        yield return new WaitForSeconds(delayDeathForDamagePopup);
+        do
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        while (damageQueue.Count > 0);
+
         Destroy(gameObject);
     }
 
