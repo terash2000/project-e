@@ -1,7 +1,46 @@
 fileFormatVersion: 2
 guid: 5db6d8edd60bb944b98617703e3b9c6b
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -4939942642037763687
+    second: Leftattacking_0
+  - first:
+      213: 5691625642715339418
+    second: Leftattacking_1
+  - first:
+      213: 4472555715076431627
+    second: Leftattacking_2
+  - first:
+      213: 7887696856353088149
+    second: Leftattacking_2
+  - first:
+      213: 7408823741694971153
+    second: Leftattacking_1
+  - first:
+      213: -5257654971760251429
+    second: Leftattacking_0
+  - first:
+      213: 4937558415983604009
+    second: Leftattacking_6
+  - first:
+      213: 2097267846827579656
+    second: Leftattacking_7
+  - first:
+      213: -6612025637423143986
+    second: Leftattacking_8
+  - first:
+      213: -750013626445072299
+    second: Leftattacking_8
+  - first:
+      213: 4360064821665440591
+    second: Leftattacking_7
+  - first:
+      213: 7147188508137234581
+    second: Leftattacking_6
+  - first:
+      213: -5474892634293444450
+    second: Leftattacking_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +80,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -75,9 +114,306 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Leftattacking_5
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 217
+        width: 48
+        height: 67
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 991d88a075cc17bb0800000000000000
+      internalID: -4939942642037763687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftattacking_4
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 217
+        width: 53
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9a5d84dd57bcfe40800000000000000
+      internalID: 5691625642715339418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftattacking_3
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 217
+        width: 59
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0f164be9b5b11e30800000000000000
+      internalID: 4472555715076431627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftattacking_2
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 216
+        width: 66
+        height: 71
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59224e2008ab67d60800000000000000
+      internalID: 7887696856353088149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftattacking_1
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 219
+        width: 31
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11d853f70fd61d660800000000000000
+      internalID: 7408823741694971153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftattacking_0
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 217
+        width: 45
+        height: 62
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdde9a0d8ae0907b0800000000000000
+      internalID: -5257654971760251429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftattacking_11
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 117
+        width: 59
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9217172183bb58440800000000000000
+      internalID: 4937558415983604009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftattacking_10
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 117
+        width: 60
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8099101befdfa1d10800000000000000
+      internalID: 2097267846827579656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftattacking_9
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 117
+        width: 76
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec32e9bf6bd5d34a0800000000000000
+      internalID: -6612025637423143986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftattacking_8
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 117
+        width: 31
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 558f90b949a6795f0800000000000000
+      internalID: -750013626445072299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftattacking_7
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 117
+        width: 30
+        height: 65
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f43ab0dcadf028c30800000000000000
+      internalID: 4360064821665440591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftattacking_6
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 117
+        width: 39
+        height: 65
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 590264aa41aef2360800000000000000
+      internalID: 7147188508137234581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leftattacking_12
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 16
+        width: 48
+        height: 67
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e90698508264504b0800000000000000
+      internalID: -5474892634293444450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

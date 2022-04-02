@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class QuoteText : MonoBehaviour
 {
+    private const float TYPING_TIME = 0.005f;
+
     public string dialog;
     private int currentCharacterIndex;
 
@@ -26,7 +28,7 @@ public class QuoteText : MonoBehaviour
     {
         while (IsTyping())
         {
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(TYPING_TIME);
             currentCharacterIndex += 1;
         }
     }

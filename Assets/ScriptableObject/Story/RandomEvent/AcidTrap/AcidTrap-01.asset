@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
+  m_Name: AcidTrap-01
+  m_EditorClassIdentifier: 
+  type: 1
+  character: {fileID: 0}
+  quote: You found a strange treasure chest in the middle of a ruin.
+  background: {fileID: 21300000, guid: 83736a22347592044b593980437ba2ea, type: 3}
+  sprite: {fileID: 0}
+  action:
+    type: 0
+    amount: 0
+    name: 
+  child:
+  - {fileID: 11400000, guid: e31baf8cbb596fa4482068471407c756, type: 2}
+  - {fileID: 11400000, guid: 3fa8c3bc7fae77641a990d964f9dedce, type: 2}
+  choice:
+  - Open!!
+  - Ignore it
+  nextWave: {fileID: 0}

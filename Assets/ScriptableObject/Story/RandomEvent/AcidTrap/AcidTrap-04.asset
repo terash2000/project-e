@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
-  m_Name: 03
+  m_Name: AcidTrap-04
   m_EditorClassIdentifier: 
-  type: 1
+  type: 0
   character: {fileID: 0}
-  quote: Choose your color.
+  quote: You carefully look inside the treasure chest and found a card!!
   background: {fileID: 0}
   sprite: {fileID: 0}
   action:
@@ -22,10 +22,6 @@ MonoBehaviour:
     amount: 0
     name: 
   child:
-  - {fileID: 11400000, guid: 063149d0a7bbdb9449a8ec41ca9177d3, type: 2}
-  - {fileID: 11400000, guid: 72b0b25d2249cea4a943d2c27a4eb094, type: 2}
-  - {fileID: 11400000, guid: 10a84fd1dbecb624c9432f652388e958, type: 2}
-  choice:
-  - red
-  - blue
-  - green
+  - {fileID: 11400000, guid: 2ce40ae9b6f66c1448acd039a366722b, type: 2}
+  choice: []
+  nextWave: {fileID: 0}
