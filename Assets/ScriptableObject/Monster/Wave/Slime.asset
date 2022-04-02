@@ -16,7 +16,7 @@ MonoBehaviour:
   - monster: {fileID: 11400000, guid: 16f5bc9b5a1686c499dc1bbd1f843cb5, type: 2}
     tile: {x: -3, y: -2}
     currentMove: 0
-  - monster: {fileID: 11400000, guid: 9174600d71dc63444bb544e35a64dbb6, type: 2}
+  - monster: {fileID: 11400000, guid: 16f5bc9b5a1686c499dc1bbd1f843cb5, type: 2}
     tile: {x: 0, y: 3}
     currentMove: 0
   - monster: {fileID: 11400000, guid: 16f5bc9b5a1686c499dc1bbd1f843cb5, type: 2}
