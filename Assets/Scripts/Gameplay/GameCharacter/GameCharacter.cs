@@ -1,7 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class MoveableSprite : MonoBehaviour
+public class GameCharacter : MonoBehaviour
 {
     public Vector3Int currentTile;
 
@@ -15,6 +17,13 @@ public class MoveableSprite : MonoBehaviour
     protected float radiant = 0f;
     protected GameObject sprite;
     protected Animator animator;
+
+    protected Dictionary<Status, int> _statusDict = new Dictionary<Status, int>();
+    public Dictionary<Status, int> StatusDict
+    {
+        get { return _statusDict; }
+        set { }
+    }
 
     protected virtual void Start()
     {
@@ -78,4 +87,56 @@ public class MoveableSprite : MonoBehaviour
         }
         radiant = 0f;
     }
+
+    public virtual void GainStatus(Status status, int amount = 1)
+    {
+        switch (status)
+        {
+            case Status.Stun:
+                Stun();
+                break;
+            default:
+                if (!_statusDict.ContainsKey(status))
+                {
+                    _statusDict.Add(status, amount);
+                }
+                else _statusDict[status] += amount;
+
+                UpdateStatusIcon();
+                break;
+        }
+    }
+
+    public bool TriggerStatus()
+    {
+        if (_statusDict.Count == 0) return false;
+
+        foreach (KeyValuePair<Status, int> status in _statusDict)
+        {
+            switch (status.Key)
+            {
+                case Status.Acid:
+                    TakeDamage(status.Value, GameManager.Instance.acidColor);
+                    break;
+                case Status.Burn:
+                    TakeDamage(status.Value, GameManager.Instance.burnColor);
+                    break;
+            }
+        }
+
+        _statusDict = _statusDict.Where(i => i.Value > 1)
+            .ToDictionary(i => i.Key, i => i.Value - 1);
+
+        UpdateStatusIcon();
+        return true;
+    }
+
+    public virtual int TakeDamage(int damage, Color? color = null)
+    {
+        return 0;
+    }
+
+    protected virtual void Stun() { }
+
+    protected virtual void UpdateStatusIcon() { }
 }
