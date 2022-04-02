@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Monster : MoveableSprite
+public class Monster : GameCharacter
 {
     private const float ATTACK_ANIMATION_RANGE = 0.4f;
     public const float DAMAGE_COOLDOWN_TIME = 0.2f;
@@ -15,8 +15,6 @@ public class Monster : MoveableSprite
     public bool moved;
     public bool attacked;
 
-    private bool stuned;
-    private Dictionary<Status, int> statusDict = new Dictionary<Status, int>();
     [SerializeField] private GameObject healthBar;
     [SerializeField] private GameObject healthText;
     [SerializeField] private GameObject damageText;
@@ -28,17 +26,13 @@ public class Monster : MoveableSprite
     private int healthAmount;
     private Vector3 healthLocalScale;
     private float healthBarSize;
+    private bool stuned;
     private int attackDirection = -1;
     private float radiant2 = 0f;
     private float damagePopupCooldown = 0f;
     private Queue<KeyValuePair<int, Color>> damageQueue = new Queue<KeyValuePair<int, Color>>();
     private float delayDeathForDamagePopup = 0f;
 
-    public Dictionary<Status, int> StatusDict
-    {
-        get { return statusDict; }
-        set { }
-    }
     public float DelayDeathForDamagePopup
     {
         get { return delayDeathForDamagePopup; }
@@ -129,7 +123,7 @@ public class Monster : MoveableSprite
         }
     }
 
-    public int TakeDamage(int damage, Color? color = null)
+    public override int TakeDamage(int damage, Color? color = null)
     {
         KeyValuePair<int, Color> damagePair = new KeyValuePair<int, Color>(damage, color ?? damageColor);
         CreateDamagePopup(damagePair);
@@ -143,9 +137,30 @@ public class Monster : MoveableSprite
         {
             healthAmount = 0;
             StartCoroutine(Die());
-            return 0;
         }
         return healthAmount;
+    }
+
+    protected override void Stun()
+    {
+        stuned = true;
+        animator.SetBool("Stuned", true);
+        RemoveHighlight();
+        SetAttackIcon();
+    }
+
+    protected override void UpdateStatusIcon()
+    {
+        for (int i = 0; i < statusContainer.transform.childCount; i++)
+        {
+            Destroy(statusContainer.transform.GetChild(i).gameObject);
+        }
+
+        foreach (KeyValuePair<Status, int> status in _statusDict)
+        {
+            GameObject statusObj = Instantiate(statusPrefab, statusContainer.transform);
+            statusObj.GetComponent<StatusDisplay>().Init(status.Key, status.Value);
+        }
     }
 
     public List<Vector3Int> AttackArea()
@@ -165,57 +180,6 @@ public class Monster : MoveableSprite
         }
 
         return area;
-    }
-
-    public void GainStatus(Status status, int amount = 1)
-    {
-        switch (status)
-        {
-            case Status.Stun:
-                Stun();
-                break;
-            default:
-                if (!statusDict.ContainsKey(status))
-                {
-                    statusDict.Add(status, amount);
-                }
-                else statusDict[status] += amount;
-
-                UpdateStatusIcon();
-                break;
-        }
-    }
-
-    public void Stun()
-    {
-        stuned = true;
-        animator.SetBool("Stuned", true);
-        RemoveHighlight();
-        SetAttackIcon();
-    }
-
-    public bool TriggerStatus()
-    {
-        if (statusDict.Count == 0) return false;
-
-        foreach (KeyValuePair<Status, int> status in statusDict)
-        {
-            switch (status.Key)
-            {
-                case Status.Acid:
-                    TakeDamage(status.Value, GameManager.Instance.acidColor);
-                    break;
-                case Status.Burn:
-                    TakeDamage(status.Value, GameManager.Instance.burnColor);
-                    break;
-            }
-        }
-
-        statusDict = statusDict.Where(i => i.Value > 1)
-            .ToDictionary(i => i.Key, i => i.Value - 1);
-
-        UpdateStatusIcon();
-        return true;
     }
 
     public void Move()
@@ -320,7 +284,6 @@ public class Monster : MoveableSprite
             foreach (Status status in info.patterns[currentMove].attackStatusEffect.Keys)
             {
                 int strength = info.patterns[currentMove].attackStatusEffect[status];
-                Debug.Log("Acid Slime with properties " + status + " " + strength);
                 PlayerManager.Instance.Player.GainStatus(status, strength);
             }
             StartCoroutine(AttackAnimation());
@@ -440,20 +403,6 @@ public class Monster : MoveableSprite
             case MonsterPatternType.Range:
                 damageIcon.sprite = MonsterManager.Instance.BowIcon;
                 break;
-        }
-    }
-
-    private void UpdateStatusIcon()
-    {
-        for (int i = 0; i < statusContainer.transform.childCount; i++)
-        {
-            Destroy(statusContainer.transform.GetChild(i).gameObject);
-        }
-
-        foreach (KeyValuePair<Status, int> status in statusDict)
-        {
-            GameObject statusObj = Instantiate(statusPrefab, statusContainer.transform);
-            statusObj.GetComponent<MonsterStatus>().Init(status.Key, status.Value);
         }
     }
 

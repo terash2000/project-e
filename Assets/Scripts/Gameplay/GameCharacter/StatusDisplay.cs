@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MonsterStatus : MonoBehaviour
+public class StatusDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI amountText;
     [SerializeField] private Image icon;
