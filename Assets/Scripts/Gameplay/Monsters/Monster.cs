@@ -25,6 +25,7 @@ public class Monster : GameCharacter
     private int healthAmount;
     private Vector3 healthLocalScale;
     private float healthBarSize;
+    private int blockAmount;
     private bool stuned;
     private int attackDirection = -1;
     private float radiant2 = 0f;
@@ -53,6 +54,7 @@ public class Monster : GameCharacter
         healthAmount = info.maxHealth;
         healthLocalScale = healthBar.transform.localScale;
         healthBarSize = healthLocalScale.x;
+        blockAmount = 0;
     }
 
     protected override void Update()
@@ -115,16 +117,24 @@ public class Monster : GameCharacter
         }
     }
 
-    public override int TakeDamage(int damage, Color? color = null)
+    public override int TakeDamage(int damage, Status? damageStatusEffect = null)
     {
-        KeyValuePair<int, Color> damagePair = new KeyValuePair<int, Color>(damage, color ?? damageColor);
+        Color color;
+        if (damageStatusEffect == Status.Acid)
+            color = GameManager.Instance.acidColor;
+        else if (damageStatusEffect == Status.Burn)
+            color = GameManager.Instance.burnColor;
+        else
+            color = damageColor;
+
+        KeyValuePair<int, Color> damagePair = new KeyValuePair<int, Color>(damage, color);
         CreateDamagePopup(damagePair);
 
         // Prevent Die() from being executed twice when the monster has more than one status effect
         if (healthAmount == 0)
             return 0;
 
-        healthAmount -= damage;
+        healthAmount -= damage - blockAmount;
         if (healthAmount <= 0)
         {
             healthAmount = 0;

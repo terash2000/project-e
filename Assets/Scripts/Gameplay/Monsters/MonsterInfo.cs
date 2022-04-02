@@ -22,6 +22,7 @@ public class MonsterInfo : ScriptableObject
         public int damage;
         public int attackRange;
         public int moveRange;
+        public int blockGain;
         public StatusEffectDictionary attackStatusEffect;
     }
 }

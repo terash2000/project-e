@@ -116,10 +116,10 @@ public class GameCharacter : MonoBehaviour
             switch (status.Key)
             {
                 case Status.Acid:
-                    TakeDamage(status.Value, GameManager.Instance.acidColor);
+                    TakeDamage(status.Value, Status.Acid);
                     break;
                 case Status.Burn:
-                    TakeDamage(status.Value, GameManager.Instance.burnColor);
+                    TakeDamage(status.Value, Status.Burn);
                     break;
             }
         }
@@ -131,7 +131,7 @@ public class GameCharacter : MonoBehaviour
         return true;
     }
 
-    public virtual int TakeDamage(int damage, Color? color = null)
+    public virtual int TakeDamage(int damage, Status? damageStatusEffect = null)
     {
         return 0;
     }
