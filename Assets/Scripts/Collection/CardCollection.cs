@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CardCollection : MonoBehaviourSingletonPersistent<CardCollection>
@@ -39,7 +40,8 @@ public class CardCollection : MonoBehaviourSingletonPersistent<CardCollection>
 
     public Card RandomCard()
     {
-        return allCards[Random.Range(0, allCards.Count)];
+        List<Card> unlockedCards = allCards.FindAll(card => unlockDict[card.name]);
+        return unlockedCards[Random.Range(0, unlockedCards.Count)];
     }
 
     public Dictionary<string, bool> StarterCards()

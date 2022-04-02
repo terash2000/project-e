@@ -13,7 +13,8 @@ public class StoryAction
         None,
         UnlockCard,
         AddCardToDeck,
-        ChangeHP
+        ChangeHP,
+        ChangeMaxHP
     }
 
     public void Trigger()
@@ -35,6 +36,11 @@ public class StoryAction
                 PlayerData.Health += amount;
                 // player can't die in event
                 if (PlayerData.Health <= 0) PlayerData.Health = 1;
+                break;
+            case ActionType.ChangeMaxHP:
+                PlayerData.MaxHealth += amount;
+                // player can't die in event
+                if (PlayerData.MaxHealth <= 0) PlayerData.MaxHealth = 1;
                 break;
         }
     }
