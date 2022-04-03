@@ -146,6 +146,7 @@ public class Monster : GameCharacter
             }
             else
             {
+                // Normal scenario, if the attack damage is more than the block, it'll get carried over to the health
                 blockedAmount = blockAmount - damage < 0 ? blockAmount : damage;
                 damage = damage - blockedAmount;
             }
@@ -306,6 +307,7 @@ public class Monster : GameCharacter
         Vector3Int characterTile = PlayerManager.Instance.Player.currentTile;
         if (AttackArea().Contains(characterTile))
         {
+            blockAmount += info.patterns[currentMove].blockGain;
             PlayerManager.Instance.Player.TakeDamage(info.patterns[currentMove].damage);
             foreach (Status.Type status in info.patterns[currentMove].attackStatusEffect.Keys)
             {
