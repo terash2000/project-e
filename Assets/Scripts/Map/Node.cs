@@ -38,6 +38,7 @@ public class Node : MonoBehaviour
     void OnMouseDown()
     {
         Map.Instance.AddNodeToPath(this);
+        ChangeScene();
     }
 
     public void OnClickable()
@@ -63,4 +64,5 @@ public class Node : MonoBehaviour
         check.enabled = false;
     }
 
+    protected virtual void ChangeScene() { }
 }
