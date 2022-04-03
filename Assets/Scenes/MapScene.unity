@@ -336,8 +336,9 @@ MonoBehaviour:
   minGap: 1
   maxGap: 0
   numNode: 20
-  numLayer: 4
+  numLayer: 7
   layerWidth: 4
+  maxNodePerLayer: 4
   nodePrefab: {fileID: 5473315819909535326, guid: fb71de6a55a4b394495faeca8532b9bb,
     type: 3}
   edgePrefab: {fileID: 4733582419107687985, guid: edcffc1d61444b74cb3ecd41cfed1b62,

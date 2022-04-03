@@ -54,6 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Next: []
   Prev: []
+  Layer: 0
 --- !u!212 &579062161242751539
 SpriteRenderer:
   m_ObjectHideFlags: 0

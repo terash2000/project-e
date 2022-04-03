@@ -7,12 +7,12 @@ public class Node : MonoBehaviour
 {
     public List<Node> Next;
     public List<Node> Prev;
+    public int Layer;
     private SpriteRenderer check;
     private SpriteOutline outline;
     private SpriteRenderer bg;
 
-
-    public void Init()
+    public void Init(int layer)
     {
         Next = new List<Node>();
         Prev = new List<Node>();
@@ -23,6 +23,7 @@ public class Node : MonoBehaviour
         //Debug.Log(outline);
         bg = GetComponent<SpriteRenderer>();
         GetComponent<CircleCollider2D>().enabled = false;
+        Layer = layer;
     }
 
     void OnMouseEnter()

@@ -12,10 +12,12 @@ public class Map : MonoBehaviourSingleton<Map>
     [SerializeField] private int numNode;
     [SerializeField] private int numLayer;
     [SerializeField] private float layerWidth;
+    [SerializeField] private int maxNodePerLayer;
     [SerializeField] private GameObject nodePrefab;
     [SerializeField] private GameObject edgePrefab;
     private Node curNode;
     [HideInInspector] public float WidthScale;
+    private List<int> addableLayers;
 
     void Start()
     {
@@ -51,13 +53,21 @@ public class Map : MonoBehaviourSingleton<Map>
 
     public void GenerateMap()
     {
-        for (int i = 0; i < numNode; i++)
+        InitAddableLayers();
+        for (int i = 0; i < numNode || !AllLayersHaveNodes(); i++)
         {
             GameObject node = Instantiate(nodePrefab);
-            node.GetComponent<Node>().Init();
-            node.transform.position = RandomPos();
+            int layer = RandomLayer();
+            node.GetComponent<Node>().Init(layer);
+            node.transform.position = RandomPos(layer);
             node.transform.SetParent(gameObject.transform);
             Nodes.Add(node.GetComponent<Node>());
+            SetAddableLayers(layer);
+            if (addableLayers.Count == 0)
+            {
+                numNode = i + 1;
+                break;
+            }
         }
         Nodes = Nodes.OrderByDescending(x => x.gameObject.transform.position.x).ToList();
         Nodes[0].transform.position = new Vector3(Nodes[0].transform.position.x, 0, transform.position.z);
@@ -74,7 +84,6 @@ public class Map : MonoBehaviourSingleton<Map>
         }
 
         Nodes = Nodes.OrderBy(x => x.gameObject.transform.position.x).ToList();
-
         for (int i = 1; i < numNode; i++)
         {
             if (Nodes[i].Prev.Count > 0) continue;
@@ -87,15 +96,75 @@ public class Map : MonoBehaviourSingleton<Map>
         }
     }
 
-    public Vector3 RandomPos()
+    public float GetXMin()
     {
-        float x = Random.Range(transform.position.x - GetMapSize().x / 2, transform.position.x + GetMapSize().x / 2);
+        return transform.position.x - GetMapSize().x / 2;
+    }
+
+    public float GetXMax()
+    {
+        return transform.position.x + GetMapSize().x / 2;
+    }
+
+
+    public bool AllLayersHaveNodes()
+    {
+        for (int i = 0; i < numLayer; i++)
+        {
+            if (GetNodesInLayer(i).Count == 0) return false;
+        }
+        return true;
+    }
+
+    public void InitAddableLayers()
+    {
+        addableLayers = new List<int>();
+        for (int i = 0; i < numLayer; i++)
+        {
+            addableLayers.Add(i);
+        }
+    }
+
+    public void SetAddableLayers(int layer)
+    {
+        int max;
+        if (layer == 0 || layer == numLayer - 1) max = 1;
+        else max = maxNodePerLayer;
+        if (GetNodesInLayer(layer).Count >= max) addableLayers.Remove(layer);
+    }
+    public int RandomLayer()
+    {
+        int n = addableLayers.Count;
+        return addableLayers[Random.Range(0, n)];
+    }
+
+    public List<Node> GetNodesInLayer(int layer)
+    {
+        List<Node> nodesInLayer = new List<Node>();
+        foreach (Node node in Nodes)
+        {
+            if (node.Layer == layer) nodesInLayer.Add(node);
+        }
+        return nodesInLayer;
+    }
+
+    public Vector3 RandomPos(int layer)
+    {
+        float startX = GetXMin() + GetMapSize().x * layer / numLayer;
+        float x = Random.Range(startX, startX + GetMapSize().x / numLayer);
         float y = Random.Range(-GetMapSize().y / 2, GetMapSize().y / 2);
         foreach (Node node in Nodes)
         {
-            if (Mathf.Abs(x - node.transform.position.x) < minGap && Mathf.Abs(y - node.transform.position.y) < minGap)
+            if ((Mathf.Abs(x - node.transform.position.x) < minGap && Mathf.Abs(y - node.transform.position.y) < minGap) || Mathf.Abs(x - node.transform.position.x) < minGap / 2)
             {
-                return RandomPos();
+                return RandomPos(layer);
+            }
+        }
+        foreach (Node node in GetNodesInLayer(layer))
+        {
+            if (Mathf.Abs(y - node.transform.position.y) < minGap)
+            {
+                return RandomPos(layer);
             }
         }
         return new Vector3(x, y, transform.position.z);
@@ -115,6 +184,7 @@ public class Map : MonoBehaviourSingleton<Map>
         foreach (Node node in nodes.Where(x => Connectable(x, target)).ToList())
         {
             float dis = Vector3.Distance(target.transform.position, node.transform.position);
+            //float dis = Mathf.Abs(target.transform.position.y - node.transform.position.y);
             if (min > dis)
             {
                 min = dis;
@@ -128,6 +198,9 @@ public class Map : MonoBehaviourSingleton<Map>
     public bool Connectable(Node a, Node b)
     {
         return Mathf.Abs(a.transform.position.x - b.transform.position.x) > minGap / 2;
+        /*int max = Random.Range(1, 3);
+        if (a.Layer == 0 || a.Layer == numLayer - 1 || b.Layer == 0 || b.Layer == numLayer - 1) max = 1;
+        return Mathf.Abs(a.Layer - b.Layer) <= max && a.Layer != b.Layer;*/
     }
 
     public List<Node> FindStartNodes()
@@ -172,7 +245,6 @@ public class Map : MonoBehaviourSingleton<Map>
 
     public void AddNodeToPath(Node node)
     {
-        //if (FindStartNodes().Contains(node)) 
         PlayerData.path.Add(Nodes.IndexOf(node));
         UpdateOldPath(node);
         curNode = node;
