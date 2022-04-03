@@ -202,6 +202,7 @@ public class Monster : GameCharacter
         switch (pattern.pattern)
         {
             case MonsterPatternType.Basic:
+            case MonsterPatternType.AttackAndBlock:
                 area.AddRange(Arena.Instance.GetPosListNear(currentTile));
                 break;
             case MonsterPatternType.Range:
@@ -228,6 +229,7 @@ public class Monster : GameCharacter
         {
             case MonsterPatternType.Basic:
             case MonsterPatternType.Range:
+            case MonsterPatternType.AttackAndBlock:
                 moveableTiles.AddRange(Arena.Instance.GetPosList(AreaShape.Hexagon, pattern.moveRange, currentTile));
                 break;
         }
@@ -243,6 +245,7 @@ public class Monster : GameCharacter
             switch (pattern.pattern)
             {
                 case MonsterPatternType.Basic:
+                case MonsterPatternType.AttackAndBlock:
                     targetTiles = ShortenDistance(moveableTiles, characterTile);
                     break;
                 case MonsterPatternType.Range:
@@ -342,7 +345,7 @@ public class Monster : GameCharacter
 
     public bool ShowAttackArea()
     {
-        return info.patterns[currentMove].pattern != MonsterPatternType.Basic;
+        return info.patterns[currentMove].pattern == MonsterPatternType.Range;
     }
 
     private IEnumerator Die()
@@ -438,6 +441,9 @@ public class Monster : GameCharacter
                 break;
             case MonsterPatternType.Range:
                 damageIcon.sprite = MonsterManager.Instance.BowIcon;
+                break;
+            case MonsterPatternType.AttackAndBlock:
+                damageIcon.sprite = MonsterManager.Instance.SwordAndShieldIcon;
                 break;
         }
     }

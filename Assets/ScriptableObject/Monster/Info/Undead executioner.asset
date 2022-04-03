@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: Undead executioner
   maxHealth: 25
+  initialBlock: 0
   patterns:
-  - pattern: 0
+  - pattern: 2
     damage: 5
     attackRange: 1
     moveRange: 3
+    blockGain: 5
     attackStatusEffect:
       m_keys: 
       m_values: 
@@ -26,13 +28,15 @@ MonoBehaviour:
     damage: 10
     attackRange: 4
     moveRange: 1
+    blockGain: 0
     attackStatusEffect:
       m_keys: 
       m_values: 
-  - pattern: 0
+  - pattern: 2
     damage: 5
     attackRange: 1
     moveRange: 3
+    blockGain: 5
     attackStatusEffect:
       m_keys: 
       m_values: 

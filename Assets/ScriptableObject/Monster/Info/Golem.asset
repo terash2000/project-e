@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: Golem
   maxHealth: 25
+  initialBlock: 15
   patterns:
   - pattern: 0
     damage: 3
     attackRange: 0
     moveRange: 1
+    blockGain: 0
+    attackStatusEffect:
+      m_keys: 
+      m_values: 
   animatorController: {fileID: 9100000, guid: 052e0a63b40d70e44bd7c941d67e4a26, type: 2}
   spriteColor: {r: 1, g: 1, b: 1, a: 1}
   spriteScale: 1.35
