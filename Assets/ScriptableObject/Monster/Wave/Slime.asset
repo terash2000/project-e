@@ -19,7 +19,7 @@ MonoBehaviour:
   - monster: {fileID: 11400000, guid: 16f5bc9b5a1686c499dc1bbd1f843cb5, type: 2}
     tile: {x: 0, y: 3}
     currentMove: 0
-  - monster: {fileID: 11400000, guid: 16f5bc9b5a1686c499dc1bbd1f843cb5, type: 2}
+  - monster: {fileID: 11400000, guid: cf2e318339fde8f4caebcf0f3056a6a6, type: 2}
     tile: {x: 1, y: -2}
     currentMove: 0
   - monster: {fileID: 11400000, guid: 16f5bc9b5a1686c499dc1bbd1f843cb5, type: 2}
