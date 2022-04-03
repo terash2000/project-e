@@ -16,11 +16,11 @@ MonoBehaviour:
   maxHealth: 8
   initialBlock: 12
   patterns:
-  - pattern: 0
+  - pattern: 2
     damage: 2
     attackRange: 0
     moveRange: 1
-    blockGain: 4
+    blockGain: 2
     attackStatusEffect:
       m_keys: 
       m_values: 
