@@ -450,6 +450,7 @@ MonoBehaviour:
   acidColor: {r: 0.78431374, g: 1, b: 0, a: 1}
   burnIcon: {fileID: 21300000, guid: 3068b0e02813be54bb651355d4590437, type: 3}
   burnColor: {r: 1, g: 0.39215687, b: 0, a: 1}
+  blockColor: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0}
   gameResultPopup: {fileID: 8495098981698586526}
 --- !u!4 &424601450
 Transform:

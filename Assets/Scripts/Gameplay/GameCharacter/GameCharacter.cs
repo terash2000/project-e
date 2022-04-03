@@ -18,8 +18,8 @@ public class GameCharacter : MonoBehaviour
     protected GameObject sprite;
     protected Animator animator;
 
-    protected Dictionary<Status, int> _statusDict = new Dictionary<Status, int>();
-    public Dictionary<Status, int> StatusDict
+    protected Dictionary<Status.Type, int> _statusDict = new Dictionary<Status.Type, int>();
+    public Dictionary<Status.Type, int> StatusDict
     {
         get { return _statusDict; }
         set { }
@@ -88,11 +88,11 @@ public class GameCharacter : MonoBehaviour
         radiant = 0f;
     }
 
-    public virtual void GainStatus(Status status, int amount = 1)
+    public virtual void GainStatus(Status.Type status, int amount = 1)
     {
         switch (status)
         {
-            case Status.Stun:
+            case Status.Type.Stun:
                 Stun();
                 break;
             default:
@@ -111,15 +111,15 @@ public class GameCharacter : MonoBehaviour
     {
         if (_statusDict.Count == 0) return false;
 
-        foreach (KeyValuePair<Status, int> status in _statusDict)
+        foreach (KeyValuePair<Status.Type, int> status in _statusDict)
         {
             switch (status.Key)
             {
-                case Status.Acid:
-                    TakeDamage(status.Value, Status.Acid);
+                case Status.Type.Acid:
+                    TakeDamage(status.Value, Status.Type.Acid);
                     break;
-                case Status.Burn:
-                    TakeDamage(status.Value, Status.Burn);
+                case Status.Type.Burn:
+                    TakeDamage(status.Value, Status.Type.Burn);
                     break;
             }
         }
@@ -131,7 +131,7 @@ public class GameCharacter : MonoBehaviour
         return true;
     }
 
-    public virtual int TakeDamage(int damage, Status? damageStatusEffect = null)
+    public virtual int TakeDamage(int damage, Status.Type? damageStatusEffect = null)
     {
         return 0;
     }

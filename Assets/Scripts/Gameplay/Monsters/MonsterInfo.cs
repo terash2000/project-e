@@ -7,13 +7,14 @@ public class MonsterInfo : ScriptableObject
 {
     public string monsterName;
     public int maxHealth;
+    public int initialBlock;
     public List<MonsterPattern> patterns;
     public RuntimeAnimatorController animatorController;
     public Color spriteColor = Color.white;
     public float spriteScale = 1;
 
     [Serializable]
-    public class StatusEffectDictionary : SerializableDictionary<Status, int> { }
+    public class StatusEffectDictionary : SerializableDictionary<Status.Type, int> { }
 
     [Serializable]
     public class MonsterPattern

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public Color acidColor;
     public Sprite burnIcon;
     public Color burnColor;
+    public Color blockColor;
 
     public GameResultPopup gameResultPopup;
 

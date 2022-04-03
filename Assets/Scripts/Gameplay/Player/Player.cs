@@ -17,7 +17,7 @@ public class Player : GameCharacter
         base.Update();
     }
 
-    public override int TakeDamage(int damage, Status? damageStatusEffect = null)
+    public override int TakeDamage(int damage, Status.Type? damageStatusEffect = null)
     {
         PlayerData.Health -= damage;
         return PlayerData.Health;
