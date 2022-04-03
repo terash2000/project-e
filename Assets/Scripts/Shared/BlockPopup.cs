@@ -22,7 +22,7 @@ public class BlockPopup : MonoBehaviour
         _textColor = _textMesh.faceColor;
         _textColor.a = 0.6f;
         _textMesh.faceColor = _textColor;
-        _textMesh.fontSize = 0.2f;
+        _textMesh.fontSize = 0.3f;
         _moveVector = new Vector3(Random.Range(-0.7f, -1.0f), 0.1f) * INITIAL_TEXT_VELOCITY;
     }
 

@@ -15,6 +15,7 @@ public class Monster : GameCharacter
     public bool attacked;
 
     [SerializeField] private GameObject healthBar;
+    [SerializeField] private GameObject blockBar;
     [SerializeField] private GameObject healthText;
     [SerializeField] private GameObject damageText;
     [SerializeField] private GameObject blockText;
@@ -80,10 +81,13 @@ public class Monster : GameCharacter
         }
 
         // hp
-        healthLocalScale.x = (float)healthAmount / (float)info.maxHealth * healthBarSize;
+        healthLocalScale.x = healthBarSize * (float)healthAmount / (float)info.maxHealth;
         healthBar.transform.localScale = healthLocalScale;
         healthText.GetComponent<TextMeshProUGUI>().text = healthAmount.ToString();
+
         blockText.GetComponent<TextMeshProUGUI>().text = blockAmount.ToString();
+        blockText.SetActive(blockAmount > 0);
+        blockBar.SetActive(blockAmount > 0);
 
         // attack damage
         if (stuned)
@@ -447,16 +451,20 @@ public class Monster : GameCharacter
         else
         {
             Canvas monsterCanvas = GetComponentInChildren<Canvas>();
-            GameObject damagePopup = Instantiate(previewDamage, monsterCanvas.transform);
-            damagePopup.SetActive(true);
-            damagePopup.name = "Popup Damage";
 
-            TextMeshProUGUI damagePopupText = damagePopup.GetComponent<TextMeshProUGUI>();
-            damagePopupText.text = data.damage.ToString();
-            damagePopupText.color = data.color;
+            if (data.damage != 0 || data.color == damageColor)
+            {
+                GameObject damagePopup = Instantiate(previewDamage, monsterCanvas.transform);
+                damagePopup.SetActive(true);
+                damagePopup.name = "Popup Damage";
 
-            damagePopup.AddComponent<DamagePopup>();
-            damagePopup.transform.SetParent(Arena.Instance.transform);
+                TextMeshProUGUI damagePopupText = damagePopup.GetComponent<TextMeshProUGUI>();
+                damagePopupText.text = data.damage.ToString();
+                damagePopupText.color = data.color;
+
+                damagePopup.AddComponent<DamagePopup>();
+                damagePopup.transform.SetParent(Arena.Instance.transform);
+            }
 
             if (data.block != 0)
             {
