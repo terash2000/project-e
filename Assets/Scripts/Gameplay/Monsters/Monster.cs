@@ -104,7 +104,6 @@ public class Monster : GameCharacter
         {
             previewDamage.SetActive(true);
             int cardDamage = Arena.Instance.SelectedCard.GetDamage();
-            cardDamage = cardDamage - blockAmount < 0 ? 0 : cardDamage - blockAmount;
             previewDamage.GetComponent<TextMeshProUGUI>().text = cardDamage.ToString();
         }
         else previewDamage.SetActive(false);
