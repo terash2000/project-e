@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1371194461680648787}
-  - component: {fileID: 97934034823688106}
   - component: {fileID: 579062161242751539}
   - component: {fileID: 5132147005677893074}
   - component: {fileID: 4043383569078361488}
+  - component: {fileID: 339267743453452697}
   m_Layer: 0
-  m_Name: Node
+  m_Name: BattleNode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,21 +40,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &97934034823688106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5473315819909535326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70265957fa5795644bf83bd61893ca01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Next: []
-  Prev: []
-  Layer: 0
 --- !u!212 &579062161242751539
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -96,7 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+  m_Color: {r: 0.754717, g: 0.52331793, b: 0.52331793, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -136,6 +121,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 1, a: 1}
   outlineSize: 4
+--- !u!114 &339267743453452697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5473315819909535326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 006e33e07af402347bf4faae5ef363f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Next: []
+  Prev: []
 --- !u!1 &5671399020616162228
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Map : MonoBehaviourSingleton<Map>
 {
+    public List<Wave> allWaves;
+    public List<DialogNode> allRandomEvents;
     public List<Node> Nodes;
     public List<LineRenderer> Edges;
     [SerializeField] private float minGap;
@@ -13,7 +15,8 @@ public class Map : MonoBehaviourSingleton<Map>
     [SerializeField] private int numLayer;
     [SerializeField] private float layerWidth;
     [SerializeField] private int maxNodePerLayer;
-    [SerializeField] private GameObject nodePrefab;
+    [SerializeField] private GameObject battleNodePrefab;
+    [SerializeField] private GameObject eventNodePrefab;
     [SerializeField] private GameObject edgePrefab;
     private Node curNode;
     [HideInInspector] public float WidthScale;
@@ -56,7 +59,7 @@ public class Map : MonoBehaviourSingleton<Map>
         InitAddableLayers();
         for (int i = 0; i < numNode || !AllLayersHaveNodes(); i++)
         {
-            GameObject node = Instantiate(nodePrefab);
+            GameObject node = CreateRandomNode();
             int layer = RandomLayer();
             node.GetComponent<Node>().Init(layer);
             node.transform.position = RandomPos(layer);
@@ -123,6 +126,35 @@ public class Map : MonoBehaviourSingleton<Map>
         {
             addableLayers.Add(i);
         }
+    }
+    private GameObject CreateRandomNode()
+    {
+        int rand = Random.Range(0, 2);
+        switch (rand)
+        {
+            case 0:
+                return CreateBattleNode();
+            case 1:
+                return CreateEventNode();
+            default:
+                return null;
+        }
+    }
+
+    private GameObject CreateBattleNode()
+    {
+        GameObject battleNode = Instantiate(battleNodePrefab);
+        Wave wave = allWaves[Random.Range(0, allWaves.Count)];
+        battleNode.GetComponent<BattleNode>().wave = wave;
+        return battleNode;
+    }
+
+    private GameObject CreateEventNode()
+    {
+        GameObject eventNode = Instantiate(eventNodePrefab);
+        DialogNode randomEvent = allRandomEvents[Random.Range(0, allRandomEvents.Count)];
+        eventNode.GetComponent<EventNode>().randomEvent = randomEvent;
+        return eventNode;
     }
 
     public void SetAddableLayers(int layer)
@@ -249,7 +281,6 @@ public class Map : MonoBehaviourSingleton<Map>
         UpdateOldPath(node);
         curNode = node;
         ShowUpdatePath();
-        SaveSystem.Save();
     }
 
     public void UpdateOldPath(Node newCurNode)
