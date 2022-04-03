@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: Slime
   maxHealth: 12
-  initialBlock: 10
+  initialBlock: 0
   patterns:
   - pattern: 0
     damage: 2
