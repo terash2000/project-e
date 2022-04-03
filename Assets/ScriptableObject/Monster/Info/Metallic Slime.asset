@@ -20,7 +20,7 @@ MonoBehaviour:
     damage: 2
     attackRange: 0
     moveRange: 1
-    blockGain: 4
+    blockGain: 2
     attackStatusEffect:
       m_keys: 
       m_values: 
