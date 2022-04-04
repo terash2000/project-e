@@ -717,6 +717,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card
       objectReference: {fileID: 0}
+    - target: {fileID: 1512648265458517788, guid: f9f29a3fe22c4084ea35c84c78b4208b,
+        type: 3}
+      propertyPath: card
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c5bc709221dd2c43b7ec419a71ee3f1,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9f29a3fe22c4084ea35c84c78b4208b, type: 3}
 --- !u!224 &1721792357 stripped
