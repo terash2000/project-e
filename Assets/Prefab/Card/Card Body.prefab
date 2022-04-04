@@ -458,6 +458,7 @@ MonoBehaviour:
   card: {fileID: 0}
   nameText: {fileID: 413808422571279232}
   descriptionText: {fileID: 8043876153943103632}
+  typeText: {fileID: 820269760329049141}
   artworkImage: {fileID: 855379502305876836}
   manaText: {fileID: 8429676617873524002}
 --- !u!1 &2752332542243071970
