@@ -14,14 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: Burning Slime
   maxHealth: 10
+  initialBlock: 0
   patterns:
   - pattern: 0
     damage: 1
     attackRange: 0
     moveRange: 1
+    blockGain: 0
     attackStatusEffect:
       m_keys: 02000000
       m_values: 03000000
   animatorController: {fileID: 9100000, guid: fd3d1d592b8fb114ba5d3d9aac1739ea, type: 2}
-  spriteColor: {r: 1, g: 0.8836636, b: 0, a: 0.68235296}
+  spriteColor: {r: 1, g: 0.8836636, b: 0, a: 1}
   spriteScale: 1.8

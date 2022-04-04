@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Metallic Slime
   m_EditorClassIdentifier: 
   monsterName: Metallic Slime
-  maxHealth: 8
-  initialBlock: 12
+  maxHealth: 12
+  initialBlock: 8
   patterns:
   - pattern: 2
     damage: 2
@@ -25,5 +25,5 @@ MonoBehaviour:
       m_keys: 
       m_values: 
   animatorController: {fileID: 9100000, guid: fd3d1d592b8fb114ba5d3d9aac1739ea, type: 2}
-  spriteColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
-  spriteScale: 1.8
+  spriteColor: {r: 1, g: 0.6933962, b: 0.6933962, a: 1}
+  spriteScale: 2.5
