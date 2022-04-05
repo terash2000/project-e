@@ -5,20 +5,35 @@ using UnityEngine;
 
 public class GameCharacter : MonoBehaviour
 {
-    public Vector3Int currentTile;
+    [SerializeField]
+    protected float Speed;
 
-    [SerializeField] protected float speed;
-    protected GridLayout grid;
-    protected Vector2 displacement;
-    protected Vector2 movement;
-    protected Vector2 oldPosition;
-    protected Vector2 nextPosition;
-    protected Vector2 lookDirection = new Vector2(0, -1);
-    protected float radiant = 0f;
-    protected GameObject sprite;
-    protected Animator animator;
+    public Vector3Int CurrentTile;
 
-    protected Dictionary<Status.Type, int> _statusDict = new Dictionary<Status.Type, int>();
+    protected GridLayout Grid;
+    protected Vector2 Displacement;
+    protected Vector2 Movement;
+    protected Vector2 OldPosition;
+    protected Vector2 NextPosition;
+    protected Vector2 LookDirection = new Vector2(0, -1);
+    protected float Radiant = 0f;
+    protected GameObject Sprite;
+    protected Animator Animator;
+
+    private int _health;
+    private int _block;
+    private Dictionary<Status.Type, int> _statusDict = new Dictionary<Status.Type, int>();
+
+    public int Health
+    {
+        get { return _health; }
+        set { _health = value; }
+    }
+    public int Block
+    {
+        get { return _block; }
+        set { _block = value; }
+    }
     public Dictionary<Status.Type, int> StatusDict
     {
         get { return _statusDict; }
@@ -30,62 +45,62 @@ public class GameCharacter : MonoBehaviour
         Transform spriteTransform = transform.Find("Sprite");
         if (spriteTransform)
         {
-            sprite = spriteTransform.gameObject;
-            animator = sprite.GetComponent<Animator>();
+            Sprite = spriteTransform.gameObject;
+            Animator = Sprite.GetComponent<Animator>();
         }
-        else animator = GetComponent<Animator>();
+        else Animator = GetComponent<Animator>();
 
-        grid = Arena.Instance.GetComponentInChildren<GridLayout>();
-        transform.position = oldPosition = nextPosition = grid.CellToWorld(currentTile);
+        Grid = Arena.Instance.GetComponentInChildren<GridLayout>();
+        transform.position = OldPosition = NextPosition = Grid.CellToWorld(CurrentTile);
     }
 
     protected virtual void Update()
     {
         // ============== MOVEMENT ======================
-        displacement = new Vector2(nextPosition.x - oldPosition.x, nextPosition.y - oldPosition.y);
-        transform.position = oldPosition + displacement * Mathf.Cos(radiant);
-        movement = displacement * Mathf.Sin(radiant);
+        Displacement = new Vector2(NextPosition.x - OldPosition.x, NextPosition.y - OldPosition.y);
+        transform.position = OldPosition + Displacement * Mathf.Cos(Radiant);
+        Movement = Displacement * Mathf.Sin(Radiant);
 
-        if (!Mathf.Approximately(movement.x, 0.0f) || !Mathf.Approximately(movement.y, 0.0f))
+        if (!Mathf.Approximately(Movement.x, 0.0f) || !Mathf.Approximately(Movement.y, 0.0f))
         {
-            lookDirection.Set(movement.x, movement.y);
-            lookDirection.Normalize();
+            LookDirection.Set(Movement.x, Movement.y);
+            LookDirection.Normalize();
         }
 
         // ============== ANIMATION =======================
-        animator.SetFloat("Look X", lookDirection.x);
-        animator.SetFloat("Look Y", lookDirection.y);
-        animator.SetFloat("Speed", movement.magnitude);
+        Animator.SetFloat("Look X", LookDirection.x);
+        Animator.SetFloat("Look Y", LookDirection.y);
+        Animator.SetFloat("Speed", Movement.magnitude);
     }
 
     public void SetMovement(Vector3Int tile)
     {
-        if (currentTile == tile) return;
-        Vector2 position = grid.CellToWorld(tile);
-        oldPosition = grid.CellToWorld(currentTile);
-        nextPosition = position;
-        currentTile = tile;
+        if (CurrentTile == tile) return;
+        Vector2 position = Grid.CellToWorld(tile);
+        OldPosition = Grid.CellToWorld(CurrentTile);
+        NextPosition = position;
+        CurrentTile = tile;
         if (!IsMoving())
         {
             StartCoroutine(Move());
         }
-        else radiant = Mathf.PI / 2;
+        else Radiant = Mathf.PI / 2;
     }
 
     public bool IsMoving()
     {
-        return radiant > 0f;
+        return Radiant > 0f;
     }
 
     private IEnumerator Move()
     {
-        radiant = Mathf.PI / 2;
-        while (radiant > 0f)
+        Radiant = Mathf.PI / 2;
+        while (Radiant > 0f)
         {
             yield return new WaitForSeconds(Time.deltaTime);
-            radiant -= Mathf.PI / 2 * speed * Time.deltaTime;
+            Radiant -= Mathf.PI / 2 * Speed * Time.deltaTime;
         }
-        radiant = 0f;
+        Radiant = 0f;
     }
 
     public virtual void GainStatus(Status.Type status, int amount = 1)

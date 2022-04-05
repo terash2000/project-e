@@ -45,7 +45,7 @@ public class MonsterManager : MonoBehaviourSingleton<MonsterManager>, ITurnHandl
     {
         foreach (Monster monster in monsters)
         {
-            if (monster.currentTile == tile)
+            if (monster.CurrentTile == tile)
                 return monster;
         }
         return null;
@@ -66,7 +66,7 @@ public class MonsterManager : MonoBehaviourSingleton<MonsterManager>, ITurnHandl
     {
         foreach (Monster monster in monsters)
         {
-            if (!monster.attacked || monster.CanMoveAfterAttack()) monster.Move();
+            if (!monster.HasAttacked || monster.CanMoveAfterAttack()) monster.Move();
         }
     }
 
@@ -77,9 +77,9 @@ public class MonsterManager : MonoBehaviourSingleton<MonsterManager>, ITurnHandl
             foreach (Wave.MonsterSpawner monsterSpawner in wave.monsters)
             {
                 Monster monster = Instantiate(monsterPrefab, grid.transform).GetComponent<Monster>();
-                monster.info = monsterSpawner.monster;
-                monster.currentTile = new Vector3Int(monsterSpawner.tile.x, monsterSpawner.tile.y, 0);
-                monster.currentMove = monsterSpawner.currentMove;
+                monster.Info = monsterSpawner.monster;
+                monster.CurrentTile = new Vector3Int(monsterSpawner.tile.x, monsterSpawner.tile.y, 0);
+                monster.CurrentMove = monsterSpawner.currentMove;
 
                 monsters.Add(monster);
             }
