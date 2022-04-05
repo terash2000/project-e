@@ -87,7 +87,7 @@ public static class SaveSystem
         FileStream file = File.Create(Application.persistentDataPath + "/UnlockData.dat");
 
         UnlockData data = new UnlockData();
-        data.unlockDict = CardCollection.unlockDict;
+        data.unlockDict = CardCollection.UnlockDict;
 
         formatter.Serialize(file, data);
         file.Close();
@@ -105,18 +105,18 @@ public static class SaveSystem
 
             if (data.unlockDict.Count == CardCollection.Instance.allCards.Count)
             {
-                CardCollection.unlockDict = data.unlockDict;
+                CardCollection.UnlockDict = data.unlockDict;
             }
             else
             {
                 // corrupted data or old verision
                 File.Delete(Application.persistentDataPath + "/UnlockData.dat");
-                CardCollection.unlockDict = CardCollection.Instance.StarterCards();
+                CardCollection.UnlockDict = CardCollection.Instance.StarterCards();
             }
         }
         else
         {
-            CardCollection.unlockDict = CardCollection.Instance.StarterCards();
+            CardCollection.UnlockDict = CardCollection.Instance.StarterCards();
         }
     }
 }

@@ -739,9 +739,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa74cde46bd0a04ea39e647f9ae7330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardContainer: {fileID: 268537443}
-  previousButton: {fileID: 710822213}
-  nextButton: {fileID: 911058387}
+  _cardContainer: {fileID: 268537443}
+  _previousButton: {fileID: 710822213}
+  _nextButton: {fileID: 911058387}
 --- !u!4 &1400474526
 Transform:
   m_ObjectHideFlags: 0

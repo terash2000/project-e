@@ -4,21 +4,33 @@ using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
-    public Card card;
+    [SerializeField]
+    private TextMeshProUGUI _nameText;
+    [SerializeField]
+    private TextMeshProUGUI _descriptionText;
+    [SerializeField]
+    private TextMeshProUGUI _typeText;
+    [SerializeField]
+    private Image _artworkImage;
 
-    [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private TextMeshProUGUI descriptionText;
-    [SerializeField] private TextMeshProUGUI typeText;
-    [SerializeField] private Image artworkImage;
-    [SerializeField] private TextMeshProUGUI manaText;
+    [SerializeField]
+    private TextMeshProUGUI _manaText;
+
+    private Card _card;
+
+    public Card Card
+    {
+        get { return _card; }
+        set { _card = value; }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        nameText.text = card.cardName;
-        descriptionText.text = card.description;
-        typeText.text = card.type.ToString();
-        artworkImage.sprite = card.artwork;
-        manaText.text = card.manaCost.ToString();
+        _nameText.text = Card.CardName;
+        _descriptionText.text = Card.Description;
+        _typeText.text = Card.Type.ToString();
+        _artworkImage.sprite = Card.Artwork;
+        _manaText.text = Card.ManaCost.ToString();
     }
 }

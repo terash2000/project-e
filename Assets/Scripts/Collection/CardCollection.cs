@@ -13,8 +13,15 @@ public class CardCollection : MonoBehaviourSingletonPersistent<CardCollection>
     [SerializeField]
     private GameObject _lockedCardPrefab;
 
-    public static Dictionary<string, bool> unlockDict;
+    private static Dictionary<string, bool> _unlockDict;
+
     public List<Card> allCards;
+
+    public static Dictionary<string, bool> UnlockDict
+    {
+        get { return _unlockDict; }
+        set { _unlockDict = value; }
+    }
 
     public GameObject NewCardPopup { get { return _newCardPopup; } }
     public GameObject ChooseCardPopup { get { return _chooseCardPopup; } }
@@ -33,14 +40,14 @@ public class CardCollection : MonoBehaviourSingletonPersistent<CardCollection>
     {
         foreach (Card card in allCards)
         {
-            if (card.cardName == cardName) return card;
+            if (card.CardName == cardName) return card;
         }
         return null;
     }
 
     public Card RandomCard()
     {
-        List<Card> unlockedCards = allCards.FindAll(card => unlockDict[card.name]);
+        List<Card> unlockedCards = allCards.FindAll(card => UnlockDict[card.name]);
         return unlockedCards[Random.Range(0, unlockedCards.Count)];
     }
 
@@ -49,14 +56,14 @@ public class CardCollection : MonoBehaviourSingletonPersistent<CardCollection>
         Dictionary<string, bool> dict = new Dictionary<string, bool>();
         foreach (Card card in allCards)
         {
-            dict.Add(card.cardName, !card.needToUnlock);
+            dict.Add(card.CardName, card.IsUnlocked);
         }
         return dict;
     }
 
     public void UnlockCard(string key)
     {
-        unlockDict[key] = true;
+        UnlockDict[key] = true;
         SaveSystem.SaveUnlockData();
     }
 }

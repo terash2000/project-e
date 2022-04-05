@@ -68,7 +68,7 @@ public class DeckList : MonoBehaviour
             int cardIndex = i + currentPage * CONTAINER_SIZE;
             if (cardIndex >= deck.Count) break;
             GameObject cardObj = Instantiate(CardCollection.Instance.CardPrefab, cardContainer.transform);
-            cardObj.GetComponent<CardDisplay>().card = deck[cardIndex];
+            cardObj.GetComponent<CardDisplay>().Card = deck[cardIndex];
         }
     }
 }
