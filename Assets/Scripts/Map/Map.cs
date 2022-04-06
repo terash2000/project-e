@@ -78,10 +78,10 @@ public class Map : MonoBehaviourSingleton<Map>
 
         for (int i = 1; i < numNode; i++)
         {
+            Node nextNode = FindNearestNode(Nodes[i], Nodes.GetRange(0, i));
             GameObject edge = Instantiate(edgePrefab);
             edge.transform.SetParent(gameObject.transform);
             Edges.Add(edge.GetComponent<LineRenderer>());
-            Node nextNode = FindNearestNode(Nodes[i], Nodes.GetRange(0, i));
             ConnectNodes(Nodes[i], nextNode);
             Edges.Last().SetPositions(new Vector3[] { Nodes[i].transform.position, nextNode.transform.position });
         }
@@ -90,10 +90,10 @@ public class Map : MonoBehaviourSingleton<Map>
         for (int i = 1; i < numNode; i++)
         {
             if (Nodes[i].Prev.Count > 0) continue;
+            Node prevNode = FindNearestNode(Nodes[i], Nodes.GetRange(0, i));
             GameObject edge = Instantiate(edgePrefab);
             edge.transform.SetParent(gameObject.transform);
             Edges.Add(edge.GetComponent<LineRenderer>());
-            Node prevNode = FindNearestNode(Nodes[i], Nodes.GetRange(0, i));
             ConnectNodes(prevNode, Nodes[i]);
             Edges.Last().SetPositions(new Vector3[] { prevNode.transform.position, Nodes[i].transform.position });
         }
@@ -182,12 +182,12 @@ public class Map : MonoBehaviourSingleton<Map>
 
     public Vector3 RandomPos(int layer)
     {
-        float startX = GetXMin() + GetMapSize().x * layer / numLayer;
-        float x = Random.Range(startX, startX + GetMapSize().x / numLayer);
+        float startX = GetXMin() + GetMapSize().x * (layer + 0.25f) / numLayer;
+        float x = Random.Range(startX, startX + 0.5f * GetMapSize().x / numLayer);
         float y = Random.Range(-GetMapSize().y / 2, GetMapSize().y / 2);
         foreach (Node node in Nodes)
         {
-            if ((Mathf.Abs(x - node.transform.position.x) < minGap && Mathf.Abs(y - node.transform.position.y) < minGap) || Mathf.Abs(x - node.transform.position.x) < minGap / 2)
+            if ((Mathf.Abs(x - node.transform.position.x) < minGap && Mathf.Abs(y - node.transform.position.y) < minGap))
             {
                 return RandomPos(layer);
             }
@@ -211,28 +211,39 @@ public class Map : MonoBehaviourSingleton<Map>
 
     public Node FindNearestNode(Node target, List<Node> nodes)
     {
-        float min = Mathf.Infinity;
-        Node nearestNode = null;
-        foreach (Node node in nodes.Where(x => Connectable(x, target)).ToList())
-        {
-            float dis = Vector3.Distance(target.transform.position, node.transform.position);
-            //float dis = Mathf.Abs(target.transform.position.y - node.transform.position.y);
-            if (min > dis)
-            {
-                min = dis;
-                nearestNode = node;
-            }
-        }
-        if (nearestNode == null) return nodes[Random.Range(0, nodes.Count)];
-        return nearestNode;
+        //List<Node> nearestNodes = nodes.Where(x => Connectable(x, target)).ToList().OrderBy(x => Mathf.Abs(target.transform.position.y - x.transform.position.y)).ToList();
+        List<Node> nearestNodes = nodes.Where(x => Connectable(x, target)).ToList().OrderBy(x => Vector3.Distance(target.transform.position, x.transform.position)).ToList();
+        if (nearestNodes.Count == 0) return nodes[Random.Range(0, nodes.Count)];
+
+        //return nearestNodes[Mathf.Min(nearestNodes.Count - 1, Random.Range(0, 2))];
+        return nearestNodes[0];
     }
 
     public bool Connectable(Node a, Node b)
     {
-        return Mathf.Abs(a.transform.position.x - b.transform.position.x) > minGap / 2;
-        /*int max = Random.Range(1, 3);
+        //return Mathf.Abs(a.transform.position.x - b.transform.position.x) > minGap / 2;
+        int max = Random.Range(1, 2);
         if (a.Layer == 0 || a.Layer == numLayer - 1 || b.Layer == 0 || b.Layer == numLayer - 1) max = 1;
-        return Mathf.Abs(a.Layer - b.Layer) <= max && a.Layer != b.Layer;*/
+        return Mathf.Abs(a.Layer - b.Layer) <= max && a.Layer != b.Layer && !EdgesOverlap(a, b);
+    }
+
+    public bool EdgesOverlap(Node a, Node b)
+    {
+        foreach (LineRenderer edge in Edges)
+        {
+            if (EdgeOverlap(a.transform.position, b.transform.position, edge.GetPosition(0), edge.GetPosition(1))) return true;
+        }
+        return false;
+    }
+    public bool EdgeOverlap(Vector3 a1, Vector3 b1, Vector3 a2, Vector3 b2)
+    {
+        if (a1 == a2 || a1 == b2 || b1 == a2 || b1 == b2) return false;
+        float m = (b1.y - a1.y) / (b1.x - a1.x);
+        float b = -m * a1.x + a1.y;
+        bool overlap = (m * a2.x + b - a2.y) * (m * b2.x + b - b2.y) < 0;
+        m = (b2.y - a2.y) / (b2.x - a2.x);
+        b = -m * a2.x + a2.y;
+        return overlap && (m * a1.x + b - a1.y) * (m * b1.x + b - b1.y) < 0;
     }
 
     public List<Node> FindStartNodes()
