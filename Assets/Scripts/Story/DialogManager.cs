@@ -17,6 +17,7 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
     [SerializeField] private Transform canvas;
     private TextMeshProUGUI characterNameText;
     private bool isPause;
+    private bool choiceClicked;
 
     void Start()
     {
@@ -33,14 +34,15 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
             Input.GetKeyDown(KeyCode.Space) ||
             Input.GetKeyDown(KeyCode.Return) ||
             Input.GetKeyDown(KeyCode.Z)) &&
-            !quoteObj.IsTyping() &&
             !isPause &&
+            !choiceClicked &&
             Time.timeScale != 0)
         {
             Next();
         }
 
         isPause = Time.timeScale == 0;
+        choiceClicked = false;
     }
 
     public void ShowPopup(string header, string cardname)
@@ -51,41 +53,45 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
 
     private void Next()
     {
-        if (current.nextWave != null)
+        if (!quoteObj.IsTyping())
         {
-            if (current.child != null && current.child.Count != 0)
+            if (current.nextWave != null)
             {
-                SceneChanger.nextScene.Push("StoryScene");
-                DialogManager.nextRoot.Push(current.child[0]);
-            }
-            MonsterManager.wave = current.nextWave;
-            SceneChanger.LoadScene("CombatScene");
+                if (current.child != null && current.child.Count != 0)
+                {
+                    SceneChanger.nextScene.Push("StoryScene");
+                    DialogManager.nextRoot.Push(current.child[0]);
+                }
+                MonsterManager.wave = current.nextWave;
+                SceneChanger.LoadScene("CombatScene");
 
-        }
-        else if (current.child != null && current.child.Count != 0)
-        {
-            switch (current.type)
+            }
+            else if (current.child != null && current.child.Count != 0)
             {
-                case NodeType.Basic:
-                    ChangeNode(current.child[0]);
-                    break;
-                case NodeType.Choice:
-                    break;
+                switch (current.type)
+                {
+                    case NodeType.Basic:
+                        ChangeNode(current.child[0]);
+                        break;
+                    case NodeType.Choice:
+                        break;
+                }
+            }
+            else
+            {
+                SceneChanger.NextScene();
             }
         }
         else
         {
-            SceneChanger.NextScene();
+            quoteObj.SkipTyping();
         }
     }
 
     private void ChangeNode(DialogNode node)
     {
-        if (!quoteObj.IsTyping())
-        {
-            current = node;
-            Render();
-        }
+        current = node;
+        Render();
     }
 
     private void Render()
@@ -130,8 +136,13 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
                 GameObject choiceButton = Instantiate(choicePrefab, choiceContainer.transform);
                 choiceButton.transform.Find("Text (TMP)").gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = current.choice[i];
                 DialogNode nextNode = current.child[i];
-                UnityAction listener = () => ChangeNode(nextNode);
-                choiceButton.GetComponent<Button>().onClick.AddListener(listener);
+                UnityAction listener1 = () => ChangeNode(nextNode);
+                UnityAction listener2 = () =>
+                {
+                    choiceClicked = true;
+                };
+                choiceButton.GetComponent<Button>().onClick.AddListener(listener1);
+                choiceButton.GetComponent<Button>().onClick.AddListener(listener2);
             }
         }
     }

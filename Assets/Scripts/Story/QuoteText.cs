@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class QuoteText : MonoBehaviour
 {
-    private const float TYPING_TIME = 0.005f;
+    private const float TYPING_TIME = 0.01f;
 
     public string dialog;
     private int currentCharacterIndex;
@@ -22,6 +22,11 @@ public class QuoteText : MonoBehaviour
     public bool IsTyping()
     {
         return currentCharacterIndex < dialog.Length;
+    }
+
+    public void SkipTyping()
+    {
+        currentCharacterIndex = dialog.Length - 1;
     }
 
     private IEnumerator BuildText()
