@@ -18,6 +18,7 @@ public class Map : MonoBehaviourSingleton<Map>
     [SerializeField] private GameObject battleNodePrefab;
     [SerializeField] private GameObject eventNodePrefab;
     [SerializeField] private GameObject edgePrefab;
+    [SerializeField] private GameObject completePopup;
     private Node curNode;
     [HideInInspector] public float WidthScale;
     private List<int> addableLayers;
@@ -39,6 +40,7 @@ public class Map : MonoBehaviourSingleton<Map>
 
         if (PlayerData.path != null && PlayerData.path.Count > 0)
         {
+
             curNode = Nodes[PlayerData.path.Last()];
         }
         else
@@ -49,7 +51,10 @@ public class Map : MonoBehaviourSingleton<Map>
         ShowPath();
         // re-randomize
         Random.InitState(System.Environment.TickCount);
-
+        if (PlayerData.path != null && PlayerData.path.Last() == Nodes.Count - 1)
+        {
+            completePopup.SetActive(true);
+        }
         SaveSystem.Save();
     }
 
@@ -184,7 +189,7 @@ public class Map : MonoBehaviourSingleton<Map>
     {
         float startX = GetXMin() + GetMapSize().x * (layer + 0.25f) / numLayer;
         float x = Random.Range(startX, startX + 0.5f * GetMapSize().x / numLayer);
-        float y = Random.Range(-GetMapSize().y / 2, GetMapSize().y / 2);
+        float y = Random.Range(-GetMapSize().y / 2, GetMapSize().y / 2 - 0.5f);
         foreach (Node node in Nodes)
         {
             if ((Mathf.Abs(x - node.transform.position.x) < minGap && Mathf.Abs(y - node.transform.position.y) < minGap))
@@ -292,6 +297,12 @@ public class Map : MonoBehaviourSingleton<Map>
         UpdateOldPath(node);
         curNode = node;
         ShowUpdatePath();
+    }
+
+    public void ResetMap()
+    {
+        PlayerData.seedJSON = null;
+        PlayerData.path = null;
     }
 
     public void UpdateOldPath(Node newCurNode)
