@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsters:
   - monster: {fileID: 11400000, guid: 1a943a9b2fc9e6b4794c749e46f79281, type: 2}
-    tile: {x: 3, y: 2}
-    currentMove: 0
-  - monster: {fileID: 11400000, guid: 1a943a9b2fc9e6b4794c749e46f79281, type: 2}
     tile: {x: -3, y: 0}
-    currentMove: 1
+    currentMove: 0
+  - monster: {fileID: 11400000, guid: d2962fa89f707014fa77a119d0a1c228, type: 2}
+    tile: {x: -2, y: -2}
+    currentMove: 0
+  - monster: {fileID: 11400000, guid: d2962fa89f707014fa77a119d0a1c228, type: 2}
+    tile: {x: -1, y: 2}
+    currentMove: 0
   reward: 1

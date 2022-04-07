@@ -532,6 +532,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c079000926d7113488d847b260f6059d, type: 2}
   - {fileID: 11400000, guid: 4417d540a2757a845a88a67c9eae6ddc, type: 2}
   - {fileID: 11400000, guid: 157a8daf598889d45b0912e15b73f089, type: 2}
+  - {fileID: 11400000, guid: b098e1fa5c9210847a9fa05db2a47e2a, type: 2}
   allRandomEvents:
   - {fileID: 11400000, guid: 42a4d785d68afb64fa486d207ecdf7f5, type: 2}
   - {fileID: 11400000, guid: 49c70588c9170734192c9bd8600854cc, type: 2}
