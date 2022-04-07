@@ -111,7 +111,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
 
     public void ShowTargetArea(Vector3 targetPos)
     {
-        TargetPosList = GetPosListTarget(SelectedCard.mTargetShape, SelectedCard.mRange, PlayerManager.Instance.Player.currentTile, targetPos);
+        TargetPosList = GetPosListTarget(SelectedCard.mTargetShape, SelectedCard.mRange, PlayerManager.Instance.Player.CurrentTile, targetPos);
         SetTileColor(Color.yellow, TargetPosList);
     }
 
@@ -122,7 +122,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
 
     public void ShowRadius(AreaShape areaShape, AreaShape targetShape, int range)
     {
-        Vector3Int curPos = PlayerManager.Instance.Player.currentTile;
+        Vector3Int curPos = PlayerManager.Instance.Player.CurrentTile;
         hexBorder.gameObject.SetActive(true);
         hexBorder.transform.position = grid.CellToWorld(curPos);
         AreaPosList = GetPosList(areaShape, range, curPos);
@@ -135,7 +135,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
 
     public void HideRadius(AreaShape areaShape, int range)
     {
-        Vector3Int curPos = PlayerManager.Instance.Player.currentTile;
+        Vector3Int curPos = PlayerManager.Instance.Player.CurrentTile;
         hexBorder.gameObject.SetActive(false);
         AreaPosList.Clear();
         SetTile(mOriginalTile, GetPosList(areaShape, range, curPos));

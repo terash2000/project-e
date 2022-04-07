@@ -47,23 +47,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad852a09630ab645b73e2c03cf39f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTile: {x: 0, y: 0, z: 0}
-  speed: 3
-  info: {fileID: 0}
-  currentMove: 0
-  moved: 0
-  attacked: 0
-  healthBar: {fileID: 5149273554269966856}
-  blockBar: {fileID: 8746901697547498272}
-  healthText: {fileID: 3153039398249748871}
-  damageText: {fileID: 1721798198429813714}
-  blockText: {fileID: 3818023811724333218}
-  damageIcon: {fileID: 3581738963836795971}
-  previewDamage: {fileID: 1659416734954370780}
-  statusContainer: {fileID: 3860768395001408724}
-  statusPrefab: {fileID: 6856852969724268857, guid: 14bc24ca722539040a141d8fca53c8c6,
+  Speed: 3
+  CurrentTile: {x: 0, y: 0, z: 0}
+  _healthBar: {fileID: 5149273554269966856}
+  _blockBar: {fileID: 8746901697547498272}
+  _healthText: {fileID: 3153039398249748871}
+  _damageText: {fileID: 1721798198429813714}
+  _blockText: {fileID: 3818023811724333218}
+  _damageIcon: {fileID: 3581738963836795971}
+  _previewDamage: {fileID: 1659416734954370780}
+  _statusContainer: {fileID: 3860768395001408724}
+  _statusPrefab: {fileID: 6856852969724268857, guid: 14bc24ca722539040a141d8fca53c8c6,
     type: 3}
-  damageColor: {r: 0.9960785, g: 0.9686275, b: 0.72156864, a: 1}
+  _damageColor: {r: 1, g: 0.9964212, b: 0.740566, a: 1}
 --- !u!1 &666563332887185344
 GameObject:
   m_ObjectHideFlags: 0
