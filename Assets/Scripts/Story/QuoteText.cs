@@ -26,7 +26,7 @@ public class QuoteText : MonoBehaviour
 
     public void SkipTyping()
     {
-        currentCharacterIndex = dialog.Length - 1;
+        currentCharacterIndex = dialog.Length;
     }
 
     private IEnumerator BuildText()
@@ -36,5 +36,6 @@ public class QuoteText : MonoBehaviour
             yield return new WaitForSeconds(TYPING_TIME);
             currentCharacterIndex += 1;
         }
+        currentCharacterIndex = dialog.Length;
     }
 }

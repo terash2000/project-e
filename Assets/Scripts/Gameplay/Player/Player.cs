@@ -6,9 +6,12 @@ using UnityEngine.EventSystems;
 
 public class Player : GameCharacter
 {
+    private Vector3 localScale = new Vector3(0.12f, 0.12f, 1f);
+
     protected override void Start()
     {
         base.Start();
+        transform.localScale = localScale;
     }
 
     // Update is called once per frame

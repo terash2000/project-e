@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class Monster : GameCharacter
 {
-    private const float ATTACK_ANIMATION_RANGE = 0.4f;
     public const float DAMAGE_COOLDOWN_TIME = 0.2f;
+    private const float ATTACK_ANIMATION_RANGE = 0.4f;
 
     public MonsterInfo info;
     public int currentMove = 0;
