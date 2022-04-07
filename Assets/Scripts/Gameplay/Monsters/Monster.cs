@@ -173,9 +173,9 @@ public class Monster : GameCharacter
 
     protected override void Stun()
     {
+        RemoveHighlight();
         stuned = true;
         animator.SetBool("Stuned", true);
-        RemoveHighlight();
         SetAttackIcon();
     }
 

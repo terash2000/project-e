@@ -16,14 +16,6 @@ MonoBehaviour:
   maxHealth: 25
   initialBlock: 0
   patterns:
-  - pattern: 2
-    damage: 5
-    attackRange: 1
-    moveRange: 3
-    blockGain: 5
-    attackStatusEffect:
-      m_keys: 
-      m_values: 
   - pattern: 1
     damage: 10
     attackRange: 4
