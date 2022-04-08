@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e74efc22dee03b44a9d907fca74db3c, type: 3}
   m_Name: Golem
   m_EditorClassIdentifier: 
-  monsterName: Golem
-  maxHealth: 25
-  initialBlock: 15
-  patterns:
-  - pattern: 0
-    damage: 3
-    attackRange: 0
-    moveRange: 1
-    blockGain: 0
-    attackStatusEffect:
+  MonsterName: Golem
+  MaxHealth: 25
+  InitialBlock: 15
+  Patterns:
+  - Pattern: 0
+    Damage: 3
+    AttackRange: 0
+    MoveRange: 1
+    BlockGain: 0
+    AttackStatusEffect:
       m_keys: 
       m_values: 
-  animatorController: {fileID: 9100000, guid: 052e0a63b40d70e44bd7c941d67e4a26, type: 2}
-  spriteColor: {r: 1, g: 1, b: 1, a: 1}
-  spriteScale: 1.35
+  AnimatorController: {fileID: 9100000, guid: 052e0a63b40d70e44bd7c941d67e4a26, type: 2}
+  SpriteColor: {r: 1, g: 1, b: 1, a: 1}
+  SpriteScale: 1.35

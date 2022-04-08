@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CardCollection : MonoBehaviourSingletonPersistent<CardCollection>
 {
+    public List<Card> AllCards;
     [SerializeField]
     private GameObject _newCardPopup;
     [SerializeField]
@@ -14,8 +15,6 @@ public class CardCollection : MonoBehaviourSingletonPersistent<CardCollection>
     private GameObject _lockedCardPrefab;
 
     private static Dictionary<string, bool> _unlockDict;
-
-    public List<Card> allCards;
 
     public static Dictionary<string, bool> UnlockDict
     {
@@ -38,23 +37,29 @@ public class CardCollection : MonoBehaviourSingletonPersistent<CardCollection>
 
     public Card FindCardByName(string cardName)
     {
-        foreach (Card card in allCards)
+        foreach (Card card in AllCards)
         {
             if (card.CardName == cardName) return card;
         }
         return null;
     }
 
-    public Card RandomCard()
+    public Card RandomCard(List<string> exclude = null)
     {
-        List<Card> unlockedCards = allCards.FindAll(card => UnlockDict[card.name]);
+        List<Card> unlockedCards = AllCards.FindAll(card => UnlockDict[card.CardName]);
+
+        if (exclude != null)
+        {
+            unlockedCards = unlockedCards.FindAll(card => !exclude.Contains(card.CardName));
+        }
+
         return unlockedCards[Random.Range(0, unlockedCards.Count)];
     }
 
     public Dictionary<string, bool> StarterCards()
     {
         Dictionary<string, bool> dict = new Dictionary<string, bool>();
-        foreach (Card card in allCards)
+        foreach (Card card in AllCards)
         {
             dict.Add(card.CardName, card.IsUnlocked);
         }

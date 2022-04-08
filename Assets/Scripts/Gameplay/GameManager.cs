@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
                 gameResultPopup.OnLose();
                 gameState = GameState.Lose;
             }
-            else if (MonsterManager.Instance.monsters.Count == 0)
+            else if (MonsterManager.Instance.Monsters.Count == 0)
             {
                 gameResultPopup.OnWin();
                 gameState = GameState.Win;
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         {
             turnHandlerObject.OnEndTurn();
         }
-        while (MonsterManager.Instance.isBusy)
+        while (MonsterManager.Instance.IsBusy)
             yield return new WaitForEndOfFrame();
         StartTurn();
     }

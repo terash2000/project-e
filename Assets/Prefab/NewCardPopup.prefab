@@ -494,8 +494,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fab3eb8e17f037549a3ada3268d1c4b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  header: {fileID: 2861996707362534322}
-  cardContainer: {fileID: 4361222383341298990}
+  _header: {fileID: 2861996707362534322}
+  _cardContainer: {fileID: 4361222383341298990}
 --- !u!1 &7173354050037596384
 GameObject:
   m_ObjectHideFlags: 0

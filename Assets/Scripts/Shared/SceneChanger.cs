@@ -4,17 +4,22 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public static string previousScene = "MainMenuScene";
-    public static Stack<string> nextScene = new Stack<string>();
+    private static Stack<string> _nextSceneStack = new Stack<string>();
+    private static string _previousScene = "MainMenuScene";
+    public static Stack<string> NextSceneStack
+    {
+        get { return _nextSceneStack; }
+        set { _nextSceneStack = value; }
+    }
 
     public static void LoadScene(string scenename)
     {
         Time.timeScale = 1f;
-        SceneChanger.previousScene = SceneManager.GetActiveScene().name;
+        SceneChanger._previousScene = SceneManager.GetActiveScene().name;
         if (scenename == "MainMenuScene")
         {
-            nextScene.Clear();
-            DialogManager.nextRoot.Clear();
+            _nextSceneStack.Clear();
+            DialogManager.NextRoot.Clear();
         }
 
         SceneManager.LoadScene(scenename);
@@ -22,17 +27,17 @@ public class SceneChanger : MonoBehaviour
 
     public static void NextScene()
     {
-        if (nextScene.Count > 0)
+        if (NextSceneStack.Count > 0)
         {
-            LoadScene(nextScene.Peek());
-            nextScene.Pop();
+            LoadScene(NextSceneStack.Peek());
+            NextSceneStack.Pop();
         }
         else LoadScene("MapScene");
     }
 
     public static void PreviousScene()
     {
-        LoadScene(SceneChanger.previousScene);
+        LoadScene(SceneChanger._previousScene);
     }
 
     public static void ExitGame()

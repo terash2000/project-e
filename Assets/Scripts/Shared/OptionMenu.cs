@@ -4,17 +4,17 @@ using UnityEngine.UI;
 
 public class OptionMenu : MonoBehaviour
 {
-    public static bool autoEndTurn;
-    public static bool showMonstersAttackArea;
-    [SerializeField] private Toggle autoEndTurnTog;
-    [SerializeField] private Toggle showAttackAreaTog;
-    [SerializeField] private GameObject confirmationPopup;
+    public static bool AutoEndTurn;
+    public static bool ShowMonstersAttackArea;
+    [SerializeField] private Toggle _autoEndTurnTog;
+    [SerializeField] private Toggle _showAttackAreaTog;
+    [SerializeField] private GameObject _confirmationPopup;
 
     public void Start()
     {
         SaveSystem.LoadOptionMenu();
-        autoEndTurnTog.isOn = autoEndTurn;
-        showAttackAreaTog.isOn = showMonstersAttackArea;
+        _autoEndTurnTog.isOn = AutoEndTurn;
+        _showAttackAreaTog.isOn = ShowMonstersAttackArea;
     }
 
     public void Pause()
@@ -33,13 +33,13 @@ public class OptionMenu : MonoBehaviour
 
     public void TogAutoEndTurn(bool tog)
     {
-        autoEndTurn = tog;
+        AutoEndTurn = tog;
         SaveSystem.SaveOptionMenu();
     }
 
     public void TogMonstersAttackArea(bool tog)
     {
-        showMonstersAttackArea = tog;
+        ShowMonstersAttackArea = tog;
         SaveSystem.SaveOptionMenu();
     }
 
@@ -52,7 +52,7 @@ public class OptionMenu : MonoBehaviour
         }
         else
         {
-            GameObject newPopup = Instantiate(confirmationPopup, transform.parent);
+            GameObject newPopup = Instantiate(_confirmationPopup, transform.parent);
             string message = "Are you sure? Abandoning the run will result in a loss";
             UnityAction action = () => Abandon(true);
             newPopup.GetComponent<ConfirmationPopup>().Init(message, action);

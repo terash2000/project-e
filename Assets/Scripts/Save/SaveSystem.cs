@@ -14,8 +14,8 @@ public static class SaveSystem
         data.health = PlayerData.Health;
         data.maxMana = PlayerData.MaxMana;
         data.gold = PlayerData.Gold;
-        data.seedJSON = PlayerData.seedJSON;
-        data.path = PlayerData.path;
+        data.seedJSON = PlayerData.SeedJSON;
+        data.path = PlayerData.Path;
 
         formatter.Serialize(file, data);
         file.Close();
@@ -35,8 +35,8 @@ public static class SaveSystem
             PlayerData.Health = data.health;
             PlayerData.MaxMana = data.maxMana;
             PlayerData.Gold = data.gold;
-            PlayerData.seedJSON = data.seedJSON;
-            PlayerData.path = data.path;
+            PlayerData.SeedJSON = data.seedJSON;
+            PlayerData.Path = data.path;
         }
     }
 
@@ -54,8 +54,8 @@ public static class SaveSystem
         FileStream file = File.Create(Application.persistentDataPath + "/Setting.dat");
 
         UserSetting setting = new UserSetting();
-        setting.autoEndTurn = OptionMenu.autoEndTurn;
-        setting.showMonstersAttackArea = OptionMenu.showMonstersAttackArea;
+        setting.autoEndTurn = OptionMenu.AutoEndTurn;
+        setting.showMonstersAttackArea = OptionMenu.ShowMonstersAttackArea;
 
         formatter.Serialize(file, setting);
         file.Close();
@@ -71,13 +71,13 @@ public static class SaveSystem
             UserSetting setting = (UserSetting)formatter.Deserialize(file);
             file.Close();
 
-            OptionMenu.autoEndTurn = setting.autoEndTurn;
-            OptionMenu.showMonstersAttackArea = setting.showMonstersAttackArea;
+            OptionMenu.AutoEndTurn = setting.autoEndTurn;
+            OptionMenu.ShowMonstersAttackArea = setting.showMonstersAttackArea;
         }
         else
         {
-            OptionMenu.autoEndTurn = false;
-            OptionMenu.showMonstersAttackArea = true;
+            OptionMenu.AutoEndTurn = false;
+            OptionMenu.ShowMonstersAttackArea = true;
         }
     }
 
@@ -103,7 +103,7 @@ public static class SaveSystem
             UnlockData data = (UnlockData)formatter.Deserialize(file);
             file.Close();
 
-            if (data.unlockDict.Count == CardCollection.Instance.allCards.Count)
+            if (data.unlockDict.Count == CardCollection.Instance.AllCards.Count)
             {
                 CardCollection.UnlockDict = data.unlockDict;
             }

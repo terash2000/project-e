@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e74efc22dee03b44a9d907fca74db3c, type: 3}
   m_Name: Fire Spirit
   m_EditorClassIdentifier: 
-  monsterName: Fire Spirit
-  maxHealth: 5
-  patterns:
-  - pattern: 0
-    damage: 1
-    attackRange: 0
-    moveRange: 2
-    attackStatusEffect:
+  MonsterName: Fire Spirit
+  MaxHealth: 5
+  InitialBlock: 0
+  Patterns:
+  - Pattern: 0
+    Damage: 1
+    AttackRange: 0
+    MoveRange: 2
+    BlockGain: 0
+    AttackStatusEffect:
       m_keys: 02000000
       m_values: 02000000
-  animatorController: {fileID: 9100000, guid: 6b383d59b7f5d6a41b165bdd2382f6c3, type: 2}
-  spriteColor: {r: 1, g: 1, b: 1, a: 1}
-  spriteScale: 1.8
+  AnimatorController: {fileID: 9100000, guid: 6b383d59b7f5d6a41b165bdd2382f6c3, type: 2}
+  SpriteColor: {r: 1, g: 1, b: 1, a: 1}
+  SpriteScale: 1.8

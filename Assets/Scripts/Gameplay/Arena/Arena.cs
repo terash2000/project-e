@@ -82,7 +82,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
         redHexBorder.gameObject.SetActive(false);
 
         // highlight monster 1
-        if (OptionMenu.showMonstersAttackArea)
+        if (OptionMenu.ShowMonstersAttackArea)
         {
             SetTileColor(redHighlight, monsterHighlight);
         }

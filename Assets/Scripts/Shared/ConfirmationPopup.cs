@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class ConfirmationPopup : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private Button confirmButton;
+    [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private Button _confirmButton;
 
     public void Init(string message, UnityAction Listener)
     {
-        text.text = message;
-        confirmButton.onClick.AddListener(Listener);
+        _text.text = message;
+        _confirmButton.onClick.AddListener(Listener);
     }
     public void HidePopup()
     {

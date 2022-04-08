@@ -6,7 +6,7 @@ public class BattleNode : Node
 
     protected override void ChangeScene()
     {
-        MonsterManager.wave = wave;
+        MonsterManager.Wave = wave;
         SceneChanger.LoadScene("CombatScene");
     }
 }

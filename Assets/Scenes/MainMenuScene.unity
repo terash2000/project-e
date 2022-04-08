@@ -1625,6 +1625,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edec46f155ba00340af7f7e0d78fca2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AllCards:
+  - {fileID: 11400000, guid: a6308af5cdec28b48a02f2ab4963d307, type: 2}
+  - {fileID: 11400000, guid: ec56484ac74c1c04ba91b737928e3194, type: 2}
+  - {fileID: 11400000, guid: 7c5bc709221dd2c43b7ec419a71ee3f1, type: 2}
+  - {fileID: 11400000, guid: 77b56740767459345865f697099243e9, type: 2}
+  - {fileID: 11400000, guid: de84fc0301d513d48ae0b098ac1c1f75, type: 2}
+  - {fileID: 11400000, guid: f5da397d61098424d9c4881c929cb9d7, type: 2}
   _newCardPopup: {fileID: 5781192978451266083, guid: 4fa99ae6d71c4e440b36df87a482ac4a,
     type: 3}
   _chooseCardPopup: {fileID: 1809415070924254837, guid: aa97780a3a93ac44ba69e5b07b7a07e7,
@@ -1633,8 +1640,6 @@ MonoBehaviour:
     type: 3}
   _lockedCardPrefab: {fileID: 302550942999638226, guid: 496208e3426d514418886023974f300a,
     type: 3}
-  allCards:
-  - {fileID: 11400000, guid: 7c5bc709221dd2c43b7ec419a71ee3f1, type: 2}
 --- !u!4 &1485529816
 Transform:
   m_ObjectHideFlags: 0

@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e74efc22dee03b44a9d907fca74db3c, type: 3}
   m_Name: Metallic Slime
   m_EditorClassIdentifier: 
-  monsterName: Metallic Slime
-  maxHealth: 12
-  initialBlock: 8
-  patterns:
-  - pattern: 2
-    damage: 2
-    attackRange: 0
-    moveRange: 1
-    blockGain: 2
-    attackStatusEffect:
+  MonsterName: Metallic Slime
+  MaxHealth: 12
+  InitialBlock: 8
+  Patterns:
+  - Pattern: 2
+    Damage: 2
+    AttackRange: 0
+    MoveRange: 1
+    BlockGain: 2
+    AttackStatusEffect:
       m_keys: 
       m_values: 
-  animatorController: {fileID: 9100000, guid: fd3d1d592b8fb114ba5d3d9aac1739ea, type: 2}
-  spriteColor: {r: 1, g: 0.6933962, b: 0.6933962, a: 1}
-  spriteScale: 2.5
+  AnimatorController: {fileID: 9100000, guid: fd3d1d592b8fb114ba5d3d9aac1739ea, type: 2}
+  SpriteColor: {r: 1, g: 0.6933962, b: 0.6933962, a: 1}
+  SpriteScale: 2.5

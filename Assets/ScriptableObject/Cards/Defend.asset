@@ -16,6 +16,7 @@ MonoBehaviour:
   Description: Gain 5 blocks.
   Type: 1
   BaseElement: 2
+  Rarity: 0
   Artwork: {fileID: 21300000, guid: 3fda5bf2366760f4b96758883eb55b18, type: 3}
   ManaCost: 1
-  IsUnlocked: 0
+  IsUnlocked: 1

@@ -1101,14 +1101,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c84fe9988eb42c439ab958bd5ff2074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quoteObj: {fileID: 1175766101}
-  characterName: {fileID: 387871416}
-  background: {fileID: 1494645852}
-  sprite: {fileID: 987512897}
-  choiceContainer: {fileID: 1673940399}
-  choicePrefab: {fileID: 2875474485247495826, guid: 87620b5933a7d304aaec8c38fe1e9f19,
+  _quoteObj: {fileID: 1175766101}
+  _characterName: {fileID: 387871416}
+  _background: {fileID: 1494645852}
+  _sprite: {fileID: 987512897}
+  _choiceContainer: {fileID: 1673940399}
+  _choicePrefab: {fileID: 2875474485247495826, guid: 87620b5933a7d304aaec8c38fe1e9f19,
     type: 3}
-  canvas: {fileID: 1898571177}
+  _canvas: {fileID: 1898571177}
 --- !u!4 &2066668881
 Transform:
   m_ObjectHideFlags: 0

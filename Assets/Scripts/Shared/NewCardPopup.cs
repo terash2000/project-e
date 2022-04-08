@@ -4,18 +4,18 @@ using UnityEngine.UI;
 
 public class NewCardPopup : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI header;
-    [SerializeField] private GridLayoutGroup cardContainer;
+    [SerializeField] private TextMeshProUGUI _header;
+    [SerializeField] private GridLayoutGroup _cardContainer;
 
     public void Init(string message, string cardName)
     {
-        header.text = message;
+        _header.text = message;
 
-        for (int i = 0; i < cardContainer.transform.childCount; i++)
+        for (int i = 0; i < _cardContainer.transform.childCount; i++)
         {
-            Destroy(cardContainer.transform.GetChild(i).gameObject);
+            Destroy(_cardContainer.transform.GetChild(i).gameObject);
         }
-        GameObject cardObj = Instantiate(CardCollection.Instance.CardPrefab, cardContainer.transform);
+        GameObject cardObj = Instantiate(CardCollection.Instance.CardPrefab, _cardContainer.transform);
         cardObj.GetComponent<CardDisplay>().Card = CardCollection.Instance.FindCardByName(cardName);
 
         Time.timeScale = 0f;

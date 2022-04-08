@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e74efc22dee03b44a9d907fca74db3c, type: 3}
   m_Name: Elite Fire Spirit
   m_EditorClassIdentifier: 
-  monsterName: Elite Fire Spirit
-  maxHealth: 10
-  patterns:
-  - pattern: 1
-    damage: 1
-    attackRange: 2
-    moveRange: 2
-    attackStatusEffect:
+  MonsterName: Elite Fire Spirit
+  MaxHealth: 10
+  InitialBlock: 0
+  Patterns:
+  - Pattern: 1
+    Damage: 1
+    AttackRange: 2
+    MoveRange: 2
+    BlockGain: 0
+    AttackStatusEffect:
       m_keys: 02000000
       m_values: 02000000
-  animatorController: {fileID: 9100000, guid: 6b383d59b7f5d6a41b165bdd2382f6c3, type: 2}
-  spriteColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-  spriteScale: 2.2
+  AnimatorController: {fileID: 9100000, guid: 6b383d59b7f5d6a41b165bdd2382f6c3, type: 2}
+  SpriteColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+  SpriteScale: 2.2

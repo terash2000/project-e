@@ -5,13 +5,13 @@ using UnityEngine;
 [CreateAssetMenu]
 public class MonsterInfo : ScriptableObject
 {
-    public string monsterName;
-    public int maxHealth;
-    public int initialBlock;
-    public List<MonsterPattern> patterns;
-    public RuntimeAnimatorController animatorController;
-    public Color spriteColor = Color.white;
-    public float spriteScale = 1;
+    public string MonsterName;
+    public int MaxHealth;
+    public int InitialBlock;
+    public List<MonsterPattern> Patterns;
+    public RuntimeAnimatorController AnimatorController;
+    public Color SpriteColor = Color.white;
+    public float SpriteScale = 1;
 
     [Serializable]
     public class StatusEffectDictionary : SerializableDictionary<Status.Type, int> { }
@@ -19,11 +19,11 @@ public class MonsterInfo : ScriptableObject
     [Serializable]
     public class MonsterPattern
     {
-        public MonsterPatternType pattern;
-        public int damage;
-        public int attackRange;
-        public int moveRange;
-        public int blockGain;
-        public StatusEffectDictionary attackStatusEffect;
+        public MonsterPatternType Pattern;
+        public int Damage;
+        public int AttackRange;
+        public int MoveRange;
+        public int BlockGain;
+        public StatusEffectDictionary AttackStatusEffect;
     }
 }

@@ -1,23 +1,26 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class ChooseCardPopup : MonoBehaviour
 {
-    [SerializeField] private GridLayoutGroup cardContainer;
-    private int amount = 3;
+    private const int AMOUNT = 3;
+
+    [SerializeField] private GridLayoutGroup _cardContainer;
 
     public void Init()
     {
-        for (int i = 0; i < cardContainer.transform.childCount; i++)
+        for (int i = 0; i < _cardContainer.transform.childCount; i++)
         {
-            Destroy(cardContainer.transform.GetChild(i).gameObject);
+            Destroy(_cardContainer.transform.GetChild(i).gameObject);
         }
-        for (int i = 0; i < amount; i++)
+        List<string> cards = new List<string>();
+        for (int i = 0; i < AMOUNT; i++)
         {
-            Card card = CardCollection.Instance.RandomCard();
+            Card card = CardCollection.Instance.RandomCard(cards);
+            cards.Add(card.CardName);
 
-            GameObject cardObj = Instantiate(CardCollection.Instance.CardPrefab, cardContainer.transform);
+            GameObject cardObj = Instantiate(CardCollection.Instance.CardPrefab, _cardContainer.transform);
             cardObj.AddComponent(typeof(ChooseCardHandle));
             cardObj.GetComponent<ChooseCardHandle>().Card = card;
             cardObj.GetComponent<CardDisplay>().Card = card;

@@ -12,26 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e74efc22dee03b44a9d907fca74db3c, type: 3}
   m_Name: Undead executioner
   m_EditorClassIdentifier: 
-  monsterName: Undead executioner
-  maxHealth: 25
-  initialBlock: 0
-  patterns:
-  - pattern: 1
-    damage: 10
-    attackRange: 4
-    moveRange: 1
-    blockGain: 0
-    attackStatusEffect:
+  MonsterName: Undead executioner
+  MaxHealth: 25
+  InitialBlock: 0
+  Patterns:
+  - Pattern: 1
+    Damage: 10
+    AttackRange: 4
+    MoveRange: 1
+    BlockGain: 0
+    AttackStatusEffect:
       m_keys: 
       m_values: 
-  - pattern: 2
-    damage: 5
-    attackRange: 1
-    moveRange: 3
-    blockGain: 5
-    attackStatusEffect:
+  - Pattern: 2
+    Damage: 5
+    AttackRange: 0
+    MoveRange: 3
+    BlockGain: 5
+    AttackStatusEffect:
       m_keys: 
       m_values: 
-  animatorController: {fileID: 9100000, guid: ae9eb5b16ba704145847fea6ce301149, type: 2}
-  spriteColor: {r: 1, g: 1, b: 1, a: 1}
-  spriteScale: 1.2
+  AnimatorController: {fileID: 9100000, guid: ae9eb5b16ba704145847fea6ce301149, type: 2}
+  SpriteColor: {r: 1, g: 1, b: 1, a: 1}
+  SpriteScale: 1.2

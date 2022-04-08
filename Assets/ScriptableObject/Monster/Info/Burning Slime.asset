@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e74efc22dee03b44a9d907fca74db3c, type: 3}
   m_Name: Burning Slime
   m_EditorClassIdentifier: 
-  monsterName: Burning Slime
-  maxHealth: 10
-  initialBlock: 0
-  patterns:
-  - pattern: 0
-    damage: 1
-    attackRange: 0
-    moveRange: 1
-    blockGain: 0
-    attackStatusEffect:
+  MonsterName: Burning Slime
+  MaxHealth: 10
+  InitialBlock: 0
+  Patterns:
+  - Pattern: 0
+    Damage: 1
+    AttackRange: 0
+    MoveRange: 1
+    BlockGain: 0
+    AttackStatusEffect:
       m_keys: 02000000
       m_values: 03000000
-  animatorController: {fileID: 9100000, guid: fd3d1d592b8fb114ba5d3d9aac1739ea, type: 2}
-  spriteColor: {r: 1, g: 0.8836636, b: 0, a: 1}
-  spriteScale: 1.8
+  AnimatorController: {fileID: 9100000, guid: fd3d1d592b8fb114ba5d3d9aac1739ea, type: 2}
+  SpriteColor: {r: 1, g: 0.8836636, b: 0, a: 1}
+  SpriteScale: 1.8

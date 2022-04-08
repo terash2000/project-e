@@ -19,4 +19,4 @@ MonoBehaviour:
   Rarity: 1
   Artwork: {fileID: 21300000, guid: c4067b4c2f86dbb41835889341f7d800, type: 3}
   ManaCost: 2
-  IsUnlocked: 0
+  IsUnlocked: 1

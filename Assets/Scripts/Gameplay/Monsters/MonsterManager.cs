@@ -4,19 +4,38 @@ using UnityEngine;
 
 public class MonsterManager : MonoBehaviourSingleton<MonsterManager>, ITurnHandler
 {
-    public static Wave wave;
-    public List<Monster> monsters = new List<Monster>();
-    public bool isBusy = false;
+    private static Wave _wave;
+
     public Sprite SwordIcon;
     public Sprite BowIcon;
     public Sprite SwordAndShieldIcon;
     public Sprite StunIcon;
-    [SerializeField] private GameObject monsterPrefab;
-    private GridLayout grid;
+    [SerializeField] private GameObject _monsterPrefab;
+    private GridLayout _grid;
+    private List<Monster> _monsters = new List<Monster>();
+    private bool _isBusy = false;
+
+    public static Wave Wave
+    {
+        get { return _wave; }
+        set
+        { _wave = value; }
+    }
+    public List<Monster> Monsters
+    {
+        get { return _monsters; }
+        set { _monsters = value; }
+    }
+    public bool IsBusy
+    {
+        get { return _isBusy; }
+        set { _isBusy = value; }
+    }
+
 
     void Start()
     {
-        grid = Arena.Instance.GetComponentInChildren<GridLayout>();
+        _grid = Arena.Instance.GetComponentInChildren<GridLayout>();
         SpawnWave();
     }
 
@@ -24,7 +43,7 @@ public class MonsterManager : MonoBehaviourSingleton<MonsterManager>, ITurnHandl
     {
         Arena.Instance.RemoveMonsterHighlight(Arena.Instance.monsterHighlight);
 
-        foreach (Monster monster in monsters)
+        foreach (Monster monster in Monsters)
         {
             monster.Refresh();
             if (monster.ShowAttackArea())
@@ -34,7 +53,7 @@ public class MonsterManager : MonoBehaviourSingleton<MonsterManager>, ITurnHandl
 
     public void OnEndTurn()
     {
-        foreach (Monster monster in new List<Monster>(monsters))
+        foreach (Monster monster in new List<Monster>(Monsters))
         {
             monster.TriggerStatus();
         }
@@ -43,7 +62,7 @@ public class MonsterManager : MonoBehaviourSingleton<MonsterManager>, ITurnHandl
 
     public Monster FindMonsterByTile(Vector3Int tile)
     {
-        foreach (Monster monster in monsters)
+        foreach (Monster monster in Monsters)
         {
             if (monster.CurrentTile == tile)
                 return monster;
@@ -53,18 +72,18 @@ public class MonsterManager : MonoBehaviourSingleton<MonsterManager>, ITurnHandl
 
     private IEnumerator Attack()
     {
-        isBusy = true;
-        foreach (Monster monster in monsters)
+        _isBusy = true;
+        foreach (Monster monster in Monsters)
         {
             if (monster.Attack()) yield return new WaitForSeconds(0.15f);
         }
         MoveMonsters();
-        isBusy = false;
+        _isBusy = false;
     }
 
     public void MoveMonsters()
     {
-        foreach (Monster monster in monsters)
+        foreach (Monster monster in Monsters)
         {
             if (!monster.HasAttacked || monster.CanMoveAfterAttack()) monster.Move();
         }
@@ -72,16 +91,16 @@ public class MonsterManager : MonoBehaviourSingleton<MonsterManager>, ITurnHandl
 
     private void SpawnWave()
     {
-        if (wave != null)
+        if (Wave != null)
         {
-            foreach (Wave.MonsterSpawner monsterSpawner in wave.monsters)
+            foreach (Wave.MonsterSpawner monsterSpawner in Wave.monsters)
             {
-                Monster monster = Instantiate(monsterPrefab, grid.transform).GetComponent<Monster>();
+                Monster monster = Instantiate(_monsterPrefab, _grid.transform).GetComponent<Monster>();
                 monster.Info = monsterSpawner.monster;
                 monster.CurrentTile = new Vector3Int(monsterSpawner.tile.x, monsterSpawner.tile.y, 0);
                 monster.CurrentMove = monsterSpawner.currentMove;
 
-                monsters.Add(monster);
+                Monsters.Add(monster);
             }
         }
     }

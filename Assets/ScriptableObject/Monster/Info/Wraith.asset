@@ -12,34 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e74efc22dee03b44a9d907fca74db3c, type: 3}
   m_Name: Wraith
   m_EditorClassIdentifier: 
-  monsterName: Wraith
-  maxHealth: 20
-  initialBlock: 0
-  patterns:
-  - pattern: 2
-    damage: 4
-    attackRange: 1
-    moveRange: 3
-    blockGain: 5
-    attackStatusEffect:
+  MonsterName: Wraith
+  MaxHealth: 20
+  InitialBlock: 0
+  Patterns:
+  - Pattern: 2
+    Damage: 4
+    AttackRange: 0
+    MoveRange: 3
+    BlockGain: 4
+    AttackStatusEffect:
       m_keys: 
       m_values: 
-  - pattern: 1
-    damage: 8
-    attackRange: 3
-    moveRange: 2
-    blockGain: 0
-    attackStatusEffect:
+  - Pattern: 1
+    Damage: 8
+    AttackRange: 3
+    MoveRange: 2
+    BlockGain: 0
+    AttackStatusEffect:
       m_keys: 
       m_values: 
-  - pattern: 2
-    damage: 4
-    attackRange: 1
-    moveRange: 3
-    blockGain: 5
-    attackStatusEffect:
+  - Pattern: 2
+    Damage: 4
+    AttackRange: 0
+    MoveRange: 3
+    BlockGain: 4
+    AttackStatusEffect:
       m_keys: 
       m_values: 
-  animatorController: {fileID: 9100000, guid: b986db5507d1dfa48b7e5e4c701aa03c, type: 2}
-  spriteColor: {r: 1, g: 1, b: 1, a: 1}
-  spriteScale: 0.2
+  AnimatorController: {fileID: 9100000, guid: b986db5507d1dfa48b7e5e4c701aa03c, type: 2}
+  SpriteColor: {r: 1, g: 1, b: 1, a: 1}
+  SpriteScale: 0.2

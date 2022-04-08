@@ -27,31 +27,31 @@ public class Map : MonoBehaviourSingleton<Map>
     {
         SetMapSize();
         // load seed
-        if (PlayerData.seedJSON != null)
+        if (PlayerData.SeedJSON != null)
         {
-            Random.state = JsonUtility.FromJson<Random.State>(PlayerData.seedJSON);
+            Random.state = JsonUtility.FromJson<Random.State>(PlayerData.SeedJSON);
         }
         else
         {
-            PlayerData.seedJSON = JsonUtility.ToJson(Random.state);
+            PlayerData.SeedJSON = JsonUtility.ToJson(Random.state);
         }
 
         GenerateMap();
 
-        if (PlayerData.path != null && PlayerData.path.Count > 0)
+        if (PlayerData.Path != null && PlayerData.Path.Count > 0)
         {
 
-            curNode = Nodes[PlayerData.path.Last()];
+            curNode = Nodes[PlayerData.Path.Last()];
         }
         else
         {
-            PlayerData.path = new List<int>();
+            PlayerData.Path = new List<int>();
             AddNodeToPath(Nodes[0]);
         }
         ShowPath();
         // re-randomize
         Random.InitState(System.Environment.TickCount);
-        if (PlayerData.path != null && PlayerData.path.Last() == Nodes.Count - 1)
+        if (PlayerData.Path != null && PlayerData.Path.Last() == Nodes.Count - 1)
         {
             completePopup.SetActive(true);
         }
@@ -259,7 +259,7 @@ public class Map : MonoBehaviourSingleton<Map>
     public void ShowPath()
     {
         int prev = -1;
-        foreach (int i in PlayerData.path)
+        foreach (int i in PlayerData.Path)
         {
             if (prev >= 0)
             {
@@ -293,7 +293,7 @@ public class Map : MonoBehaviourSingleton<Map>
 
     public void AddNodeToPath(Node node)
     {
-        PlayerData.path.Add(Nodes.IndexOf(node));
+        PlayerData.Path.Add(Nodes.IndexOf(node));
         UpdateOldPath(node);
         curNode = node;
         ShowUpdatePath();
@@ -301,8 +301,8 @@ public class Map : MonoBehaviourSingleton<Map>
 
     public void ResetMap()
     {
-        PlayerData.seedJSON = null;
-        PlayerData.path = null;
+        PlayerData.SeedJSON = null;
+        PlayerData.Path = null;
     }
 
     public void UpdateOldPath(Node newCurNode)

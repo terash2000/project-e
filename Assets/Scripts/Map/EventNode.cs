@@ -6,7 +6,7 @@ public class EventNode : Node
 
     protected override void ChangeScene()
     {
-        DialogManager.nextRoot.Push(randomEvent);
+        DialogManager.NextRoot.Push(randomEvent);
         SceneChanger.LoadScene("StoryScene");
     }
 }

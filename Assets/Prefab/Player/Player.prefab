@@ -115,5 +115,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bf23f80fccc1e34bbedbc1825600bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTile: {x: 0, y: 0, z: 0}
-  speed: 3
+  Speed: 3
+  CurrentTile: {x: 0, y: 0, z: 0}

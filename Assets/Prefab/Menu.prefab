@@ -299,9 +299,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e027601a15d17e7438d5ffc9dc85ad9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardContainer: {fileID: 1452299043549158724}
-  previousButton: {fileID: 8489453163427786731}
-  nextButton: {fileID: 1984148571373116209}
+  _cardContainer: {fileID: 1452299043549158724}
+  _previousButton: {fileID: 8489453163427786731}
+  _nextButton: {fileID: 1984148571373116209}
 --- !u!1 &1764902739833033546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1499,9 +1499,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94df7d70be31f924cb74ff4b0c4fe914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoEndTurnTog: {fileID: 7535010870734184131}
-  showAttackAreaTog: {fileID: 6169204127416539221}
-  confirmationPopup: {fileID: 5984139876473836622, guid: d17398450ca033342ae5014d530fb58f,
+  _autoEndTurnTog: {fileID: 7535010870734184131}
+  _showAttackAreaTog: {fileID: 6169204127416539221}
+  _confirmationPopup: {fileID: 5984139876473836622, guid: d17398450ca033342ae5014d530fb58f,
     type: 3}
 --- !u!1 &5033236832969350829
 GameObject:

@@ -19,12 +19,12 @@ public class NewGame : MonoBehaviour
             MakeNewPlayerData();
             if (!skipPrologue)
             {
-                DialogManager.nextRoot.Push(prologue);
+                DialogManager.NextRoot.Push(prologue);
                 SceneChanger.LoadScene("StoryScene");
             }
             else
             {
-                MonsterManager.wave = tutorialWave;
+                MonsterManager.Wave = tutorialWave;
                 SceneChanger.LoadScene("CombatScene");
             }
 
@@ -49,7 +49,7 @@ public class NewGame : MonoBehaviour
         PlayerData.Health = PlayerData.MaxHealth = starterHealth;
         PlayerData.Mana = PlayerData.MaxMana = starterMana;
         PlayerData.Gold = starterGold;
-        PlayerData.seedJSON = JsonUtility.ToJson(Random.state);
-        PlayerData.path = null;
+        PlayerData.SeedJSON = JsonUtility.ToJson(Random.state);
+        PlayerData.Path = null;
     }
 }

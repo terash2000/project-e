@@ -34,10 +34,9 @@ public class Monster : GameCharacter
     private int _currentMove = 0;
     private bool _hasMoved;
     private bool _hasAttacked;
-
+    private bool _isStuned;
     private Vector3 _healthLocalScale;
     private float _healthBarSize;
-    private bool _isStuned;
     private int _attackDirection = -1;
     private float _radiant2 = 0f;
     private float _damagePopupCooldown = 0f;
@@ -73,19 +72,19 @@ public class Monster : GameCharacter
     {
         base.Start();
 
-        Animator.runtimeAnimatorController = _info.animatorController;
-        Sprite.GetComponent<SpriteRenderer>().color = _info.spriteColor;
-        Sprite.transform.localScale = new Vector3(_info.spriteScale, _info.spriteScale, transform.localScale.z);
+        Animator.runtimeAnimatorController = _info.AnimatorController;
+        Sprite.GetComponent<SpriteRenderer>().color = _info.SpriteColor;
+        Sprite.transform.localScale = new Vector3(_info.SpriteScale, _info.SpriteScale, transform.localScale.z);
 
         // look at center of areana
         Vector3 direction = -transform.position;
         direction.Normalize();
         LookDirection = direction;
 
-        Health = _info.maxHealth;
+        Health = _info.MaxHealth;
         _healthLocalScale = _healthBar.transform.localScale;
         _healthBarSize = _healthLocalScale.x;
-        Block = _info.initialBlock;
+        Block = _info.InitialBlock;
     }
 
     protected override void Update()
@@ -110,7 +109,7 @@ public class Monster : GameCharacter
         }
 
         // hp
-        _healthLocalScale.x = _healthBarSize * (float)Health / (float)_info.maxHealth;
+        _healthLocalScale.x = _healthBarSize * (float)Health / (float)_info.MaxHealth;
         _healthBar.transform.localScale = _healthLocalScale;
         _healthText.GetComponent<TextMeshProUGUI>().text = Health.ToString();
 
@@ -126,7 +125,7 @@ public class Monster : GameCharacter
         else
         {
             _damageText.SetActive(true);
-            int damage = _info.patterns[_currentMove].damage;
+            int damage = _info.Patterns[_currentMove].Damage;
             _damageText.GetComponent<TextMeshProUGUI>().text = damage.ToString();
         }
 
@@ -227,15 +226,15 @@ public class Monster : GameCharacter
         List<Vector3Int> area = new List<Vector3Int>();
         if (_isStuned) return area;
 
-        MonsterInfo.MonsterPattern pattern = _info.patterns[_currentMove];
-        switch (pattern.pattern)
+        MonsterInfo.MonsterPattern pattern = _info.Patterns[_currentMove];
+        switch (pattern.Pattern)
         {
             case MonsterPatternType.Basic:
             case MonsterPatternType.AttackAndBlock:
                 area.AddRange(Arena.Instance.GetPosListNear(CurrentTile));
                 break;
             case MonsterPatternType.Range:
-                area.AddRange(Arena.Instance.GetPosListDirection(pattern.attackRange, CurrentTile, _attackDirection));
+                area.AddRange(Arena.Instance.GetPosListDirection(pattern.AttackRange, CurrentTile, _attackDirection));
                 break;
         }
 
@@ -247,19 +246,19 @@ public class Monster : GameCharacter
         if (_hasMoved || _isStuned) return;
         _hasMoved = true;
 
-        _currentMove = (_currentMove + 1) % _info.patterns.Count;
+        _currentMove = (_currentMove + 1) % _info.Patterns.Count;
 
         Vector3Int characterTile = PlayerManager.Instance.Player.CurrentTile;
         List<Vector3Int> targetTiles = new List<Vector3Int>();
         List<Vector3Int> moveableTiles = new List<Vector3Int> { CurrentTile };
-        MonsterInfo.MonsterPattern pattern = _info.patterns[_currentMove];
+        MonsterInfo.MonsterPattern pattern = _info.Patterns[_currentMove];
 
-        switch (pattern.pattern)
+        switch (pattern.Pattern)
         {
             case MonsterPatternType.Basic:
             case MonsterPatternType.Range:
             case MonsterPatternType.AttackAndBlock:
-                moveableTiles.AddRange(Arena.Instance.GetPosList(AreaShape.Hexagon, pattern.moveRange, CurrentTile));
+                moveableTiles.AddRange(Arena.Instance.GetPosList(AreaShape.Hexagon, pattern.MoveRange, CurrentTile));
                 break;
         }
 
@@ -271,14 +270,14 @@ public class Monster : GameCharacter
         while (moveableTiles.Count != 0)
         {
             // choose target tiles to move
-            switch (pattern.pattern)
+            switch (pattern.Pattern)
             {
                 case MonsterPatternType.Basic:
                 case MonsterPatternType.AttackAndBlock:
                     targetTiles = ShortenDistance(moveableTiles, characterTile);
                     break;
                 case MonsterPatternType.Range:
-                    targetTiles = StayDistance(pattern.attackRange, moveableTiles, characterTile, true);
+                    targetTiles = StayDistance(pattern.AttackRange, moveableTiles, characterTile, true);
                     break;
             }
 
@@ -313,16 +312,16 @@ public class Monster : GameCharacter
     {
         Vector3Int characterTile = PlayerManager.Instance.Player.CurrentTile;
         List<int> directionList = new List<int>();
-        MonsterInfo.MonsterPattern pattern = _info.patterns[_currentMove];
+        MonsterInfo.MonsterPattern pattern = _info.Patterns[_currentMove];
 
-        switch (pattern.pattern)
+        switch (pattern.Pattern)
         {
             case MonsterPatternType.Range:
                 for (int i = 0; i < 6; i++)
                 {
-                    List<Vector3Int> attackableArea = Arena.Instance.GetPosListDirection(pattern.attackRange, CurrentTile, i);
+                    List<Vector3Int> attackableArea = Arena.Instance.GetPosListDirection(pattern.AttackRange, CurrentTile, i);
                     if (attackableArea.Contains(characterTile)) return i;
-                    for (int j = 1; j < pattern.attackRange; j++)
+                    for (int j = 1; j < pattern.AttackRange; j++)
                     {
                         if (Arena.Instance.GetPosListNear(attackableArea[j]).Contains(characterTile))
                         {
@@ -342,11 +341,11 @@ public class Monster : GameCharacter
         Vector3Int characterTile = PlayerManager.Instance.Player.CurrentTile;
         if (AttackArea().Contains(characterTile))
         {
-            Block += _info.patterns[_currentMove].blockGain;
-            PlayerManager.Instance.Player.TakeDamage(_info.patterns[_currentMove].damage);
-            foreach (Status.Type status in _info.patterns[_currentMove].attackStatusEffect.Keys)
+            Block += _info.Patterns[_currentMove].BlockGain;
+            PlayerManager.Instance.Player.TakeDamage(_info.Patterns[_currentMove].Damage);
+            foreach (Status.Type status in _info.Patterns[_currentMove].AttackStatusEffect.Keys)
             {
-                int strength = _info.patterns[_currentMove].attackStatusEffect[status];
+                int strength = _info.Patterns[_currentMove].AttackStatusEffect[status];
                 PlayerManager.Instance.Player.GainStatus(status, strength);
             }
             StartCoroutine(AttackAnimation());
@@ -369,17 +368,17 @@ public class Monster : GameCharacter
 
     public bool CanMoveAfterAttack()
     {
-        return _info.patterns.Count > 1;
+        return _info.Patterns.Count > 1;
     }
 
     public bool ShowAttackArea()
     {
-        return _info.patterns[_currentMove].pattern == MonsterPatternType.Range;
+        return _info.Patterns[_currentMove].Pattern == MonsterPatternType.Range;
     }
 
     private IEnumerator Die()
     {
-        MonsterManager.Instance.monsters.Remove(this);
+        MonsterManager.Instance.Monsters.Remove(this);
         RemoveHighlight();
         do
         {
@@ -463,7 +462,7 @@ public class Monster : GameCharacter
             _damageIcon.sprite = MonsterManager.Instance.StunIcon;
             return;
         }
-        switch (_info.patterns[_currentMove].pattern)
+        switch (_info.Patterns[_currentMove].Pattern)
         {
             case MonsterPatternType.Basic:
                 _damageIcon.sprite = MonsterManager.Instance.SwordIcon;

@@ -17,7 +17,7 @@ public class CollectionManager : MonoBehaviour
 
     void Start()
     {
-        _maxPage = (CardCollection.Instance.allCards.Count - 1) / CONTAINER_SIZE;
+        _maxPage = (CardCollection.Instance.AllCards.Count - 1) / CONTAINER_SIZE;
         RenderCard();
     }
 
@@ -47,8 +47,8 @@ public class CollectionManager : MonoBehaviour
         for (int i = 0; i < CONTAINER_SIZE; i++)
         {
             int cardIndex = i + _currentPage * CONTAINER_SIZE;
-            if (cardIndex >= CardCollection.Instance.allCards.Count) break;
-            Card card = CardCollection.Instance.allCards[cardIndex];
+            if (cardIndex >= CardCollection.Instance.AllCards.Count) break;
+            Card card = CardCollection.Instance.AllCards[cardIndex];
 
             if (CardCollection.UnlockDict[card.CardName])
             {

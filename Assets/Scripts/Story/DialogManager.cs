@@ -6,25 +6,32 @@ using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviourSingleton<DialogManager>
 {
-    public static Stack<DialogNode> nextRoot = new Stack<DialogNode>();
-    private DialogNode current;
-    [SerializeField] private QuoteText quoteObj;
-    [SerializeField] private GameObject characterName;
-    [SerializeField] private Image background;
-    [SerializeField] private Image sprite;
-    [SerializeField] private VerticalLayoutGroup choiceContainer;
-    [SerializeField] private GameObject choicePrefab;
-    [SerializeField] private Transform canvas;
-    private TextMeshProUGUI characterNameText;
-    private bool isPause;
-    private bool choiceClicked;
+    private static Stack<DialogNode> _nextRoot = new Stack<DialogNode>();
+
+    [SerializeField] private QuoteText _quoteObj;
+    [SerializeField] private GameObject _characterName;
+    [SerializeField] private Image _background;
+    [SerializeField] private Image _sprite;
+    [SerializeField] private VerticalLayoutGroup _choiceContainer;
+    [SerializeField] private GameObject _choicePrefab;
+    [SerializeField] private Transform _canvas;
+    private TextMeshProUGUI _characterNameText;
+    private DialogNode _current;
+    private bool _isPause;
+    private bool _choiceClicked;
+
+    public static Stack<DialogNode> NextRoot
+    {
+        get { return _nextRoot; }
+        set { _nextRoot = value; }
+    }
 
     void Start()
     {
-        characterNameText = characterName.transform.Find("Character Text").gameObject.GetComponent<TextMeshProUGUI>();
+        _characterNameText = _characterName.transform.Find("Character Text").gameObject.GetComponent<TextMeshProUGUI>();
 
-        current = nextRoot.Peek();
-        nextRoot.Pop();
+        _current = NextRoot.Peek();
+        NextRoot.Pop();
         Render();
     }
 
@@ -34,44 +41,44 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
             Input.GetKeyDown(KeyCode.Space) ||
             Input.GetKeyDown(KeyCode.Return) ||
             Input.GetKeyDown(KeyCode.Z)) &&
-            !isPause &&
-            !choiceClicked &&
+            !_isPause &&
+            !_choiceClicked &&
             Time.timeScale != 0)
         {
             Next();
         }
 
-        isPause = Time.timeScale == 0;
-        choiceClicked = false;
+        _isPause = Time.timeScale == 0;
+        _choiceClicked = false;
     }
 
     public void ShowPopup(string header, string cardname)
     {
-        GameObject newPopup = Instantiate(CardCollection.Instance.NewCardPopup, canvas);
+        GameObject newPopup = Instantiate(CardCollection.Instance.NewCardPopup, _canvas);
         newPopup.GetComponent<NewCardPopup>().Init(header, cardname);
     }
 
     private void Next()
     {
-        if (!quoteObj.IsTyping())
+        if (!_quoteObj.IsTyping())
         {
-            if (current.nextWave != null)
+            if (_current.nextWave != null)
             {
-                if (current.child != null && current.child.Count != 0)
+                if (_current.child != null && _current.child.Count != 0)
                 {
-                    SceneChanger.nextScene.Push("StoryScene");
-                    DialogManager.nextRoot.Push(current.child[0]);
+                    SceneChanger.NextSceneStack.Push("StoryScene");
+                    DialogManager.NextRoot.Push(_current.child[0]);
                 }
-                MonsterManager.wave = current.nextWave;
+                MonsterManager.Wave = _current.nextWave;
                 SceneChanger.LoadScene("CombatScene");
 
             }
-            else if (current.child != null && current.child.Count != 0)
+            else if (_current.child != null && _current.child.Count != 0)
             {
-                switch (current.type)
+                switch (_current.type)
                 {
                     case NodeType.Basic:
-                        ChangeNode(current.child[0]);
+                        ChangeNode(_current.child[0]);
                         break;
                     case NodeType.Choice:
                         break;
@@ -84,62 +91,62 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
         }
         else
         {
-            quoteObj.SkipTyping();
+            _quoteObj.SkipTyping();
         }
     }
 
     private void ChangeNode(DialogNode node)
     {
-        current = node;
+        _current = node;
         Render();
     }
 
     private void Render()
     {
         // action
-        current.action.Trigger();
+        _current.action.Trigger();
 
         // dialog
-        if (current.quote != "")
+        if (_current.quote != "")
         {
-            quoteObj.dialog = current.quote;
-            quoteObj.StartTyping();
+            _quoteObj.dialog = _current.quote;
+            _quoteObj.StartTyping();
         }
 
         // character name
-        if (current.character != null)
+        if (_current.character != null)
         {
-            characterNameText.SetText(current.character.name);
-            characterName.SetActive(true);
+            _characterNameText.SetText(_current.character.CharacterName);
+            _characterName.SetActive(true);
         }
-        else characterName.SetActive(false);
+        else _characterName.SetActive(false);
 
         // image
-        if (current.background != null) background.sprite = current.background;
-        if (current.sprite != null)
+        if (_current.background != null) _background.sprite = _current.background;
+        if (_current.sprite != null)
         {
-            sprite.sprite = current.sprite;
-            sprite.gameObject.SetActive(true);
+            _sprite.sprite = _current.sprite;
+            _sprite.gameObject.SetActive(true);
         }
-        else sprite.gameObject.SetActive(false);
+        else _sprite.gameObject.SetActive(false);
 
         // choice
-        for (int i = 0; i < choiceContainer.transform.childCount; i++)
+        for (int i = 0; i < _choiceContainer.transform.childCount; i++)
         {
-            Destroy(choiceContainer.transform.GetChild(i).gameObject);
+            Destroy(_choiceContainer.transform.GetChild(i).gameObject);
         }
 
-        if (current.type == NodeType.Choice)
+        if (_current.type == NodeType.Choice)
         {
-            for (int i = 0; i < current.choice.Count; i++)
+            for (int i = 0; i < _current.choice.Count; i++)
             {
-                GameObject choiceButton = Instantiate(choicePrefab, choiceContainer.transform);
-                choiceButton.transform.Find("Text (TMP)").gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = current.choice[i];
-                DialogNode nextNode = current.child[i];
+                GameObject choiceButton = Instantiate(_choicePrefab, _choiceContainer.transform);
+                choiceButton.transform.Find("Text (TMP)").gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = _current.choice[i];
+                DialogNode nextNode = _current.child[i];
                 UnityAction listener1 = () => ChangeNode(nextNode);
                 UnityAction listener2 = () =>
                 {
-                    choiceClicked = true;
+                    _choiceClicked = true;
                 };
                 choiceButton.GetComponent<Button>().onClick.AddListener(listener1);
                 choiceButton.GetComponent<Button>().onClick.AddListener(listener2);
