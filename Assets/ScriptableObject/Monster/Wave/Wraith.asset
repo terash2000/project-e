@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16278ba643f4de64b842bc931527db2f, type: 3}
   m_Name: Wraith
   m_EditorClassIdentifier: 
-  monsters:
-  - monster: {fileID: 11400000, guid: d3a189673fee9ae438d13e6c83305de2, type: 2}
-    tile: {x: 3, y: 2}
-    currentMove: 0
-  - monster: {fileID: 11400000, guid: d3a189673fee9ae438d13e6c83305de2, type: 2}
-    tile: {x: -3, y: 0}
-    currentMove: 1
-  reward: 1
+  Monsters:
+  - Monster: {fileID: 11400000, guid: d3a189673fee9ae438d13e6c83305de2, type: 2}
+    Tile: {x: 3, y: 2}
+    CurrentMove: 0
+  - Monster: {fileID: 11400000, guid: d3a189673fee9ae438d13e6c83305de2, type: 2}
+    Tile: {x: -3, y: 0}
+    CurrentMove: 1
+  Reward: 1

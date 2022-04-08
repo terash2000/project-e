@@ -1,12 +1,11 @@
 using System;
-using UnityEngine;
 
 [Serializable]
 public class StoryAction
 {
-    public ActionType type;
-    public int amount;
-    public string name;
+    public ActionType Type;
+    public int Amount;
+    public string Name;
 
     public enum ActionType
     {
@@ -19,26 +18,26 @@ public class StoryAction
 
     public void Trigger()
     {
-        switch (type)
+        switch (Type)
         {
             case ActionType.UnlockCard:
-                CardCollection.Instance.UnlockCard(name);
-                DialogManager.Instance.ShowPopup("Unlock!", name);
+                CardCollection.Instance.UnlockCard(Name);
+                DialogManager.Instance.ShowPopup("Unlock!", Name);
                 break;
             case ActionType.AddCardToDeck:
                 // TODO add the card to deck
 
                 string header = "Acquire";
-                if (amount > 1) header += " x" + amount.ToString();
-                DialogManager.Instance.ShowPopup(header, name);
+                if (Amount > 1) header += " x" + Amount.ToString();
+                DialogManager.Instance.ShowPopup(header, Name);
                 break;
             case ActionType.ChangeHP:
-                PlayerData.Health += amount;
+                PlayerData.Health += Amount;
                 // player can't die in event
                 if (PlayerData.Health <= 0) PlayerData.Health = 1;
                 break;
             case ActionType.ChangeMaxHP:
-                PlayerData.MaxHealth += amount;
+                PlayerData.MaxHealth += Amount;
                 // player can't die in event
                 if (PlayerData.MaxHealth <= 0) PlayerData.MaxHealth = 1;
                 break;

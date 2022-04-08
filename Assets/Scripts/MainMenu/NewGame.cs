@@ -4,12 +4,12 @@ using UnityEngine.Events;
 
 public class NewGame : MonoBehaviour
 {
-    [SerializeField] private int starterHealth;
-    [SerializeField] private int starterMana;
-    [SerializeField] private int starterGold;
-    [SerializeField] private GameObject confirmationPopup;
-    [SerializeField] private DialogNode prologue;
-    [SerializeField] private Wave tutorialWave;
+    [SerializeField] private int _starterHealth;
+    [SerializeField] private int _starterMana;
+    [SerializeField] private int _starterGold;
+    [SerializeField] private GameObject _confirmationPopup;
+    [SerializeField] private DialogNode _prologue;
+    [SerializeField] private Wave _tutorialWave;
     private bool skipPrologue = true;
 
     public void StartNewGame(bool confirm = false)
@@ -19,12 +19,12 @@ public class NewGame : MonoBehaviour
             MakeNewPlayerData();
             if (!skipPrologue)
             {
-                DialogManager.NextRoot.Push(prologue);
+                DialogManager.NextRoot.Push(_prologue);
                 SceneChanger.LoadScene("StoryScene");
             }
             else
             {
-                MonsterManager.Wave = tutorialWave;
+                MonsterManager.Wave = _tutorialWave;
                 SceneChanger.LoadScene("CombatScene");
             }
 
@@ -32,7 +32,7 @@ public class NewGame : MonoBehaviour
         }
         else
         {
-            GameObject newPopup = Instantiate(confirmationPopup, transform.parent);
+            GameObject newPopup = Instantiate(_confirmationPopup, transform.parent);
             string message = "Are you sure you want to erase your existing run to start a new one?";
             UnityAction action = () => StartNewGame(true);
             newPopup.GetComponent<ConfirmationPopup>().Init(message, action);
@@ -46,9 +46,9 @@ public class NewGame : MonoBehaviour
 
     private void MakeNewPlayerData()
     {
-        PlayerData.Health = PlayerData.MaxHealth = starterHealth;
-        PlayerData.Mana = PlayerData.MaxMana = starterMana;
-        PlayerData.Gold = starterGold;
+        PlayerData.Health = PlayerData.MaxHealth = _starterHealth;
+        PlayerData.Mana = PlayerData.MaxMana = _starterMana;
+        PlayerData.Gold = _starterGold;
         PlayerData.SeedJSON = JsonUtility.ToJson(Random.state);
         PlayerData.Path = null;
     }

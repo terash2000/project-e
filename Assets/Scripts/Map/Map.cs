@@ -150,7 +150,7 @@ public class Map : MonoBehaviourSingleton<Map>
     {
         GameObject battleNode = Instantiate(battleNodePrefab);
         Wave wave = allWaves[Random.Range(0, allWaves.Count)];
-        battleNode.GetComponent<BattleNode>().wave = wave;
+        battleNode.GetComponent<BattleNode>().Wave = wave;
         return battleNode;
     }
 
@@ -158,7 +158,7 @@ public class Map : MonoBehaviourSingleton<Map>
     {
         GameObject eventNode = Instantiate(eventNodePrefab);
         DialogNode randomEvent = allRandomEvents[Random.Range(0, allRandomEvents.Count)];
-        eventNode.GetComponent<EventNode>().randomEvent = randomEvent;
+        eventNode.GetComponent<EventNode>().RandomEvent = randomEvent;
         return eventNode;
     }
 

@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
   m_Name: Orb-AfterBattle2
   m_EditorClassIdentifier: 
-  type: 0
-  character: {fileID: 0}
-  quote: Your max health increase permanently.
-  background: {fileID: 0}
-  sprite: {fileID: 0}
-  action:
-    type: 4
-    amount: 5
-    name: 
-  child: []
-  choice: []
-  nextWave: {fileID: 0}
+  Type: 0
+  Character: {fileID: 0}
+  Quote: Your max health increase permanently.
+  Background: {fileID: 0}
+  Sprite: {fileID: 0}
+  Action:
+    Type: 4
+    Amount: 5
+    Name: 
+  Child: []
+  Choice: []
+  NextWave: {fileID: 0}

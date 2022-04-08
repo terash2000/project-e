@@ -4,13 +4,13 @@ using UnityEngine;
 [CreateAssetMenu]
 public class DialogNode : ScriptableObject
 {
-    public NodeType type;
-    public NonPlayerCharacter character;
-    public string quote;
-    public Sprite background;
-    public Sprite sprite;
-    public StoryAction action;
-    public List<DialogNode> child;
-    public List<string> choice;
-    public Wave nextWave;
+    public NodeType Type;
+    public NonPlayerCharacter Character;
+    public string Quote;
+    public Sprite Background;
+    public Sprite Sprite;
+    public StoryAction Action;
+    public List<DialogNode> Child;
+    public List<string> Choice;
+    public Wave NextWave;
 }

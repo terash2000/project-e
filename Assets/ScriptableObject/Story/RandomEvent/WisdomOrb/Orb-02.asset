@@ -12,23 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
   m_Name: Orb-02
   m_EditorClassIdentifier: 
-  type: 1
-  character: {fileID: 11400000, guid: ccbd91c55c6ecb74ab2c7aa14cb1a0b3, type: 2}
-  quote: '"I am the lightest element ever. I am everywhere. Who am I?"'
-  background: {fileID: 0}
-  sprite: {fileID: 0}
-  action:
-    type: 0
-    amount: 0
-    name: 
-  child:
+  Type: 1
+  Character: {fileID: 11400000, guid: ccbd91c55c6ecb74ab2c7aa14cb1a0b3, type: 2}
+  Quote: '"I am the lightest element ever. I am everywhere. Who am I?"'
+  Background: {fileID: 0}
+  Sprite: {fileID: 0}
+  Action:
+    Type: 0
+    Amount: 0
+    Name: 
+  Child:
   - {fileID: 11400000, guid: 769e607685f7baa4b852e2bcba8bfa08, type: 2}
   - {fileID: 11400000, guid: dea1c92fd4c46324ca73fc93d32f5882, type: 2}
   - {fileID: 11400000, guid: 769e607685f7baa4b852e2bcba8bfa08, type: 2}
   - {fileID: 11400000, guid: d01268d8bbf0be64785b7813d624fd96, type: 2}
-  choice:
+  Choice:
   - 'Helium '
   - Hydrogen
   - Oxygen
   - Attack the spirit...
-  nextWave: {fileID: 0}
+  NextWave: {fileID: 0}

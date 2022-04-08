@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
   m_Name: AcidTrap-Fail
   m_EditorClassIdentifier: 
-  type: 0
-  character: {fileID: 0}
-  quote: You hide behide the metal wall. Unfortunately, the wall was melting by the
+  Type: 0
+  Character: {fileID: 0}
+  Quote: You hide behide the metal wall. Unfortunately, the wall was melting by the
     acid. Your skin is burning.
-  background: {fileID: 0}
-  sprite: {fileID: 0}
-  action:
-    type: 3
-    amount: -5
-    name: 
-  child:
+  Background: {fileID: 0}
+  Sprite: {fileID: 0}
+  Action:
+    Type: 3
+    Amount: -5
+    Name: 
+  Child:
   - {fileID: 11400000, guid: 707c854ee91ad5a4c9cc83e636d6f5c7, type: 2}
-  choice: []
-  nextWave: {fileID: 0}
+  Choice: []
+  NextWave: {fileID: 0}

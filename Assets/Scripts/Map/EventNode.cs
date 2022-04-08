@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class EventNode : Node
 {
-    public DialogNode randomEvent;
+    public DialogNode _randomEvent;
+    public DialogNode RandomEvent
+    {
+        get { return _randomEvent; }
+        set { _randomEvent = value; }
+    }
 
     protected override void ChangeScene()
     {
-        DialogManager.NextRoot.Push(randomEvent);
+        DialogManager.NextRoot.Push(_randomEvent);
         SceneChanger.LoadScene("StoryScene");
     }
 }

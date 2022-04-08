@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
   m_Name: Orb-Succuss1
   m_EditorClassIdentifier: 
-  type: 0
-  character: {fileID: 0}
-  quote: You have passed the trial and received the blessing of ancient Hydrogen
+  Type: 0
+  Character: {fileID: 0}
+  Quote: You have passed the trial and received the blessing of ancient Hydrogen
     spirit.
-  background: {fileID: 0}
-  sprite: {fileID: 0}
-  action:
-    type: 0
-    amount: 0
-    name: 
-  child:
+  Background: {fileID: 0}
+  Sprite: {fileID: 0}
+  Action:
+    Type: 0
+    Amount: 0
+    Name: 
+  Child:
   - {fileID: 11400000, guid: 393d81098f37e5648a2eded79ef206dc, type: 2}
-  choice: []
-  nextWave: {fileID: 0}
+  Choice: []
+  NextWave: {fileID: 0}

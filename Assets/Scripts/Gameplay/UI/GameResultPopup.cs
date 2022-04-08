@@ -40,7 +40,7 @@ public class GameResultPopup : MonoBehaviour
 
     public void ChooseNewCard()
     {
-        if (MonsterManager.Wave.reward)
+        if (MonsterManager.Wave.Reward)
         {
             GameObject chooseCardPopup = Instantiate(CardCollection.Instance.ChooseCardPopup, transform.parent);
             chooseCardPopup.GetComponent<ChooseCardPopup>().Init();

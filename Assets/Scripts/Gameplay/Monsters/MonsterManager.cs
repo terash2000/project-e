@@ -93,12 +93,12 @@ public class MonsterManager : MonoBehaviourSingleton<MonsterManager>, ITurnHandl
     {
         if (Wave != null)
         {
-            foreach (Wave.MonsterSpawner monsterSpawner in Wave.monsters)
+            foreach (Wave.MonsterSpawner monsterSpawner in Wave.Monsters)
             {
                 Monster monster = Instantiate(_monsterPrefab, _grid.transform).GetComponent<Monster>();
-                monster.Info = monsterSpawner.monster;
-                monster.CurrentTile = new Vector3Int(monsterSpawner.tile.x, monsterSpawner.tile.y, 0);
-                monster.CurrentMove = monsterSpawner.currentMove;
+                monster.Info = monsterSpawner.Monster;
+                monster.CurrentTile = new Vector3Int(monsterSpawner.Tile.x, monsterSpawner.Tile.y, 0);
+                monster.CurrentMove = monsterSpawner.CurrentMove;
 
                 Monsters.Add(monster);
             }

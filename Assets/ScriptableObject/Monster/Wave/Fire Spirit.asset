@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16278ba643f4de64b842bc931527db2f, type: 3}
   m_Name: Fire Spirit
   m_EditorClassIdentifier: 
-  monsters:
-  - monster: {fileID: 11400000, guid: d2962fa89f707014fa77a119d0a1c228, type: 2}
-    tile: {x: 2, y: 0}
-    currentMove: 0
-  - monster: {fileID: 11400000, guid: d2962fa89f707014fa77a119d0a1c228, type: 2}
-    tile: {x: -2, y: 0}
-    currentMove: 0
-  - monster: {fileID: 11400000, guid: d2962fa89f707014fa77a119d0a1c228, type: 2}
-    tile: {x: -1, y: -2}
-    currentMove: 0
-  - monster: {fileID: 11400000, guid: ef009c6eff90a0d448f99fb70a59297a, type: 2}
-    tile: {x: 3, y: 1}
-    currentMove: 0
-  reward: 1
+  Monsters:
+  - Monster: {fileID: 11400000, guid: d2962fa89f707014fa77a119d0a1c228, type: 2}
+    Tile: {x: 2, y: 0}
+    CurrentMove: 0
+  - Monster: {fileID: 11400000, guid: d2962fa89f707014fa77a119d0a1c228, type: 2}
+    Tile: {x: -2, y: 0}
+    CurrentMove: 0
+  - Monster: {fileID: 11400000, guid: d2962fa89f707014fa77a119d0a1c228, type: 2}
+    Tile: {x: -1, y: -2}
+    CurrentMove: 0
+  - Monster: {fileID: 11400000, guid: ef009c6eff90a0d448f99fb70a59297a, type: 2}
+    Tile: {x: 3, y: 1}
+    CurrentMove: 0
+  Reward: 1

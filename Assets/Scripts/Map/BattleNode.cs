@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class BattleNode : Node
 {
-    public Wave wave;
+    private Wave _wave;
+    public Wave Wave
+    {
+        get { return _wave; }
+        set { _wave = value; }
+    }
 
     protected override void ChangeScene()
     {
-        MonsterManager.Wave = wave;
+        MonsterManager.Wave = _wave;
         SceneChanger.LoadScene("CombatScene");
     }
 }

@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
   m_Name: Orb-01
   m_EditorClassIdentifier: 
-  type: 0
-  character: {fileID: 0}
-  quote: You find yourself in an old ruin. Before you lies an elaborate shrine to
+  Type: 0
+  Character: {fileID: 0}
+  Quote: You find yourself in an old ruin. Before you lies an elaborate shrine to
     a forgotten spirit. As you approach, the orb bursts into flames and talk to you.
-  background: {fileID: 21300000, guid: 5bccc2d851eeb4e40924e76d3a750ce6, type: 3}
-  sprite: {fileID: 0}
-  action:
-    type: 0
-    amount: 0
-    name: 
-  child:
+  Background: {fileID: 21300000, guid: 5bccc2d851eeb4e40924e76d3a750ce6, type: 3}
+  Sprite: {fileID: 0}
+  Action:
+    Type: 0
+    Amount: 0
+    Name: 
+  Child:
   - {fileID: 11400000, guid: ab9efdf1c4a78dc43a4c627be6f64134, type: 2}
-  choice: []
-  nextWave: {fileID: 0}
+  Choice: []
+  NextWave: {fileID: 0}

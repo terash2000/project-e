@@ -1,18 +1,19 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu]
 public class Wave : ScriptableObject
 {
-    public List<MonsterSpawner> monsters;
-    public bool reward;
+    public List<MonsterSpawner> Monsters;
+    public bool Reward;
 
     [Serializable]
     public class MonsterSpawner
     {
-        public MonsterInfo monster;
-        public Vector2Int tile;
-        public int currentMove;
+        public MonsterInfo Monster;
+        public Vector2Int Tile;
+        public int CurrentMove;
     }
 }

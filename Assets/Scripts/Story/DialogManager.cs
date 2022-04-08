@@ -62,23 +62,23 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
     {
         if (!_quoteObj.IsTyping())
         {
-            if (_current.nextWave != null)
+            if (_current.NextWave != null)
             {
-                if (_current.child != null && _current.child.Count != 0)
+                if (_current.Child != null && _current.Child.Count != 0)
                 {
                     SceneChanger.NextSceneStack.Push("StoryScene");
-                    DialogManager.NextRoot.Push(_current.child[0]);
+                    DialogManager.NextRoot.Push(_current.Child[0]);
                 }
-                MonsterManager.Wave = _current.nextWave;
+                MonsterManager.Wave = _current.NextWave;
                 SceneChanger.LoadScene("CombatScene");
 
             }
-            else if (_current.child != null && _current.child.Count != 0)
+            else if (_current.Child != null && _current.Child.Count != 0)
             {
-                switch (_current.type)
+                switch (_current.Type)
                 {
                     case NodeType.Basic:
-                        ChangeNode(_current.child[0]);
+                        ChangeNode(_current.Child[0]);
                         break;
                     case NodeType.Choice:
                         break;
@@ -104,28 +104,28 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
     private void Render()
     {
         // action
-        _current.action.Trigger();
+        _current.Action.Trigger();
 
         // dialog
-        if (_current.quote != "")
+        if (_current.Quote != "")
         {
-            _quoteObj.dialog = _current.quote;
+            _quoteObj.dialog = _current.Quote;
             _quoteObj.StartTyping();
         }
 
         // character name
-        if (_current.character != null)
+        if (_current.Character != null)
         {
-            _characterNameText.SetText(_current.character.CharacterName);
+            _characterNameText.SetText(_current.Character.CharacterName);
             _characterName.SetActive(true);
         }
         else _characterName.SetActive(false);
 
         // image
-        if (_current.background != null) _background.sprite = _current.background;
-        if (_current.sprite != null)
+        if (_current.Background != null) _background.sprite = _current.Background;
+        if (_current.Sprite != null)
         {
-            _sprite.sprite = _current.sprite;
+            _sprite.sprite = _current.Sprite;
             _sprite.gameObject.SetActive(true);
         }
         else _sprite.gameObject.SetActive(false);
@@ -136,13 +136,13 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
             Destroy(_choiceContainer.transform.GetChild(i).gameObject);
         }
 
-        if (_current.type == NodeType.Choice)
+        if (_current.Type == NodeType.Choice)
         {
-            for (int i = 0; i < _current.choice.Count; i++)
+            for (int i = 0; i < _current.Choice.Count; i++)
             {
                 GameObject choiceButton = Instantiate(_choicePrefab, _choiceContainer.transform);
-                choiceButton.transform.Find("Text (TMP)").gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = _current.choice[i];
-                DialogNode nextNode = _current.child[i];
+                choiceButton.transform.Find("Text (TMP)").gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = _current.Choice[i];
+                DialogNode nextNode = _current.Child[i];
                 UnityAction listener1 = () => ChangeNode(nextNode);
                 UnityAction listener2 = () =>
                 {
