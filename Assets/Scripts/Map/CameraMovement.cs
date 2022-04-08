@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMovement : MonoBehaviour
+public class CameraMovement : MonoBehaviourSingleton<CameraMovement>
 {
     public float ZoomSpeed;
     public float MinZoom;
@@ -10,10 +10,6 @@ public class CameraMovement : MonoBehaviour
     public float DragSpeed;
     private Vector3 _dragOrigin;
     private Rect _rectOrigin;
-    void Start()
-    {
-        _rectOrigin = GetArea(Map.Instance.WidthScale);
-    }
 
     void Update()
     {
@@ -90,5 +86,20 @@ public class CameraMovement : MonoBehaviour
             if (!inside[3]) pos.y -= 0.001f;
             transform.position = pos;
         }
+    }
+
+    public void SetPosition(Vector3 pos)
+    {
+        _rectOrigin = GetArea(Map.Instance.WidthScale);
+        float x = pos.x;
+        if (_rectOrigin.xMin > x - GetArea().width / 2)
+        {
+            x = _rectOrigin.xMin + GetArea().width / 2;
+        }
+        else if (_rectOrigin.xMax < x + GetArea().width / 2)
+        {
+            x = _rectOrigin.xMax - GetArea().width / 2;
+        }
+        transform.position = new Vector3(x, transform.position.y, transform.position.z);
     }
 }

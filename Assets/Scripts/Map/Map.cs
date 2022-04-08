@@ -61,6 +61,7 @@ public class Map : MonoBehaviourSingleton<Map>
             _completePopup.SetActive(true);
         }
         SaveSystem.Save();
+        CameraMovement.Instance.SetPosition(_curNode.transform.position);
     }
 
 
@@ -284,49 +285,16 @@ public class Map : MonoBehaviourSingleton<Map>
         }
     }
 
-    public void ShowUpdatePath()
-    {
-        _curNode.OnPass();
-        foreach (Node node in _curNode.Next)
-        {
-            LineRenderer line = FindEdge(_curNode, node);
-            line.startColor = Color.cyan;
-            line.endColor = Color.cyan;
-            node.OnClickable();
-        }
-    }
-
     public void AddNodeToPath(Node node)
     {
         PlayerData.Path.Add(_nodes.IndexOf(node));
-        UpdateOldPath(node);
         _curNode = node;
-        ShowUpdatePath();
     }
 
     public void ResetMap()
     {
         PlayerData.SeedJSON = null;
         PlayerData.Path = null;
-    }
-
-    public void UpdateOldPath(Node newCurNode)
-    {
-        List<Node> removeClickableNodes;
-        if (_curNode == null) removeClickableNodes = FindStartNodes();
-        else
-        {
-            removeClickableNodes = _curNode.Next;
-            LineRenderer line = FindEdge(_curNode, newCurNode);
-            line.startColor = Color.green;
-            line.endColor = Color.green;
-        }
-        removeClickableNodes.Remove(newCurNode);
-        foreach (Node node in removeClickableNodes)
-        {
-            node.OnReset();
-            if (_curNode != null) ResetEdge(FindEdge(_curNode, node));
-        }
     }
 
     public LineRenderer FindEdge(Node oriNode, Node desNode)
