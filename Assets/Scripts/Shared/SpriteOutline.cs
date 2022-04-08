@@ -1,34 +1,40 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [ExecuteInEditMode]
-public class SpriteOutline : MonoBehaviour {
-    public Color color = Color.white;
+public class SpriteOutline : MonoBehaviour
+{
+    public Color Color = Color.white;
 
     [Range(0, 16)]
-    public int outlineSize = 1;
+    public int OutlineSize = 1;
 
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer _spriteRenderer;
 
-    void OnEnable() {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+    void OnEnable()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
 
         UpdateOutline(true);
     }
 
-    void OnDisable() {
+    void OnDisable()
+    {
         UpdateOutline(false);
     }
 
-    void Update() {
+    void Update()
+    {
         UpdateOutline(true);
     }
 
-    void UpdateOutline(bool outline) {
+    void UpdateOutline(bool outline)
+    {
         MaterialPropertyBlock mpb = new MaterialPropertyBlock();
-        spriteRenderer.GetPropertyBlock(mpb);
+        _spriteRenderer.GetPropertyBlock(mpb);
         mpb.SetFloat("_Outline", outline ? 1f : 0);
-        mpb.SetColor("_OutlineColor", color);
-        mpb.SetFloat("_OutlineSize", outlineSize);
-        spriteRenderer.SetPropertyBlock(mpb);
+        mpb.SetColor("_OutlineColor", Color);
+        mpb.SetFloat("_OutlineSize", OutlineSize);
+        _spriteRenderer.SetPropertyBlock(mpb);
     }
 }

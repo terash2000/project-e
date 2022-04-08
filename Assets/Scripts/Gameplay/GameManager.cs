@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
@@ -23,7 +22,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public static bool PlayerTurn
     {
         get { return _playerTurn; }
-        set { _playerTurn = value; }
     }
     public static int Round
     {

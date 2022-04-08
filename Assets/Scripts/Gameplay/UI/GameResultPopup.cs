@@ -5,35 +5,35 @@ using TMPro;
 
 public class GameResultPopup : MonoBehaviour
 {
-    private TextMeshProUGUI text;
-    private Image bg;
-    private Button confirmButton;
+    private TextMeshProUGUI _text;
+    private Image _bg;
+    private Button _confirmButton;
 
     void Start()
     {
         GameObject panel = transform.Find("Panel").gameObject;
-        text = panel.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>();
-        bg = panel.GetComponent<Image>();
-        confirmButton = panel.transform.Find("Confirm").gameObject.GetComponent<Button>();
+        _text = panel.transform.Find("Text").gameObject.GetComponent<TextMeshProUGUI>();
+        _bg = panel.GetComponent<Image>();
+        _confirmButton = panel.transform.Find("Confirm").gameObject.GetComponent<Button>();
         gameObject.SetActive(false);
     }
 
     public void OnLose()
     {
-        text.text = "DEFEAT";
-        bg.color = Color.red;
+        _text.text = "DEFEAT";
+        _bg.color = Color.red;
         UnityAction action = () => SceneChanger.LoadScene("MainMenuScene");
-        confirmButton.onClick.AddListener(action);
+        _confirmButton.onClick.AddListener(action);
         gameObject.SetActive(true);
         Time.timeScale = 0f;
     }
 
     public void OnWin()
     {
-        text.text = "VICTORY";
-        bg.color = Color.green;
+        _text.text = "VICTORY";
+        _bg.color = Color.green;
         UnityAction action = () => ChooseNewCard();
-        confirmButton.onClick.AddListener(ChooseNewCard);
+        _confirmButton.onClick.AddListener(ChooseNewCard);
         gameObject.SetActive(true);
         Time.timeScale = 0f;
     }

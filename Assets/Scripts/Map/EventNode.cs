@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EventNode : Node
 {
-    public DialogNode _randomEvent;
+    private DialogNode _randomEvent;
     public DialogNode RandomEvent
     {
         get { return _randomEvent; }

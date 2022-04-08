@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Mana : MonoBehaviour, ITurnHandler
 {
-    private TextMeshProUGUI ManaText;
+    private TextMeshProUGUI _manaText;
     public void OnEndTurn()
     {
 
@@ -19,12 +19,12 @@ public class Mana : MonoBehaviour, ITurnHandler
     // Start is called before the first frame update
     void Start()
     {
-        ManaText = gameObject.transform.Find("Mana Text").gameObject.GetComponent<TextMeshProUGUI>();
+        _manaText = gameObject.transform.Find("Mana Text").gameObject.GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        ManaText.text = PlayerData.Mana.ToString() + '/' + PlayerData.MaxMana.ToString();
+        _manaText.text = PlayerData.Mana.ToString() + '/' + PlayerData.MaxMana.ToString();
     }
 }

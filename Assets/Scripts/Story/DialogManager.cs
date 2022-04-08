@@ -109,7 +109,7 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
         // dialog
         if (_current.Quote != "")
         {
-            _quoteObj.dialog = _current.Quote;
+            _quoteObj.Dialog = _current.Quote;
             _quoteObj.StartTyping();
         }
 
