@@ -28,7 +28,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             this.GetComponent<Image>().color = Color.white;
             Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int mousePos = Arena.Instance.grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
+            Vector3Int mousePos = Arena.Instance.Grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
             if (OnUse(mousePos)) PlayerData.Mana -= manaCost;
             selected = false;
             selectThisCard = false;
@@ -77,7 +77,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public virtual bool OnUse(Vector3Int mousePos)
     {
-        Tile tile = (Tile)Arena.Instance.tilemap.GetTile(mousePos);
+        Tile tile = (Tile)Arena.Instance.Tilemap.GetTile(mousePos);
         if (tile != null && Arena.Instance.AreaPosList.Contains(mousePos) && MonsterManager.Instance.FindMonsterByTile(mousePos) == null)
         {
             Arena.Instance.HideRadius(mAreaShape, mRange);

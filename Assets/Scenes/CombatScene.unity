@@ -444,14 +444,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e199b46265f064e41bc35988ebcd9ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  round: 0
-  playerTurn: 0
-  acidIcon: {fileID: 21300000, guid: df5748f20dcb76b44982827f0cf52127, type: 3}
-  acidColor: {r: 0.78431374, g: 1, b: 0, a: 1}
-  burnIcon: {fileID: 21300000, guid: 3068b0e02813be54bb651355d4590437, type: 3}
-  burnColor: {r: 1, g: 0.39215687, b: 0, a: 1}
-  blockColor: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0}
-  gameResultPopup: {fileID: 8495098981698586526}
+  AcidIcon: {fileID: 21300000, guid: df5748f20dcb76b44982827f0cf52127, type: 3}
+  AcidColor: {r: 0.78431374, g: 1, b: 0, a: 1}
+  BurnIcon: {fileID: 21300000, guid: 3068b0e02813be54bb651355d4590437, type: 3}
+  BurnColor: {r: 1, g: 0.39215687, b: 0, a: 1}
+  GameResultPopup: {fileID: 8495098981698586526}
 --- !u!4 &424601450
 Transform:
   m_ObjectHideFlags: 0

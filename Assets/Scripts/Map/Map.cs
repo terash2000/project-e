@@ -1,27 +1,32 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class Map : MonoBehaviourSingleton<Map>
 {
-    public List<Wave> allWaves;
-    public List<DialogNode> allRandomEvents;
-    public List<Node> Nodes;
-    public List<LineRenderer> Edges;
-    [SerializeField] private float minGap;
-    [SerializeField] private float maxGap;
-    [SerializeField] private int numNode;
-    [SerializeField] private int numLayer;
-    [SerializeField] private float layerWidth;
-    [SerializeField] private int maxNodePerLayer;
-    [SerializeField] private GameObject battleNodePrefab;
-    [SerializeField] private GameObject eventNodePrefab;
-    [SerializeField] private GameObject edgePrefab;
-    [SerializeField] private GameObject completePopup;
-    private Node curNode;
-    [HideInInspector] public float WidthScale;
-    private List<int> addableLayers;
+    public List<Wave> AllWaves;
+    public List<DialogNode> AllRandomEvents;
+
+    [SerializeField] private float _minGap;
+    [SerializeField] private float _maxGap;
+    [SerializeField] private int _numNode;
+    [SerializeField] private int _numLayer;
+    [SerializeField] private float _layerWidth;
+    [SerializeField] private int _maxNodePerLayer;
+    [SerializeField] private GameObject _battleNodePrefab;
+    [SerializeField] private GameObject _eventNodePrefab;
+    [SerializeField] private GameObject _edgePrefab;
+    [SerializeField] private GameObject _completePopup;
+    private List<Node> _nodes = new List<Node>();
+    private List<LineRenderer> _edges = new List<LineRenderer>();
+    private Node _curNode;
+    private float _widthScale;
+    private List<int> _addableLayers;
+
+    public float WidthScale
+    {
+        get { return _widthScale; }
+    }
 
     void Start()
     {
@@ -41,19 +46,19 @@ public class Map : MonoBehaviourSingleton<Map>
         if (PlayerData.Path != null && PlayerData.Path.Count > 0)
         {
 
-            curNode = Nodes[PlayerData.Path.Last()];
+            _curNode = _nodes[PlayerData.Path.Last()];
         }
         else
         {
             PlayerData.Path = new List<int>();
-            AddNodeToPath(Nodes[0]);
+            AddNodeToPath(_nodes[0]);
         }
         ShowPath();
         // re-randomize
         Random.InitState(System.Environment.TickCount);
-        if (PlayerData.Path != null && PlayerData.Path.Last() == Nodes.Count - 1)
+        if (PlayerData.Path != null && PlayerData.Path.Last() == _nodes.Count - 1)
         {
-            completePopup.SetActive(true);
+            _completePopup.SetActive(true);
         }
         SaveSystem.Save();
     }
@@ -62,45 +67,45 @@ public class Map : MonoBehaviourSingleton<Map>
     public void GenerateMap()
     {
         InitAddableLayers();
-        for (int i = 0; i < numNode || !AllLayersHaveNodes(); i++)
+        for (int i = 0; i < _numNode || !AllLayersHaveNodes(); i++)
         {
             GameObject node = CreateRandomNode();
             int layer = RandomLayer();
             node.GetComponent<Node>().Init(layer);
             node.transform.position = RandomPos(layer);
             node.transform.SetParent(gameObject.transform);
-            Nodes.Add(node.GetComponent<Node>());
+            _nodes.Add(node.GetComponent<Node>());
             SetAddableLayers(layer);
-            if (addableLayers.Count == 0)
+            if (_addableLayers.Count == 0)
             {
-                numNode = i + 1;
+                _numNode = i + 1;
                 break;
             }
         }
-        Nodes = Nodes.OrderByDescending(x => x.gameObject.transform.position.x).ToList();
-        Nodes[0].transform.position = new Vector3(Nodes[0].transform.position.x, 0, transform.position.z);
-        Nodes.Last().transform.position = new Vector3(Nodes.Last().transform.position.x, 0, transform.position.z);
+        _nodes = _nodes.OrderByDescending(x => x.gameObject.transform.position.x).ToList();
+        _nodes[0].transform.position = new Vector3(_nodes[0].transform.position.x, 0, transform.position.z);
+        _nodes.Last().transform.position = new Vector3(_nodes.Last().transform.position.x, 0, transform.position.z);
 
-        for (int i = 1; i < numNode; i++)
+        for (int i = 1; i < _numNode; i++)
         {
-            Node nextNode = FindNearestNode(Nodes[i], Nodes.GetRange(0, i));
-            GameObject edge = Instantiate(edgePrefab);
+            Node nextNode = FindNearestNode(_nodes[i], _nodes.GetRange(0, i));
+            GameObject edge = Instantiate(_edgePrefab);
             edge.transform.SetParent(gameObject.transform);
-            Edges.Add(edge.GetComponent<LineRenderer>());
-            ConnectNodes(Nodes[i], nextNode);
-            Edges.Last().SetPositions(new Vector3[] { Nodes[i].transform.position, nextNode.transform.position });
+            _edges.Add(edge.GetComponent<LineRenderer>());
+            ConnectNodes(_nodes[i], nextNode);
+            _edges.Last().SetPositions(new Vector3[] { _nodes[i].transform.position, nextNode.transform.position });
         }
 
-        Nodes = Nodes.OrderBy(x => x.gameObject.transform.position.x).ToList();
-        for (int i = 1; i < numNode; i++)
+        _nodes = _nodes.OrderBy(x => x.gameObject.transform.position.x).ToList();
+        for (int i = 1; i < _numNode; i++)
         {
-            if (Nodes[i].Prev.Count > 0) continue;
-            Node prevNode = FindNearestNode(Nodes[i], Nodes.GetRange(0, i));
-            GameObject edge = Instantiate(edgePrefab);
+            if (_nodes[i].Prev.Count > 0) continue;
+            Node prevNode = FindNearestNode(_nodes[i], _nodes.GetRange(0, i));
+            GameObject edge = Instantiate(_edgePrefab);
             edge.transform.SetParent(gameObject.transform);
-            Edges.Add(edge.GetComponent<LineRenderer>());
-            ConnectNodes(prevNode, Nodes[i]);
-            Edges.Last().SetPositions(new Vector3[] { prevNode.transform.position, Nodes[i].transform.position });
+            _edges.Add(edge.GetComponent<LineRenderer>());
+            ConnectNodes(prevNode, _nodes[i]);
+            _edges.Last().SetPositions(new Vector3[] { prevNode.transform.position, _nodes[i].transform.position });
         }
     }
 
@@ -117,7 +122,7 @@ public class Map : MonoBehaviourSingleton<Map>
 
     public bool AllLayersHaveNodes()
     {
-        for (int i = 0; i < numLayer; i++)
+        for (int i = 0; i < _numLayer; i++)
         {
             if (GetNodesInLayer(i).Count == 0) return false;
         }
@@ -126,10 +131,10 @@ public class Map : MonoBehaviourSingleton<Map>
 
     public void InitAddableLayers()
     {
-        addableLayers = new List<int>();
-        for (int i = 0; i < numLayer; i++)
+        _addableLayers = new List<int>();
+        for (int i = 0; i < _numLayer; i++)
         {
-            addableLayers.Add(i);
+            _addableLayers.Add(i);
         }
     }
     private GameObject CreateRandomNode()
@@ -148,16 +153,16 @@ public class Map : MonoBehaviourSingleton<Map>
 
     private GameObject CreateBattleNode()
     {
-        GameObject battleNode = Instantiate(battleNodePrefab);
-        Wave wave = allWaves[Random.Range(0, allWaves.Count)];
+        GameObject battleNode = Instantiate(_battleNodePrefab);
+        Wave wave = AllWaves[Random.Range(0, AllWaves.Count)];
         battleNode.GetComponent<BattleNode>().Wave = wave;
         return battleNode;
     }
 
     private GameObject CreateEventNode()
     {
-        GameObject eventNode = Instantiate(eventNodePrefab);
-        DialogNode randomEvent = allRandomEvents[Random.Range(0, allRandomEvents.Count)];
+        GameObject eventNode = Instantiate(_eventNodePrefab);
+        DialogNode randomEvent = AllRandomEvents[Random.Range(0, AllRandomEvents.Count)];
         eventNode.GetComponent<EventNode>().RandomEvent = randomEvent;
         return eventNode;
     }
@@ -165,20 +170,20 @@ public class Map : MonoBehaviourSingleton<Map>
     public void SetAddableLayers(int layer)
     {
         int max;
-        if (layer == 0 || layer == numLayer - 1) max = 1;
-        else max = maxNodePerLayer;
-        if (GetNodesInLayer(layer).Count >= max) addableLayers.Remove(layer);
+        if (layer == 0 || layer == _numLayer - 1) max = 1;
+        else max = _maxNodePerLayer;
+        if (GetNodesInLayer(layer).Count >= max) _addableLayers.Remove(layer);
     }
     public int RandomLayer()
     {
-        int n = addableLayers.Count;
-        return addableLayers[Random.Range(0, n)];
+        int n = _addableLayers.Count;
+        return _addableLayers[Random.Range(0, n)];
     }
 
     public List<Node> GetNodesInLayer(int layer)
     {
         List<Node> nodesInLayer = new List<Node>();
-        foreach (Node node in Nodes)
+        foreach (Node node in _nodes)
         {
             if (node.Layer == layer) nodesInLayer.Add(node);
         }
@@ -187,19 +192,19 @@ public class Map : MonoBehaviourSingleton<Map>
 
     public Vector3 RandomPos(int layer)
     {
-        float startX = GetXMin() + GetMapSize().x * (layer + 0.25f) / numLayer;
-        float x = Random.Range(startX, startX + 0.5f * GetMapSize().x / numLayer);
+        float startX = GetXMin() + GetMapSize().x * (layer + 0.25f) / _numLayer;
+        float x = Random.Range(startX, startX + 0.5f * GetMapSize().x / _numLayer);
         float y = Random.Range(-GetMapSize().y / 2, GetMapSize().y / 2 - 0.5f);
-        foreach (Node node in Nodes)
+        foreach (Node node in _nodes)
         {
-            if ((Mathf.Abs(x - node.transform.position.x) < minGap && Mathf.Abs(y - node.transform.position.y) < minGap))
+            if ((Mathf.Abs(x - node.transform.position.x) < _minGap && Mathf.Abs(y - node.transform.position.y) < _minGap))
             {
                 return RandomPos(layer);
             }
         }
         foreach (Node node in GetNodesInLayer(layer))
         {
-            if (Mathf.Abs(y - node.transform.position.y) < minGap)
+            if (Mathf.Abs(y - node.transform.position.y) < _minGap)
             {
                 return RandomPos(layer);
             }
@@ -228,13 +233,13 @@ public class Map : MonoBehaviourSingleton<Map>
     {
         //return Mathf.Abs(a.transform.position.x - b.transform.position.x) > minGap / 2;
         int max = Random.Range(1, 2);
-        if (a.Layer == 0 || a.Layer == numLayer - 1 || b.Layer == 0 || b.Layer == numLayer - 1) max = 1;
+        if (a.Layer == 0 || a.Layer == _numLayer - 1 || b.Layer == 0 || b.Layer == _numLayer - 1) max = 1;
         return Mathf.Abs(a.Layer - b.Layer) <= max && a.Layer != b.Layer && !EdgesOverlap(a, b);
     }
 
     public bool EdgesOverlap(Node a, Node b)
     {
-        foreach (LineRenderer edge in Edges)
+        foreach (LineRenderer edge in _edges)
         {
             if (EdgeOverlap(a.transform.position, b.transform.position, edge.GetPosition(0), edge.GetPosition(1))) return true;
         }
@@ -253,7 +258,7 @@ public class Map : MonoBehaviourSingleton<Map>
 
     public List<Node> FindStartNodes()
     {
-        return Nodes.Where(x => x.Prev.Count == 0).ToList();
+        return _nodes.Where(x => x.Prev.Count == 0).ToList();
     }
 
     public void ShowPath()
@@ -263,16 +268,16 @@ public class Map : MonoBehaviourSingleton<Map>
         {
             if (prev >= 0)
             {
-                LineRenderer line = FindEdge(Nodes[prev], Nodes[i]);
+                LineRenderer line = FindEdge(_nodes[prev], _nodes[i]);
                 line.startColor = Color.green;
                 line.endColor = Color.green;
             }
-            Nodes[i].OnPass();
+            _nodes[i].OnPass();
             prev = i;
         }
-        foreach (Node node in curNode.Next)
+        foreach (Node node in _curNode.Next)
         {
-            LineRenderer line = FindEdge(curNode, node);
+            LineRenderer line = FindEdge(_curNode, node);
             line.startColor = Color.cyan;
             line.endColor = Color.cyan;
             node.OnClickable();
@@ -281,10 +286,10 @@ public class Map : MonoBehaviourSingleton<Map>
 
     public void ShowUpdatePath()
     {
-        curNode.OnPass();
-        foreach (Node node in curNode.Next)
+        _curNode.OnPass();
+        foreach (Node node in _curNode.Next)
         {
-            LineRenderer line = FindEdge(curNode, node);
+            LineRenderer line = FindEdge(_curNode, node);
             line.startColor = Color.cyan;
             line.endColor = Color.cyan;
             node.OnClickable();
@@ -293,9 +298,9 @@ public class Map : MonoBehaviourSingleton<Map>
 
     public void AddNodeToPath(Node node)
     {
-        PlayerData.Path.Add(Nodes.IndexOf(node));
+        PlayerData.Path.Add(_nodes.IndexOf(node));
         UpdateOldPath(node);
-        curNode = node;
+        _curNode = node;
         ShowUpdatePath();
     }
 
@@ -308,11 +313,11 @@ public class Map : MonoBehaviourSingleton<Map>
     public void UpdateOldPath(Node newCurNode)
     {
         List<Node> removeClickableNodes;
-        if (curNode == null) removeClickableNodes = FindStartNodes();
+        if (_curNode == null) removeClickableNodes = FindStartNodes();
         else
         {
-            removeClickableNodes = curNode.Next;
-            LineRenderer line = FindEdge(curNode, newCurNode);
+            removeClickableNodes = _curNode.Next;
+            LineRenderer line = FindEdge(_curNode, newCurNode);
             line.startColor = Color.green;
             line.endColor = Color.green;
         }
@@ -320,25 +325,25 @@ public class Map : MonoBehaviourSingleton<Map>
         foreach (Node node in removeClickableNodes)
         {
             node.OnReset();
-            if (curNode != null) ResetEdge(FindEdge(curNode, node));
+            if (_curNode != null) ResetEdge(FindEdge(_curNode, node));
         }
     }
 
     public LineRenderer FindEdge(Node oriNode, Node desNode)
     {
-        return Edges.Find(x => x.GetPosition(0).Equals(oriNode.transform.position) && x.GetPosition(1).Equals(desNode.transform.position));
+        return _edges.Find(x => x.GetPosition(0).Equals(oriNode.transform.position) && x.GetPosition(1).Equals(desNode.transform.position));
     }
 
     public void ResetEdge(LineRenderer line)
     {
         Vector3[] pos = new Vector3[2];
         line.GetPositions(pos);
-        Edges.Remove(line);
+        _edges.Remove(line);
         GameObject.Destroy(line.gameObject);
-        GameObject edge = Instantiate(edgePrefab);
+        GameObject edge = Instantiate(_edgePrefab);
         edge.transform.SetParent(gameObject.transform);
-        Edges.Add(edge.GetComponent<LineRenderer>());
-        Edges.Last().SetPositions(pos);
+        _edges.Add(edge.GetComponent<LineRenderer>());
+        _edges.Last().SetPositions(pos);
     }
 
     public Vector2 GetMapSize()
@@ -350,11 +355,11 @@ public class Map : MonoBehaviourSingleton<Map>
     {
         Vector2 size = GetMapSize();
         float oriWidth = size.x;
-        size.x = numLayer * layerWidth;
-        WidthScale = size.x / oriWidth;
+        size.x = _numLayer * _layerWidth;
+        _widthScale = size.x / oriWidth;
         GetComponent<RectTransform>().sizeDelta = size;
         Vector3 pos = transform.position;
-        pos.x = (numLayer * layerWidth - oriWidth) / 2;
+        pos.x = (_numLayer * _layerWidth - oriWidth) / 2;
         GetComponent<RectTransform>().position = pos;
     }
 

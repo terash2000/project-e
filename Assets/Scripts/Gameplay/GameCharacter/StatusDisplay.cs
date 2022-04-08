@@ -12,14 +12,14 @@ public class StatusDisplay : MonoBehaviour
         switch (status)
         {
             case Status.Type.Acid:
-                _icon.sprite = GameManager.Instance.acidIcon;
-                _icon.color = GameManager.Instance.acidColor;
-                _amountText.color = GameManager.Instance.acidColor;
+                _icon.sprite = GameManager.Instance.AcidIcon;
+                _icon.color = GameManager.Instance.AcidColor;
+                _amountText.color = GameManager.Instance.AcidColor;
                 break;
             case Status.Type.Burn:
-                _icon.sprite = GameManager.Instance.burnIcon;
-                _icon.color = GameManager.Instance.burnColor;
-                _amountText.color = GameManager.Instance.burnColor;
+                _icon.sprite = GameManager.Instance.BurnIcon;
+                _icon.color = GameManager.Instance.BurnColor;
+                _amountText.color = GameManager.Instance.BurnColor;
                 break;
         }
         _amountText.text = amount.ToString();

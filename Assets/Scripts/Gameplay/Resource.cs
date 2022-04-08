@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class Resource : MonoBehaviour
 {
-    private TextMeshProUGUI healthText;
-    private TextMeshProUGUI goldText;
+    private TextMeshProUGUI _healthText;
+    private TextMeshProUGUI _goldText;
 
     void Start()
     {
-        healthText = transform.Find("Health").gameObject.GetComponent<TextMeshProUGUI>();
-        goldText = transform.Find("Gold Quantity").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
+        _healthText = transform.Find("Health").gameObject.GetComponent<TextMeshProUGUI>();
+        _goldText = transform.Find("Gold Quantity").gameObject.GetComponent<TMPro.TextMeshProUGUI>();
     }
 
     void Update()
     {
-        healthText.text = PlayerData.Health.ToString() + '/' + PlayerData.MaxHealth.ToString();
-        goldText.text = PlayerData.Gold.ToString();
+        _healthText.text = PlayerData.Health.ToString() + '/' + PlayerData.MaxHealth.ToString();
+        _goldText.text = PlayerData.Gold.ToString();
     }
 }

@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float zoomSpeed;
-    public float minZoom;
-    public float maxZoom;
-    public float dragSpeed;
-    private Vector3 dragOrigin;
-    private Rect rectOrigin;
+    public float ZoomSpeed;
+    public float MinZoom;
+    public float MaxZoom;
+    public float DragSpeed;
+    private Vector3 _dragOrigin;
+    private Rect _rectOrigin;
     void Start()
     {
-        rectOrigin = GetArea(Map.Instance.WidthScale);
+        _rectOrigin = GetArea(Map.Instance.WidthScale);
     }
 
     void Update()
@@ -27,18 +27,18 @@ public class CameraMovement : MonoBehaviour
         Physics.Raycast(ray, out point, 1000);
         Vector3 Scrolldirection = ray.GetPoint(5);
         Scrolldirection.z = transform.position.z;
-        float step = zoomSpeed * Time.deltaTime;
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && Camera.main.orthographicSize > minZoom)
+        float step = ZoomSpeed * Time.deltaTime;
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && Camera.main.orthographicSize > MinZoom)
         {
             Camera.main.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * step / 2;
-            Camera.main.orthographicSize = Mathf.Max(Camera.main.orthographicSize, minZoom);
+            Camera.main.orthographicSize = Mathf.Max(Camera.main.orthographicSize, MinZoom);
             transform.position = Vector3.MoveTowards(transform.position, Scrolldirection, Input.GetAxis("Mouse ScrollWheel") * step);
             BoundCameraPos();
         }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0 && Camera.main.orthographicSize < maxZoom)
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && Camera.main.orthographicSize < MaxZoom)
         {
             Camera.main.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * step / 2;
-            Camera.main.orthographicSize = Mathf.Min(Camera.main.orthographicSize, maxZoom);
+            Camera.main.orthographicSize = Mathf.Min(Camera.main.orthographicSize, MaxZoom);
             transform.position = Vector3.MoveTowards(transform.position, Scrolldirection, Input.GetAxis("Mouse ScrollWheel") * step);
             BoundCameraPos();
         }
@@ -52,13 +52,13 @@ public class CameraMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            dragOrigin = Input.mousePosition;
+            _dragOrigin = Input.mousePosition;
             return;
         }
         if (!Input.GetMouseButton(0)) return;
-        Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
-        Vector3 move = new Vector3(-pos.x * dragSpeed * Camera.main.orthographicSize / maxZoom, -pos.y * dragSpeed * Camera.main.orthographicSize / maxZoom, 0);
-        dragOrigin = Input.mousePosition;
+        Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - _dragOrigin);
+        Vector3 move = new Vector3(-pos.x * DragSpeed * Camera.main.orthographicSize / MaxZoom, -pos.y * DragSpeed * Camera.main.orthographicSize / MaxZoom, 0);
+        _dragOrigin = Input.mousePosition;
         transform.Translate(move, Space.World);
         if (InsideArea(GetArea()).Contains(false)) transform.Translate(-move, Space.World);
     }
@@ -72,12 +72,12 @@ public class CameraMovement : MonoBehaviour
 
     public List<bool> InsideArea(Rect rect)
     {
-        return new List<bool>() { rectOrigin.xMin <= rect.xMin, rectOrigin.xMax >= rect.xMax, rectOrigin.yMin <= rect.yMin, rectOrigin.yMax >= rect.yMax };
+        return new List<bool>() { _rectOrigin.xMin <= rect.xMin, _rectOrigin.xMax >= rect.xMax, _rectOrigin.yMin <= rect.yMin, _rectOrigin.yMax >= rect.yMax };
     }
 
     public void BoundCameraPos()
     {
-        if (rectOrigin.width - GetArea().width < 0.002f || rectOrigin.height - GetArea().height < 0.002f) return;
+        if (_rectOrigin.width - GetArea().width < 0.002f || _rectOrigin.height - GetArea().height < 0.002f) return;
         while (InsideArea(GetArea()).Contains(false))
         {
             List<bool> inside = InsideArea(GetArea());

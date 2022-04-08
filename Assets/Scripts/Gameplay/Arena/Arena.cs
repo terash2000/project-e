@@ -11,37 +11,53 @@ public class Arena : MonoBehaviourSingleton<Arena>
     public Tile mTile;
     public Tile mOriginalTile;
     [HideInInspector]
-    public GridLayout grid;
-    [HideInInspector]
-    public Tilemap tilemap;
-    [HideInInspector]
-    public GameObject hexBorder;
-    [HideInInspector]
-    public List<Vector3Int> AreaPosList;
-    [HideInInspector]
-    public List<Vector3Int> TargetPosList;
-    [HideInInspector]
-    public GameObject redHexBorder;
-    [HideInInspector]
     public CardController SelectedCard;
-    [HideInInspector]
-    public List<Vector3Int> monsterHighlight = new List<Vector3Int>();
-    [HideInInspector]
-    public List<Vector3Int> monsterHighlight2 = new List<Vector3Int>();
 
-    private Color redHighlight = new Color(1f, 0.8f, 0.8f);
-    private Color redHighlight2 = new Color(1f, 0.5f, 0.5f);
+    private GridLayout _grid;
+    private Tilemap _tilemap;
+    private GameObject _hexBorder;
+    private GameObject _redHexBorder;
+    private List<Vector3Int> _areaPosList = new List<Vector3Int>();
+    private List<Vector3Int> _targetPosList = new List<Vector3Int>();
+    private List<Vector3Int> _monsterHighlight = new List<Vector3Int>();
+    private List<Vector3Int> _monsterHighlight2 = new List<Vector3Int>();
+    private Color _redHighlight = new Color(1f, 0.8f, 0.8f);
+    private Color _redHighlight2 = new Color(1f, 0.5f, 0.5f);
+
+    public GridLayout Grid
+    {
+        get { return _grid; }
+    }
+    public Tilemap Tilemap
+    {
+        get { return _tilemap; }
+    }
+    public List<Vector3Int> AreaPosList
+    {
+        get { return _areaPosList; }
+        set { _areaPosList = value; }
+    }
+    public List<Vector3Int> TargetPosList
+    {
+        get { return _targetPosList; }
+        set { _targetPosList = value; }
+    }
+    public List<Vector3Int> MonsterHighlight
+    {
+        get { return _monsterHighlight; }
+        set { _monsterHighlight = value; }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        grid = GetComponentInChildren<GridLayout>();
-        tilemap = grid.GetComponentInChildren<Tilemap>();
-        hexBorder = transform.Find("hexBorder").gameObject;
-        BakeLineDebuger(hexBorder);
-        hexBorder.gameObject.SetActive(false);
-        redHexBorder = transform.Find("redHexBorder").gameObject;
-        BakeLineDebuger(redHexBorder);
+        _grid = GetComponentInChildren<GridLayout>();
+        _tilemap = _grid.GetComponentInChildren<Tilemap>();
+        _hexBorder = transform.Find("hexBorder").gameObject;
+        BakeLineDebuger(_hexBorder);
+        _hexBorder.gameObject.SetActive(false);
+        _redHexBorder = transform.Find("redHexBorder").gameObject;
+        BakeLineDebuger(_redHexBorder);
         SelectedCard = null;
     }
 
@@ -68,27 +84,27 @@ public class Arena : MonoBehaviourSingleton<Arena>
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.gameState != GameState.Running) return;
+        if (GameManager.GameState != GameState.Running) return;
 
         Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int mousePos = grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
+        Vector3Int mousePos = _grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
         Monster monster = MonsterManager.Instance.FindMonsterByTile(mousePos);
-        Tile tile = (Tile)tilemap.GetTile(mousePos);
+        Tile tile = (Tile)_tilemap.GetTile(mousePos);
 
         // clear old highlight
-        SetTileColor(Color.white, monsterHighlight2);
-        monsterHighlight2.Clear();
+        SetTileColor(Color.white, _monsterHighlight2);
+        _monsterHighlight2.Clear();
         HideTargetArea();
-        redHexBorder.gameObject.SetActive(false);
+        _redHexBorder.gameObject.SetActive(false);
 
         // highlight monster 1
         if (OptionMenu.ShowMonstersAttackArea)
         {
-            SetTileColor(redHighlight, monsterHighlight);
+            SetTileColor(_redHighlight, _monsterHighlight);
         }
-        else SetTileColor(Color.white, monsterHighlight);
+        else SetTileColor(Color.white, _monsterHighlight);
 
-        if (tile != null && AreaPosList.Contains(mousePos))
+        if (tile != null && _areaPosList.Contains(mousePos))
         {
             // highlight card
             ShowTargetArea(oriPos);
@@ -96,11 +112,11 @@ public class Arena : MonoBehaviourSingleton<Arena>
         else if (monster != null)
         {
             // highlight monster 2
-            redHexBorder.gameObject.SetActive(true);
-            redHexBorder.transform.position = grid.CellToWorld(mousePos);
+            _redHexBorder.gameObject.SetActive(true);
+            _redHexBorder.transform.position = _grid.CellToWorld(mousePos);
 
-            monsterHighlight2 = monster.AttackArea();
-            Arena.Instance.SetTileColor(redHighlight2, monsterHighlight2);
+            _monsterHighlight2 = monster.AttackArea();
+            Arena.Instance.SetTileColor(_redHighlight2, _monsterHighlight2);
         }
 
         if (SelectedCard != null && IsDirectionTarget(SelectedCard.mTargetShape))
@@ -111,33 +127,33 @@ public class Arena : MonoBehaviourSingleton<Arena>
 
     public void ShowTargetArea(Vector3 targetPos)
     {
-        TargetPosList = GetPosListTarget(SelectedCard.mTargetShape, SelectedCard.mRange, PlayerManager.Instance.Player.CurrentTile, targetPos);
-        SetTileColor(Color.yellow, TargetPosList);
+        _targetPosList = GetPosListTarget(SelectedCard.mTargetShape, SelectedCard.mRange, PlayerManager.Instance.Player.CurrentTile, targetPos);
+        SetTileColor(Color.yellow, _targetPosList);
     }
 
     public void HideTargetArea()
     {
-        SetTileColor(Color.white, TargetPosList);
+        SetTileColor(Color.white, _targetPosList);
     }
 
     public void ShowRadius(AreaShape areaShape, AreaShape targetShape, int range)
     {
         Vector3Int curPos = PlayerManager.Instance.Player.CurrentTile;
-        hexBorder.gameObject.SetActive(true);
-        hexBorder.transform.position = grid.CellToWorld(curPos);
-        AreaPosList = GetPosList(areaShape, range, curPos);
-        AreaPosList.Remove(curPos);
-        if (!IsDirectionTarget(targetShape)) SetTile(mTile, AreaPosList);
+        _hexBorder.gameObject.SetActive(true);
+        _hexBorder.transform.position = _grid.CellToWorld(curPos);
+        _areaPosList = GetPosList(areaShape, range, curPos);
+        _areaPosList.Remove(curPos);
+        if (!IsDirectionTarget(targetShape)) SetTile(mTile, _areaPosList);
 
         HideTargetArea();
-        ShowTargetArea(grid.CellToWorld(curPos));
+        ShowTargetArea(_grid.CellToWorld(curPos));
     }
 
     public void HideRadius(AreaShape areaShape, int range)
     {
         Vector3Int curPos = PlayerManager.Instance.Player.CurrentTile;
-        hexBorder.gameObject.SetActive(false);
-        AreaPosList.Clear();
+        _hexBorder.gameObject.SetActive(false);
+        _areaPosList.Clear();
         SetTile(mOriginalTile, GetPosList(areaShape, range, curPos));
     }
 
@@ -145,11 +161,11 @@ public class Arena : MonoBehaviourSingleton<Arena>
     {
         foreach (Vector3Int pos in posList)
         {
-            if (tilemap.GetTile(pos) == null) continue;
-            Color color = tilemap.GetColor(pos);
-            tilemap.SetTile(pos, tile);
-            tilemap.SetTileFlags(pos, TileFlags.None);
-            tilemap.SetColor(pos, color);
+            if (_tilemap.GetTile(pos) == null) continue;
+            Color color = _tilemap.GetColor(pos);
+            _tilemap.SetTile(pos, tile);
+            _tilemap.SetTileFlags(pos, TileFlags.None);
+            _tilemap.SetColor(pos, color);
         }
     }
 
@@ -157,9 +173,9 @@ public class Arena : MonoBehaviourSingleton<Arena>
     {
         foreach (Vector3Int pos in posList)
         {
-            if (tilemap.GetTile(pos) == null) continue;
-            tilemap.SetTileFlags(pos, TileFlags.None);
-            tilemap.SetColor(pos, color);
+            if (_tilemap.GetTile(pos) == null) continue;
+            _tilemap.SetTileFlags(pos, TileFlags.None);
+            _tilemap.SetColor(pos, color);
         }
     }
 
@@ -168,7 +184,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
         Arena.Instance.SetTileColor(Color.white, posList);
         foreach (Vector3Int pos in new List<Vector3Int>(posList))
         {
-            Arena.Instance.monsterHighlight.Remove(pos);
+            Arena.Instance._monsterHighlight.Remove(pos);
         }
     }
 
@@ -183,7 +199,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
             case AreaShape.Cone:
                 return GetPosListCone(range, curPos, directions);
             default:
-                return GetPosList(areaShape, range, grid.WorldToCell(targetPos));
+                return GetPosList(areaShape, range, _grid.WorldToCell(targetPos));
         }
     }
 

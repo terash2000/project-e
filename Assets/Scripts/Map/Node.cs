@@ -1,27 +1,24 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Node : MonoBehaviour
 {
     public List<Node> Next;
     public List<Node> Prev;
     public int Layer;
-    private SpriteRenderer check;
-    private SpriteOutline outline;
-    private SpriteRenderer bg;
+    private SpriteRenderer _check;
+    private SpriteOutline _outline;
+    private SpriteRenderer _bg;
 
     public void Init(int layer)
     {
         Next = new List<Node>();
         Prev = new List<Node>();
-        check = transform.Find("Check").GetComponent<SpriteRenderer>();
-        check.enabled = false;
-        outline = GetComponent<SpriteOutline>();
-        outline.enabled = false;
-        //Debug.Log(outline);
-        bg = GetComponent<SpriteRenderer>();
+        _check = transform.Find("Check").GetComponent<SpriteRenderer>();
+        _check.enabled = false;
+        _outline = GetComponent<SpriteOutline>();
+        _outline.enabled = false;
+        _bg = GetComponent<SpriteRenderer>();
         GetComponent<CircleCollider2D>().enabled = false;
         Layer = layer;
     }
@@ -44,25 +41,23 @@ public class Node : MonoBehaviour
 
     public void OnClickable()
     {
-        //Debug.Log(outline);
-        outline.enabled = true;
-        //Debug.Log(outline.enabled);
+        _outline.enabled = true;
         GetComponent<CircleCollider2D>().enabled = true;
     }
 
     public void OnPass()
     {
-        outline.enabled = false;
+        _outline.enabled = false;
         GetComponent<CircleCollider2D>().enabled = false;
-        check.enabled = true;
-        bg.color = Color.gray;
+        _check.enabled = true;
+        _bg.color = Color.gray;
     }
 
     public void OnReset()
     {
-        outline.enabled = false;
+        _outline.enabled = false;
         GetComponent<CircleCollider2D>().enabled = false;
-        check.enabled = false;
+        _check.enabled = false;
     }
 
     protected virtual void ChangeScene() { }

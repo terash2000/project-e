@@ -527,31 +527,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6acefe94054d44f9e8b595ba7fb0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allWaves:
-  - {fileID: 11400000, guid: 99422b7a3ab80cd488e078fd726f46df, type: 2}
-  - {fileID: 11400000, guid: c079000926d7113488d847b260f6059d, type: 2}
+  AllWaves:
   - {fileID: 11400000, guid: 4417d540a2757a845a88a67c9eae6ddc, type: 2}
+  - {fileID: 11400000, guid: c079000926d7113488d847b260f6059d, type: 2}
+  - {fileID: 11400000, guid: 99422b7a3ab80cd488e078fd726f46df, type: 2}
   - {fileID: 11400000, guid: 157a8daf598889d45b0912e15b73f089, type: 2}
   - {fileID: 11400000, guid: b098e1fa5c9210847a9fa05db2a47e2a, type: 2}
-  allRandomEvents:
+  AllRandomEvents:
   - {fileID: 11400000, guid: 42a4d785d68afb64fa486d207ecdf7f5, type: 2}
   - {fileID: 11400000, guid: 49c70588c9170734192c9bd8600854cc, type: 2}
-  Nodes: []
-  Edges: []
-  minGap: 1
-  maxGap: 0
-  numNode: 20
-  numLayer: 7
-  layerWidth: 4
-  maxNodePerLayer: 4
-  battleNodePrefab: {fileID: 5473315819909535326, guid: 0e9718df524da3f4285e8963d6c39ac0,
+  _minGap: 1
+  _maxGap: 0
+  _numNode: 20
+  _numLayer: 7
+  _layerWidth: 4
+  _maxNodePerLayer: 4
+  _battleNodePrefab: {fileID: 5473315819909535326, guid: 0e9718df524da3f4285e8963d6c39ac0,
     type: 3}
-  eventNodePrefab: {fileID: 5473315819909535326, guid: bc448c64fe64faa4dbc6abdce7dd60cd,
+  _eventNodePrefab: {fileID: 5473315819909535326, guid: bc448c64fe64faa4dbc6abdce7dd60cd,
     type: 3}
-  edgePrefab: {fileID: 4733582419107687985, guid: edcffc1d61444b74cb3ecd41cfed1b62,
+  _edgePrefab: {fileID: 4733582419107687985, guid: edcffc1d61444b74cb3ecd41cfed1b62,
     type: 3}
-  completePopup: {fileID: 550138507}
-  WidthScale: 0
+  _completePopup: {fileID: 550138507}
 --- !u!1 &934732881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,7 +1474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6bf311e1e84ec49a854e98770536b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomSpeed: 500
-  minZoom: 2
-  maxZoom: 5
-  dragSpeed: 15
+  ZoomSpeed: 500
+  MinZoom: 2
+  MaxZoom: 5
+  DragSpeed: 15

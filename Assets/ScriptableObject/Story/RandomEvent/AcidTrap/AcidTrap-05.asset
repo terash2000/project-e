@@ -20,7 +20,7 @@ MonoBehaviour:
   Action:
     Type: 2
     Amount: 1
-    Name: Hit
+    Name: Acid Bomb
   Child: []
   Choice: []
   NextWave: {fileID: 0}

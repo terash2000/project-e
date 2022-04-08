@@ -159,9 +159,9 @@ public class Monster : GameCharacter
 
         Color color;
         if (damageStatusEffect == Status.Type.Acid)
-            color = GameManager.Instance.acidColor;
+            color = GameManager.Instance.AcidColor;
         else if (damageStatusEffect == Status.Type.Burn)
-            color = GameManager.Instance.burnColor;
+            color = GameManager.Instance.BurnColor;
         else
             color = _damageColor;
 
@@ -264,7 +264,7 @@ public class Monster : GameCharacter
 
         moveableTiles = moveableTiles.FindAll(tile => (
             tile != characterTile &&
-            Arena.Instance.tilemap.GetTile(tile) != null
+            Arena.Instance.Tilemap.GetTile(tile) != null
         ));
 
         while (moveableTiles.Count != 0)

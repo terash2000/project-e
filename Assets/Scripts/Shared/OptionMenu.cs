@@ -21,14 +21,14 @@ public class OptionMenu : MonoBehaviour
     {
         gameObject.SetActive(true);
         Time.timeScale = 0f;
-        GameManager.gameState = GameState.Pause;
+        GameManager.GameState = GameState.Pause;
     }
 
     public void Resume()
     {
         gameObject.SetActive(false);
         Time.timeScale = 1f;
-        GameManager.gameState = GameState.Running;
+        GameManager.GameState = GameState.Running;
     }
 
     public void TogAutoEndTurn(bool tog)

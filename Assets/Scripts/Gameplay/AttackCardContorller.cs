@@ -12,7 +12,7 @@ public class AttackCardContorller : CardController
 
     public override bool OnUse(Vector3Int mousePos)
     {
-        Tile tile = (Tile)Arena.Instance.tilemap.GetTile(mousePos);
+        Tile tile = (Tile)Arena.Instance.Tilemap.GetTile(mousePos);
         if (tile == null) return false;
         bool success = false;
         foreach (Vector3Int pos in Arena.Instance.TargetPosList)

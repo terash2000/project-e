@@ -26,7 +26,7 @@ public class DeckList : MonoBehaviour
 
         gameObject.SetActive(true);
         Time.timeScale = 0f;
-        GameManager.gameState = GameState.Pause;
+        GameManager.GameState = GameState.Pause;
 
         _currentPage = 0;
         _maxPage = (deck.Count - 1) / CONTAINER_SIZE;
@@ -37,7 +37,7 @@ public class DeckList : MonoBehaviour
     {
         gameObject.SetActive(false);
         Time.timeScale = 1f;
-        GameManager.gameState = GameState.Running;
+        GameManager.GameState = GameState.Running;
     }
 
     public void NextPage()

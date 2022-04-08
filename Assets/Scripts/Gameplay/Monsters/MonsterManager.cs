@@ -41,13 +41,13 @@ public class MonsterManager : MonoBehaviourSingleton<MonsterManager>, ITurnHandl
 
     public void OnStartTurn()
     {
-        Arena.Instance.RemoveMonsterHighlight(Arena.Instance.monsterHighlight);
+        Arena.Instance.RemoveMonsterHighlight(Arena.Instance.MonsterHighlight);
 
         foreach (Monster monster in Monsters)
         {
             monster.Refresh();
             if (monster.ShowAttackArea())
-                Arena.Instance.monsterHighlight.AddRange(monster.AttackArea());
+                Arena.Instance.MonsterHighlight.AddRange(monster.AttackArea());
         }
     }
 
