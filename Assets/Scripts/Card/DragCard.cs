@@ -2,70 +2,65 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
+public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    [SerializeField]
+    private Transform _handPanel;
     private RectTransform _dragRectTransform;
-    [SerializeField]
     private Canvas _canvas;
+    private GameObject _placeholder;
 
-    private CanvasGroup _canvasGroup;
-    private int _siblingIndex;
+    public GameObject placeholder { get { return _placeholder; } }
+    public Transform handPanel { get { return _handPanel; } }
 
-    private void Awake()
+    private void Start()
     {
-        if (_dragRectTransform == null)
-        {
-            _dragRectTransform = transform.GetComponent<RectTransform>();
-        }
-
-        if (_canvas == null)
-        {
-            Transform testCanvasTransform = transform.parent;
-            while (testCanvasTransform != null)
-            {
-                _canvas = testCanvasTransform.GetComponent<Canvas>();
-                if (_canvas != null)
-                {
-                    break;
-                }
-                testCanvasTransform = testCanvasTransform.parent;
-            }
-        }
-        _canvasGroup = GetComponent<CanvasGroup>();
-        _siblingIndex = transform.GetSiblingIndex();
+        _dragRectTransform = transform.GetComponent<RectTransform>();
+        _canvas = transform.root.GetComponent<Canvas>();
+        _handPanel = transform.parent;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         _dragRectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
-    }
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        _dragRectTransform.SetAsLastSibling();
+        int newSiblingIndex = _handPanel.childCount;
+        for (int i = 0; i < _handPanel.childCount; i++)
+        {
+            if (transform.position.x < _handPanel.GetChild(i).position.x)
+            {
+                newSiblingIndex = i;
+                if (_placeholder.transform.GetSiblingIndex() < newSiblingIndex)
+                    newSiblingIndex--;
+                break;
+            }
+        }
+        _placeholder.transform.SetSiblingIndex(newSiblingIndex);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        _canvasGroup.blocksRaycasts = false;
+        _placeholder = new GameObject();
+        _placeholder.transform.SetParent(_handPanel);
+        _placeholder.transform.SetSiblingIndex(transform.GetSiblingIndex());
+        LayoutElement new_le = _placeholder.AddComponent<LayoutElement>();
+        LayoutElement orignal = GetComponent<LayoutElement>();
+        new_le.preferredWidth = orignal.preferredWidth;
+        new_le.preferredHeight = orignal.preferredHeight;
+        new_le.flexibleWidth = 0;
+        new_le.flexibleHeight = 0;
+
+        GetComponent<CanvasGroup>().blocksRaycasts = false;
+        transform.SetParent(_handPanel.parent);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        _canvasGroup.blocksRaycasts = true;
-    }
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
+        transform.SetParent(_handPanel);
+        transform.SetSiblingIndex(_placeholder.transform.GetSiblingIndex());
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        _dragRectTransform.SetAsLastSibling();
-        _dragRectTransform.localScale = new Vector3(1.05f, 1.05f, 1f);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        _dragRectTransform.SetSiblingIndex(_siblingIndex);
-        _dragRectTransform.localScale = new Vector3(1f, 1f, 1f);
+        Destroy(_placeholder);
     }
 }
