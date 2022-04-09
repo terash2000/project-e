@@ -13,6 +13,7 @@ public class ConfirmationPopup : MonoBehaviour
         _text.text = message;
         _confirmButton.onClick.AddListener(Listener);
     }
+
     public void HidePopup()
     {
         Destroy(gameObject);
