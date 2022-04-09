@@ -15,6 +15,7 @@ public class Map : MonoBehaviourSingleton<Map>
     [SerializeField] private int _maxNodePerLayer;
     [SerializeField] private GameObject _battleNodePrefab;
     [SerializeField] private GameObject _eventNodePrefab;
+    [SerializeField] private GameObject _townNodePrefab;
     [SerializeField] private GameObject _edgePrefab;
     [SerializeField] private GameObject _completePopup;
     private List<Node> _nodes = new List<Node>();
@@ -140,13 +141,15 @@ public class Map : MonoBehaviourSingleton<Map>
     }
     private GameObject CreateRandomNode()
     {
-        int rand = Random.Range(0, 2);
+        int rand = Random.Range(0, 3);
         switch (rand)
         {
             case 0:
                 return CreateBattleNode();
             case 1:
                 return CreateEventNode();
+            case 2:
+                return CreateTownNode();
             default:
                 return null;
         }
@@ -166,6 +169,12 @@ public class Map : MonoBehaviourSingleton<Map>
         DialogNode randomEvent = AllRandomEvents[Random.Range(0, AllRandomEvents.Count)];
         eventNode.GetComponent<EventNode>().RandomEvent = randomEvent;
         return eventNode;
+    }
+
+    private GameObject CreateTownNode()
+    {
+        GameObject townNode = Instantiate(_townNodePrefab);
+        return townNode;
     }
 
     public void SetAddableLayers(int layer)
