@@ -2,17 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DeckList : MonoBehaviour
+public class DeckList : Pagination
 {
-    private const int CONTAINER_SIZE = 10;
-
-    [SerializeField] private GridLayoutGroup _cardContainer;
-    [SerializeField] private Button _previousButton;
-    [SerializeField] private Button _nextButton;
-    private int _currentPage;
-    private int _maxPage = 1;
-
-    private List<Card> deck; // temp
+    protected List<Card> deck; // temp
 
     public void Open()
     {
@@ -30,7 +22,7 @@ public class DeckList : MonoBehaviour
 
         _currentPage = 0;
         _maxPage = (deck.Count - 1) / CONTAINER_SIZE;
-        RenderCard();
+        Render();
     }
 
     public void Close()
@@ -40,29 +32,8 @@ public class DeckList : MonoBehaviour
         GameManager.GameState = GameState.Running;
     }
 
-    public void NextPage()
+    protected override void RenderCard()
     {
-        _currentPage += 1;
-        RenderCard();
-    }
-
-    public void PreviousPage()
-    {
-        _currentPage -= 1;
-        RenderCard();
-    }
-
-    private void RenderCard()
-    {
-        _previousButton.gameObject.SetActive(_currentPage > 0);
-        _nextButton.gameObject.SetActive(_currentPage < _maxPage);
-
-        // clear container
-        for (int i = 0; i < _cardContainer.transform.childCount; i++)
-        {
-            Destroy(_cardContainer.transform.GetChild(i).gameObject);
-        }
-
         for (int i = 0; i < CONTAINER_SIZE; i++)
         {
             int cardIndex = i + _currentPage * CONTAINER_SIZE;

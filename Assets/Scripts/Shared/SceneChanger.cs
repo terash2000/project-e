@@ -50,7 +50,7 @@ public class SceneChanger : MonoBehaviourSingletonPersistent<SceneChanger>
             yield return null;
         }
 
-        SceneManager.UnloadSceneAsync("LoadingScene");
+        //SceneManager.UnloadSceneAsync("LoadingScene");
     }
 
     public void NextScene()
