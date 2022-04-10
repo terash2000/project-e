@@ -4,6 +4,6 @@ public class TownNode : Node
 {
     protected override void ChangeScene()
     {
-        SceneChanger.LoadScene("TownScene");
+        SceneChanger.Instance.LoadScene("TownScene");
     }
 }

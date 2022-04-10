@@ -62,11 +62,11 @@ public class OptionMenu : MonoBehaviour
     public void ReturnMainMenu()
     {
         Time.timeScale = 1f;
-        SceneChanger.LoadScene("MainMenuScene");
+        SceneChanger.Instance.LoadScene("MainMenuScene");
     }
 
     public void ExitGame()
     {
-        SceneChanger.ExitGame();
+        SceneChanger.Instance.ExitGame();
     }
 }

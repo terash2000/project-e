@@ -20,12 +20,12 @@ public class NewGame : MonoBehaviour
             if (!skipPrologue)
             {
                 DialogManager.NextRoot.Push(_prologue);
-                SceneChanger.LoadScene("StoryScene");
+                SceneChanger.Instance.LoadScene("StoryScene");
             }
             else
             {
                 MonsterManager.Wave = _tutorialWave;
-                SceneChanger.LoadScene("CombatScene");
+                SceneChanger.Instance.LoadScene("CombatScene");
             }
 
             SaveSystem.DeleteSave();

@@ -14,6 +14,6 @@ public class Continue : MonoBehaviour
     public void ContinueGame()
     {
         SaveSystem.Load();
-        SceneChanger.NextScene();
+        SceneChanger.Instance.NextScene();
     }
 }

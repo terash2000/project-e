@@ -66,11 +66,11 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
             {
                 if (_current.Child != null && _current.Child.Count != 0)
                 {
-                    SceneChanger.NextSceneStack.Push("StoryScene");
+                    SceneChanger.Instance.NextSceneStack.Push("StoryScene");
                     DialogManager.NextRoot.Push(_current.Child[0]);
                 }
                 MonsterManager.Wave = _current.NextWave;
-                SceneChanger.LoadScene("CombatScene");
+                SceneChanger.Instance.LoadScene("CombatScene");
 
             }
             else if (_current.Child != null && _current.Child.Count != 0)
@@ -86,7 +86,7 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
             }
             else
             {
-                SceneChanger.NextScene();
+                SceneChanger.Instance.NextScene();
             }
         }
         else

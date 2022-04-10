@@ -29,6 +29,6 @@ public class ChooseCardPopup : MonoBehaviour
 
     public void NextScene()
     {
-        SceneChanger.NextScene();
+        SceneChanger.Instance.NextScene();
     }
 }

@@ -16,6 +16,6 @@ public class StoryButtonHandle : MonoBehaviour
     public void ChangeScene()
     {
         DialogManager.NextRoot.Push(_eventNode);
-        SceneChanger.LoadScene("StoryScene");
+        SceneChanger.Instance.LoadScene("StoryScene");
     }
 }

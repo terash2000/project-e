@@ -22,7 +22,7 @@ public class GameResultPopup : MonoBehaviour
     {
         _text.text = "DEFEAT";
         _bg.color = Color.red;
-        UnityAction action = () => SceneChanger.LoadScene("MainMenuScene");
+        UnityAction action = () => SceneChanger.Instance.LoadScene("MainMenuScene");
         _confirmButton.onClick.AddListener(action);
         gameObject.SetActive(true);
         Time.timeScale = 0f;
@@ -47,7 +47,7 @@ public class GameResultPopup : MonoBehaviour
         }
         else
         {
-            SceneChanger.NextScene();
+            SceneChanger.Instance.NextScene();
         }
     }
 }
