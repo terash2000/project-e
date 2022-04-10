@@ -580,7 +580,7 @@ GameObject:
   - component: {fileID: 1506302052}
   - component: {fileID: 1506302054}
   m_Layer: 5
-  m_Name: Play Slot
+  m_Name: Play Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -652,7 +652,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1506302050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1846ebe8880ddb343803879e37a911fe, type: 3}
+  m_Script: {fileID: 11500000, guid: 47e6da36e64bc934aa611a84cf28d511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1910042513
