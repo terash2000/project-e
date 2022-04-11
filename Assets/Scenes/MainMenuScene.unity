@@ -1954,7 +1954,7 @@ MonoBehaviour:
   _confirmationPopup: {fileID: 5984139876473836622, guid: d17398450ca033342ae5014d530fb58f,
     type: 3}
   _prologue: {fileID: 11400000, guid: a2a9914673fb0274eb0420bdbb120e3e, type: 2}
-  _tutorialWave: {fileID: 11400000, guid: 99422b7a3ab80cd488e078fd726f46df, type: 2}
+  _tutorialWave: {fileID: 11400000, guid: 05f7a19290e2f6244aecb4e3dc714207, type: 2}
 --- !u!1 &2094261974
 GameObject:
   m_ObjectHideFlags: 0

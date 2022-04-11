@@ -279,6 +279,15 @@ public class Arena : MonoBehaviourSingleton<Arena>
         return posList;
     }
 
+    public List<Vector3Int> GetPosListBeam(int range, Vector3Int curPos, int direction)
+    {
+        List<Vector3Int> posList = new List<Vector3Int>();
+        posList = posList.Concat(GetPosListDirection(range, curPos, direction)).ToList();
+        posList = posList.Concat(GetPosListDirection(range - 1, GetPosDirection(curPos, (direction + 1) % 6), direction)).ToList();
+        posList = posList.Concat(GetPosListDirection(range - 1, GetPosDirection(curPos, (direction + 5) % 6), direction)).ToList();
+        return posList;
+    }
+
     public Vector3Int GetPosDirection(Vector3Int curPos, int direction)
     {
         Vector3Int pos = curPos;

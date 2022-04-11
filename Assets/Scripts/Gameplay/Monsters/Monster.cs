@@ -236,6 +236,9 @@ public class Monster : GameCharacter
             case MonsterPatternType.Range:
                 area.AddRange(Arena.Instance.GetPosListDirection(pattern.AttackRange, CurrentTile, _attackDirection));
                 break;
+            case MonsterPatternType.Beam:
+                area.AddRange(Arena.Instance.GetPosListBeam(pattern.AttackRange, CurrentTile, _attackDirection));
+                break;
         }
 
         return area;
@@ -253,14 +256,7 @@ public class Monster : GameCharacter
         List<Vector3Int> moveableTiles = new List<Vector3Int> { CurrentTile };
         MonsterInfo.MonsterPattern pattern = _info.Patterns[_currentMove];
 
-        switch (pattern.Pattern)
-        {
-            case MonsterPatternType.Basic:
-            case MonsterPatternType.Range:
-            case MonsterPatternType.AttackAndBlock:
-                moveableTiles.AddRange(Arena.Instance.GetPosList(AreaShape.Hexagon, pattern.MoveRange, CurrentTile));
-                break;
-        }
+        moveableTiles.AddRange(Arena.Instance.GetPosList(AreaShape.Hexagon, pattern.MoveRange, CurrentTile));
 
         moveableTiles = moveableTiles.FindAll(tile => (
             tile != characterTile &&
@@ -278,6 +274,9 @@ public class Monster : GameCharacter
                     break;
                 case MonsterPatternType.Range:
                     targetTiles = StayDistance(pattern.AttackRange, moveableTiles, characterTile, true);
+                    break;
+                case MonsterPatternType.Beam:
+                    targetTiles = StayDistance(pattern.AttackRange - 1, moveableTiles, characterTile, true);
                     break;
             }
 
@@ -317,16 +316,12 @@ public class Monster : GameCharacter
         switch (pattern.Pattern)
         {
             case MonsterPatternType.Range:
+            case MonsterPatternType.Beam:
                 for (int i = 0; i < 6; i++)
                 {
-                    List<Vector3Int> attackableArea = Arena.Instance.GetPosListDirection(pattern.AttackRange, CurrentTile, i);
-                    if (attackableArea.Contains(characterTile)) return i;
-                    for (int j = 1; j < pattern.AttackRange; j++)
+                    if (Arena.Instance.GetPosListBeam(pattern.AttackRange + 1, CurrentTile, i).Contains(characterTile))
                     {
-                        if (Arena.Instance.GetPosListNear(attackableArea[j]).Contains(characterTile))
-                        {
-                            directionList.Add(i);
-                        }
+                        directionList.Add(i);
                     }
                 }
                 break;
@@ -373,7 +368,8 @@ public class Monster : GameCharacter
 
     public bool ShowAttackArea()
     {
-        return _info.Patterns[_currentMove].Pattern == MonsterPatternType.Range;
+        return _info.Patterns[_currentMove].Pattern == MonsterPatternType.Range ||
+            _info.Patterns[_currentMove].Pattern == MonsterPatternType.Beam;
     }
 
     private IEnumerator Die()
@@ -468,6 +464,7 @@ public class Monster : GameCharacter
                 _damageIcon.sprite = MonsterManager.Instance.SwordIcon;
                 break;
             case MonsterPatternType.Range:
+            case MonsterPatternType.Beam:
                 _damageIcon.sprite = MonsterManager.Instance.BowIcon;
                 break;
             case MonsterPatternType.AttackAndBlock:
