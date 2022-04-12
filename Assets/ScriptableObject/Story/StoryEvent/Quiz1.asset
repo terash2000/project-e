@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53231fe4de8b4784ba7370c482dd0968, type: 3}
-  m_Name: TestEvent
+  m_Name: Quiz1
   m_EditorClassIdentifier: 
-  DialogNode: {fileID: 11400000, guid: a2a9914673fb0274eb0420bdbb120e3e, type: 2}
-  Text: Test Event
+  DialogNode: {fileID: 11400000, guid: 00e496ddb69013e42b97e38b84e5979a, type: 2}
+  Text: Quiz 1
+  PreviousEvents:
+  - {fileID: 11400000, guid: 0893ccec2681d32419d9efbfad6f43ef, type: 2}

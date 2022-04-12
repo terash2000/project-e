@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
-  m_Name: 02
+  m_Name: Quiz1_03_correct
   m_EditorClassIdentifier: 
   Type: 0
-  Character: {fileID: 0}
-  Quote: Violet are blue.
+  Character: {fileID: 11400000, guid: 023d19118fe4ba347a0d4cca9668092d, type: 2}
+  Quote: Correct! As promised, Here's your reward.
   Background: {fileID: 0}
-  Sprite: {fileID: 21300000, guid: 739627a907935224285e683f9fdd4487, type: 3}
+  Sprite: {fileID: 0}
   Action:
     Type: 1
     Amount: 0
     Name: German Suplex
-    rootEvent: {fileID: 11400000, guid: 0893ccec2681d32419d9efbfad6f43ef, type: 2}
+    rootEvent: {fileID: 11400000, guid: 92a9de745ea828547aa73c84b1103dbb, type: 2}
   Child: []
   Choice: []
   NextWave: {fileID: 0}

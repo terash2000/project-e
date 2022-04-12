@@ -18,8 +18,12 @@ public class StoryMenu : MonoBehaviour
 
     public void Start()
     {
-        List<StoryEvent> uncompleted = _eventList.FindAll(storyEvent => !CompletedStory.Contains(storyEvent.name));
-        List<StoryEvent> completed = _eventList.FindAll(storyEvent => CompletedStory.Contains(storyEvent.name));
+        List<StoryEvent> uncompleted = _eventList.FindAll(storyEvent =>
+            {
+                return !_completedStory.Contains(storyEvent.name) && !IsLock(storyEvent);
+            });
+
+        List<StoryEvent> completed = _eventList.FindAll(storyEvent => _completedStory.Contains(storyEvent.name));
 
         foreach (StoryEvent storyEvent in uncompleted)
         {
@@ -42,5 +46,12 @@ public class StoryMenu : MonoBehaviour
     public void Close()
     {
         gameObject.SetActive(false);
+    }
+
+    private bool IsLock(StoryEvent storyEvent)
+    {
+        return storyEvent.PreviousEvents != null &&
+                storyEvent.PreviousEvents.FindAll(storyEvent => !_completedStory.Contains(storyEvent.name)).Count != 0;
+
     }
 }
