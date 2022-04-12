@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
@@ -88,6 +89,7 @@ public static class SaveSystem
 
         UnlockData data = new UnlockData();
         data.unlockDict = CardCollection.UnlockDict;
+        data.completedStory = CardCollection.CompletedStory;
 
         formatter.Serialize(file, data);
         file.Close();
@@ -106,17 +108,20 @@ public static class SaveSystem
             if (data.unlockDict.Count == CardCollection.Instance.AllCards.Count)
             {
                 CardCollection.UnlockDict = data.unlockDict;
+                CardCollection.CompletedStory = data.completedStory;
             }
             else
             {
                 // corrupted data or old verision
                 File.Delete(Application.persistentDataPath + "/UnlockData.dat");
                 CardCollection.UnlockDict = CardCollection.Instance.StarterCards();
+                CardCollection.CompletedStory = new List<string>();
             }
         }
         else
         {
             CardCollection.UnlockDict = CardCollection.Instance.StarterCards();
+            CardCollection.CompletedStory = new List<string>();
         }
     }
 }

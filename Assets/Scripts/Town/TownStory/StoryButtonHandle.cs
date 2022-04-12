@@ -4,6 +4,7 @@ using UnityEngine;
 public class StoryButtonHandle : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private GameObject _mask;
 
     private DialogNode _eventNode;
 
@@ -11,6 +12,15 @@ public class StoryButtonHandle : MonoBehaviour
     {
         _eventNode = storyEvent.DialogNode;
         _text.text = storyEvent.Text;
+
+        if (!CardCollection.CompletedStory.Contains(storyEvent.name))
+        {
+            _mask.SetActive(false);
+        }
+        else
+        {
+            _text.text += " (completed)";
+        }
     }
 
     public void ChangeScene()

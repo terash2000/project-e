@@ -10,7 +10,16 @@ public class StoryMenu : MonoBehaviour
 
     public void Start()
     {
-        foreach (StoryEvent storyEvent in _eventList)
+        List<StoryEvent> uncompleted = _eventList.FindAll(storyEvent => !CardCollection.CompletedStory.Contains(storyEvent.name));
+        List<StoryEvent> completed = _eventList.FindAll(storyEvent => CardCollection.CompletedStory.Contains(storyEvent.name));
+
+        foreach (StoryEvent storyEvent in uncompleted)
+        {
+            GameObject storyButton = Instantiate(_storyEventPrefab, _eventContainer.transform);
+            storyButton.GetComponent<StoryButtonHandle>().Init(storyEvent);
+        }
+
+        foreach (StoryEvent storyEvent in completed)
         {
             GameObject storyButton = Instantiate(_storyEventPrefab, _eventContainer.transform);
             storyButton.GetComponent<StoryButtonHandle>().Init(storyEvent);

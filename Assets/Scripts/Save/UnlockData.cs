@@ -5,4 +5,5 @@ using System.Collections.Generic;
 public class UnlockData
 {
     public Dictionary<string, bool> unlockDict;
+    public List<string> completedStory;
 }

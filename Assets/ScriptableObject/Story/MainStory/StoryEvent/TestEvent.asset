@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53231fe4de8b4784ba7370c482dd0968, type: 3}
   m_Name: TestEvent
   m_EditorClassIdentifier: 
-  DialogNode: {fileID: 11400000, guid: 6f4e9b4c01f3dcc41b40eadc1fb52e6c, type: 2}
+  DialogNode: {fileID: 11400000, guid: a2a9914673fb0274eb0420bdbb120e3e, type: 2}
   Text: Test Event

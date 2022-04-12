@@ -6,11 +6,12 @@ public class StoryAction
     public ActionType Type;
     public int Amount;
     public string Name;
+    public StoryEvent rootEvent;
 
     public enum ActionType
     {
         None,
-        UnlockCard,
+        CompleteStory,
         AddCardToDeck,
         ChangeHP,
         ChangeMaxHP
@@ -20,9 +21,16 @@ public class StoryAction
     {
         switch (Type)
         {
-            case ActionType.UnlockCard:
-                CardCollection.Instance.UnlockCard(Name);
-                DialogManager.Instance.ShowPopup("Unlock!", Name);
+            case ActionType.CompleteStory:
+                CardCollection.Instance.CompleteStory(rootEvent.name);
+
+                if (Name != "")
+                {
+                    CardCollection.Instance.UnlockCard(Name);
+                    DialogManager.Instance.ShowPopup("Unlock!", Name);
+                }
+
+                SaveSystem.SaveUnlockData();
                 SaveSystem.Save();
                 break;
             case ActionType.AddCardToDeck:

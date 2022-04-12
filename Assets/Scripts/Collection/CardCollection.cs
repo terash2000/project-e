@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class CardCollection : MonoBehaviourSingletonPersistent<CardCollection>
@@ -15,11 +14,17 @@ public class CardCollection : MonoBehaviourSingletonPersistent<CardCollection>
     private GameObject _lockedCardPrefab;
 
     private static Dictionary<string, bool> _unlockDict;
+    private static List<string> _completedStory;
 
     public static Dictionary<string, bool> UnlockDict
     {
         get { return _unlockDict; }
         set { _unlockDict = value; }
+    }
+    public static List<string> CompletedStory
+    {
+        get { return _completedStory; }
+        set { _completedStory = value; }
     }
 
     public GameObject NewCardPopup { get { return _newCardPopup; } }
@@ -69,6 +74,10 @@ public class CardCollection : MonoBehaviourSingletonPersistent<CardCollection>
     public void UnlockCard(string key)
     {
         UnlockDict[key] = true;
-        SaveSystem.SaveUnlockData();
+    }
+
+    public void CompleteStory(string eventName)
+    {
+        _completedStory.Add(eventName);
     }
 }

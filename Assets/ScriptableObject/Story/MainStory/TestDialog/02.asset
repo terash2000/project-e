@@ -18,10 +18,10 @@ MonoBehaviour:
   Background: {fileID: 0}
   Sprite: {fileID: 21300000, guid: 739627a907935224285e683f9fdd4487, type: 3}
   Action:
-    Type: 0
-    Amount: 0
-    Name: 
-  Child:
-  - {fileID: 11400000, guid: 6b33d74ec5b3def4b9d73f51e69fc74c, type: 2}
+    Type: 1
+    Amount: 1
+    Name: Slash
+    rootEvent: {fileID: 11400000, guid: 0893ccec2681d32419d9efbfad6f43ef, type: 2}
+  Child: []
   Choice: []
   NextWave: {fileID: 0}

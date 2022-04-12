@@ -21,6 +21,7 @@ MonoBehaviour:
     Type: 0
     Amount: 0
     Name: 
+    rootEvent: {fileID: 0}
   Child:
   - {fileID: 11400000, guid: 4c8f3d4b9be77fd48b16efc8174c9d16, type: 2}
   Choice: []
