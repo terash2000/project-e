@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AFB-01
   m_EditorClassIdentifier: 
   Type: 0
-  Character: {fileID: 11400000, guid: 4973cfca5e80a5f41846f26a0c6122ed, type: 2}
+  Character: {fileID: 0}
   Quote: Congratulations!
   Background: {fileID: 21300000, guid: 3fda5bf2366760f4b96758883eb55b18, type: 3}
   Sprite: {fileID: 21300000, guid: 739627a907935224285e683f9fdd4487, type: 3}

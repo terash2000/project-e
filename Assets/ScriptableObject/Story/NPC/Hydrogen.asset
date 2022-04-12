@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0ead8f031bae784a8147890dab436a3, type: 3}
-  m_Name: Character1
+  m_Name: Hydrogen
   m_EditorClassIdentifier: 
-  CharacterName: Character 1
+  CharacterName: Hydrogen

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   Character: {fileID: 0}
-  Quote: You hide behide the metal wall. Unfortunately, the wall was melting by the
-    acid. Your skin is burning.
+  Quote: I hide behide the metal wall. Unfortunately, the wall was melting by the
+    acid. My skin is burning.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
   Action:

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   Character: {fileID: 0}
-  Quote: No need to be greedy. You carefully walk away.
+  Quote: No need to be greedy. I carefully walk away.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
   Action:

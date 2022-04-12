@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   Character: {fileID: 0}
-  Quote: After defeating the enemies. You touch the scattered pieces of the orb and
+  Quote: After defeating the enemies. I touch the scattered pieces of the orb and
     gain its power.
   Background: {fileID: 21300000, guid: 5bccc2d851eeb4e40924e76d3a750ce6, type: 3}
   Sprite: {fileID: 0}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   Character: {fileID: 0}
-  Quote: Glass wall protect you form the acid. You are safe.
+  Quote: Glass wall protect me form the acid. Seem like I am safe.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
   Action:

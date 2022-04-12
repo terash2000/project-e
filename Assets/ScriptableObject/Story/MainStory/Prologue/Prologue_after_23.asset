@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
+  m_Name: Prologue_after_23
+  m_EditorClassIdentifier: 
+  Type: 1
+  Character: {fileID: 0}
+  Quote: 
+  Background: {fileID: 0}
+  Sprite: {fileID: 0}
+  Action:
+    Type: 0
+    Amount: 0
+    Name: 
+  Child:
+  - {fileID: 11400000, guid: 395f20ae64301c748846c3e3c8a3926c, type: 2}
+  - {fileID: 11400000, guid: 59e281f5b36c76c4a99cc81bf57983d1, type: 2}
+  - {fileID: 11400000, guid: 4ee5c329c1e4ec347b5fdcaa25c023fb, type: 2}
+  - {fileID: 11400000, guid: 6f2500b72abd8a34e8f0e44fbf9544c8, type: 2}
+  Choice:
+  - 'Why bringing her back, not killing? '
+  - Why you want me to join your journey?
+  - What is my reward?
+  - Alright, I'll join you.
+  NextWave: {fileID: 0}

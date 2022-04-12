@@ -111,15 +111,15 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
         {
             _quoteObj.Dialog = _current.Quote;
             _quoteObj.StartTyping();
-        }
 
-        // character name
-        if (_current.Character != null)
-        {
-            _characterNameText.SetText(_current.Character.CharacterName);
-            _characterName.SetActive(true);
+            // character name
+            if (_current.Character != null)
+            {
+                _characterNameText.SetText(_current.Character.CharacterName);
+                _characterName.SetActive(true);
+            }
+            else _characterName.SetActive(false);
         }
-        else _characterName.SetActive(false);
 
         // image
         if (_current.Background != null) _background.sprite = _current.Background;

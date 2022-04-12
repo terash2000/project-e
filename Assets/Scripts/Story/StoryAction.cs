@@ -23,6 +23,7 @@ public class StoryAction
             case ActionType.UnlockCard:
                 CardCollection.Instance.UnlockCard(Name);
                 DialogManager.Instance.ShowPopup("Unlock!", Name);
+                SaveSystem.Save();
                 break;
             case ActionType.AddCardToDeck:
                 // TODO add the card to deck

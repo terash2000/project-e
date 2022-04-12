@@ -1953,8 +1953,8 @@ MonoBehaviour:
   _starterGold: 0
   _confirmationPopup: {fileID: 5984139876473836622, guid: d17398450ca033342ae5014d530fb58f,
     type: 3}
-  _prologue: {fileID: 11400000, guid: a2a9914673fb0274eb0420bdbb120e3e, type: 2}
-  _tutorialWave: {fileID: 11400000, guid: 05f7a19290e2f6244aecb4e3dc714207, type: 2}
+  _prologue: {fileID: 11400000, guid: 6f4e9b4c01f3dcc41b40eadc1fb52e6c, type: 2}
+  _tutorialWave: {fileID: 11400000, guid: d1a0ac6bb5fd0a74399917888e464db4, type: 2}
 --- !u!1 &2094261974
 GameObject:
   m_ObjectHideFlags: 0

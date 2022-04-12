@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 1
   Character: {fileID: 0}
-  Quote: Opening the treasure chest, you notice some strange sound. The deadly acid
-    is shooting a you! You jump away but that acid seem to following you.
+  Quote: Opening the treasure chest, I notice some strange sound. The deadly acid
+    is shooting a me! I jump away but that acid seem to following me.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
   Action:

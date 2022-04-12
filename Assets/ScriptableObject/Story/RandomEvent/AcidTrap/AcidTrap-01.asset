@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 1
   Character: {fileID: 0}
-  Quote: You found a strange treasure chest in the middle of a ruin.
+  Quote: I found a strange treasure chest in the middle of a ruin.
   Background: {fileID: 21300000, guid: 83736a22347592044b593980437ba2ea, type: 3}
   Sprite: {fileID: 0}
   Action:

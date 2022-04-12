@@ -487,6 +487,7 @@ MonoBehaviour:
   AllWaves:
   - {fileID: 11400000, guid: 4417d540a2757a845a88a67c9eae6ddc, type: 2}
   - {fileID: 11400000, guid: c079000926d7113488d847b260f6059d, type: 2}
+  - {fileID: 11400000, guid: 72820f563572c55448cccd6a1a5ba84c, type: 2}
   - {fileID: 11400000, guid: 99422b7a3ab80cd488e078fd726f46df, type: 2}
   - {fileID: 11400000, guid: 157a8daf598889d45b0912e15b73f089, type: 2}
   - {fileID: 11400000, guid: b098e1fa5c9210847a9fa05db2a47e2a, type: 2}

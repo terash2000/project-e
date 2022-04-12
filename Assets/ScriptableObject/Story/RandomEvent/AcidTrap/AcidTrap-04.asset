@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   Character: {fileID: 0}
-  Quote: You carefully look inside the treasure chest and found a card!!
+  Quote: I carefully look inside the treasure chest and found a card!!
   Background: {fileID: 0}
   Sprite: {fileID: 0}
   Action:
