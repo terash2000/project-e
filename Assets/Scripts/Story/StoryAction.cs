@@ -22,11 +22,13 @@ public class StoryAction
         switch (Type)
         {
             case ActionType.CompleteStory:
-                CardCollection.Instance.CompleteStory(rootEvent.name);
+                if (StoryMenu.CompletedStory.Contains(rootEvent.name)) break;
+
+                StoryMenu.CompletedStory.Add(rootEvent.name);
 
                 if (Name != "")
                 {
-                    CardCollection.Instance.UnlockCard(Name);
+                    CardCollection.UnlockCard(Name);
                     DialogManager.Instance.ShowPopup("Unlock!", Name);
                 }
 

@@ -13,7 +13,7 @@ public class StoryButtonHandle : MonoBehaviour
         _eventNode = storyEvent.DialogNode;
         _text.text = storyEvent.Text;
 
-        if (!CardCollection.CompletedStory.Contains(storyEvent.name))
+        if (!StoryMenu.CompletedStory.Contains(storyEvent.name))
         {
             _mask.SetActive(false);
         }

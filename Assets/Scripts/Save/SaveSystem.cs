@@ -89,7 +89,7 @@ public static class SaveSystem
 
         UnlockData data = new UnlockData();
         data.unlockDict = CardCollection.UnlockDict;
-        data.completedStory = CardCollection.CompletedStory;
+        data.completedStory = StoryMenu.CompletedStory;
 
         formatter.Serialize(file, data);
         file.Close();
@@ -108,20 +108,20 @@ public static class SaveSystem
             if (data.unlockDict.Count == CardCollection.Instance.AllCards.Count)
             {
                 CardCollection.UnlockDict = data.unlockDict;
-                CardCollection.CompletedStory = data.completedStory;
+                StoryMenu.CompletedStory = data.completedStory;
             }
             else
             {
                 // corrupted data or old verision
                 File.Delete(Application.persistentDataPath + "/UnlockData.dat");
                 CardCollection.UnlockDict = CardCollection.Instance.StarterCards();
-                CardCollection.CompletedStory = new List<string>();
+                StoryMenu.CompletedStory = new List<string>();
             }
         }
         else
         {
             CardCollection.UnlockDict = CardCollection.Instance.StarterCards();
-            CardCollection.CompletedStory = new List<string>();
+            StoryMenu.CompletedStory = new List<string>();
         }
     }
 }

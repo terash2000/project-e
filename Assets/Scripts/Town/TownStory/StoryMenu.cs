@@ -8,10 +8,18 @@ public class StoryMenu : MonoBehaviour
     [SerializeField] private GameObject _storyEventPrefab;
     [SerializeField] private List<StoryEvent> _eventList;
 
+    private static List<string> _completedStory;
+
+    public static List<string> CompletedStory
+    {
+        get { return _completedStory; }
+        set { _completedStory = value; }
+    }
+
     public void Start()
     {
-        List<StoryEvent> uncompleted = _eventList.FindAll(storyEvent => !CardCollection.CompletedStory.Contains(storyEvent.name));
-        List<StoryEvent> completed = _eventList.FindAll(storyEvent => CardCollection.CompletedStory.Contains(storyEvent.name));
+        List<StoryEvent> uncompleted = _eventList.FindAll(storyEvent => !CompletedStory.Contains(storyEvent.name));
+        List<StoryEvent> completed = _eventList.FindAll(storyEvent => CompletedStory.Contains(storyEvent.name));
 
         foreach (StoryEvent storyEvent in uncompleted)
         {
