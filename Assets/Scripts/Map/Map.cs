@@ -12,12 +12,14 @@ public class Map : MonoBehaviourSingleton<Map>
     [SerializeField] private int _numNode;
     [SerializeField] private int _numLayer;
     [SerializeField] private float _layerWidth;
+    [SerializeField] private int _minNodePerLayer;
     [SerializeField] private int _maxNodePerLayer;
     [SerializeField] private GameObject _battleNodePrefab;
     [SerializeField] private GameObject _eventNodePrefab;
     [SerializeField] private GameObject _townNodePrefab;
     [SerializeField] private GameObject _edgePrefab;
     [SerializeField] private GameObject _completePopup;
+    [SerializeField] private List<float> _weights;
     private List<Node> _nodes = new List<Node>();
     private List<LineRenderer> _edges = new List<LineRenderer>();
     private Node _curNode;
@@ -69,20 +71,20 @@ public class Map : MonoBehaviourSingleton<Map>
     public void GenerateMap()
     {
         InitAddableLayers();
-        for (int i = 0; i < _numNode || !AllLayersHaveNodes(); i++)
+        for (int i = 0; !AllLayersHaveEnoughNodes(); i++)
         {
-            GameObject node = CreateRandomNode();
             int layer = RandomLayer();
+            GameObject node = CreateRandomNode(layer);
             node.GetComponent<Node>().Init(layer);
             node.transform.position = RandomPos(layer);
             node.transform.SetParent(gameObject.transform);
             _nodes.Add(node.GetComponent<Node>());
             SetAddableLayers(layer);
-            if (_addableLayers.Count == 0)
+            _numNode = i + 1;
+            /*if (_addableLayers.Count == 0)
             {
-                _numNode = i + 1;
                 break;
-            }
+            }*/
         }
         _nodes = _nodes.OrderByDescending(x => x.gameObject.transform.position.x).ToList();
         _nodes[0].transform.position = new Vector3(_nodes[0].transform.position.x, 0, transform.position.z);
@@ -122,11 +124,13 @@ public class Map : MonoBehaviourSingleton<Map>
     }
 
 
-    public bool AllLayersHaveNodes()
+    public bool AllLayersHaveEnoughNodes()
     {
         for (int i = 0; i < _numLayer; i++)
         {
-            if (GetNodesInLayer(i).Count == 0) return false;
+            int min = _minNodePerLayer;
+            if (i == 0 || i == _numLayer - 1) min = 1;
+            if (GetNodesInLayer(i).Count < min) return false;
         }
         return true;
     }
@@ -139,9 +143,21 @@ public class Map : MonoBehaviourSingleton<Map>
             _addableLayers.Add(i);
         }
     }
-    private GameObject CreateRandomNode()
+    private GameObject CreateRandomNode(int layer)
     {
-        int rand = Random.Range(0, 3);
+        float randf = Random.Range(0.0f, 1.0f);
+        int rand = 0;
+        foreach (float weight in _weights)
+        {
+            if (randf < weight) break;
+            else
+            {
+                randf -= weight;
+                rand++;
+            }
+        }
+        if (layer == 0 || layer == _numLayer - 1) rand = 0;
+        if (layer == _numLayer - 2) rand = 2;
         switch (rand)
         {
             case 0:

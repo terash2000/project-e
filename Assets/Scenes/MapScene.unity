@@ -498,9 +498,10 @@ MonoBehaviour:
   _minGap: 1
   _maxGap: 0
   _numNode: 20
-  _numLayer: 7
-  _layerWidth: 4
-  _maxNodePerLayer: 4
+  _numLayer: 16
+  _layerWidth: 3
+  _minNodePerLayer: 4
+  _maxNodePerLayer: 5
   _battleNodePrefab: {fileID: 5473315819909535326, guid: 0e9718df524da3f4285e8963d6c39ac0,
     type: 3}
   _eventNodePrefab: {fileID: 5473315819909535326, guid: bc448c64fe64faa4dbc6abdce7dd60cd,
@@ -510,6 +511,10 @@ MonoBehaviour:
   _edgePrefab: {fileID: 4733582419107687985, guid: edcffc1d61444b74cb3ecd41cfed1b62,
     type: 3}
   _completePopup: {fileID: 550138507}
+  _weights:
+  - 0.5
+  - 0.4
+  - 0.1
 --- !u!1 &934732881
 GameObject:
   m_ObjectHideFlags: 0
