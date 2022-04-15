@@ -494,6 +494,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05f7a19290e2f6244aecb4e3dc714207, type: 2}
   AllRandomEvents:
   - {fileID: 11400000, guid: 42a4d785d68afb64fa486d207ecdf7f5, type: 2}
+  - {fileID: 11400000, guid: f98adcc3ff806854296201f0449d35bb, type: 2}
   - {fileID: 11400000, guid: 49c70588c9170734192c9bd8600854cc, type: 2}
   _minGap: 1
   _maxGap: 0

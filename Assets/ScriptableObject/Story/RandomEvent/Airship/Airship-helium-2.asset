@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
+  m_Name: Airship-helium-2
+  m_EditorClassIdentifier: 
+  Type: 0
+  Character: {fileID: 0}
+  Quote: You succussfuly operated the airship and rided it through the journey. You
+    had a good rest in the airship. Your Health is retored!
+  Background: {fileID: 0}
+  Sprite: {fileID: 0}
+  Action:
+    Type: 3
+    Amount: 25
+    Name: 
+    rootEvent: {fileID: 0}
+  Child: []
+  Choice: []
+  NextWave: {fileID: 0}

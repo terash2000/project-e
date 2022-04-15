@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
+  m_Name: Airship-helium-1
+  m_EditorClassIdentifier: 
+  Type: 0
+  Character: {fileID: 0}
+  Quote: I wake Helium-chan up and tell her the plan. I can feel Hydrogen staring
+    at me jealously. It seem bad that reject Hydrogen but I feel that Helium is more
+    suitable in this situation.
+  Background: {fileID: 0}
+  Sprite: {fileID: 0}
+  Action:
+    Type: 0
+    Amount: 0
+    Name: 
+    rootEvent: {fileID: 0}
+  Child:
+  - {fileID: 11400000, guid: 2dadfadba22d98444b02ee4313b28b6f, type: 2}
+  Choice: []
+  NextWave: {fileID: 0}

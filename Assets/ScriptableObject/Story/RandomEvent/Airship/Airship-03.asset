@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
+  m_Name: Airship-03
+  m_EditorClassIdentifier: 
+  Type: 1
+  Character: {fileID: 0}
+  Quote: Would you lift the airship with hydrogen?
+  Background: {fileID: 0}
+  Sprite: {fileID: 0}
+  Action:
+    Type: 0
+    Amount: 0
+    Name: 
+    rootEvent: {fileID: 0}
+  Child:
+  - {fileID: 11400000, guid: a3faf65e4c4893243bb2eaf22ea3f2aa, type: 2}
+  - {fileID: 11400000, guid: 460b10dc2ed76154bbbbf205272975db, type: 2}
+  - {fileID: 11400000, guid: 78f70685ca30ab74da647cc0a634f1a6, type: 2}
+  Choice:
+  - Let's use hydrogen.
+  - Maybe, helium is better.
+  - I'd ratter walk on foot.
+  NextWave: {fileID: 0}
