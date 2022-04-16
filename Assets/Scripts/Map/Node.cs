@@ -47,7 +47,9 @@ public class Node : MonoBehaviour
 
     public void OnPass()
     {
-        _outline.enabled = false;
+        _outline.enabled = true;
+        _outline.Color = Color.green;
+        _outline.OutlineSize -= 1;
         GetComponent<CircleCollider2D>().enabled = false;
         _check.enabled = true;
         _bg.color = Color.gray;
