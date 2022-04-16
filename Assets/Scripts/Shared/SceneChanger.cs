@@ -67,10 +67,4 @@ public class SceneChanger : MonoBehaviourSingletonPersistent<SceneChanger>
     {
         LoadScene(_previousScene);
     }
-
-    public void ExitGame()
-    {
-        //UnityEditor.EditorApplication.isPlaying = false;
-        Application.Quit();
-    }
 }

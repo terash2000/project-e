@@ -67,6 +67,6 @@ public class OptionMenu : MonoBehaviour
 
     public void ExitGame()
     {
-        SceneChanger.Instance.ExitGame();
+        Application.Quit();
     }
 }
