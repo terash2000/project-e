@@ -6,7 +6,9 @@ public class CardManager : MonoBehaviour
 {
     [SerializeField] private HorizontalLayoutGroup _handPanel;
     [SerializeField] private GameObject _cardPrefab;
-    [SerializeField] private Card _cardData;
+    [SerializeField] private CardList _starterDeck;
+    [SerializeField] private CanvasGroup _deckUI;
+    [SerializeField] private CanvasGroup _gravyardUI;
     private List<Card> _deck = new List<Card>();
     private List<Card> _hand = new List<Card>();
     private List<Card> _graveyard = new List<Card>();
@@ -14,53 +16,52 @@ public class CardManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        foreach (Card card in _starterDeck.cards)
+        {
+            _deck.Add(card);
+
+        }
+        ShuffleDeck();
+
         for (int i = 0; i < 7; i++)
         {
-            _deck.Add(_cardData);
-        }
-        RenderCard();
-    }
-
-    public void RenderCard()
-    {
-        foreach (Transform child in _handPanel.transform)
-        {
-            Destroy(child.gameObject);
-        }
-
-        foreach (Card card in _hand)
-        {
-            GameObject cardObj = Instantiate(_cardPrefab, _handPanel.transform);
-            cardObj.GetComponent<CardDisplay>().Card = card;
+            DrawCard();
         }
     }
 
-    public void RemoveCardFromHand(Card card)
+    public void MoveFromHandToGraveyard(Card card)
     {
-        int targetIndex = _hand.FindIndex(delegate (Card c) { return c.name == card.name; });
         _hand.Remove(card);
-        Destroy(card);
+        _graveyard.Add(card);
+        _gravyardUI.alpha = 1;
+        _gravyardUI.blocksRaycasts = true;
     }
 
     public void DrawCard()
     {
         if (_deck.Count == 0)
         {
-            ResetDeck();
+            RefillDeck();
+            _gravyardUI.alpha = 0;
+            _gravyardUI.blocksRaycasts = false;
+            _deckUI.alpha = 1;
+            _deckUI.blocksRaycasts = true;
         }
         if (_deck.Count == 0)
         {
+            _deckUI.alpha = 0;
+            _deckUI.blocksRaycasts = false;
             return;
+
         }
         _hand.Add(_deck[0]);
         _deck.RemoveAt(0);
         GameObject cardObj = Instantiate(_cardPrefab, _handPanel.transform);
         cardObj.GetComponent<CardDisplay>().Card = _hand[_hand.Count - 1];
-        // AdjustCardPosition();
     }
 
 
-    public void ResetDeck()
+    public void RefillDeck()
     {
         (_deck, _graveyard) = (_graveyard, _deck);
         ShuffleDeck();
@@ -75,8 +76,4 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    private void AdjustCardPosition()
-    {
-        _handPanel.spacing = Mathf.Min(10f, (4 - _hand.Count) * 40f);
-    }
 }

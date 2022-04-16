@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class PlayPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
+
+    [SerializeField] private CardManager _cardManager;
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag == null)
@@ -14,7 +16,8 @@ public class PlayPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         if (draggedCard == null)
             return;
 
-
+        Card card = eventData.pointerDrag.GetComponent<CardDisplay>().Card;
+        _cardManager.MoveFromHandToGraveyard(card);
         Destroy(draggedCard.placeholder);
         Destroy(eventData.pointerDrag);
         // TODO: cast the dropped card
