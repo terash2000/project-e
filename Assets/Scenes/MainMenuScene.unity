@@ -1968,6 +1968,7 @@ MonoBehaviour:
     type: 3}
   _prologue: {fileID: 11400000, guid: 6f4e9b4c01f3dcc41b40eadc1fb52e6c, type: 2}
   _tutorialWave: {fileID: 11400000, guid: d1a0ac6bb5fd0a74399917888e464db4, type: 2}
+  _starterDeck: {fileID: 11400000, guid: fc741fda57565074cb34db557a3d124f, type: 2}
 --- !u!1 &2094261974
 GameObject:
   m_ObjectHideFlags: 0

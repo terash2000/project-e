@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,6 +11,7 @@ public class NewGame : MonoBehaviour
     [SerializeField] private GameObject _confirmationPopup;
     [SerializeField] private DialogNode _prologue;
     [SerializeField] private Wave _tutorialWave;
+    [SerializeField] private CardList _starterDeck;
     private bool skipPrologue = true;
 
     public void StartNewGame(bool confirm = false)
@@ -51,5 +53,10 @@ public class NewGame : MonoBehaviour
         PlayerData.Gold = _starterGold;
         PlayerData.SeedJSON = JsonUtility.ToJson(Random.state);
         PlayerData.Path = null;
+        PlayerData.Deck = new List<Card>();
+        foreach (Card card in _starterDeck.cards)
+        {
+            PlayerData.Deck.Add(card);
+        }
     }
 }

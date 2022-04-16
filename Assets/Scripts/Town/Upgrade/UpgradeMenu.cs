@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class UpgradeMenu : DeckList
+public class UpgradeMenu : CardPage
 {
 
     protected override void RenderCard()
@@ -10,9 +10,9 @@ public class UpgradeMenu : DeckList
         for (int i = 0; i < CONTAINER_SIZE; i++)
         {
             int cardIndex = i + _currentPage * CONTAINER_SIZE;
-            if (cardIndex >= deck.Count) break;
+            if (cardIndex >= _cards.Count) break;
             GameObject cardObj = Instantiate(CardCollection.Instance.CardPrefab, _cardContainer.transform);
-            cardObj.GetComponent<CardDisplay>().Card = deck[cardIndex];
+            cardObj.GetComponent<CardDisplay>().Card = _cards[cardIndex];
 
             Button cardButton = cardObj.AddComponent(typeof(Button)) as Button;
 

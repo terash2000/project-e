@@ -10,6 +10,7 @@ public static class PlayerData
     private static int _gold;
     private static string _seedJSON;
     private static List<int> _path;
+    private static List<Card> _deck;
 
     public static int MaxHealth
     {
@@ -59,5 +60,10 @@ public static class PlayerData
     {
         get { return _path; }
         set { _path = value; }
+    }
+    public static List<Card> Deck
+    {
+        get { return _deck; }
+        set { _deck = value; }
     }
 }

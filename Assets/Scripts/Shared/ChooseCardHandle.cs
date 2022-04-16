@@ -12,7 +12,9 @@ public class ChooseCardHandle : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        // TODO add the card to deck
+        // add the card to deck
+        PlayerData.Deck.Add(_card);
+
         SceneChanger.Instance.NextScene();
     }
 }

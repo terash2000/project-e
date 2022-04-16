@@ -483,8 +483,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8057989654881075662}
-        m_TargetAssemblyTypeName: DeckList, Assembly-CSharp
-        m_MethodName: Open
+        m_TargetAssemblyTypeName: CardPage, Assembly-CSharp
+        m_MethodName: OpenPlayerDeck
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 
 public class Pagination : MonoBehaviour
 {
@@ -12,6 +12,13 @@ public class Pagination : MonoBehaviour
 
     protected int _currentPage = 0;
     protected int _maxPage = 1;
+    protected List<Card> _cards;
+
+    public List<Card> Cards
+    {
+        get { return _cards; }
+        set { _cards = value; }
+    }
 
     public void NextPage()
     {
@@ -25,7 +32,7 @@ public class Pagination : MonoBehaviour
         Render();
     }
 
-    protected virtual void Render()
+    protected void Render()
     {
         _previousButton.gameObject.SetActive(_currentPage > 0);
         _nextButton.gameObject.SetActive(_currentPage < _maxPage);
@@ -39,5 +46,14 @@ public class Pagination : MonoBehaviour
         RenderCard();
     }
 
-    protected virtual void RenderCard() { }
+    protected virtual void RenderCard()
+    {
+        for (int i = 0; i < CONTAINER_SIZE; i++)
+        {
+            int cardIndex = i + _currentPage * CONTAINER_SIZE;
+            if (cardIndex >= _cards.Count) break;
+            GameObject cardObj = Instantiate(CardCollection.Instance.CardPrefab, _cardContainer.transform);
+            cardObj.GetComponent<CardDisplay>().Card = _cards[cardIndex];
+        }
+    }
 }

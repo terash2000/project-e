@@ -2,13 +2,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardManager : MonoBehaviour
+public class CardManager : MonoBehaviourSingleton<CardManager>
 {
     [SerializeField] private HorizontalLayoutGroup _handPanel;
     [SerializeField] private GameObject _cardPrefab;
     [SerializeField] private CardList _starterDeck;
     [SerializeField] private CanvasGroup _deckUI;
     [SerializeField] private CanvasGroup _gravyardUI;
+    [SerializeField] private CardPage _cardPage;
     private List<Card> _deck = new List<Card>();
     private List<Card> _hand = new List<Card>();
     private List<Card> _graveyard = new List<Card>();
@@ -16,11 +17,16 @@ public class CardManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (Card card in _starterDeck.cards)
+        if (PlayerData.Deck == null)
         {
-            _deck.Add(card);
-
+            PlayerData.Deck = new List<Card>();
+            foreach (Card card in _starterDeck.cards)
+            {
+                PlayerData.Deck.Add(card);
+            }
         }
+
+        _deck = new List<Card>(PlayerData.Deck);
         ShuffleDeck();
 
         for (int i = 0; i < 7; i++)
@@ -47,19 +53,19 @@ public class CardManager : MonoBehaviour
             _deckUI.alpha = 1;
             _deckUI.blocksRaycasts = true;
         }
+        if (_deck.Count > 0)
+        {
+            _hand.Add(_deck[0]);
+            _deck.RemoveAt(0);
+            GameObject cardObj = Instantiate(_cardPrefab, _handPanel.transform);
+            cardObj.GetComponent<CardDisplay>().Card = _hand[_hand.Count - 1];
+        }
         if (_deck.Count == 0)
         {
             _deckUI.alpha = 0;
             _deckUI.blocksRaycasts = false;
-            return;
-
         }
-        _hand.Add(_deck[0]);
-        _deck.RemoveAt(0);
-        GameObject cardObj = Instantiate(_cardPrefab, _handPanel.transform);
-        cardObj.GetComponent<CardDisplay>().Card = _hand[_hand.Count - 1];
     }
-
 
     public void RefillDeck()
     {
@@ -76,4 +82,15 @@ public class CardManager : MonoBehaviour
         }
     }
 
+    public void ShowDeck()
+    {
+        _cardPage.Cards = _deck;
+        _cardPage.Open();
+    }
+
+    public void ShowGravyard()
+    {
+        _cardPage.Cards = _graveyard;
+        _cardPage.Open();
+    }
 }

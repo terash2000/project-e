@@ -28,6 +28,7 @@ public class StoryAction
 
                 if (Name != "")
                 {
+                    // unlock card
                     CardCollection.UnlockCard(Name);
                     DialogManager.Instance.ShowPopup("Unlock!", Name);
                 }
@@ -36,7 +37,9 @@ public class StoryAction
                 SaveSystem.Save();
                 break;
             case ActionType.AddCardToDeck:
-                // TODO add the card to deck
+                // add the card to deck
+                Card card = CardCollection.Instance.FindCardByName(Name);
+                PlayerData.Deck.Add(card);
 
                 string header = "Acquire";
                 if (Amount > 1) header += " x" + Amount.ToString();

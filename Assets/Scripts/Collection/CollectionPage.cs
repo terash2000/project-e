@@ -1,11 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-public class CollectionManager : Pagination
+public class CollectionPage : Pagination
 {
     void Start()
     {
-        _maxPage = (CardCollection.Instance.AllCards.Count - 1) / CONTAINER_SIZE;
+        _cards = CardCollection.Instance.AllCards;
+        _maxPage = (_cards.Count - 1) / CONTAINER_SIZE;
         Render();
     }
 
@@ -14,8 +14,8 @@ public class CollectionManager : Pagination
         for (int i = 0; i < CONTAINER_SIZE; i++)
         {
             int cardIndex = i + _currentPage * CONTAINER_SIZE;
-            if (cardIndex >= CardCollection.Instance.AllCards.Count) break;
-            Card card = CardCollection.Instance.AllCards[cardIndex];
+            if (cardIndex >= _cards.Count) break;
+            Card card = _cards[cardIndex];
 
             if (CardCollection.UnlockDict[card.CardName])
             {

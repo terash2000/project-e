@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Linq;
 
 public static class SaveSystem
 {
@@ -17,6 +18,7 @@ public static class SaveSystem
         data.gold = PlayerData.Gold;
         data.seedJSON = PlayerData.SeedJSON;
         data.path = PlayerData.Path;
+        data.deck = DeckToString(PlayerData.Deck);
 
         formatter.Serialize(file, data);
         file.Close();
@@ -38,6 +40,7 @@ public static class SaveSystem
             PlayerData.Gold = data.gold;
             PlayerData.SeedJSON = data.seedJSON;
             PlayerData.Path = data.path;
+            PlayerData.Deck = StringToDeck(data.deck);
         }
     }
 
@@ -123,5 +126,17 @@ public static class SaveSystem
             CardCollection.UnlockDict = CardCollection.Instance.StarterCards();
             StoryMenu.CompletedStory = new List<string>();
         }
+    }
+
+    private static List<string> DeckToString(List<Card> deck)
+    {
+        List<string> deckString = deck.Select(card => card.CardName).ToList();
+        return deckString;
+    }
+
+    private static List<Card> StringToDeck(List<string> deckString)
+    {
+        List<Card> deck = deckString.Select(cardName => CardCollection.Instance.FindCardByName(cardName)).ToList();
+        return deck;
     }
 }
