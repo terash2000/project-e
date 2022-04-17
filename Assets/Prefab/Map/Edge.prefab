@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6879845209847563809}
   - component: {fileID: 5485992026679454981}
+  - component: {fileID: 467776078995913017}
   m_Layer: 5
   m_Name: Edge
   m_TagString: Untagged
@@ -55,7 +56,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5d067028d962a52458e77b4e1bc94aaf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -87,7 +88,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.0710694
+        value: 0.50226146
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -129,8 +130,21 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &467776078995913017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4733582419107687985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b591fd1fe93f05e4d96cdf3166cda937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultMat: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}

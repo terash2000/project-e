@@ -295,6 +295,9 @@ public class Map : MonoBehaviourSingleton<Map>
             if (prev >= 0)
             {
                 LineRenderer line = FindEdge(_nodes[prev], _nodes[i]);
+                line.material = line.gameObject.GetComponent<Edge>().DefaultMat;
+                line.startWidth = 0.05f;
+                line.endWidth = 0.05f;
                 line.startColor = Color.green;
                 line.endColor = Color.green;
             }
@@ -304,6 +307,9 @@ public class Map : MonoBehaviourSingleton<Map>
         foreach (Node node in _curNode.Next)
         {
             LineRenderer line = FindEdge(_curNode, node);
+            line.material = line.gameObject.GetComponent<Edge>().DefaultMat;
+            line.startWidth = 0.05f;
+            line.endWidth = 0.05f;
             line.startColor = Color.cyan;
             line.endColor = Color.cyan;
             node.OnClickable();
