@@ -38,7 +38,7 @@ public class StoryAction
                 break;
             case ActionType.AddCardToDeck:
                 // add the card to deck
-                Card card = CardCollection.Instance.FindCardByName(Name);
+                InGameCard card = new InGameCard(CardCollection.Instance.FindCardByName(Name));
                 PlayerData.Deck.Add(card);
 
                 string header = "Acquire";

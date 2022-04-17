@@ -53,10 +53,10 @@ public class NewGame : MonoBehaviour
         PlayerData.Gold = _starterGold;
         PlayerData.SeedJSON = JsonUtility.ToJson(Random.state);
         PlayerData.Path = null;
-        PlayerData.Deck = new List<Card>();
+        PlayerData.Deck = new List<InGameCard>();
         foreach (Card card in _starterDeck.cards)
         {
-            PlayerData.Deck.Add(card);
+            PlayerData.Deck.Add(new InGameCard(card));
         }
     }
 }

@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 6.85
+  m_fontSize: 9.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -554,7 +554,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 5.35
+  m_fontSize: 9.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -688,7 +688,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 8.05
+  m_fontSize: 10.35
   m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -764,9 +764,9 @@ RectTransform:
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.6924479, y: 0}
-  m_AnchorMax: {x: 1, y: 0.08222223}
-  m_AnchoredPosition: {x: 0.16000366, y: 0.040008545}
-  m_SizeDelta: {x: -0.32000732, y: 0.08001709}
+  m_AnchorMax: {x: 1, y: 0.107250005}
+  m_AnchoredPosition: {x: 0, y: 0.04989624}
+  m_SizeDelta: {x: 0.0000076294, y: 0.0998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1925900961596525483
 CanvasRenderer:
@@ -839,10 +839,10 @@ RectTransform:
   m_Father: {fileID: 941996873421475429}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.34722224, y: 0}
-  m_AnchorMax: {x: 0.6527778, y: 0.08222223}
-  m_AnchoredPosition: {x: 0, y: 0.040039062}
-  m_SizeDelta: {x: -0.3199997, y: 0.08001709}
+  m_AnchorMin: {x: 0.31388894, y: 0}
+  m_AnchorMax: {x: 0.67777777, y: 0.107250005}
+  m_AnchoredPosition: {x: -0.10676956, y: 0.047698975}
+  m_SizeDelta: {x: 0.12879992, y: 0.0953002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2964502369771437548
 CanvasRenderer:
@@ -974,7 +974,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7.55
+  m_fontSize: 9.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1183,7 +1183,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 5.35
+  m_fontSize: 8.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

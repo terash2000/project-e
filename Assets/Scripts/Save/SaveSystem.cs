@@ -128,15 +128,15 @@ public static class SaveSystem
         }
     }
 
-    private static List<string> DeckToString(List<Card> deck)
+    private static List<string> DeckToString(List<InGameCard> deck)
     {
-        List<string> deckString = deck.Select(card => card.CardName).ToList();
+        List<string> deckString = deck.Select(card => card.BaseCard.CardName).ToList();
         return deckString;
     }
 
-    private static List<Card> StringToDeck(List<string> deckString)
+    private static List<InGameCard> StringToDeck(List<string> deckString)
     {
-        List<Card> deck = deckString.Select(cardName => CardCollection.Instance.FindCardByName(cardName)).ToList();
+        List<InGameCard> deck = deckString.Select(cardName => new InGameCard(CardCollection.Instance.FindCardByName(cardName))).ToList();
         return deck;
     }
 }

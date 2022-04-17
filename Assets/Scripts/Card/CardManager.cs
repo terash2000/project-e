@@ -10,23 +10,23 @@ public class CardManager : MonoBehaviourSingleton<CardManager>
     [SerializeField] private CanvasGroup _deckUI;
     [SerializeField] private CanvasGroup _gravyardUI;
     [SerializeField] private CardPage _cardPage;
-    private List<Card> _deck = new List<Card>();
-    private List<Card> _hand = new List<Card>();
-    private List<Card> _graveyard = new List<Card>();
+    private List<InGameCard> _deck = new List<InGameCard>();
+    private List<InGameCard> _hand = new List<InGameCard>();
+    private List<InGameCard> _graveyard = new List<InGameCard>();
 
     // Start is called before the first frame update
     void Start()
     {
         if (PlayerData.Deck == null)
         {
-            PlayerData.Deck = new List<Card>();
+            PlayerData.Deck = new List<InGameCard>();
             foreach (Card card in _starterDeck.cards)
             {
-                PlayerData.Deck.Add(card);
+                PlayerData.Deck.Add(new InGameCard(card));
             }
         }
 
-        _deck = new List<Card>(PlayerData.Deck);
+        _deck = new List<InGameCard>(PlayerData.Deck);
         ShuffleDeck();
 
         for (int i = 0; i < 7; i++)
@@ -35,7 +35,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>
         }
     }
 
-    public void MoveFromHandToGraveyard(Card card)
+    public void MoveFromHandToGraveyard(InGameCard card)
     {
         _hand.Remove(card);
         _graveyard.Add(card);

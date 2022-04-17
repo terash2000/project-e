@@ -3,8 +3,8 @@ using UnityEngine.EventSystems;
 
 public class ChooseCardHandle : MonoBehaviour, IPointerClickHandler
 {
-    private Card _card;
-    public Card Card
+    private InGameCard _card;
+    public InGameCard Card
     {
         get { return _card; }
         set { _card = value; }

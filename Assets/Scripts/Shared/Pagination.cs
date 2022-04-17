@@ -12,9 +12,9 @@ public class Pagination : MonoBehaviour
 
     protected int _currentPage = 0;
     protected int _maxPage = 1;
-    protected List<Card> _cards;
+    protected List<InGameCard> _cards;
 
-    public List<Card> Cards
+    public List<InGameCard> Cards
     {
         get { return _cards; }
         set { _cards = value; }

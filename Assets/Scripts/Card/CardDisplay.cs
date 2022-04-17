@@ -18,9 +18,9 @@ public class CardDisplay : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _manaText;
 
-    private Card _card;
+    private InGameCard _card;
 
-    public Card Card
+    public InGameCard Card
     {
         get { return _card; }
         set { _card = value; }
@@ -28,6 +28,11 @@ public class CardDisplay : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
+    {
+        render();
+    }
+
+    public void render()
     {
         if (_card == null)
         {
@@ -38,11 +43,11 @@ public class CardDisplay : MonoBehaviour
             return;
         }
 
-        _nameText.text = Card.CardName;
-        _descriptionText.text = Card.Description;
-        _typeText.text = Card.Type.ToString();
-        _elementText.text = Card.BaseElement.ToString();
-        _artworkImage.sprite = Card.Artwork;
+        _nameText.text = Card.BaseCard.CardName;
+        _descriptionText.text = Card.BaseCard.Description;
+        _typeText.text = Card.BaseCard.Type.ToString();
+        _elementText.text = Card.Element.ToString();
+        _artworkImage.sprite = Card.BaseCard.Artwork;
         _manaText.text = Card.ManaCost.ToString();
     }
 }

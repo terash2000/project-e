@@ -16,7 +16,7 @@ public class PlayPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         if (draggedCard == null)
             return;
 
-        Card card = eventData.pointerDrag.GetComponent<CardDisplay>().Card;
+        InGameCard card = eventData.pointerDrag.GetComponent<CardDisplay>().Card;
         _cardManager.MoveFromHandToGraveyard(card);
         Destroy(draggedCard.placeholder);
         Destroy(eventData.pointerDrag);
