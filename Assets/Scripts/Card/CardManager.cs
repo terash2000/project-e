@@ -3,8 +3,11 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
-public class CardManager : MonoBehaviourSingleton<CardManager>
+public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
 {
+    private const int START_HAND_AMOUNT = 7;
+    private const int CARD_PER_TURN = 2;
+
     [SerializeField] private HorizontalLayoutGroup _handPanel;
     [SerializeField] private GameObject _cardPrefab;
     [SerializeField] private CardList _starterDeck;
@@ -15,10 +18,24 @@ public class CardManager : MonoBehaviourSingleton<CardManager>
     private List<InGameCard> _hand = new List<InGameCard>();
     private List<InGameCard> _graveyard = new List<InGameCard>();
 
-    public bool isSelectingCard = false;
-    public bool isDraggingCard = false;
-    public bool isMouseHovering = false;
-    public DragCard selectingCard;
+    private bool _isDraggingCard = false;
+    private DragCard _selectingCard;
+    private DragCard _hoveringCard;
+    public bool IsDraggingCard
+    {
+        get { return _isDraggingCard; }
+        set { _isDraggingCard = value; }
+    }
+    public DragCard SelectingCard
+    {
+        get { return _selectingCard; }
+        set { _selectingCard = value; }
+    }
+    public DragCard HoveringCard
+    {
+        get { return _hoveringCard; }
+        set { _hoveringCard = value; }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -35,24 +52,42 @@ public class CardManager : MonoBehaviourSingleton<CardManager>
         _deck = new List<InGameCard>(PlayerData.Deck);
         ShuffleDeck();
 
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < START_HAND_AMOUNT; i++)
         {
             DrawCard();
         }
     }
     void Update()
     {
-        InGameCard card = Arena.Instance.SelectedCard;
-        if (Input.GetMouseButtonUp(0) && isSelectingCard && card.isCastable() && !isMouseHovering)
+        if (Input.GetMouseButtonUp(0) && IsSelectingCard() && _hoveringCard != _selectingCard)
         {
             Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int mousePos = Arena.Instance.Grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
-            castCard(card, mousePos);
-            isSelectingCard = false;
-            Arena.Instance.SelectedCard = null;
+            CastCard(_selectingCard.Card, mousePos);
+
+            _selectingCard.HidePreviewCardEffect();
+            _selectingCard.IsSelected = false;
+            _selectingCard = null;
         }
     }
 
+    public void OnStartTurn()
+    {
+        for (int i = 0; i < CARD_PER_TURN; i++)
+        {
+            DrawCard();
+        }
+    }
+
+    public void OnEndTurn()
+    {
+
+    }
+
+    public bool IsSelectingCard()
+    {
+        return _selectingCard != null;
+    }
 
     public void MoveFromHandToGraveyard(InGameCard card)
     {
@@ -123,21 +158,8 @@ public class CardManager : MonoBehaviourSingleton<CardManager>
         _cardPage.Open();
     }
 
-    public static void HandleCardHover(InGameCard card)
+    private void CastCard(InGameCard card, Vector3Int mousePos)
     {
-        Arena.Instance.SelectedCard = card;
-        Arena.Instance.ShowRadius(card.BaseCard.AreaShape, card.BaseCard.TargetShape, card.BaseCard.Range);
-    }
-    public static void HandleCardHoverExit(InGameCard card)
-    {
-        Arena.Instance.SelectedCard = null;
-        Arena.Instance.HideRadius(card.BaseCard.AreaShape, card.BaseCard.Range);
-    }
-
-    private void castCard(InGameCard card, Vector3Int mousePos)
-    {
-        Arena.Instance.HideRadius(card.BaseCard.AreaShape, card.BaseCard.Range);
-
         // TODO: cast the card based on the actual card data
         Tile tile = (Tile)Arena.Instance.Tilemap.GetTile(mousePos);
         if (tile == null) return;
@@ -167,8 +189,8 @@ public class CardManager : MonoBehaviourSingleton<CardManager>
         if (success)
         {
             PlayerData.Mana -= card.ManaCost;
-            MoveFromHandToGraveyard(selectingCard.GetComponent<CardDisplay>().Card);
-            Destroy(selectingCard.gameObject);
+            MoveFromHandToGraveyard(_selectingCard.Card);
+            Destroy(_selectingCard.gameObject);
         }
     }
 }

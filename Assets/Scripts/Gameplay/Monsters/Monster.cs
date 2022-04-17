@@ -131,11 +131,10 @@ public class Monster : GameCharacter
 
         // preview damage
         if (Arena.Instance.TargetPosList.Contains(CurrentTile) &&
-            CardController.selected &&
-            Arena.Instance.SelectedCard.BaseCard.Damage > 0)
+            CardManager.Instance.IsSelectingCard())
         {
             _previewDamage.SetActive(true);
-            int cardDamage = Arena.Instance.SelectedCard.BaseCard.Damage;
+            int cardDamage = CardManager.Instance.SelectingCard.Card.BaseCard.Damage;
             _previewDamage.GetComponent<TextMeshProUGUI>().text = cardDamage.ToString();
         }
         else _previewDamage.SetActive(false);

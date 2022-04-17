@@ -5,8 +5,6 @@ using UnityEngine.EventSystems;
 
 public class PlayPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
-
-    [SerializeField] private CardManager _cardManager;
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag == null)
@@ -17,8 +15,8 @@ public class PlayPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
             return;
 
         InGameCard card = eventData.pointerDrag.GetComponent<CardDisplay>().Card;
-        _cardManager.MoveFromHandToGraveyard(card);
-        Destroy(draggedCard.placeholder);
+        CardManager.Instance.MoveFromHandToGraveyard(card);
+        Destroy(draggedCard.Placeholder);
         Destroy(eventData.pointerDrag);
         // TODO: cast the dropped card
     }
@@ -33,7 +31,7 @@ public class PlayPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
             return;
 
         // Move the dragged card's placeholder out of the hand panel
-        draggedCard.placeholder.transform.SetParent(transform);
+        draggedCard.Placeholder.transform.SetParent(transform);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -45,6 +43,6 @@ public class PlayPanel : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         if (draggedCard == null)
             return;
 
-        draggedCard.placeholder.transform.SetParent(draggedCard.handPanel);
+        draggedCard.Placeholder.transform.SetParent(draggedCard.HandPanel);
     }
 }

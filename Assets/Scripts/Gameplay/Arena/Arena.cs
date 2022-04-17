@@ -10,8 +10,6 @@ public class Arena : MonoBehaviourSingleton<Arena>
 
     public Tile mTile;
     public Tile mOriginalTile;
-    [HideInInspector]
-    public InGameCard SelectedCard;
 
     private GridLayout _grid;
     private Tilemap _tilemap;
@@ -23,6 +21,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
     private List<Vector3Int> _monsterHighlight2 = new List<Vector3Int>();
     private Color _redHighlight = new Color(1f, 0.8f, 0.8f);
     private Color _redHighlight2 = new Color(1f, 0.5f, 0.5f);
+    private Color _yellowHighlight = Color.yellow;
 
     public GridLayout Grid
     {
@@ -53,12 +52,13 @@ public class Arena : MonoBehaviourSingleton<Arena>
     {
         _grid = GetComponentInChildren<GridLayout>();
         _tilemap = _grid.GetComponentInChildren<Tilemap>();
+
         _hexBorder = transform.Find("hexBorder").gameObject;
         BakeLineDebuger(_hexBorder);
         _hexBorder.gameObject.SetActive(false);
+
         _redHexBorder = transform.Find("redHexBorder").gameObject;
         BakeLineDebuger(_redHexBorder);
-        SelectedCard = null;
     }
 
     public static void BakeLineDebuger(GameObject lineObj)
@@ -104,7 +104,8 @@ public class Arena : MonoBehaviourSingleton<Arena>
         }
         else SetTileColor(Color.white, _monsterHighlight);
 
-        if (tile != null && _areaPosList.Contains(mousePos))
+        if (CardManager.Instance.IsSelectingCard() &&
+                (_areaPosList.Contains(mousePos) || IsDirectionTarget(CardManager.Instance.SelectingCard.Card.BaseCard.TargetShape)))
         {
             // highlight card
             ShowTargetArea(oriPos);
@@ -118,43 +119,41 @@ public class Arena : MonoBehaviourSingleton<Arena>
             _monsterHighlight2 = monster.AttackArea();
             Arena.Instance.SetTileColor(_redHighlight2, _monsterHighlight2);
         }
-
-        if (SelectedCard != null && IsDirectionTarget(SelectedCard.BaseCard.TargetShape))
-        {
-            ShowTargetArea(oriPos);
-        }
     }
 
     public void ShowTargetArea(Vector3 targetPos)
     {
-        _targetPosList = GetPosListTarget(SelectedCard.BaseCard.TargetShape, SelectedCard.BaseCard.Range, PlayerManager.Instance.Player.CurrentTile, targetPos);
-        SetTileColor(Color.yellow, _targetPosList);
+        InGameCard selectingCard = CardManager.Instance.SelectingCard.Card;
+        _targetPosList = GetPosListTarget(selectingCard.BaseCard.TargetShape, selectingCard.BaseCard.Range, PlayerManager.Instance.Player.CurrentTile, targetPos);
+        SetTileColor(_yellowHighlight, _targetPosList);
     }
 
     public void HideTargetArea()
     {
         SetTileColor(Color.white, _targetPosList);
+        _targetPosList = new List<Vector3Int>();
     }
 
-    public void ShowRadius(AreaShape areaShape, AreaShape targetShape, int range)
+    public void ShowRadius(InGameCard card)
     {
         Vector3Int curPos = PlayerManager.Instance.Player.CurrentTile;
         _hexBorder.gameObject.SetActive(true);
         _hexBorder.transform.position = _grid.CellToWorld(curPos);
-        _areaPosList = GetPosList(areaShape, range, curPos);
-        _areaPosList.Remove(curPos);
-        if (!IsDirectionTarget(targetShape)) SetTile(mTile, _areaPosList);
 
-        HideTargetArea();
-        ShowTargetArea(_grid.CellToWorld(curPos));
+        if (!IsDirectionTarget(card.BaseCard.TargetShape))
+        {
+            _areaPosList = GetPosList(card.BaseCard.AreaShape, card.BaseCard.Range, curPos);
+            _areaPosList.Remove(curPos);
+            SetTile(mTile, _areaPosList);
+        }
     }
 
-    public void HideRadius(AreaShape areaShape, int range)
+    public void HideRadius()
     {
         Vector3Int curPos = PlayerManager.Instance.Player.CurrentTile;
         _hexBorder.gameObject.SetActive(false);
+        SetTile(mOriginalTile, _areaPosList);
         _areaPosList.Clear();
-        SetTile(mOriginalTile, GetPosList(areaShape, range, curPos));
     }
 
     public void SetTile(Tile tile, List<Vector3Int> posList)

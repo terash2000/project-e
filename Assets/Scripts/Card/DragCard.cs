@@ -18,8 +18,14 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     private bool _isSelected = false;
 
     // A card placeholder that take a space of hand panel when the actual card is being dragged aroud
-    public GameObject placeholder { get { return _placeholder; } }
-    public Transform handPanel { get { return _handPanel; } }
+    public GameObject Placeholder { get { return _placeholder; } }
+    public Transform HandPanel { get { return _handPanel; } }
+    public InGameCard Card { get { return _card; } }
+    public bool IsSelected
+    {
+        get { return _isSelected; }
+        set { _isSelected = value; }
+    }
 
     private void Start()
     {
@@ -31,7 +37,7 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (CardManager.Instance.isSelectingCard) return;
+        if (CardManager.Instance.IsSelectingCard()) return;
 
         // adjust the position of the card
         _dragRectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
@@ -55,7 +61,7 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (CardManager.Instance.isSelectingCard) return;
+        if (CardManager.Instance.IsSelectingCard()) return;
 
         // Insert a new place holder to the hand panel
         _placeholder = new GameObject();
@@ -87,13 +93,13 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                 }
             }
         }
-        CardManager.Instance.isDraggingCard = true;
-        showPreviewCardEffect();
+        CardManager.Instance.IsDraggingCard = true;
+        ShowPreviewCardEffect();
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (CardManager.Instance.isSelectingCard) return;
+        if (CardManager.Instance.IsSelectingCard()) return;
 
         // Remove combo highlight
         for (int i = 0; i < _handPanel.childCount; i++)
@@ -141,22 +147,22 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
         Destroy(_placeholder);
 
-        CardManager.Instance.isDraggingCard = false;
-        hidePreviewCardEffect();
+        CardManager.Instance.IsDraggingCard = false;
+        HidePreviewCardEffect();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        CardManager.Instance.isMouseHovering = true;
-        if (CardManager.Instance.isSelectingCard || CardManager.Instance.isDraggingCard) return;
-        showPreviewCardEffect();
+        CardManager.Instance.HoveringCard = this;
+        if (CardManager.Instance.IsSelectingCard() || CardManager.Instance.IsDraggingCard) return;
+        ShowPreviewCardEffect();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        CardManager.Instance.isMouseHovering = false;
-        if (CardManager.Instance.isSelectingCard || CardManager.Instance.isDraggingCard) return;
-        hidePreviewCardEffect();
+        CardManager.Instance.HoveringCard = null;
+        if (CardManager.Instance.IsSelectingCard() || CardManager.Instance.IsDraggingCard) return;
+        HidePreviewCardEffect();
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -164,31 +170,26 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         if (_isSelected)
         {
             _isSelected = false;
-            CardManager.Instance.isSelectingCard = false;
-            CardManager.Instance.selectingCard = null;
-            Arena.Instance.SelectedCard = _card;
+            CardManager.Instance.SelectingCard = null;
         }
-        else if (!CardManager.Instance.isSelectingCard)
+        else if (!CardManager.Instance.IsSelectingCard() && _card.IsCastable())
         {
             _isSelected = true;
-            CardManager.Instance.isSelectingCard = true;
-            CardManager.Instance.selectingCard = this;
-            Arena.Instance.SelectedCard = _card;
+            CardManager.Instance.SelectingCard = this;
 
-            showPreviewCardEffect();
+            ShowPreviewCardEffect();
         }
-
-    }
-    private void showPreviewCardEffect()
-    {
-        CardManager.HandleCardHover(_card);
-        GetComponent<Image>().color = Color.yellow;
     }
 
-    private void hidePreviewCardEffect()
+    public void HidePreviewCardEffect()
     {
-        CardManager.HandleCardHoverExit(_card);
+        Arena.Instance.HideRadius();
         GetComponent<Image>().color = Color.white;
     }
 
+    private void ShowPreviewCardEffect()
+    {
+        Arena.Instance.ShowRadius(_card);
+        GetComponent<Image>().color = Color.yellow;
+    }
 }
