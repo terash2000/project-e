@@ -12,6 +12,10 @@ public class InGameCard
     {
         get { return _baseCard; }
     }
+    public bool IsUpgrade
+    {
+        get { return _isUpgrade; }
+    }
 
     public InGameCard(Card card, bool upgrade = false)
     {
@@ -26,6 +30,8 @@ public class InGameCard
         if (!_isUpgrade)
         {
             _isUpgrade = true;
+            // TODO upgrade card
+            //ManaCost -= 1;
             return true;
         }
         return false;

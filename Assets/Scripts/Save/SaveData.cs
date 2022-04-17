@@ -10,5 +10,5 @@ public class SaveData
     public int gold;
     public string seedJSON;
     public List<int> path;
-    public List<string> deck;
+    public List<KeyValuePair<string, bool>> deck;
 }

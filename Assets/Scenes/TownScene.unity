@@ -180,6 +180,8 @@ MonoBehaviour:
   _cardContainer: {fileID: 1880968070}
   _previousButton: {fileID: 2083146793}
   _nextButton: {fileID: 1166406348}
+  _upgradePopup: {fileID: 5616388128423550921, guid: 251c80776704a3544b0df2cbee72822a,
+    type: 3}
 --- !u!114 &29725818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,8 +310,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 29725817}
-        m_TargetAssemblyTypeName: CardPage, Assembly-CSharp
-        m_MethodName: OpenPlayerDeck
+        m_TargetAssemblyTypeName: UpgradeMenu, Assembly-CSharp
+        m_MethodName: OpenUpgradeMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

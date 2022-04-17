@@ -4,6 +4,13 @@ using UnityEngine.UI;
 
 public class UpgradeMenu : CardPage
 {
+    [SerializeField] private GameObject _upgradePopup;
+
+    public void OpenUpgradeMenu()
+    {
+        _cards = PlayerData.Deck.FindAll(card => !card.IsUpgrade);
+        Open();
+    }
 
     protected override void RenderCard()
     {
@@ -16,14 +23,24 @@ public class UpgradeMenu : CardPage
 
             Button cardButton = cardObj.AddComponent(typeof(Button)) as Button;
 
-            UnityAction action = () => Upgrade(cardIndex);
+            UnityAction action = () => Upgrade(_cards[cardIndex]);
             cardButton.onClick.AddListener(action);
         }
     }
 
-    private void Upgrade(int cardIndex, bool confirm = false)
+    private void Upgrade(InGameCard card, bool confirm = false)
     {
-        Debug.Log("Upgrade card-" + cardIndex.ToString());
-        Close();
+        if (confirm)
+        {
+            card.Upgrade();
+            SaveSystem.Save();
+            Close();
+        }
+        else
+        {
+            GameObject newPopup = Instantiate(_upgradePopup, transform.parent);
+            UnityAction action = () => Upgrade(card, true);
+            newPopup.GetComponent<UpgradePopup>().Init(card, action);
+        }
     }
 }

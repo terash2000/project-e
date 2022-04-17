@@ -128,15 +128,23 @@ public static class SaveSystem
         }
     }
 
-    private static List<string> DeckToString(List<InGameCard> deck)
+    private static List<KeyValuePair<string, bool>> DeckToString(List<InGameCard> deck)
     {
-        List<string> deckString = deck.Select(card => card.BaseCard.CardName).ToList();
+        List<KeyValuePair<string, bool>> deckString = deck.Select(card =>
+        {
+            return new KeyValuePair<string, bool>(card.BaseCard.CardName, card.IsUpgrade);
+        }).ToList();
+
         return deckString;
     }
 
-    private static List<InGameCard> StringToDeck(List<string> deckString)
+    private static List<InGameCard> StringToDeck(List<KeyValuePair<string, bool>> deckString)
     {
-        List<InGameCard> deck = deckString.Select(cardName => new InGameCard(CardCollection.Instance.FindCardByName(cardName))).ToList();
+        List<InGameCard> deck = deckString.Select(pair =>
+        {
+            return new InGameCard(CardCollection.Instance.FindCardByName(pair.Key), pair.Value);
+        }).ToList();
+
         return deck;
     }
 }
