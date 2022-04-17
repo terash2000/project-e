@@ -981,6 +981,28 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 77b56740767459345865f697099243e9, type: 2}
   - {fileID: 11400000, guid: de84fc0301d513d48ae0b098ac1c1f75, type: 2}
   - {fileID: 11400000, guid: f5da397d61098424d9c4881c929cb9d7, type: 2}
+  AllCombo:
+  - Base1: 1
+    Base2: 2
+    Result: 7
+  - Base1: 6
+    Base2: 2
+    Result: 6
+  - Base1: 6
+    Base2: 1
+    Result: 6
+  - Base1: 6
+    Base2: 5
+    Result: 6
+  - Base1: 1
+    Base2: 4
+    Result: 4
+  - Base1: 1
+    Base2: 4
+    Result: 4
+  - Base1: 5
+    Base2: 2
+    Result: 9
   _newCardPopup: {fileID: 5781192978451266083, guid: 4fa99ae6d71c4e440b36df87a482ac4a,
     type: 3}
   _chooseCardPopup: {fileID: 1809415070924254837, guid: aa97780a3a93ac44ba69e5b07b7a07e7,

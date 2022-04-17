@@ -15,7 +15,7 @@ MonoBehaviour:
   CardName: Acid Bomb
   Description: Deal 4 damage to all enemies in a circle area and give them 2 Acid.
   Type: 0
-  BaseElement: 2
+  BaseElement: 4
   Rarity: 1
   Artwork: {fileID: 21300000, guid: 89297d4fd3279924c99d9fc105998a00, type: 3}
   ManaCost: 1

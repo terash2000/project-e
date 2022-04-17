@@ -24,7 +24,8 @@ public class UpgradePopup : MonoBehaviour
         }
 
         GameObject upgradedCardObj = Instantiate(CardCollection.Instance.CardPrefab, _upgradedContainer.transform);
-        InGameCard upgradedCard = new InGameCard(card.BaseCard, true);
+        InGameCard upgradedCard = new InGameCard(card);
+        upgradedCard.Upgrade();
         upgradedCardObj.GetComponent<CardDisplay>().Card = upgradedCard;
 
         _confirmButton.onClick.AddListener(Listener);

@@ -456,9 +456,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6b4f1d842dd7741879dcecc4eab409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _nameImage: {fileID: 941996872703535988}
   _nameText: {fileID: 413808422571279232}
   _descriptionText: {fileID: 8043876153943103632}
   _typeText: {fileID: 820269760329049141}
+  _elementImage: {fileID: 8979047729798631580}
   _elementText: {fileID: 8744611144247831883}
   _artworkImage: {fileID: 855379502305876836}
   _manaText: {fileID: 8429676617873524002}

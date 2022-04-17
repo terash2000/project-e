@@ -6,15 +6,22 @@ public class InGameCard
     public ElementType Element;
 
     private Card _baseCard;
-    private bool _isUpgrade = false;
+    private bool _isUpgraded = false;
+    public bool _isToken = false;
 
     public Card BaseCard
     {
         get { return _baseCard; }
     }
-    public bool IsUpgrade
+    public bool IsUpgraded
     {
-        get { return _isUpgrade; }
+        get { return _isUpgraded; }
+    }
+
+    public bool IsToken
+    {
+        get { return _isToken; }
+        set { _isToken = value; }
     }
 
     public InGameCard(Card card, bool upgrade = false)
@@ -25,11 +32,20 @@ public class InGameCard
         if (upgrade) Upgrade();
     }
 
+    public InGameCard(InGameCard other)
+    {
+        _baseCard = other.BaseCard;
+        ManaCost = other.ManaCost;
+        Element = other.Element;
+        _isUpgraded = other._isUpgraded;
+        _isToken = other._isToken;
+    }
+
     public bool Upgrade()
     {
-        if (!_isUpgrade)
+        if (!_isUpgraded)
         {
-            _isUpgrade = true;
+            _isUpgraded = true;
             // TODO upgrade card
             //ManaCost -= 1;
             return true;

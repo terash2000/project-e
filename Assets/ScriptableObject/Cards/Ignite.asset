@@ -15,7 +15,7 @@ MonoBehaviour:
   CardName: Ignite
   Description: Give an adjacent enemy 2 Burn.
   Type: 0
-  BaseElement: 2
+  BaseElement: 6
   Rarity: 0
   Artwork: {fileID: 21300000, guid: 85208acc63c88cb4d82819b4af20f548, type: 3}
   ManaCost: 0

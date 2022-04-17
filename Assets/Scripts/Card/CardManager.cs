@@ -38,7 +38,17 @@ public class CardManager : MonoBehaviourSingleton<CardManager>
     public void MoveFromHandToGraveyard(InGameCard card)
     {
         _hand.Remove(card);
-        _graveyard.Add(card);
+        AddCardToGraveyard(card);
+    }
+
+    public void AddCardToGraveyard(InGameCard card)
+    {
+        if (card.IsToken) return;
+
+        // clone card
+        InGameCard clone = new InGameCard(card);
+
+        _graveyard.Add(clone);
         _gravyardUI.alpha = 1;
         _gravyardUI.blocksRaycasts = true;
     }

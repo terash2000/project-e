@@ -4,14 +4,12 @@ using UnityEngine;
 public class CardCollection : MonoBehaviourSingletonPersistent<CardCollection>
 {
     public List<Card> AllCards;
-    [SerializeField]
-    private GameObject _newCardPopup;
-    [SerializeField]
-    private GameObject _chooseCardPopup;
-    [SerializeField]
-    private GameObject _cardPrefab;
-    [SerializeField]
-    private GameObject _lockedCardPrefab;
+    public List<Combo> AllCombo;
+
+    [SerializeField] private GameObject _newCardPopup;
+    [SerializeField] private GameObject _chooseCardPopup;
+    [SerializeField] private GameObject _cardPrefab;
+    [SerializeField] private GameObject _lockedCardPrefab;
 
     private static Dictionary<string, bool> _unlockDict;
 
@@ -39,6 +37,16 @@ public class CardCollection : MonoBehaviourSingletonPersistent<CardCollection>
         foreach (Card card in AllCards)
         {
             if (card.CardName == cardName) return card;
+        }
+        return null;
+    }
+
+    public Combo FindCombo(ElementType base1, ElementType base2)
+    {
+        foreach (Combo combo in AllCombo)
+        {
+            if (combo.Base1 == base1 && combo.Base2 == base2) return combo;
+            if (combo.Base1 == base2 && combo.Base2 == base1) return combo;
         }
         return null;
     }

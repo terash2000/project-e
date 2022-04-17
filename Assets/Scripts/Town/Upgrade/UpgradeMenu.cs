@@ -8,7 +8,7 @@ public class UpgradeMenu : CardPage
 
     public void OpenUpgradeMenu()
     {
-        _cards = PlayerData.Deck.FindAll(card => !card.IsUpgrade);
+        _cards = PlayerData.Deck.FindAll(card => !card.IsUpgraded);
         Open();
     }
 

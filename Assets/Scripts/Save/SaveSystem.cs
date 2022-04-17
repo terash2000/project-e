@@ -132,7 +132,7 @@ public static class SaveSystem
     {
         List<KeyValuePair<string, bool>> deckString = deck.Select(card =>
         {
-            return new KeyValuePair<string, bool>(card.BaseCard.CardName, card.IsUpgrade);
+            return new KeyValuePair<string, bool>(card.BaseCard.CardName, card.IsUpgraded);
         }).ToList();
 
         return deckString;

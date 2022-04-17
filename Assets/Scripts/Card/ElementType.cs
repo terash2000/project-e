@@ -3,5 +3,11 @@ public enum ElementType
     None,
     H,
     O,
-    Na
+    Na,
+    Cl,
+    C,
+    Fire,
+    H2O,
+    HCl,
+    CO
 }

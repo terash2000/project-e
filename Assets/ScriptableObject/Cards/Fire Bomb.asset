@@ -15,7 +15,7 @@ MonoBehaviour:
   CardName: Fire Bomb
   Description: Deal 10 damage to all enemies in a circle area and give them 2 Burn.
   Type: 0
-  BaseElement: 2
+  BaseElement: 6
   Rarity: 1
   Artwork: {fileID: 21300000, guid: 7fbc34a2db70c54498607993a134b435, type: 3}
   ManaCost: 2
