@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     private const float COMBINE_RANGE = 50f;
 
@@ -14,6 +14,8 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     private GameObject _placeholder;
     private Color _cyan = new Color(0f, 1f, 1f);
     private Color _white = new Color(1f, 1f, 1f);
+    private InGameCard _card;
+    private bool _isSelected = false;
 
     // A card placeholder that take a space of hand panel when the actual card is being dragged aroud
     public GameObject placeholder { get { return _placeholder; } }
@@ -24,10 +26,13 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         _dragRectTransform = transform.GetComponent<RectTransform>();
         _canvas = transform.root.GetComponent<Canvas>();
         _handPanel = transform.parent;
+        _card = GetComponent<CardDisplay>().Card;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (CardManager.Instance.isSelectingCard) return;
+
         // adjust the position of the card
         _dragRectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
 
@@ -44,10 +49,14 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             }
         }
         _placeholder.transform.SetSiblingIndex(newSiblingIndex);
+
+        // showPreviewCardEffect();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (CardManager.Instance.isSelectingCard) return;
+
         // Insert a new place holder to the hand panel
         _placeholder = new GameObject();
         _placeholder.transform.SetParent(_handPanel);
@@ -78,10 +87,14 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                 }
             }
         }
+        CardManager.Instance.isDraggingCard = true;
+        showPreviewCardEffect();
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (CardManager.Instance.isSelectingCard) return;
+
         // Remove combo highlight
         for (int i = 0; i < _handPanel.childCount; i++)
         {
@@ -127,5 +140,55 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         transform.SetSiblingIndex(_placeholder.transform.GetSiblingIndex());
 
         Destroy(_placeholder);
+
+        CardManager.Instance.isDraggingCard = false;
+        hidePreviewCardEffect();
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        CardManager.Instance.isMouseHovering = true;
+        if (CardManager.Instance.isSelectingCard || CardManager.Instance.isDraggingCard) return;
+        showPreviewCardEffect();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        CardManager.Instance.isMouseHovering = false;
+        if (CardManager.Instance.isSelectingCard || CardManager.Instance.isDraggingCard) return;
+        hidePreviewCardEffect();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (_isSelected)
+        {
+            _isSelected = false;
+            CardManager.Instance.isSelectingCard = false;
+            CardManager.Instance.selectingCard = null;
+            Arena.Instance.SelectedCard = _card;
+        }
+        else if (!CardManager.Instance.isSelectingCard)
+        {
+            _isSelected = true;
+            CardManager.Instance.isSelectingCard = true;
+            CardManager.Instance.selectingCard = this;
+            Arena.Instance.SelectedCard = _card;
+
+            showPreviewCardEffect();
+        }
+
+    }
+    private void showPreviewCardEffect()
+    {
+        CardManager.HandleCardHover(_card);
+        GetComponent<Image>().color = Color.yellow;
+    }
+
+    private void hidePreviewCardEffect()
+    {
+        CardManager.HandleCardHoverExit(_card);
+        GetComponent<Image>().color = Color.white;
+    }
+
 }

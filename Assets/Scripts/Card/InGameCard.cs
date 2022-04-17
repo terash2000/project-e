@@ -52,4 +52,9 @@ public class InGameCard
         }
         return false;
     }
+
+    public bool isCastable()
+    {
+        return ManaCost <= PlayerData.Mana;
+    }
 }

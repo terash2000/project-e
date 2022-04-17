@@ -11,7 +11,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
     public Tile mTile;
     public Tile mOriginalTile;
     [HideInInspector]
-    public CardController SelectedCard;
+    public InGameCard SelectedCard;
 
     private GridLayout _grid;
     private Tilemap _tilemap;
@@ -119,7 +119,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
             Arena.Instance.SetTileColor(_redHighlight2, _monsterHighlight2);
         }
 
-        if (SelectedCard != null && IsDirectionTarget(SelectedCard.mTargetShape))
+        if (SelectedCard != null && IsDirectionTarget(SelectedCard.BaseCard.TargetShape))
         {
             ShowTargetArea(oriPos);
         }
@@ -127,7 +127,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
 
     public void ShowTargetArea(Vector3 targetPos)
     {
-        _targetPosList = GetPosListTarget(SelectedCard.mTargetShape, SelectedCard.mRange, PlayerManager.Instance.Player.CurrentTile, targetPos);
+        _targetPosList = GetPosListTarget(SelectedCard.BaseCard.TargetShape, SelectedCard.BaseCard.Range, PlayerManager.Instance.Player.CurrentTile, targetPos);
         SetTileColor(Color.yellow, _targetPosList);
     }
 

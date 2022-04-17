@@ -13,4 +13,8 @@ public class Card : ScriptableObject
     public Sprite Artwork;
     public int ManaCost;
     public bool IsUnlocked;
+    public AreaShape AreaShape;
+    public AreaShape TargetShape;
+    public int Range;
+    public int Damage;
 }

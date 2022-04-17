@@ -43,7 +43,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         mouseOver = true;
         if (selected) return;
         this.GetComponent<Image>().color = Color.yellow;
-        Arena.Instance.SelectedCard = this;
+        // Arena.Instance.SelectedCard = this;
         Arena.Instance.ShowRadius(mAreaShape, mTargetShape, mRange);
     }
 
@@ -68,7 +68,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             selected = true;
             selectThisCard = true;
-            Arena.Instance.SelectedCard = this;
+            // Arena.Instance.SelectedCard = this;
 
             this.GetComponent<Image>().color = Color.yellow;
             Arena.Instance.ShowRadius(mAreaShape, mTargetShape, mRange);

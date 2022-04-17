@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class CardManager : MonoBehaviourSingleton<CardManager>
@@ -13,6 +14,11 @@ public class CardManager : MonoBehaviourSingleton<CardManager>
     private List<InGameCard> _deck = new List<InGameCard>();
     private List<InGameCard> _hand = new List<InGameCard>();
     private List<InGameCard> _graveyard = new List<InGameCard>();
+
+    public bool isSelectingCard = false;
+    public bool isDraggingCard = false;
+    public bool isMouseHovering = false;
+    public DragCard selectingCard;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +40,19 @@ public class CardManager : MonoBehaviourSingleton<CardManager>
             DrawCard();
         }
     }
+    void Update()
+    {
+        InGameCard card = Arena.Instance.SelectedCard;
+        if (Input.GetMouseButtonUp(0) && isSelectingCard && card.isCastable() && !isMouseHovering)
+        {
+            Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3Int mousePos = Arena.Instance.Grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
+            castCard(card, mousePos);
+            isSelectingCard = false;
+            Arena.Instance.SelectedCard = null;
+        }
+    }
+
 
     public void MoveFromHandToGraveyard(InGameCard card)
     {
@@ -102,5 +121,54 @@ public class CardManager : MonoBehaviourSingleton<CardManager>
     {
         _cardPage.Cards = _graveyard;
         _cardPage.Open();
+    }
+
+    public static void HandleCardHover(InGameCard card)
+    {
+        Arena.Instance.SelectedCard = card;
+        Arena.Instance.ShowRadius(card.BaseCard.AreaShape, card.BaseCard.TargetShape, card.BaseCard.Range);
+    }
+    public static void HandleCardHoverExit(InGameCard card)
+    {
+        Arena.Instance.SelectedCard = null;
+        Arena.Instance.HideRadius(card.BaseCard.AreaShape, card.BaseCard.Range);
+    }
+
+    private void castCard(InGameCard card, Vector3Int mousePos)
+    {
+        Arena.Instance.HideRadius(card.BaseCard.AreaShape, card.BaseCard.Range);
+
+        // TODO: cast the card based on the actual card data
+        Tile tile = (Tile)Arena.Instance.Tilemap.GetTile(mousePos);
+        if (tile == null) return;
+
+        bool success = false;
+        if (card.BaseCard.Type == CardType.Attack)
+        {
+            foreach (Vector3Int pos in Arena.Instance.TargetPosList)
+            {
+                Monster monster = MonsterManager.Instance.FindMonsterByTile(pos);
+                if (monster != null)
+                {
+                    monster.TakeDamage(card.BaseCard.Damage);
+                    monster.GainStatus(Status.Type.Stun);
+                    monster.GainStatus(Status.Type.Acid, 2);
+                    monster.GainStatus(Status.Type.Burn, 3);
+                    success = true;
+                }
+            }
+        }
+        else if (card.BaseCard.Type == CardType.Skill)
+        {
+            PlayerManager.Instance.Player.SetMovement(mousePos);
+            success = true;
+        }
+
+        if (success)
+        {
+            PlayerData.Mana -= card.ManaCost;
+            MoveFromHandToGraveyard(selectingCard.GetComponent<CardDisplay>().Card);
+            Destroy(selectingCard.gameObject);
+        }
     }
 }
