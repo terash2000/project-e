@@ -21,6 +21,7 @@ MonoBehaviour:
     Type: 0
     Amount: 0
     Name: 
+    rootEvent: {fileID: 0}
   Child:
   - {fileID: 11400000, guid: 99c8654eb6b050244846a2ada8084890, type: 2}
   - {fileID: 11400000, guid: 07261fa8bf9866e408fec56acd4557ad, type: 2}
@@ -30,3 +31,4 @@ MonoBehaviour:
   - Who is Uranium?
   - Why is Uranium?
   NextWave: {fileID: 0}
+  Shake: 0

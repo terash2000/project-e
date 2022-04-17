@@ -21,6 +21,7 @@ MonoBehaviour:
     Type: 0
     Amount: 0
     Name: 
+    rootEvent: {fileID: 0}
   Child:
   - {fileID: 11400000, guid: 289b3a65a34cdfe4b9faa50ffa9d93c8, type: 2}
   - {fileID: 11400000, guid: 289b3a65a34cdfe4b9faa50ffa9d93c8, type: 2}
@@ -30,3 +31,4 @@ MonoBehaviour:
   - I'm just a normal high school student.
   - Can't you fight those DEMONS yourself?
   NextWave: {fileID: 0}
+  Shake: 0

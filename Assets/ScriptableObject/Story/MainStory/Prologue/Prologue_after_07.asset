@@ -21,8 +21,10 @@ MonoBehaviour:
     Type: 0
     Amount: 0
     Name: 
+    rootEvent: {fileID: 0}
   Child:
   - {fileID: 11400000, guid: 520c622a62467c7429994923fdd9610f, type: 2}
   Choice:
   - Your name is Helium?
   NextWave: {fileID: 0}
+  Shake: 0

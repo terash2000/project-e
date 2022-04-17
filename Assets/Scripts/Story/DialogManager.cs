@@ -152,5 +152,11 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
                 choiceButton.GetComponent<Button>().onClick.AddListener(listener2);
             }
         }
+
+        // shake
+        if (_current.Shake)
+        {
+            BackgroundShake.Instance.Shake();
+        }
     }
 }

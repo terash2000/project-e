@@ -26,3 +26,4 @@ MonoBehaviour:
   Child: []
   Choice: []
   NextWave: {fileID: 0}
+  Shake: 0

@@ -31,3 +31,4 @@ MonoBehaviour:
   - Maybe, helium is better.
   - I'd ratter walk on foot.
   NextWave: {fileID: 0}
+  Shake: 0

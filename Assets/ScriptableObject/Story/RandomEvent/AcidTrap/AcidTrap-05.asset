@@ -21,6 +21,8 @@ MonoBehaviour:
     Type: 2
     Amount: 1
     Name: Acid Bomb
+    rootEvent: {fileID: 0}
   Child: []
   Choice: []
   NextWave: {fileID: 0}
+  Shake: 0

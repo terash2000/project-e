@@ -21,6 +21,7 @@ MonoBehaviour:
     Type: 0
     Amount: 0
     Name: 
+    rootEvent: {fileID: 0}
   Child:
   - {fileID: 11400000, guid: 395f20ae64301c748846c3e3c8a3926c, type: 2}
   - {fileID: 11400000, guid: 59e281f5b36c76c4a99cc81bf57983d1, type: 2}
@@ -32,3 +33,4 @@ MonoBehaviour:
   - What is my reward?
   - Alright, I'll join you.
   NextWave: {fileID: 0}
+  Shake: 0

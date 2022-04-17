@@ -31,3 +31,4 @@ MonoBehaviour:
   - It is nonmetallic.
   - It is aloha.
   NextWave: {fileID: 0}
+  Shake: 0

@@ -27,3 +27,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 27b7c3411616e254196565529556d2a9, type: 2}
   Choice: []
   NextWave: {fileID: 0}
+  Shake: 0

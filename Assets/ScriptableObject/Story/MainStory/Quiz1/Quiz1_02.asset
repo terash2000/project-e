@@ -33,3 +33,4 @@ MonoBehaviour:
   - 3
   - 4
   NextWave: {fileID: 0}
+  Shake: 0

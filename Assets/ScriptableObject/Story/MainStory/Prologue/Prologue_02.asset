@@ -21,7 +21,9 @@ MonoBehaviour:
     Type: 0
     Amount: 0
     Name: 
+    rootEvent: {fileID: 0}
   Child:
   - {fileID: 11400000, guid: ca795b9d22cc1a344ba1fe2036a94e1e, type: 2}
   Choice: []
   NextWave: {fileID: 0}
+  Shake: 1

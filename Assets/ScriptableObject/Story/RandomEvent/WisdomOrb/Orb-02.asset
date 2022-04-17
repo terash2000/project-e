@@ -21,6 +21,7 @@ MonoBehaviour:
     Type: 0
     Amount: 0
     Name: 
+    rootEvent: {fileID: 0}
   Child:
   - {fileID: 11400000, guid: 769e607685f7baa4b852e2bcba8bfa08, type: 2}
   - {fileID: 11400000, guid: dea1c92fd4c46324ca73fc93d32f5882, type: 2}
@@ -32,3 +33,4 @@ MonoBehaviour:
   - Oxygen
   - Attack the spirit...
   NextWave: {fileID: 0}
+  Shake: 0
