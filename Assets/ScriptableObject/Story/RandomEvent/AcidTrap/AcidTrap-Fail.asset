@@ -18,9 +18,9 @@ MonoBehaviour:
     acid. My skin is burning.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 3
-    Amount: -5
+  Actions:
+  - Type: 3
+    Amount: -10
     Name: 
     rootEvent: {fileID: 0}
   Child:

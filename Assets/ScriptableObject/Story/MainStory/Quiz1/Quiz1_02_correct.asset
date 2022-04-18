@@ -17,11 +17,7 @@ MonoBehaviour:
   Quote: Correct!  Hydrogen is the lightest element with atomic number 1.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: cfbaca8838bd7ee4495f98ceed15057d, type: 2}
   Choice: []

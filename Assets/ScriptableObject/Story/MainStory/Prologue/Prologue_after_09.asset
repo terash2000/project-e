@@ -17,11 +17,7 @@ MonoBehaviour:
   Quote: Oh! I haven't introduce myself yet. My name is Hydrogen. Happy to meet you!
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: eb3ced6762efc284ebde715c2357a676, type: 2}
   Choice: []

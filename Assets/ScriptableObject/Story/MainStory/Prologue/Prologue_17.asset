@@ -17,11 +17,7 @@ MonoBehaviour:
   Quote: 
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: a3b2b0f920a222341b1c897e372e6051, type: 2}
   - {fileID: 11400000, guid: a3b2b0f920a222341b1c897e372e6051, type: 2}

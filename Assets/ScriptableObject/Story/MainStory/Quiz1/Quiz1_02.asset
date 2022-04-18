@@ -17,11 +17,7 @@ MonoBehaviour:
   Quote: First question! What is atomic number of Hydrogen?
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: a1837ac1ea4537c4880792bd2bbe3503, type: 2}
   - {fileID: 11400000, guid: 813d72b267f7cc4489215ef9b1d0a9e3, type: 2}

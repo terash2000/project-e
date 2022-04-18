@@ -17,11 +17,7 @@ MonoBehaviour:
   Quote: Helium? I notice her name is Helium. Helium-chan? What a weird name.
   Background: {fileID: 21300000, guid: 3274d32b1b6ee0a46a460c542e2231fb, type: 3}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: 520c622a62467c7429994923fdd9610f, type: 2}
   Choice:

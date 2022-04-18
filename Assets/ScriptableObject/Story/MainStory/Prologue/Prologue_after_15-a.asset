@@ -17,11 +17,7 @@ MonoBehaviour:
   Quote: So, you don't know the way home... What you gonna do next?
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: 89fafd99e4451c944918a1f5fffd63c5, type: 2}
   Choice: []

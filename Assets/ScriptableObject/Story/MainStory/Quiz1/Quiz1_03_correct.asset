@@ -17,8 +17,12 @@ MonoBehaviour:
   Quote: Correct! As promised, Here's your reward.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 1
+  Actions:
+  - Type: 1
+    Amount: 0
+    Name: 
+    rootEvent: {fileID: 11400000, guid: 92a9de745ea828547aa73c84b1103dbb, type: 2}
+  - Type: 5
     Amount: 0
     Name: German Suplex
     rootEvent: {fileID: 11400000, guid: 92a9de745ea828547aa73c84b1103dbb, type: 2}

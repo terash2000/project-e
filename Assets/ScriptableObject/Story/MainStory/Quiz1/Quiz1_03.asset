@@ -17,11 +17,7 @@ MonoBehaviour:
   Quote: Let's move to the next question. Cloud you tell me a property of Hydrogen?
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: 813d72b267f7cc4489215ef9b1d0a9e3, type: 2}
   - {fileID: 11400000, guid: cd08be77b641afc47a1cd5d3427c16ba, type: 2}

@@ -17,11 +17,7 @@ MonoBehaviour:
   Quote: Being together with two cute girls is the reward itself. Hehe!
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: 5e17468f76a104b48af997667ad335e2, type: 2}
   Choice: []

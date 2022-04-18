@@ -424,6 +424,7 @@ GameObject:
   - component: {fileID: 5616388127312363588}
   - component: {fileID: 5616388127312363591}
   - component: {fileID: 5616388127312363590}
+  - component: {fileID: 7430750176943557545}
   m_Layer: 5
   m_Name: Confirm
   m_TagString: Untagged
@@ -533,6 +534,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7430750176943557545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5616388127312363584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 494c82a25e8b61b49a61a812d36fafa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GoldNeeded: 100
 --- !u!1 &5616388127684596693
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,7 +971,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Do you want to upgrade this card?
+  m_text: Use 100 G to upgrade this card.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1033,6 +1047,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5887416101992524466}
     m_Modifications:
+    - target: {fileID: 413808422571279232, guid: f9f29a3fe22c4084ea35c84c78b4208b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 9.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 820269760329049141, guid: f9f29a3fe22c4084ea35c84c78b4208b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 8.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 941996872514969963, guid: f9f29a3fe22c4084ea35c84c78b4208b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000015258789
+      objectReference: {fileID: 0}
     - target: {fileID: 941996873421475429, guid: f9f29a3fe22c4084ea35c84c78b4208b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1142,6 +1171,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Card Body
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043876153943103632, guid: f9f29a3fe22c4084ea35c84c78b4208b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 10.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8429676617873524002, guid: f9f29a3fe22c4084ea35c84c78b4208b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 13.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8744611144247831883, guid: f9f29a3fe22c4084ea35c84c78b4208b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 9.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9f29a3fe22c4084ea35c84c78b4208b, type: 3}
@@ -1158,6 +1202,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5362125714133490657}
     m_Modifications:
+    - target: {fileID: 413808422571279232, guid: f9f29a3fe22c4084ea35c84c78b4208b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 9.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 820269760329049141, guid: f9f29a3fe22c4084ea35c84c78b4208b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 8.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 941996872514969963, guid: f9f29a3fe22c4084ea35c84c78b4208b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000015258789
+      objectReference: {fileID: 0}
     - target: {fileID: 941996873421475429, guid: f9f29a3fe22c4084ea35c84c78b4208b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1267,6 +1326,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Card Body
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043876153943103632, guid: f9f29a3fe22c4084ea35c84c78b4208b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 10.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8429676617873524002, guid: f9f29a3fe22c4084ea35c84c78b4208b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 13.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8744611144247831883, guid: f9f29a3fe22c4084ea35c84c78b4208b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 9.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9f29a3fe22c4084ea35c84c78b4208b, type: 3}

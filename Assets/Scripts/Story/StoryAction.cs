@@ -10,30 +10,25 @@ public class StoryAction
 
     public enum ActionType
     {
-        None,
+        ChangeGold,
         CompleteStory,
         AddCardToDeck,
         ChangeHP,
-        ChangeMaxHP
+        ChangeMaxHP,
+        UnlockCard
     }
 
     public void Trigger()
     {
         switch (Type)
         {
+            case ActionType.ChangeGold:
+                PlayerData.Gold += Amount;
+                break;
             case ActionType.CompleteStory:
                 if (StoryMenu.CompletedStory.Contains(rootEvent.name)) break;
 
                 StoryMenu.CompletedStory.Add(rootEvent.name);
-
-                if (Name != "")
-                {
-                    // unlock card
-                    CardCollection.UnlockCard(Name);
-                    DialogManager.Instance.ShowPopup("Unlock!", Name);
-                }
-
-                SaveSystem.SaveUnlockData();
                 SaveSystem.Save();
                 break;
             case ActionType.AddCardToDeck:
@@ -54,6 +49,11 @@ public class StoryAction
                 PlayerData.MaxHealth += Amount;
                 // player can't die in event
                 if (PlayerData.MaxHealth <= 0) PlayerData.MaxHealth = 1;
+                break;
+            case ActionType.UnlockCard:
+                CardCollection.UnlockCard(Name);
+                DialogManager.Instance.ShowPopup("Unlock!", Name);
+                SaveSystem.SaveUnlockData();
                 break;
         }
     }

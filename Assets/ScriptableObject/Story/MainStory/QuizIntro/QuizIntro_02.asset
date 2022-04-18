@@ -18,8 +18,8 @@ MonoBehaviour:
     you more.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 1
+  Actions:
+  - Type: 1
     Amount: 0
     Name: 
     rootEvent: {fileID: 11400000, guid: 0893ccec2681d32419d9efbfad6f43ef, type: 2}

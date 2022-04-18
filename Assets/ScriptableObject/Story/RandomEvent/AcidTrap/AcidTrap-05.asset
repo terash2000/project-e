@@ -17,10 +17,14 @@ MonoBehaviour:
   Quote: 
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 2
+  Actions:
+  - Type: 2
     Amount: 1
     Name: Acid Bomb
+    rootEvent: {fileID: 0}
+  - Type: 0
+    Amount: 50
+    Name: 
     rootEvent: {fileID: 0}
   Child: []
   Choice: []

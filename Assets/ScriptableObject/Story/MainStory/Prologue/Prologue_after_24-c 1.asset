@@ -18,11 +18,7 @@ MonoBehaviour:
     joining us seem not a bad decision. You might find your way home during the adventure.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: 89fc3e2f9ee013e4d93f5c9a184b4081, type: 2}
   Choice: []

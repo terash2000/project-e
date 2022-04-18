@@ -9,7 +9,7 @@ public class DialogNode : ScriptableObject
     public string Quote;
     public Sprite Background;
     public Sprite Sprite;
-    public StoryAction Action;
+    public List<StoryAction> Actions;
     public List<DialogNode> Child;
     public List<string> Choice;
     public Wave NextWave;

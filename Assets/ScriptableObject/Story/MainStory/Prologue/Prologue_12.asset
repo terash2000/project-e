@@ -17,11 +17,7 @@ MonoBehaviour:
   Quote: Aaaah! Demon!!! It's attacking the village!
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: 5cdba3af0742cf147b01b730b47b490d, type: 2}
   Choice: []

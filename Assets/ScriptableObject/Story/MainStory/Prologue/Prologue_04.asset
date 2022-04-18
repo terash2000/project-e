@@ -18,11 +18,7 @@ MonoBehaviour:
     There's also a medieval village not too far away.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: 977735c6ae911f6438d8d6fdcbeb8b7b, type: 2}
   Choice: []

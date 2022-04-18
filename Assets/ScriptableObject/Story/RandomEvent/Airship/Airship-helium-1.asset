@@ -19,11 +19,7 @@ MonoBehaviour:
     suitable in this situation.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: 2dadfadba22d98444b02ee4313b28b6f, type: 2}
   Choice: []

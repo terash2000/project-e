@@ -17,8 +17,8 @@ MonoBehaviour:
   Quote: Your max health increase permanently.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 4
+  Actions:
+  - Type: 4
     Amount: 5
     Name: 
     rootEvent: {fileID: 0}

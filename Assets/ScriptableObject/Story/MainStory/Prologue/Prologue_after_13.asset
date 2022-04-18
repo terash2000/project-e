@@ -18,11 +18,7 @@ MonoBehaviour:
     in this village aren't you? I've never seen you before.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: 071f2be2611f88743905f54927d9fc00, type: 2}
   Choice: []

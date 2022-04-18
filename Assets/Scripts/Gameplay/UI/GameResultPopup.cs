@@ -5,6 +5,9 @@ using TMPro;
 
 public class GameResultPopup : MonoBehaviour
 {
+    private const int MIN_GOLD_REWARD = 30;
+    private const int MAX_GOLD_REWARD = 50;
+
     private TextMeshProUGUI _text;
     private Image _bg;
     private Button _confirmButton;
@@ -32,16 +35,16 @@ public class GameResultPopup : MonoBehaviour
     {
         _text.text = "VICTORY";
         _bg.color = Color.green;
-        UnityAction action = () => ChooseNewCard();
-        _confirmButton.onClick.AddListener(ChooseNewCard);
+        _confirmButton.onClick.AddListener(GainReward);
         gameObject.SetActive(true);
         Time.timeScale = 0f;
     }
 
-    public void ChooseNewCard()
+    public void GainReward()
     {
         if (MonsterManager.Wave.Reward)
         {
+            GainGold();
             GameObject chooseCardPopup = Instantiate(CardCollection.Instance.ChooseCardPopup, transform.parent);
             chooseCardPopup.GetComponent<ChooseCardPopup>().Init();
         }
@@ -49,5 +52,11 @@ public class GameResultPopup : MonoBehaviour
         {
             SceneChanger.Instance.NextScene();
         }
+    }
+
+    public void GainGold()
+    {
+        int gold = Random.Range(MIN_GOLD_REWARD, MAX_GOLD_REWARD);
+        PlayerData.Gold += gold;
     }
 }

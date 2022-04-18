@@ -17,11 +17,7 @@ MonoBehaviour:
   Quote: No need to be greedy. I carefully walk away.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child: []
   Choice: []
   NextWave: {fileID: 0}

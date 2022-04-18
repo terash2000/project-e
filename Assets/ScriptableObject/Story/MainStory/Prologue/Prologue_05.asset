@@ -18,11 +18,7 @@ MonoBehaviour:
     for the source of the sound and found a young girl walking toward this direction.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: dc315eb38f7f4a949b23f18d54e95c0f, type: 2}
   Choice: []

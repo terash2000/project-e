@@ -104,7 +104,10 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
     private void Render()
     {
         // action
-        _current.Action.Trigger();
+        foreach (StoryAction acion in _current.Actions)
+        {
+            acion.Trigger();
+        }
 
         // dialog
         if (_current.Quote != "")

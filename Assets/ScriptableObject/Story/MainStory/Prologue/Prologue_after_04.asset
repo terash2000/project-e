@@ -18,11 +18,7 @@ MonoBehaviour:
     nowhere to be found in the battle.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: 18b59f156f8b56c4e9ddfbf1e2aa116f, type: 2}
   Choice: []

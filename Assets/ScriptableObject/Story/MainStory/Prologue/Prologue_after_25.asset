@@ -17,11 +17,7 @@ MonoBehaviour:
   Quote: Yay!! Welcome to our party!
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: 81d14f333179a59499fc9155fca07d32, type: 2}
   Choice: []

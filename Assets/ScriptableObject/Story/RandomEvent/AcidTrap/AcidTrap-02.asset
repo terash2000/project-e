@@ -18,11 +18,7 @@ MonoBehaviour:
     is shooting a me! I jump away but that acid seem to following me.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: a3e6a4dc071619b47a0b0896dc6dd153, type: 2}
   - {fileID: 11400000, guid: 5f871699b5fa5cf449ae49f40086635e, type: 2}

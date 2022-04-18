@@ -17,11 +17,7 @@ MonoBehaviour:
   Quote: Worng!
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: 46c4a9049a71bd143a31f8af373f4b82, type: 2}
   Choice: []

@@ -18,11 +18,7 @@ MonoBehaviour:
     might have some hidden talent.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: 13ecedcb50d80b448ae5404f69699a07, type: 2}
   Choice: []

@@ -17,11 +17,7 @@ MonoBehaviour:
   Quote: Would you lift the airship with hydrogen?
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: a3faf65e4c4893243bb2eaf22ea3f2aa, type: 2}
   - {fileID: 11400000, guid: 460b10dc2ed76154bbbbf205272975db, type: 2}

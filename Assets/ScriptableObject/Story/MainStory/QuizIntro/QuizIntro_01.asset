@@ -17,11 +17,7 @@ MonoBehaviour:
   Quote: Hmm? Are you asking me about the other elements?
   Background: {fileID: 21300000, guid: 3fda5bf2366760f4b96758883eb55b18, type: 3}
   Sprite: {fileID: 0}
-  Action:
-    Type: 0
-    Amount: 0
-    Name: 
-    rootEvent: {fileID: 0}
+  Actions: []
   Child:
   - {fileID: 11400000, guid: 4c8f3d4b9be77fd48b16efc8174c9d16, type: 2}
   Choice: []

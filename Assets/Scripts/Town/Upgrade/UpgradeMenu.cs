@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class UpgradeMenu : CardPage
 {
+    private const int UPGRADE_COST = 100;
+
     [SerializeField] private GameObject _upgradePopup;
 
     public void OpenUpgradeMenu()
@@ -32,6 +34,7 @@ public class UpgradeMenu : CardPage
     {
         if (confirm)
         {
+            PlayerData.Gold -= UPGRADE_COST;
             card.Upgrade();
             SaveSystem.Save();
             Close();
