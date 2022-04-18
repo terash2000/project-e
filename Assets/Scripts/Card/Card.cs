@@ -15,6 +15,8 @@ public class Card : ScriptableObject
     public bool IsUnlocked;
     public AreaShape AreaShape;
     public AreaShape TargetShape;
-    public int Range;
+    public int CastRange;
+    public int Radius;
     public int Damage;
+    public List<Status> Effects;
 }

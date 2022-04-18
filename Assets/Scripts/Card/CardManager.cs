@@ -176,9 +176,11 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
                 if (monster != null)
                 {
                     monster.TakeDamage(card.BaseCard.Damage);
-                    monster.GainStatus(Status.Type.Stun);
-                    monster.GainStatus(Status.Type.Acid, 2);
-                    monster.GainStatus(Status.Type.Burn, 3);
+                    foreach (Status effect in card.BaseCard.Effects)
+                    {
+                        monster.GainStatus(effect.type, effect.value);
+
+                    }
                     success = true;
                 }
             }

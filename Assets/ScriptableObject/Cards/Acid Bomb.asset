@@ -22,5 +22,9 @@ MonoBehaviour:
   IsUnlocked: 1
   AreaShape: 1
   TargetShape: 1
-  Range: 2
+  CastRange: 4
+  Radius: 2
   Damage: 4
+  Effects:
+  - type: 1
+    value: 2
