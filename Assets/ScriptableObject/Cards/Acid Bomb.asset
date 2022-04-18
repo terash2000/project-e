@@ -23,8 +23,9 @@ MonoBehaviour:
   AreaShape: 1
   TargetShape: 1
   CastRange: 4
-  Radius: 2
+  Radius: 1
   Damage: 4
   Effects:
   - type: 1
     value: 2
+  UpgradeBonus: []

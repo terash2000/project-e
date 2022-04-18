@@ -20,10 +20,12 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     private List<InGameCard> _deck = new List<InGameCard>();
     private List<InGameCard> _hand = new List<InGameCard>();
     private List<InGameCard> _graveyard = new List<InGameCard>();
-
     private bool _isDraggingCard = false;
     private DragCard _selectingCard;
     private DragCard _hoveringCard;
+    private Color _black = new Color(0f, 0f, 0f);
+    private Color _red = new Color(1f, 0f, 0f);
+
     public bool IsDraggingCard
     {
         get { return _isDraggingCard; }
@@ -71,6 +73,21 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
             _selectingCard.HidePreviewCardEffect();
             _selectingCard.IsSelected = false;
             _selectingCard = null;
+        }
+
+        for (int i = 0; i < _handPanel.transform.childCount; i++)
+        {
+            CardDisplay cardDisplay = _handPanel.transform.GetChild(i).GetComponent<CardDisplay>();
+            if (cardDisplay == null) continue;
+
+            if (cardDisplay.Card.IsCastable())
+            {
+                cardDisplay.ManaText.color = _black;
+            }
+            else
+            {
+                cardDisplay.ManaText.color = _red;
+            }
         }
     }
 

@@ -191,8 +191,14 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             _isSelected = false;
             CardManager.Instance.SelectingCard = null;
         }
-        else if (!CardManager.Instance.IsSelectingCard() && _card.IsCastable())
+        else if (_card.IsCastable())
         {
+            if (CardManager.Instance.IsSelectingCard())
+            {
+                CardManager.Instance.SelectingCard.HidePreviewCardEffect();
+                CardManager.Instance.SelectingCard.IsSelected = false;
+            }
+
             _isSelected = true;
             CardManager.Instance.SelectingCard = this;
 

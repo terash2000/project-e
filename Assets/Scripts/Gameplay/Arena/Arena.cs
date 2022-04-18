@@ -97,17 +97,19 @@ public class Arena : MonoBehaviourSingleton<Arena>
         HideTargetArea();
         _redHexBorder.gameObject.SetActive(false);
 
-        // highlight monster 1
+        // monster highlight 1
         if (OptionMenu.ShowMonstersAttackArea)
         {
             SetTileColor(_redHighlight, _monsterHighlight);
         }
         else SetTileColor(Color.white, _monsterHighlight);
 
-        if (CardManager.Instance.IsSelectingCard() &&
-                (_areaPosList.Contains(mousePos) || IsDirectionTarget(CardManager.Instance.SelectingCard.Card.BaseCard.TargetShape)))
+        if (CardManager.Instance.IsSelectingCard())
         {
-            ShowTargetArea(CardManager.Instance.SelectingCard.Card, oriPos);
+            if (_areaPosList.Contains(mousePos) || IsDirectionTarget(CardManager.Instance.SelectingCard.Card.BaseCard.TargetShape))
+            {
+                ShowTargetArea(CardManager.Instance.SelectingCard.Card, oriPos);
+            }
         }
         else if (CardManager.Instance.IsHoveringCard() && IsDirectionTarget(CardManager.Instance.HoveringCard.Card.BaseCard.TargetShape))
         {
@@ -115,7 +117,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
         }
         else if (monster != null)
         {
-            // highlight monster 2
+            // monster highlight 2
             _redHexBorder.gameObject.SetActive(true);
             _redHexBorder.transform.position = _grid.CellToWorld(mousePos);
 

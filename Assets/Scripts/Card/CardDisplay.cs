@@ -22,6 +22,11 @@ public class CardDisplay : MonoBehaviour
         get { return _card; }
         set { _card = value; }
     }
+    public TextMeshProUGUI ManaText
+    {
+        get { return _manaText; }
+        set { _manaText = value; }
+    }
 
     // Start is called before the first frame update
     void Start()
