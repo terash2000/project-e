@@ -15,7 +15,7 @@ MonoBehaviour:
   CardName: Defend
   Description: Gain 5 blocks.
   Type: 1
-  BaseElement: 2
+  BaseElement: 5
   Rarity: 0
   Artwork: {fileID: 21300000, guid: da26a9a3bf3f5bd428dd6fda597b9268, type: 3}
   ManaCost: 1

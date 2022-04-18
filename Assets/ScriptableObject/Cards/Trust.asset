@@ -15,7 +15,7 @@ MonoBehaviour:
   CardName: Trust
   Description: Deal 10 damage to all enemies in 3 straight tiles.
   Type: 0
-  BaseElement: 5
+  BaseElement: 2
   Rarity: 1
   Artwork: {fileID: 21300000, guid: f379e2d184d452c46a27572be9d8ffab, type: 3}
   ManaCost: 2
