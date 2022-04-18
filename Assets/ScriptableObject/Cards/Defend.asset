@@ -26,3 +26,6 @@ MonoBehaviour:
   Radius: 0
   Damage: 0
   Effects: []
+  UpgradeBonus:
+  - type: 0
+    amount: -1

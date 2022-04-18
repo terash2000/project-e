@@ -119,7 +119,8 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             CardDisplay cardDisplay = _handPanel.GetChild(i).GetComponent<CardDisplay>();
             if (cardDisplay == null) continue;
 
-            if (Mathf.Abs(transform.position.x - _handPanel.GetChild(i).position.x) < COMBINE_RANGE)
+            if (Mathf.Abs(transform.position.x - _handPanel.GetChild(i).position.x) < COMBINE_RANGE &&
+                    Mathf.Abs(transform.position.y - _handPanel.GetChild(i).position.y) < COMBINE_RANGE)
             {
                 Combo combo = CardCollection.Instance.FindCombo(currentCard.Element, cardDisplay.Card.Element);
                 if (combo != null)
@@ -134,7 +135,21 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                     // Upgrade base card
                     currentCard.IsToken = true;
                     currentCard.Element = combo.Result;
-                    //currentCard.ManaCost -= 1;
+
+                    List<Bonus> bonuses;
+                    if (currentCard.BaseCard.Type == CardType.Attack)
+                    {
+                        bonuses = combo.AttackCardBonuses;
+                    }
+                    else
+                    {
+                        bonuses = combo.SkillCardBonuses;
+                    }
+
+                    foreach (Bonus bonus in bonuses)
+                    {
+                        currentCard.GainBonus(bonus);
+                    }
                     GetComponent<CardDisplay>().render();
                 }
             }

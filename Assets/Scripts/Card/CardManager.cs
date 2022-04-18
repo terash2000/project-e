@@ -175,7 +175,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
                 Monster monster = MonsterManager.Instance.FindMonsterByTile(pos);
                 if (monster != null)
                 {
-                    monster.TakeDamage(card.BaseCard.Damage);
+                    monster.TakeDamage(card.Damage);
                     foreach (Status effect in card.BaseCard.Effects)
                     {
                         monster.GainStatus(effect.type, effect.value);

@@ -134,7 +134,7 @@ public class Monster : GameCharacter
             CardManager.Instance.IsSelectingCard())
         {
             _previewDamage.SetActive(true);
-            int cardDamage = CardManager.Instance.SelectingCard.Card.BaseCard.Damage;
+            int cardDamage = CardManager.Instance.SelectingCard.Card.Damage;
             _previewDamage.GetComponent<TextMeshProUGUI>().text = cardDamage.ToString();
         }
         else _previewDamage.SetActive(false);

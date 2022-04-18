@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class InGameCard
 {
-    public int ManaCost;
-    public ElementType Element;
-
     private Card _baseCard;
+    private ElementType _element;
+    private int _manaCost;
+    private int _damage;
     private bool _isUpgraded = false;
     public bool _isToken = false;
 
@@ -13,11 +13,23 @@ public class InGameCard
     {
         get { return _baseCard; }
     }
+    public ElementType Element
+    {
+        get { return _element; }
+        set { _element = value; }
+    }
+    public int ManaCost
+    {
+        get { return _manaCost; }
+    }
+    public int Damage
+    {
+        get { return _damage; }
+    }
     public bool IsUpgraded
     {
         get { return _isUpgraded; }
     }
-
     public bool IsToken
     {
         get { return _isToken; }
@@ -27,7 +39,8 @@ public class InGameCard
     public InGameCard(Card card, bool upgrade = false)
     {
         _baseCard = card;
-        ManaCost = card.ManaCost;
+        _manaCost = card.ManaCost;
+        _damage = card.Damage;
         Element = card.BaseElement;
         if (upgrade) Upgrade();
     }
@@ -35,7 +48,7 @@ public class InGameCard
     public InGameCard(InGameCard other)
     {
         _baseCard = other.BaseCard;
-        ManaCost = other.ManaCost;
+        _manaCost = other.ManaCost;
         Element = other.Element;
         _isUpgraded = other._isUpgraded;
         _isToken = other._isToken;
@@ -46,11 +59,27 @@ public class InGameCard
         if (!_isUpgraded)
         {
             _isUpgraded = true;
-            // TODO upgrade card
-            //ManaCost -= 1;
+            foreach (Bonus bonus in BaseCard.UpgradeBonus)
+            {
+                GainBonus(bonus);
+            }
             return true;
         }
         return false;
+    }
+
+    public void GainBonus(Bonus bonus)
+    {
+        switch (bonus.type)
+        {
+            case Bonus.Type.Mana:
+                _manaCost += bonus.amount;
+                if (_manaCost < 0) _manaCost = 0;
+                break;
+            case Bonus.Type.Damage:
+                _damage += bonus.amount;
+                break;
+        }
     }
 
     public bool IsCastable()

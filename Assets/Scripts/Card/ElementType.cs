@@ -7,7 +7,9 @@ public enum ElementType
     Cl,
     C,
     Fire,
+    He,
     H2O,
     HCl,
-    CO
+    CO,
+    CCl4
 }

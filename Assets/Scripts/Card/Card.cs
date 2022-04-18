@@ -19,4 +19,5 @@ public class Card : ScriptableObject
     public int Radius;
     public int Damage;
     public List<Status> Effects;
+    public List<Bonus> UpgradeBonus;
 }
