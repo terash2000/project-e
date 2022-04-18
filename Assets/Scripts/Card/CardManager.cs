@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
 {
-    private const int START_HAND_AMOUNT = 7;
+    private const int START_HAND_AMOUNT = 5;
+    private const int MAX_HAND_SIZE = 9;
     private const int CARD_PER_TURN = 2;
 
     [SerializeField] private HorizontalLayoutGroup _handPanel;
@@ -109,6 +110,8 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
 
     public void DrawCard()
     {
+        if (_hand.Count >= MAX_HAND_SIZE) return;
+
         if (_deck.Count == 0)
         {
             RefillDeck();
