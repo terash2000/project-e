@@ -326,6 +326,7 @@ public class Map : MonoBehaviourSingleton<Map>
     {
         PlayerData.SeedJSON = null;
         PlayerData.Path = null;
+        SceneChanger.Instance.LoadScene("TownScene");
     }
 
     public LineRenderer FindEdge(Node oriNode, Node desNode)
