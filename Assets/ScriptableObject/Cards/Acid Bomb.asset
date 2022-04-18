@@ -24,3 +24,6 @@ MonoBehaviour:
   TargetShape: 1
   Range: 2
   Damage: 4
+  Effects:
+  - type: 1
+    value: 2

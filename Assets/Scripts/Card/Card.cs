@@ -17,4 +17,5 @@ public class Card : ScriptableObject
     public AreaShape TargetShape;
     public int Range;
     public int Damage;
+    public List<Status> Effects;
 }
