@@ -107,8 +107,11 @@ public class Arena : MonoBehaviourSingleton<Arena>
         if (CardManager.Instance.IsSelectingCard() &&
                 (_areaPosList.Contains(mousePos) || IsDirectionTarget(CardManager.Instance.SelectingCard.Card.BaseCard.TargetShape)))
         {
-            // highlight card
-            ShowTargetArea(oriPos);
+            ShowTargetArea(CardManager.Instance.SelectingCard.Card, oriPos);
+        }
+        else if (CardManager.Instance.IsHoveringCard() && IsDirectionTarget(CardManager.Instance.HoveringCard.Card.BaseCard.TargetShape))
+        {
+            ShowTargetArea(CardManager.Instance.HoveringCard.Card, oriPos);
         }
         else if (monster != null)
         {
@@ -121,10 +124,9 @@ public class Arena : MonoBehaviourSingleton<Arena>
         }
     }
 
-    public void ShowTargetArea(Vector3 targetPos)
+    public void ShowTargetArea(InGameCard card, Vector3 targetPos)
     {
-        InGameCard selectingCard = CardManager.Instance.SelectingCard.Card;
-        _targetPosList = GetPosListTarget(selectingCard.BaseCard.TargetShape, selectingCard.BaseCard.Radius, PlayerManager.Instance.Player.CurrentTile, targetPos);
+        _targetPosList = GetPosListTarget(card.BaseCard.TargetShape, card.BaseCard.Radius, PlayerManager.Instance.Player.CurrentTile, targetPos);
         SetTileColor(_yellowHighlight, _targetPosList);
     }
 

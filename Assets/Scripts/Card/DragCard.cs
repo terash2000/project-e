@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,7 +5,7 @@ using UnityEngine.UI;
 
 public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    private const float COMBINE_RANGE = 50f;
+    private const float COMBINE_RANGE = 60f;
 
     private Transform _handPanel;
     private RectTransform _dragRectTransform;
@@ -56,7 +55,26 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         }
         _placeholder.transform.SetSiblingIndex(newSiblingIndex);
 
-        // showPreviewCardEffect();
+        // preview combo
+        CardManager.Instance.HidePreview();
+
+        for (int i = 0; i < _handPanel.childCount; i++)
+        {
+            CardDisplay cardDisplay = _handPanel.GetChild(i).GetComponent<CardDisplay>();
+            if (cardDisplay == null) continue;
+
+            if (Mathf.Abs(transform.position.x - _handPanel.GetChild(i).position.x) < COMBINE_RANGE &&
+                    Mathf.Abs(transform.position.y - _handPanel.GetChild(i).position.y) < COMBINE_RANGE)
+            {
+                Combo combo = CardCollection.Instance.FindCombo(_card.Element, cardDisplay.Card.Element);
+                if (combo != null)
+                {
+                    InGameCard upgradedCard = new InGameCard(_card);
+                    upgradedCard.GainComboBonus(combo);
+                    CardManager.Instance.PreviewCard(upgradedCard);
+                }
+            }
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -78,7 +96,7 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         GetComponent<CanvasGroup>().blocksRaycasts = false;
         transform.SetParent(_handPanel.parent);
 
-        // Preview combo
+        // Highlight combo
         InGameCard currentCard = GetComponent<CardDisplay>().Card;
 
         for (int i = 0; i < _handPanel.childCount; i++)
@@ -112,7 +130,7 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         }
 
         // Combine card
-        InGameCard currentCard = GetComponent<CardDisplay>().Card;
+        CardManager.Instance.HidePreview();
 
         for (int i = 0; i < _handPanel.childCount; i++)
         {
@@ -122,7 +140,7 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             if (Mathf.Abs(transform.position.x - _handPanel.GetChild(i).position.x) < COMBINE_RANGE &&
                     Mathf.Abs(transform.position.y - _handPanel.GetChild(i).position.y) < COMBINE_RANGE)
             {
-                Combo combo = CardCollection.Instance.FindCombo(currentCard.Element, cardDisplay.Card.Element);
+                Combo combo = CardCollection.Instance.FindCombo(_card.Element, cardDisplay.Card.Element);
                 if (combo != null)
                 {
                     // Remove another card
@@ -130,26 +148,12 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                     Destroy(cardDisplay.gameObject);
 
                     // Add old card to graveyard
-                    CardManager.Instance.AddCardToGraveyard(currentCard);
+                    CardManager.Instance.AddCardToGraveyard(_card);
 
                     // Upgrade base card
-                    currentCard.IsToken = true;
-                    currentCard.Element = combo.Result;
+                    _card.IsToken = true;
+                    _card.GainComboBonus(combo);
 
-                    List<Bonus> bonuses;
-                    if (currentCard.BaseCard.Type == CardType.Attack)
-                    {
-                        bonuses = combo.AttackCardBonuses;
-                    }
-                    else
-                    {
-                        bonuses = combo.SkillCardBonuses;
-                    }
-
-                    foreach (Bonus bonus in bonuses)
-                    {
-                        currentCard.GainBonus(bonus);
-                    }
                     GetComponent<CardDisplay>().render();
                 }
             }

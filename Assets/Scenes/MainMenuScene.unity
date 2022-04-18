@@ -1666,6 +1666,8 @@ MonoBehaviour:
     AttackCardBonuses:
     - type: 1
       amount: 5
+    - type: 0
+      amount: -1
     SkillCardBonuses: []
   - Base1: 6
     Base2: 1

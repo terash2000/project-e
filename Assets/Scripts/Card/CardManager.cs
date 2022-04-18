@@ -15,6 +15,8 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     [SerializeField] private CanvasGroup _deckUI;
     [SerializeField] private CanvasGroup _gravyardUI;
     [SerializeField] private CardPage _cardPage;
+    [SerializeField] private GridLayoutGroup _previewCardContainer;
+
     private List<InGameCard> _deck = new List<InGameCard>();
     private List<InGameCard> _hand = new List<InGameCard>();
     private List<InGameCard> _graveyard = new List<InGameCard>();
@@ -90,6 +92,11 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         return _selectingCard != null;
     }
 
+    public bool IsHoveringCard()
+    {
+        return _hoveringCard != null;
+    }
+
     public void MoveFromHandToGraveyard(InGameCard card)
     {
         _hand.Remove(card);
@@ -159,6 +166,23 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     {
         _cardPage.Cards = _graveyard;
         _cardPage.Open();
+    }
+
+    public void PreviewCard(InGameCard card)
+    {
+        for (int i = 0; i < _previewCardContainer.transform.childCount; i++)
+        {
+            Destroy(_previewCardContainer.transform.GetChild(i).gameObject);
+        }
+        GameObject cardObj = Instantiate(CardCollection.Instance.CardPrefab, _previewCardContainer.transform);
+        cardObj.GetComponent<CardDisplay>().Card = card;
+
+        _previewCardContainer.gameObject.SetActive(true);
+    }
+
+    public void HidePreview()
+    {
+        _previewCardContainer.gameObject.SetActive(false);
     }
 
     private void CastCard(InGameCard card, Vector3Int mousePos)

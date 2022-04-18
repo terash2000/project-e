@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InGameCard
@@ -79,6 +80,25 @@ public class InGameCard
             case Bonus.Type.Damage:
                 _damage += bonus.amount;
                 break;
+        }
+    }
+
+    public void GainComboBonus(Combo combo)
+    {
+        Element = combo.Result;
+        List<Bonus> bonuses;
+        if (BaseCard.Type == CardType.Attack)
+        {
+            bonuses = combo.AttackCardBonuses;
+        }
+        else
+        {
+            bonuses = combo.SkillCardBonuses;
+        }
+
+        foreach (Bonus bonus in bonuses)
+        {
+            GainBonus(bonus);
         }
     }
 
