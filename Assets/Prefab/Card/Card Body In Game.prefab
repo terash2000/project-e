@@ -55,12 +55,12 @@ PrefabInstance:
     - target: {fileID: 941996873421475429, guid: f9f29a3fe22c4084ea35c84c78b4208b,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 88
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 941996873421475429, guid: f9f29a3fe22c4084ea35c84c78b4208b,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 120
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 941996873421475429, guid: f9f29a3fe22c4084ea35c84c78b4208b,
         type: 3}
@@ -127,6 +127,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card Body In Game
       objectReference: {fileID: 0}
+    - target: {fileID: 3459194614323553137, guid: f9f29a3fe22c4084ea35c84c78b4208b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000019073486
+      objectReference: {fileID: 0}
     - target: {fileID: 8043876153943103632, guid: f9f29a3fe22c4084ea35c84c78b4208b,
         type: 3}
       propertyPath: m_fontSize
@@ -189,8 +194,8 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 88
-  m_PreferredHeight: 120
+  m_PreferredWidth: 100
+  m_PreferredHeight: 140
   m_FlexibleWidth: 0
   m_FlexibleHeight: 0
   m_LayoutPriority: 1

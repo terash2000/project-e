@@ -1666,8 +1666,6 @@ MonoBehaviour:
     AttackCardBonuses:
     - type: 1
       amount: 5
-    - type: 0
-      amount: -1
     SkillCardBonuses: []
   - Base1: 6
     Base2: 1
@@ -1711,7 +1709,7 @@ MonoBehaviour:
     AttackCardBonuses:
     - type: 0
       amount: 2
-    - type: 0
+    - type: 1
       amount: 20
     SkillCardBonuses: []
   _newCardPopup: {fileID: 5781192978451266083, guid: 4fa99ae6d71c4e440b36df87a482ac4a,

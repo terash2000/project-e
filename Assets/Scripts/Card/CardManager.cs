@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
 {
     private const int START_HAND_AMOUNT = 5;
-    private const int MAX_HAND_SIZE = 9;
+    private const int MAX_HAND_SIZE = 8;
     private const int CARD_PER_TURN = 2;
 
     [SerializeField] private HorizontalLayoutGroup _handPanel;
@@ -57,7 +57,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         _deck = new List<InGameCard>(PlayerData.Deck);
         ShuffleDeck();
 
-        for (int i = 0; i < START_HAND_AMOUNT; i++)
+        for (int i = 0; i < START_HAND_AMOUNT - CARD_PER_TURN; i++)
         {
             DrawCard();
         }
