@@ -131,7 +131,8 @@ public class Monster : GameCharacter
 
         // preview damage
         if (Arena.Instance.TargetPosList.Contains(CurrentTile) &&
-            CardManager.Instance.IsSelectingCard())
+            CardManager.Instance.IsSelectingCard() &&
+            CardManager.Instance.SelectingCard.Card.BaseCard.Type == CardType.Attack)
         {
             _previewDamage.SetActive(true);
             int cardDamage = CardManager.Instance.SelectingCard.Card.Damage;

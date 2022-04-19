@@ -106,7 +106,8 @@ public class Arena : MonoBehaviourSingleton<Arena>
 
         if (CardManager.Instance.IsSelectingCard())
         {
-            if (_areaPosList.Contains(mousePos) || IsDirectionTarget(CardManager.Instance.SelectingCard.Card.BaseCard.TargetShape))
+            if ((_areaPosList.Contains(mousePos) && (CardManager.Instance.SelectingCard.Card.BaseCard.Type == CardType.Attack || monster == null))
+                    || IsDirectionTarget(CardManager.Instance.SelectingCard.Card.BaseCard.TargetShape))
             {
                 ShowTargetArea(CardManager.Instance.SelectingCard.Card, oriPos);
             }
@@ -128,7 +129,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
 
     public void ShowTargetArea(InGameCard card, Vector3 targetPos)
     {
-        _targetPosList = GetPosListTarget(card.BaseCard.TargetShape, card.BaseCard.Radius, PlayerManager.Instance.Player.CurrentTile, targetPos);
+        _targetPosList = GetPosListTarget(card.BaseCard.TargetShape, card.Radius, PlayerManager.Instance.Player.CurrentTile, targetPos);
         SetTileColor(_yellowHighlight, _targetPosList);
     }
 
@@ -146,7 +147,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
 
         if (IsDirectionTarget(card.BaseCard.TargetShape)) return;
 
-        _areaPosList = GetPosList(card.BaseCard.AreaShape, card.BaseCard.CastRange, curPos);
+        _areaPosList = GetPosList(card.BaseCard.AreaShape, card.CastRange, curPos);
         _areaPosList.Remove(curPos);
         SetTile(mTile, _areaPosList);
     }

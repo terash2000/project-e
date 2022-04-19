@@ -6,7 +6,9 @@ public class Bonus
     public enum Type
     {
         Mana,
-        Damage
+        Damage,
+        Radius,
+        CastRange
     }
 
     public Type type;

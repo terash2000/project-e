@@ -1670,8 +1670,12 @@ MonoBehaviour:
   - Base1: 6
     Base2: 1
     Result: 6
-    AttackCardBonuses: []
-    SkillCardBonuses: []
+    AttackCardBonuses:
+    - type: 2
+      amount: 1
+    SkillCardBonuses:
+    - type: 3
+      amount: 1
   - Base1: 6
     Base2: 5
     Result: 6
@@ -1711,7 +1715,13 @@ MonoBehaviour:
       amount: 2
     - type: 1
       amount: 20
-    SkillCardBonuses: []
+    - type: 2
+      amount: 1
+    SkillCardBonuses:
+    - type: 0
+      amount: 2
+    - type: 3
+      amount: 3
   _newCardPopup: {fileID: 5781192978451266083, guid: 4fa99ae6d71c4e440b36df87a482ac4a,
     type: 3}
   _chooseCardPopup: {fileID: 1809415070924254837, guid: aa97780a3a93ac44ba69e5b07b7a07e7,
