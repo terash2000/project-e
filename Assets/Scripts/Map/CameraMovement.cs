@@ -58,8 +58,15 @@ public class CameraMovement : MonoBehaviourSingleton<CameraMovement>
         Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - _dragOrigin);
         Vector3 move = new Vector3(-pos.x * DragSpeed * Camera.main.orthographicSize / MaxZoom, -pos.y * DragSpeed * Camera.main.orthographicSize / MaxZoom, 0);
         _dragOrigin = Input.mousePosition;
+
+        Rect currentRect = GetArea();
+
+        if (currentRect.xMin + move.x < _rectOrigin.xMin) move.x = _rectOrigin.xMin - currentRect.xMin;
+        if (currentRect.yMin + move.y < _rectOrigin.yMin) move.y = _rectOrigin.yMin - currentRect.yMin;
+        if (currentRect.xMax + move.x > _rectOrigin.xMax) move.x = _rectOrigin.xMax - currentRect.xMax;
+        if (currentRect.yMax + move.y > _rectOrigin.yMax) move.y = _rectOrigin.yMax - currentRect.yMax;
+
         transform.Translate(move, Space.World);
-        if (InsideArea(GetArea()).Contains(false)) transform.Translate(-move, Space.World);
     }
 
     public Rect GetArea(float widthScale = 1)

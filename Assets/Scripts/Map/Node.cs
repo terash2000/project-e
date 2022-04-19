@@ -33,7 +33,7 @@ public class Node : MonoBehaviour
         transform.localScale = transform.localScale / 1.2f;
     }
 
-    void OnMouseDown()
+    void OnMouseUp()
     {
         Map.Instance.AddNodeToPath(this);
         ChangeScene();
