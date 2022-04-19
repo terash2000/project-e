@@ -80,7 +80,7 @@ public static class SaveSystem
         }
         else
         {
-            OptionMenu.AutoEndTurn = false;
+            OptionMenu.AutoEndTurn = true;
             OptionMenu.ShowMonstersAttackArea = true;
         }
     }

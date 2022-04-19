@@ -233,5 +233,11 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
             MoveFromHandToGraveyard(_selectingCard.Card);
             Destroy(_selectingCard.gameObject);
         }
+
+        // auto end turn
+        if (OptionMenu.AutoEndTurn && _hand.FindAll(card => card.IsCastable()).Count == 0)
+        {
+            GameManager.Instance.EndTurn();
+        }
     }
 }
