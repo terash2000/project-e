@@ -69,8 +69,14 @@ public class InGameCard
     {
         _baseCard = other._baseCard;
         _element = other._element;
+
         _additionalManaCost = other._additionalManaCost;
-        _additionalManaCost = other._additionalManaCost;
+        _additionalDamage = other._additionalDamage;
+        _additionalRadius = other._additionalRadius;
+        _additionalCastRange = other._additionalCastRange;
+        _additionalEffect = other._additionalEffect;
+
+
         _isUpgraded = other._isUpgraded;
         _isToken = other._isToken;
     }
