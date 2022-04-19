@@ -117,7 +117,7 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (CardManager.Instance.IsSelectingCard()) return;
+        if (!CardManager.Instance.IsDraggingCard) return;
 
         // Remove combo highlight
         for (int i = 0; i < _handPanel.childCount; i++)

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
+    private const float WINNING_DELAY = 0.8f;
+
     private static GameState _gameState;
     private static bool _playerTurn;
     private static int _round;
@@ -57,8 +59,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
             }
             else if (MonsterManager.Instance.Monsters.Count == 0)
             {
-                GameResultPopup.OnWin();
-                _gameState = GameState.Win;
+                StartCoroutine(WinAfterDelay());
             }
         }
     }
@@ -90,5 +91,12 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         while (MonsterManager.Instance.IsBusy)
             yield return new WaitForEndOfFrame();
         StartTurn();
+    }
+
+    private IEnumerator WinAfterDelay()
+    {
+        yield return new WaitForSeconds(WINNING_DELAY);
+        GameResultPopup.OnWin();
+        _gameState = GameState.Win;
     }
 }
