@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -8,6 +9,8 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     private const int START_HAND_AMOUNT = 5;
     private const int MAX_HAND_SIZE = 8;
     private const int CARD_PER_TURN = 2;
+    private const float PREVIEW_DELAY = 0.8f;
+    private const float FADING_SPEED = 10f;
 
     [SerializeField] private HorizontalLayoutGroup _handPanel;
     [SerializeField] private GameObject _cardPrefab;
@@ -25,6 +28,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     private DragCard _hoveringCard;
     private Color _black = new Color(0f, 0f, 0f);
     private Color _red = new Color(1f, 0f, 0f);
+    private float _previewAlpha = 1f;
 
     public bool IsDraggingCard
     {
@@ -193,6 +197,28 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         _previewCard.Card = card;
         _previewCard.render();
         _previewCard.gameObject.SetActive(true);
+
+        // fading in
+        if (_previewAlpha >= 1f)
+        {
+            StartCoroutine(FadingIn(_previewCard.GetComponent<CanvasGroup>()));
+        }
+        else
+        {
+            _previewAlpha = -PREVIEW_DELAY;
+        }
+    }
+
+    private IEnumerator FadingIn(CanvasGroup canvasGroup)
+    {
+        _previewAlpha = -PREVIEW_DELAY;
+        while (_previewAlpha < 1f)
+        {
+            _previewAlpha += FADING_SPEED * Time.deltaTime;
+            canvasGroup.alpha = _previewAlpha;
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        canvasGroup.alpha = 1f;
     }
 
     public void HidePreview()

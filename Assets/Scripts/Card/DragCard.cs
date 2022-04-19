@@ -14,6 +14,7 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     private Color _cyan = new Color(0f, 1f, 1f);
     private Color _white = new Color(1f, 1f, 1f);
     private InGameCard _card;
+    private CardDisplay _cardToCombine;
     private bool _isSelected = false;
 
     // A card placeholder that take a space of hand panel when the actual card is being dragged aroud
@@ -56,8 +57,6 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         _placeholder.transform.SetSiblingIndex(newSiblingIndex);
 
         // preview combo
-        CardManager.Instance.HidePreview();
-
         for (int i = 0; i < _handPanel.childCount; i++)
         {
             CardDisplay cardDisplay = _handPanel.GetChild(i).GetComponent<CardDisplay>();
@@ -66,6 +65,12 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             if (Mathf.Abs(transform.position.x - _handPanel.GetChild(i).position.x) < COMBINE_RANGE &&
                     Mathf.Abs(transform.position.y - _handPanel.GetChild(i).position.y) < COMBINE_RANGE)
             {
+                if (_cardToCombine == cardDisplay)
+                {
+                    return;
+                }
+                _cardToCombine = cardDisplay;
+
                 Combo combo = CardCollection.Instance.FindCombo(_card.Element, cardDisplay.Card.Element);
                 if (combo != null)
                 {
@@ -73,8 +78,11 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                     upgradedCard.GainComboBonus(combo);
                     CardManager.Instance.PreviewCard(upgradedCard);
                 }
+                return;
             }
         }
+        _cardToCombine = null;
+        CardManager.Instance.HidePreview();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -130,32 +138,25 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         }
 
         // Combine card
-        CardManager.Instance.HidePreview();
-
-        for (int i = 0; i < _handPanel.childCount; i++)
+        if (_cardToCombine != null)
         {
-            CardDisplay cardDisplay = _handPanel.GetChild(i).GetComponent<CardDisplay>();
-            if (cardDisplay == null) continue;
+            CardManager.Instance.HidePreview();
 
-            if (Mathf.Abs(transform.position.x - _handPanel.GetChild(i).position.x) < COMBINE_RANGE &&
-                    Mathf.Abs(transform.position.y - _handPanel.GetChild(i).position.y) < COMBINE_RANGE)
+            Combo combo = CardCollection.Instance.FindCombo(_card.Element, _cardToCombine.Card.Element);
+            if (combo != null)
             {
-                Combo combo = CardCollection.Instance.FindCombo(_card.Element, cardDisplay.Card.Element);
-                if (combo != null)
-                {
-                    // Remove another card
-                    CardManager.Instance.MoveFromHandToGraveyard(cardDisplay.Card);
-                    Destroy(cardDisplay.gameObject);
+                // Remove another card
+                CardManager.Instance.MoveFromHandToGraveyard(_cardToCombine.Card);
+                Destroy(_cardToCombine.gameObject);
 
-                    // Add old card to graveyard
-                    CardManager.Instance.AddCardToGraveyard(_card);
+                // Add old card to graveyard
+                CardManager.Instance.AddCardToGraveyard(_card);
 
-                    // Upgrade base card
-                    _card.IsToken = true;
-                    _card.GainComboBonus(combo);
+                // Upgrade base card
+                _card.IsToken = true;
+                _card.GainComboBonus(combo);
 
-                    GetComponent<CardDisplay>().render();
-                }
+                GetComponent<CardDisplay>().render();
             }
         }
 
