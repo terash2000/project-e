@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cae679194d7e69b4b91681558c55e2e1, type: 3}
-  m_Name: Defend
+  m_Name: Walk
   m_EditorClassIdentifier: 
-  CardName: Defend
-  Description: Gain 5 blocks.
+  CardName: Walk
+  Description: Move to an adjacent tile.
   Type: 1
   BaseElement: 5
   Rarity: 0
-  Artwork: {fileID: 21300000, guid: da26a9a3bf3f5bd428dd6fda597b9268, type: 3}
+  Artwork: {fileID: 21300000, guid: 38bdb1146ba2af549b5176022ea8ca9a, type: 3}
   ManaCost: 1
   IsUnlocked: 1
   AreaShape: 1
