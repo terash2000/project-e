@@ -40,17 +40,18 @@ public class InGameCard
     public InGameCard(Card card, bool upgrade = false)
     {
         _baseCard = card;
+        _element = card.BaseElement;
         _manaCost = card.ManaCost;
         _damage = card.Damage;
-        Element = card.BaseElement;
         if (upgrade) Upgrade();
     }
 
     public InGameCard(InGameCard other)
     {
         _baseCard = other.BaseCard;
+        _element = other.Element;
         _manaCost = other.ManaCost;
-        Element = other.Element;
+        _damage = other.Damage;
         _isUpgraded = other._isUpgraded;
         _isToken = other._isToken;
     }

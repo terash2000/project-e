@@ -45,16 +45,12 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerData.Deck == null)
+        _deck = new List<InGameCard>();
+        foreach (InGameCard card in PlayerData.Deck)
         {
-            PlayerData.Deck = new List<InGameCard>();
-            foreach (Card card in _starterDeck.cards)
-            {
-                PlayerData.Deck.Add(new InGameCard(card));
-            }
+            _deck.Add(new InGameCard(card));
         }
 
-        _deck = new List<InGameCard>(PlayerData.Deck);
         ShuffleDeck();
 
         for (int i = 0; i < START_HAND_AMOUNT - CARD_PER_TURN; i++)
