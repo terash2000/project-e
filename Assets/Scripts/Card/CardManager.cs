@@ -115,7 +115,12 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     public void MoveFromHandToGraveyard(InGameCard card)
     {
         _hand.Remove(card);
-        AddCardToGraveyard(card);
+
+        if (card.IsToken) return;
+
+        _graveyard.Add(card);
+        _gravyardUI.alpha = 1;
+        _gravyardUI.blocksRaycasts = true;
     }
 
     public void AddCardToGraveyard(InGameCard card)
@@ -221,8 +226,11 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         }
         else if (card.BaseCard.Type == CardType.Skill)
         {
-            PlayerManager.Instance.Player.SetMovement(mousePos);
-            success = true;
+            if (tile != null && Arena.Instance.AreaPosList.Contains(mousePos) && MonsterManager.Instance.FindMonsterByTile(mousePos) == null)
+            {
+                PlayerManager.Instance.Player.SetMovement(mousePos);
+                success = true;
+            }
         }
 
         if (success)
