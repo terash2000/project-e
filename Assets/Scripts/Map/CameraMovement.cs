@@ -13,8 +13,11 @@ public class CameraMovement : MonoBehaviourSingleton<CameraMovement>
 
     void Update()
     {
-        Zoom();
-        Drag();
+        if (Time.timeScale > 0f)
+        {
+            Zoom();
+            Drag();
+        }
     }
     void Zoom()
     {

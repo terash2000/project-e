@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
-    private const float WINNING_DELAY = 0.8f;
+    private const float WINNING_DELAY = 0.5f;
 
     private static GameState _gameState;
     private static bool _playerTurn;
@@ -95,8 +95,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     private IEnumerator WinAfterDelay()
     {
+        _gameState = GameState.Win;
         yield return new WaitForSeconds(WINNING_DELAY);
         GameResultPopup.OnWin();
-        _gameState = GameState.Win;
     }
 }

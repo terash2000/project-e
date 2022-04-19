@@ -64,6 +64,8 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     }
     void Update()
     {
+        if (GameManager.GameState != GameState.Running) return;
+
         if (Input.GetMouseButtonUp(0) && IsSelectingCard() && _hoveringCard != _selectingCard)
         {
             Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

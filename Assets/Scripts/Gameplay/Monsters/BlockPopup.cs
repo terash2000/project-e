@@ -43,6 +43,11 @@ public class BlockPopup : MonoBehaviour
             // Second half of the popup lifetime
             float decreaseScaleAmount = 1.3f;
             transform.localScale -= decreaseScaleAmount * Time.deltaTime * Vector3.one;
+            if (transform.localScale.x < 0 || transform.localScale.y < 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
         }
 
         _disappearTimer -= Time.deltaTime;
