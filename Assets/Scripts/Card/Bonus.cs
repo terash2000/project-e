@@ -8,9 +8,11 @@ public class Bonus
         Mana,
         Damage,
         Radius,
-        CastRange
+        CastRange,
+        AddStatus
     }
 
     public Type type;
     public int amount;
+    public Status.Type statusType;
 }

@@ -1666,6 +1666,10 @@ MonoBehaviour:
     AttackCardBonuses:
     - type: 1
       amount: 5
+      statusType: 0
+    - type: 4
+      amount: 2
+      statusType: 2
     SkillCardBonuses: []
   - Base1: 6
     Base2: 1
@@ -1673,39 +1677,62 @@ MonoBehaviour:
     AttackCardBonuses:
     - type: 2
       amount: 1
+      statusType: 0
+    - type: 4
+      amount: 2
+      statusType: 2
     SkillCardBonuses:
     - type: 3
       amount: 1
+      statusType: 0
   - Base1: 6
     Base2: 5
     Result: 6
     AttackCardBonuses:
     - type: 1
       amount: 5
+      statusType: 0
+    - type: 4
+      amount: 2
+      statusType: 2
     SkillCardBonuses: []
   - Base1: 1
     Base2: 2
     Result: 8
     AttackCardBonuses:
     - type: 0
-      amount: -1
+      amount: -2
+      statusType: 0
     SkillCardBonuses:
     - type: 0
-      amount: -1
+      amount: -2
+      statusType: 0
   - Base1: 1
     Base2: 4
     Result: 9
-    AttackCardBonuses: []
+    AttackCardBonuses:
+    - type: 4
+      amount: 4
+      statusType: 1
     SkillCardBonuses: []
   - Base1: 5
     Base2: 2
     Result: 10
-    AttackCardBonuses: []
-    SkillCardBonuses: []
+    AttackCardBonuses:
+    - type: 4
+      amount: 1
+      statusType: 3
+    SkillCardBonuses:
+    - type: 3
+      amount: 1
+      statusType: 0
   - Base1: 5
     Base2: 4
     Result: 11
-    AttackCardBonuses: []
+    AttackCardBonuses:
+    - type: 4
+      amount: 1
+      statusType: 3
     SkillCardBonuses: []
   - Base1: 1
     Base2: 1
@@ -1713,15 +1740,20 @@ MonoBehaviour:
     AttackCardBonuses:
     - type: 0
       amount: 2
+      statusType: 0
     - type: 1
       amount: 20
+      statusType: 0
     - type: 2
       amount: 1
+      statusType: 0
     SkillCardBonuses:
     - type: 0
       amount: 2
+      statusType: 0
     - type: 3
       amount: 3
+      statusType: 0
   _newCardPopup: {fileID: 5781192978451266083, guid: 4fa99ae6d71c4e440b36df87a482ac4a,
     type: 3}
   _chooseCardPopup: {fileID: 1809415070924254837, guid: aa97780a3a93ac44ba69e5b07b7a07e7,

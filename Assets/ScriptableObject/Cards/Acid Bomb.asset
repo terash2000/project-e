@@ -28,4 +28,10 @@ MonoBehaviour:
   Effects:
   - type: 1
     value: 2
-  UpgradeBonus: []
+  UpgradeBonus:
+  - type: 1
+    amount: 2
+    statusType: 0
+  - type: 4
+    amount: 1
+    statusType: 1

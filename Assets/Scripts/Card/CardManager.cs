@@ -215,7 +215,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
                 if (monster != null)
                 {
                     monster.TakeDamage(card.Damage);
-                    foreach (Status effect in card.BaseCard.Effects)
+                    foreach (Status effect in card.Effects)
                     {
                         monster.GainStatus(effect.type, effect.value);
 

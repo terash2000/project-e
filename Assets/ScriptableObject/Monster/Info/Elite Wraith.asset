@@ -54,8 +54,8 @@ MonoBehaviour:
     MoveRange: 3
     BlockGain: 0
     AttackStatusEffect:
-      m_keys: 
-      m_values: 
+      m_keys: 02000000
+      m_values: 03000000
   AnimatorController: {fileID: 9100000, guid: c03567ca8cb6a70429aca2aa301ac0b2, type: 2}
   SpriteColor: {r: 1, g: 1, b: 1, a: 1}
   SpriteScale: 0.2

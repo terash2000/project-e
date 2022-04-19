@@ -1,14 +1,19 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class InGameCard
 {
     private Card _baseCard;
     private ElementType _element;
+
     private int _additionalManaCost = 0;
     private int _additionalDamage = 0;
     private int _additionalRadius = 0;
     private int _additionalCastRange = 0;
+    private List<Status> _additionalEffect = new List<Status>();
+
+
     private bool _isUpgraded = false;
     public bool _isToken = false;
 
@@ -21,6 +26,7 @@ public class InGameCard
         get { return _element; }
         set { _element = value; }
     }
+
     public int ManaCost
     {
         get { return _baseCard.ManaCost + _additionalManaCost; }
@@ -37,6 +43,11 @@ public class InGameCard
     {
         get { return _baseCard.CastRange + _additionalCastRange; }
     }
+    public List<Status> Effects
+    {
+        get { return _baseCard.Effects.Concat(_additionalEffect).ToList(); }
+    }
+
     public bool IsUpgraded
     {
         get { return _isUpgraded; }
@@ -97,6 +108,9 @@ public class InGameCard
             case Bonus.Type.CastRange:
                 _additionalCastRange += bonus.amount;
                 if (CastRange < 0) _additionalCastRange = -_baseCard.CastRange;
+                break;
+            case Bonus.Type.AddStatus:
+                _additionalEffect.Add(new Status(bonus.statusType, bonus.amount));
                 break;
         }
     }
