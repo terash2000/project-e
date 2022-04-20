@@ -4,17 +4,14 @@ using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
-    [SerializeField] private Image _nameImage;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _descriptionText;
     [SerializeField] private TextMeshProUGUI _typeText;
-    [SerializeField] private Image _elementImage;
     [SerializeField] private TextMeshProUGUI _elementText;
     [SerializeField] private Image _artworkImage;
     [SerializeField] private TextMeshProUGUI _manaText;
+    [SerializeField] private GameObject _glowborder;
 
-    private Color _green = new Color(0f, 1f, 0f);
-    private Color _white = new Color(1f, 1f, 1f);
     private InGameCard _card;
 
     public InGameCard Card
@@ -55,15 +52,11 @@ public class CardDisplay : MonoBehaviour
 
     public void Highlight()
     {
-        GetComponent<Image>().color = _green;
-        _nameImage.color = _green;
-        _elementImage.color = _green;
+        _glowborder.SetActive(true);
     }
 
     public void Unhighlight()
     {
-        GetComponent<Image>().color = _white;
-        _nameImage.color = _white;
-        _elementImage.color = _white;
+        _glowborder.SetActive(false);
     }
 }
