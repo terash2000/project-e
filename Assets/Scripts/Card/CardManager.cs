@@ -14,7 +14,6 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
 
     [SerializeField] private HorizontalLayoutGroup _handPanel;
     [SerializeField] private GameObject _cardPrefab;
-    [SerializeField] private CardList _starterDeck;
     [SerializeField] private CanvasGroup _deckUI;
     [SerializeField] private CanvasGroup _gravyardUI;
     [SerializeField] private CardPage _cardPage;

@@ -15,6 +15,7 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
     [SerializeField] private VerticalLayoutGroup _choiceContainer;
     [SerializeField] private GameObject _choicePrefab;
     [SerializeField] private Transform _canvas;
+    [SerializeField] private RemoveCardMenu _removeCardMenu;
     private TextMeshProUGUI _characterNameText;
     private DialogNode _current;
     private bool _isPause;
@@ -56,6 +57,11 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
     {
         GameObject newPopup = Instantiate(CardCollection.Instance.NewCardPopup, _canvas);
         newPopup.GetComponent<NewCardPopup>().Init(header, cardname);
+    }
+
+    public void OpenRemoveCardMenu()
+    {
+        _removeCardMenu.OpenRemoveCardMenu();
     }
 
     private void Next()

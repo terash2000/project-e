@@ -12,6 +12,7 @@ public class ConfirmationPopup : MonoBehaviour
     {
         _text.text = message;
         _confirmButton.onClick.AddListener(Listener);
+        _confirmButton.onClick.AddListener(() => HidePopup());
     }
 
     public void HidePopup()
