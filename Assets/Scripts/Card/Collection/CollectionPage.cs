@@ -6,6 +6,10 @@ public class CollectionPage : Pagination
     void Start()
     {
         _cards = CardCollection.Instance.AllCards.Select(baseCard => new InGameCard(baseCard)).ToList();
+        _cards = _cards.OrderBy(card => card.BaseCard.ManaCost)
+                .ThenBy(card => card.BaseCard.Rarity)
+                .ThenBy(card => card.BaseCard.CardName).ToList();
+
         _maxPage = (_cards.Count - 1) / CONTAINER_SIZE;
         Render();
     }

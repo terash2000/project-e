@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CardPage : Pagination
@@ -11,6 +11,11 @@ public class CardPage : Pagination
 
     public void Open()
     {
+        _cards = _cards.OrderBy(card => card.BaseCard.ManaCost)
+                .ThenBy(card => card.BaseCard.Rarity)
+                .ThenBy(card => card.BaseCard.CardName)
+                .ThenBy(card => card.IsUpgraded).ToList();
+
         gameObject.SetActive(true);
         Time.timeScale = 0f;
         GameManager.GameState = GameState.Pause;
