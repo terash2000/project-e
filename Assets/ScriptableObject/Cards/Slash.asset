@@ -15,7 +15,7 @@ MonoBehaviour:
   CardName: Slash
   Description: Deal 5 damage to an adjacent enemy.
   Type: 0
-  BaseElement: 5
+  BaseElement: 1
   Rarity: 0
   Artwork: {fileID: 21300000, guid: 43cd61827f3069141b609a80e293b779, type: 3}
   ManaCost: 1

@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: Trust
   m_EditorClassIdentifier: 
   CardName: Trust
-  Description: Deal 10 damage to all enemies in 3 straight tiles.
+  Description: Deal 7 damage to all enemies in 3 straight tiles.
   Type: 0
-  BaseElement: 2
+  BaseElement: 5
   Rarity: 1
   Artwork: {fileID: 21300000, guid: f379e2d184d452c46a27572be9d8ffab, type: 3}
-  ManaCost: 2
+  ManaCost: 1
   IsUnlocked: 1
   AreaShape: 2
   TargetShape: 2
   CastRange: 3
   Radius: 3
-  Damage: 10
+  Damage: 7
   Effects: []
   UpgradeBonus:
   - type: 1
-    amount: 6
+    amount: 5
     statusType: 0

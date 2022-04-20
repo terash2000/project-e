@@ -231,7 +231,7 @@ RectTransform:
   m_Children:
   - {fileID: 303086688}
   m_Father: {fileID: 934732885}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -485,13 +485,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllWaves:
-  - {fileID: 11400000, guid: 4417d540a2757a845a88a67c9eae6ddc, type: 2}
   - {fileID: 11400000, guid: c079000926d7113488d847b260f6059d, type: 2}
   - {fileID: 11400000, guid: 72820f563572c55448cccd6a1a5ba84c, type: 2}
   - {fileID: 11400000, guid: 99422b7a3ab80cd488e078fd726f46df, type: 2}
   - {fileID: 11400000, guid: 157a8daf598889d45b0912e15b73f089, type: 2}
   - {fileID: 11400000, guid: b098e1fa5c9210847a9fa05db2a47e2a, type: 2}
   - {fileID: 11400000, guid: 05f7a19290e2f6244aecb4e3dc714207, type: 2}
+  - {fileID: 11400000, guid: 6ca61944bd14aec4ca48e7e30eda8a4b, type: 2}
+  - {fileID: 11400000, guid: 4417d540a2757a845a88a67c9eae6ddc, type: 2}
   AllRandomEvents:
   - {fileID: 11400000, guid: 42a4d785d68afb64fa486d207ecdf7f5, type: 2}
   - {fileID: 11400000, guid: f98adcc3ff806854296201f0449d35bb, type: 2}
@@ -609,8 +610,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 815396597}
   - {fileID: 550138508}
+  - {fileID: 815396597}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

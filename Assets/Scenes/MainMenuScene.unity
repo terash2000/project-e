@@ -1741,10 +1741,10 @@ MonoBehaviour:
     Result: 6
     AttackCardBonuses:
     - type: 1
-      amount: 5
+      amount: 6
       statusType: 0
     - type: 4
-      amount: 2
+      amount: 1
       statusType: 2
     SkillCardBonuses: []
   - Base1: 6
@@ -1755,7 +1755,7 @@ MonoBehaviour:
       amount: 1
       statusType: 0
     - type: 4
-      amount: 2
+      amount: 1
       statusType: 2
     SkillCardBonuses:
     - type: 3
@@ -1766,10 +1766,10 @@ MonoBehaviour:
     Result: 6
     AttackCardBonuses:
     - type: 1
-      amount: 5
+      amount: 6
       statusType: 0
     - type: 4
-      amount: 2
+      amount: 1
       statusType: 2
     SkillCardBonuses: []
   - Base1: 1
@@ -1788,7 +1788,7 @@ MonoBehaviour:
     Result: 9
     AttackCardBonuses:
     - type: 4
-      amount: 4
+      amount: 3
       statusType: 1
     SkillCardBonuses: []
   - Base1: 5
@@ -2045,7 +2045,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.8627451, g: 0.8627451, b: 0.8627451, a: 1}

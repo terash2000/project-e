@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wraith
   m_EditorClassIdentifier: 
   MonsterName: Wraith
-  MaxHealth: 20
+  MaxHealth: 30
   InitialBlock: 0
   Patterns:
   - Pattern: 2
@@ -33,10 +33,10 @@ MonoBehaviour:
       m_keys: 
       m_values: 
   - Pattern: 2
-    Damage: 4
+    Damage: 5
     AttackRange: 0
     MoveRange: 3
-    BlockGain: 4
+    BlockGain: 5
     AttackStatusEffect:
       m_keys: 
       m_values: 

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Slime
   m_EditorClassIdentifier: 
   MonsterName: Slime
-  MaxHealth: 12
+  MaxHealth: 15
   InitialBlock: 0
   Patterns:
   - Pattern: 0
-    Damage: 2
+    Damage: 4
     AttackRange: 0
     MoveRange: 1
     BlockGain: 0

@@ -17,7 +17,7 @@ MonoBehaviour:
   InitialBlock: 15
   Patterns:
   - Pattern: 0
-    Damage: 3
+    Damage: 5
     AttackRange: 0
     MoveRange: 1
     BlockGain: 0

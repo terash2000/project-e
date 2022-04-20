@@ -30,5 +30,5 @@ MonoBehaviour:
     value: 2
   UpgradeBonus:
   - type: 4
-    amount: 3
+    amount: 2
     statusType: 2

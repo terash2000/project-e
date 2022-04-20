@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Acid Bomb
   m_EditorClassIdentifier: 
   CardName: Acid Bomb
-  Description: Deal 4 damage to all enemies in a circle area and give them 2 Acid.
+  Description: Deal 3 damage to all enemies in a circle area and give them 2 Acid.
   Type: 0
   BaseElement: 4
   Rarity: 1
@@ -24,7 +24,7 @@ MonoBehaviour:
   TargetShape: 1
   CastRange: 3
   Radius: 1
-  Damage: 4
+  Damage: 3
   Effects:
   - type: 1
     value: 2
