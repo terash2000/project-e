@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
+    [SerializeField] private Image _nameBorder;
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _descriptionText;
     [SerializeField] private TextMeshProUGUI _typeText;
@@ -11,6 +12,9 @@ public class CardDisplay : MonoBehaviour
     [SerializeField] private Image _artworkImage;
     [SerializeField] private TextMeshProUGUI _manaText;
     [SerializeField] private GameObject _glowborder;
+
+    private Color _golden = new Color(1f, 0.9f, 0f);
+    private Color _white = new Color(1f, 1f, 1f);
 
     private InGameCard _card;
 
@@ -48,6 +52,8 @@ public class CardDisplay : MonoBehaviour
         _elementText.text = Card.Element.ToString();
         _artworkImage.sprite = Card.BaseCard.Artwork;
         _manaText.text = Card.ManaCost.ToString();
+
+        _nameBorder.color = Card.IsUpgraded ? _golden : _white;
     }
 
     public void Highlight()
