@@ -2039,6 +2039,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 77b56740767459345865f697099243e9, type: 2}
   - {fileID: 11400000, guid: de84fc0301d513d48ae0b098ac1c1f75, type: 2}
   - {fileID: 11400000, guid: f5da397d61098424d9c4881c929cb9d7, type: 2}
+  - {fileID: 11400000, guid: 887e0d52c28857e46a3ccf66aa466211, type: 2}
+  - {fileID: 11400000, guid: 7f09ee3b21fe4ca44b91c3743aac5740, type: 2}
   AllCombo:
   - Base1: 6
     Base2: 2
@@ -2350,7 +2352,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.8627451, g: 0.8627451, b: 0.8627451, a: 1}
