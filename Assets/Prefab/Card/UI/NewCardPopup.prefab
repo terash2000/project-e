@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 5781192977348371886}
   - component: {fileID: 5781192977348371885}
   - component: {fileID: 5781192977348371884}
+  - component: {fileID: 4268847208023776519}
   m_Layer: 5
   m_Name: Confirm
   m_TagString: Untagged
@@ -327,6 +328,51 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 9090580618580759461, guid: b4364ac7c5cd8e3469d1ca7eec7e217e,
+          type: 3}
+        m_TargetAssemblyTypeName: SoundController, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 24d73765699ce3e46bb23cabc3a46494,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4268847208023776519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5781192977348371882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 9090580618580759461, guid: b4364ac7c5cd8e3469d1ca7eec7e217e,
+            type: 3}
+          m_TargetAssemblyTypeName: SoundController, Assembly-CSharp
+          m_MethodName: Play
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: e7992d172691ce147bde04a9ea103f2c,
+              type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &5781192977996251855
 GameObject:
   m_ObjectHideFlags: 0
