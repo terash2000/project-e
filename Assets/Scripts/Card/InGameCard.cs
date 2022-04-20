@@ -74,7 +74,7 @@ public class InGameCard
         _additionalDamage = other._additionalDamage;
         _additionalRadius = other._additionalRadius;
         _additionalCastRange = other._additionalCastRange;
-        _additionalEffect = other._additionalEffect;
+        _additionalEffect = new List<Status>(other._additionalEffect);
 
 
         _isUpgraded = other._isUpgraded;

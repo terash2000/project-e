@@ -244,7 +244,6 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
                     foreach (Status effect in card.Effects)
                     {
                         monster.GainStatus(effect.type, effect.value);
-
                     }
                     success = true;
                 }
