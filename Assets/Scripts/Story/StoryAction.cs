@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -17,7 +18,8 @@ public class StoryAction
         ChangeHP,
         ChangeMaxHP,
         UnlockCard,
-        ChooseCardToRemove
+        ChooseCardToRemove,
+        RemoveRandomElement
     }
 
     public void Trigger()
@@ -36,22 +38,21 @@ public class StoryAction
                 break;
 
             case ActionType.AddCardToDeck:
-                // add the card to deck
-                InGameCard card;
+                InGameCard newCard;
                 if (Name != "")
                 {
-                    card = new InGameCard(CardCollection.Instance.FindCardByName(Name));
+                    newCard = new InGameCard(CardCollection.Instance.FindCardByName(Name));
                 }
-                else card = new InGameCard(CardCollection.Instance.RandomCard());
+                else newCard = new InGameCard(CardCollection.Instance.RandomCard());
 
                 for (int i = 0; i < Amount; i++)
                 {
-                    PlayerData.Deck.Add(card);
+                    PlayerData.Deck.Add(newCard);
                 }
 
-                string header = "Acquire";
-                if (Amount > 1) header += " x" + Amount.ToString();
-                DialogManager.Instance.ShowPopup(header, card.BaseCard.CardName);
+                string acquireHeader = "Acquire";
+                if (Amount > 1) acquireHeader += " x" + Amount.ToString();
+                DialogManager.Instance.ShowPopup(acquireHeader, newCard.BaseCard.CardName);
                 break;
 
             case ActionType.ChangeHP:
@@ -75,6 +76,34 @@ public class StoryAction
             case ActionType.ChooseCardToRemove:
                 if (PlayerData.Deck.Count == 0) break;
                 DialogManager.Instance.OpenRemoveCardMenu();
+                break;
+
+            case ActionType.RemoveRandomElement:
+
+                List<InGameCard> removableCards = PlayerData.Deck;
+
+                Enum.TryParse(Name, out ElementType element);
+                if (element != ElementType.None)
+                {
+                    removableCards = removableCards.FindAll(card => card.Element == element);
+                }
+
+                if (removableCards.Count > 0)
+                {
+                    InGameCard cardToRemove = removableCards[UnityEngine.Random.Range(0, removableCards.Count)];
+                    PlayerData.Deck.Remove(cardToRemove);
+
+                    string removeHeader = "Card Removed";
+                    DialogManager.Instance.ShowPopup(removeHeader, cardToRemove.BaseCard.CardName);
+                }
+                else
+                {
+                    // penalty
+                    PlayerData.Health -= Amount;
+                    PlayerData.MaxHealth -= Amount;
+                    if (PlayerData.Health <= 0) PlayerData.Health = 1;
+                    BackgroundShake.Instance.Shake();
+                }
                 break;
         }
     }

@@ -10,15 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
-  m_Name: Shrine-Ignore
+  m_Name: Bonfire-06
   m_EditorClassIdentifier: 
-  Type: 0
+  Type: 1
   Character: {fileID: 0}
-  Quote: I ignore the shrine and resume my journey.
+  Quote: Would I offer more card?
   Background: {fileID: 0}
   Sprite: {fileID: 0}
   Actions: []
-  Child: []
-  Choice: []
+  Child:
+  - {fileID: 11400000, guid: 6f73349c7e16c8849a39c3e82754bb57, type: 2}
+  - {fileID: 11400000, guid: 337c837f9f6921749905a406528a9d94, type: 2}
+  - {fileID: 11400000, guid: 5e90ba540dfd3724e87fb0a974844b2d, type: 2}
+  - {fileID: 11400000, guid: 04d885ccbbc77b842ad4fe505373e9d7, type: 2}
+  Choice:
+  - Offer a random Oxygen card
+  - Offer a random Carbon card
+  - Offer a random Hydrogen card
+  - Leave
   NextWave: {fileID: 0}
   Shake: 0

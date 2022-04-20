@@ -10,15 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
-  m_Name: Shrine-Ignore
+  m_Name: Bonfire-03-Reward
   m_EditorClassIdentifier: 
   Type: 0
   Character: {fileID: 0}
-  Quote: I ignore the shrine and resume my journey.
+  Quote: The bonfire spirit seems to be satisfied. There are some golds raining down
+    on me. I receive 50 golds!
   Background: {fileID: 0}
   Sprite: {fileID: 0}
-  Actions: []
-  Child: []
+  Actions:
+  - Type: 0
+    Amount: 50
+    Name: 
+    rootEvent: {fileID: 0}
+  Child:
+  - {fileID: 11400000, guid: 186cd6c6d5a117d47ba839684f7081ba, type: 2}
   Choice: []
   NextWave: {fileID: 0}
-  Shake: 0
+  Shake: 1

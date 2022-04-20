@@ -10,15 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
-  m_Name: Shrine-Ignore
+  m_Name: Bonfire-01
   m_EditorClassIdentifier: 
   Type: 0
   Character: {fileID: 0}
-  Quote: I ignore the shrine and resume my journey.
-  Background: {fileID: 0}
+  Quote: I found a bonfire.I found a bonfire. Unlike other bonfires, this bonfire
+    look amazing and intimidating although the fire is almost extinguished. I notice
+    the bonfire calling out to me, demanding offering.
+  Background: {fileID: 21300000, guid: 37fa0044383370248b7f008879794849, type: 3}
   Sprite: {fileID: 0}
   Actions: []
-  Child: []
+  Child:
+  - {fileID: 11400000, guid: 69cf4b358e9029f4bbfc7596b1d4a300, type: 2}
   Choice: []
   NextWave: {fileID: 0}
   Shake: 0
