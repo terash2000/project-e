@@ -520,6 +520,7 @@ MonoBehaviour:
   - 0.5
   - 0.4
   - 0.1
+  _completeSound: {fileID: 8300000, guid: dedc4c5e715115945a7a90177332d82d, type: 3}
 --- !u!1 &934732881
 GameObject:
   m_ObjectHideFlags: 0
