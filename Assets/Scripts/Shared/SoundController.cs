@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class SoundController : MonoBehaviourSingleton<SoundController>
+public class SoundController : MonoBehaviourSingletonPersistent<SoundController>
 {
     public static float MasterVolume;
     public static float BGMVolume;
@@ -12,9 +12,13 @@ public class SoundController : MonoBehaviourSingleton<SoundController>
 
     public GameObject Source;
 
+    // Use only single source for voice
+    private AudioSource _voiceSource;
+
     void Start()
     {
         SaveSystem.LoadOptionMenu();
+        _voiceSource = CreateSource();
     }
 
     public void SetMasterVolume(float sliderValue)
@@ -41,7 +45,7 @@ public class SoundController : MonoBehaviourSingleton<SoundController>
         SaveSystem.SaveOptionMenu();
     }
 
-    public AudioSource CreateSource(AudioClip sound)
+    public AudioSource CreateSource(AudioClip sound = null)
     {
         GameObject obj = Instantiate(Source);
         DontDestroyOnLoad(obj);
@@ -63,11 +67,8 @@ public class SoundController : MonoBehaviourSingleton<SoundController>
 
     public void PlayVoice(AudioClip sound)
     {
-        AudioSource source = GameObject.FindObjectsOfType<AudioSource>().ToList().Find(x => x.clip == sound);
-
-        if (source == default(AudioSource)) source = CreateSource(sound);
-
-        source.volume = VoiceVolume * MasterVolume;
-        source.Play();
+        _voiceSource.clip = sound;
+        _voiceSource.volume = VoiceVolume * MasterVolume;
+        _voiceSource.Play();
     }
 }

@@ -25,5 +25,5 @@ MonoBehaviour:
       m_keys: 02000000
       m_values: 02000000
   AnimatorController: {fileID: 9100000, guid: 6b383d59b7f5d6a41b165bdd2382f6c3, type: 2}
-  SpriteColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-  SpriteScale: 2.2
+  SpriteColor: {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
+  SpriteScale: 2.5

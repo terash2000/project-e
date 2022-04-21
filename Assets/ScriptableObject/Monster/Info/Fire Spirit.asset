@@ -26,4 +26,4 @@ MonoBehaviour:
       m_values: 02000000
   AnimatorController: {fileID: 9100000, guid: 6b383d59b7f5d6a41b165bdd2382f6c3, type: 2}
   SpriteColor: {r: 1, g: 1, b: 1, a: 1}
-  SpriteScale: 1.8
+  SpriteScale: 1.5

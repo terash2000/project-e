@@ -365,7 +365,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
         while (q.Count > 0)
         {
             KeyValuePair<Vector3Int, int> p = q.Dequeue();
-            posList.Add(p.Key);
+            if (!posList.Contains(p.Key)) posList.Add(p.Key);
             if (p.Value < range)
             {
                 for (int i = 0; i < width; i++)

@@ -30,3 +30,4 @@ MonoBehaviour:
   - Alright, I'll join you.
   NextWave: {fileID: 0}
   Shake: 0
+  Voice: {fileID: 0}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   Character: {fileID: 11400000, guid: cc45d51f1678ff74d928069e7c663ca4, type: 2}
-  Quote: impossible.. This is weird.
+  Quote: Impossible.. This is weird.
   Background: {fileID: 0}
   Sprite: {fileID: 0}
   Actions: []
@@ -23,3 +23,4 @@ MonoBehaviour:
   Choice: []
   NextWave: {fileID: 0}
   Shake: 0
+  Voice: {fileID: 8300000, guid: 329106f55e56223469bae089046aefa8, type: 3}
