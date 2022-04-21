@@ -108,8 +108,9 @@ public static class SaveSystem
             UnlockData data = (UnlockData)formatter.Deserialize(file);
             file.Close();
 
-            if (data.unlockDict.Count == CardCollection.Instance.AllCards.Count &&
-                    data.unlockDict.Keys.SequenceEqual(CardCollection.Instance.AllCards.Select(card => card.CardName)))
+            List<Card> allNonSpecialCards = CardCollection.Instance.GetNonSpecialCards();
+            if (data.unlockDict.Count == allNonSpecialCards.Count &&
+                    data.unlockDict.Keys.SequenceEqual(allNonSpecialCards.Select(card => card.CardName)))
             {
                 CardCollection.UnlockDict = data.unlockDict;
                 StoryMenu.CompletedStory = data.completedStory;

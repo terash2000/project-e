@@ -10,23 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cae679194d7e69b4b91681558c55e2e1, type: 3}
-  m_Name: Wide Slash
+  m_Name: Radioactive Waste
   m_EditorClassIdentifier: 
-  CardName: Wide Slash
-  Description: Deal 14 damage to all enemies in cone area
-  Type: 0
-  BaseElement: 2
-  Rarity: 1
-  Artwork: {fileID: 21300000, guid: bbd8db096c408ca49b99f1d812d6f6c5, type: 3}
-  ManaCost: 3
-  IsUnlocked: 1
-  AreaShape: 3
-  TargetShape: 3
-  CastRange: 3
-  Radius: 3
-  Damage: 14
+  CardName: Radioactive Waste
+  Description: Does nothing.
+  Type: 1
+  BaseElement: 7
+  Rarity: 3
+  Artwork: {fileID: 21300000, guid: 16bba5bcda4dcf94f9b4d0c789963e25, type: 3}
+  ManaCost: 99
+  IsUnlocked: 0
+  AreaShape: 0
+  TargetShape: 0
+  CastRange: 0
+  Radius: 0
+  Damage: 0
   Effects: []
-  UpgradeBonus:
-  - type: 1
-    amount: 9
-    statusType: 0
+  UpgradeBonus: []

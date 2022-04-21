@@ -9,10 +9,12 @@ public class Bonus
         Damage,
         Radius,
         CastRange,
-        AddStatus
+        AddStatus,
+        CreateCard
     }
 
     public Type type;
     public int amount;
     public Status.Type statusType;
+    public Card card;
 }

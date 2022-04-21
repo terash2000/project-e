@@ -10,23 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cae679194d7e69b4b91681558c55e2e1, type: 3}
-  m_Name: Wide Slash
+  m_Name: Explosion
   m_EditorClassIdentifier: 
-  CardName: Wide Slash
-  Description: Deal 14 damage to all enemies in cone area
+  CardName: Mini Explosion
+  Description: Deal 10 damage to all enemies in a circle area.
   Type: 0
-  BaseElement: 2
-  Rarity: 1
-  Artwork: {fileID: 21300000, guid: bbd8db096c408ca49b99f1d812d6f6c5, type: 3}
-  ManaCost: 3
-  IsUnlocked: 1
-  AreaShape: 3
-  TargetShape: 3
+  BaseElement: 1
+  Rarity: 3
+  Artwork: {fileID: 21300000, guid: ebb63154f3692b040aa40106e0a17ecb, type: 3}
+  ManaCost: 1
+  IsUnlocked: 0
+  AreaShape: 1
+  TargetShape: 1
   CastRange: 3
-  Radius: 3
-  Damage: 14
+  Radius: 1
+  Damage: 10
   Effects: []
-  UpgradeBonus:
-  - type: 1
-    amount: 9
-    statusType: 0
+  UpgradeBonus: []

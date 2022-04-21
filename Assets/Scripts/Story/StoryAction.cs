@@ -52,7 +52,7 @@ public class StoryAction
 
                 string acquireHeader = "Acquire";
                 if (Amount > 1) acquireHeader += " x" + Amount.ToString();
-                DialogManager.Instance.ShowPopup(acquireHeader, newCard.BaseCard.CardName);
+                DialogManager.Instance.ShowPopup(acquireHeader, newCard);
                 break;
 
             case ActionType.ChangeHP:
@@ -69,7 +69,8 @@ public class StoryAction
 
             case ActionType.UnlockCard:
                 CardCollection.UnlockCard(Name);
-                DialogManager.Instance.ShowPopup("Unlock!", Name);
+                InGameCard unlockedCard = new InGameCard(CardCollection.Instance.FindCardByName(Name));
+                DialogManager.Instance.ShowPopup("Unlock!", unlockedCard);
                 SaveSystem.SaveUnlockData();
                 break;
 
@@ -94,7 +95,7 @@ public class StoryAction
                     PlayerData.Deck.Remove(cardToRemove);
 
                     string removeHeader = "Card Removed";
-                    DialogManager.Instance.ShowPopup(removeHeader, cardToRemove.BaseCard.CardName);
+                    DialogManager.Instance.ShowPopup(removeHeader, cardToRemove);
                 }
                 else
                 {

@@ -95,49 +95,68 @@ public class InGameCard
         return false;
     }
 
-    public void GainBonus(Bonus bonus)
+    public List<InGameCard> GainBonus(Bonus bonus)
     {
+        List<InGameCard> createdCards = new List<InGameCard>();
         switch (bonus.type)
         {
             case Bonus.Type.Mana:
                 _additionalManaCost += bonus.amount;
                 if (ManaCost < 0) _additionalManaCost = -_baseCard.ManaCost;
                 break;
+
             case Bonus.Type.Damage:
                 _additionalDamage += bonus.amount;
                 if (Damage < 0) _additionalDamage = -_baseCard.Damage;
                 break;
+
             case Bonus.Type.Radius:
                 _additionalRadius += bonus.amount;
                 if (Radius < 0) _additionalRadius = -_baseCard.Radius;
                 break;
+
             case Bonus.Type.CastRange:
                 _additionalCastRange += bonus.amount;
                 if (CastRange < 0) _additionalCastRange = -_baseCard.CastRange;
                 break;
+
             case Bonus.Type.AddStatus:
                 _additionalEffect.Add(new Status(bonus.statusType, bonus.amount));
                 break;
+
+            case Bonus.Type.CreateCard:
+                for (int i = 0; i < bonus.amount; i++)
+                {
+                    InGameCard createdCard = new InGameCard(bonus.card);
+                    createdCard._isToken = true;
+                    createdCards.Add(createdCard);
+                }
+                break;
+
+            default:
+                break;
         }
+        return createdCards;
     }
 
-    public void GainComboBonus(Combo combo)
+    public List<InGameCard> GainComboBonus(Combo combo)
     {
         Element = combo.Result;
         List<Bonus> bonuses;
+        List<InGameCard> createdCards = new List<InGameCard>();
+
         if (BaseCard.Type == CardType.Attack)
         {
             bonuses = combo.AttackCardBonuses;
         }
-        else
-        {
-            bonuses = combo.SkillCardBonuses;
-        }
+        else bonuses = combo.SkillCardBonuses;
 
         foreach (Bonus bonus in bonuses)
         {
-            GainBonus(bonus);
+            createdCards.AddRange(GainBonus(bonus));
         }
+
+        return createdCards;
     }
 
     public bool IsCastable()

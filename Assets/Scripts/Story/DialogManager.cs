@@ -53,10 +53,10 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
         _choiceClicked = false;
     }
 
-    public void ShowPopup(string header, string cardname)
+    public void ShowPopup(string header, InGameCard card)
     {
         GameObject newPopup = Instantiate(CardCollection.Instance.NewCardPopup, _canvas);
-        newPopup.GetComponent<NewCardPopup>().Init(header, cardname);
+        newPopup.GetComponent<NewCardPopup>().Init(header, card);
     }
 
     public void OpenRemoveCardMenu()

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
 {
     private const int START_HAND_AMOUNT = 5;
-    private const int MAX_HAND_SIZE = 8;
+    private const int MAX_HAND_SIZE = 9;
     private const int CARD_PER_TURN = 2;
     private const float PREVIEW_DELAY = 0.8f;
     private const float FADING_SPEED = 10f;
@@ -19,6 +19,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     [SerializeField] private CardPage _cardPage;
     [SerializeField] private CardDisplay _previewCard;
 
+    private GameObject _previewContainer;
     private List<InGameCard> _deck = new List<InGameCard>();
     private List<InGameCard> _hand = new List<InGameCard>();
     private List<InGameCard> _graveyard = new List<InGameCard>();
@@ -48,6 +49,8 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     // Start is called before the first frame update
     void Start()
     {
+        _previewContainer = _previewCard.transform.parent.gameObject;
+
         _deck = new List<InGameCard>();
         foreach (InGameCard card in PlayerData.Deck)
         {
@@ -118,22 +121,14 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     public void MoveFromHandToGraveyard(InGameCard card)
     {
         _hand.Remove(card);
-
-        if (card.IsToken) return;
-
-        _graveyard.Add(card);
-        _gravyardUI.alpha = 1;
-        _gravyardUI.blocksRaycasts = true;
+        AddCardToGraveyard(card);
     }
 
     public void AddCardToGraveyard(InGameCard card)
     {
         if (card.IsToken) return;
 
-        // clone card
-        InGameCard clone = new InGameCard(card);
-
-        _graveyard.Add(clone);
+        _graveyard.Add(card);
         _gravyardUI.alpha = 1;
         _gravyardUI.blocksRaycasts = true;
     }
@@ -152,10 +147,8 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         }
         if (_deck.Count > 0)
         {
-            _hand.Add(_deck[0]);
+            AddCardToHand(_deck[0]);
             _deck.RemoveAt(0);
-            GameObject cardObj = Instantiate(_cardPrefab, _handPanel.transform);
-            cardObj.GetComponent<CardDisplay>().Card = _hand[_hand.Count - 1];
         }
         if (_deck.Count == 0)
         {
@@ -191,20 +184,41 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         _cardPage.Open();
     }
 
-    public void PreviewCard(InGameCard card)
+    public void Preview(InGameCard card, List<InGameCard> otherCards = null)
     {
         _previewCard.Card = card;
         _previewCard.render();
-        _previewCard.gameObject.SetActive(true);
+
+        _previewContainer.SetActive(true);
+
+        // clear container
+        foreach (CardDisplay cards in GetExtraPreviewCards())
+        {
+            Destroy(cards.gameObject);
+        }
+
+        foreach (InGameCard otherCard in otherCards)
+        {
+            GameObject cardObj = Instantiate(CardCollection.Instance.CardPrefab, _previewContainer.transform);
+            cardObj.GetComponent<CardDisplay>().Card = otherCard;
+        }
 
         // fading in
         if (_previewAlpha >= 1f)
         {
-            StartCoroutine(FadingIn(_previewCard.GetComponent<CanvasGroup>()));
+            StartCoroutine(FadingIn(_previewCard.transform.parent.GetComponent<CanvasGroup>()));
         }
         else
         {
             _previewAlpha = -PREVIEW_DELAY;
+        }
+    }
+
+    public void MovePreviewToHand(int index)
+    {
+        foreach (CardDisplay card in CardManager.Instance.GetExtraPreviewCards())
+        {
+            if (!AddCardToHand(card.Card, index)) return;
         }
     }
 
@@ -222,7 +236,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
 
     public void HidePreview()
     {
-        _previewCard.gameObject.SetActive(false);
+        _previewCard.transform.parent.gameObject.SetActive(false);
     }
 
     private void CastCard(InGameCard card, Vector3Int mousePos)
@@ -269,5 +283,31 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         {
             GameManager.Instance.EndTurn();
         }
+    }
+
+    private bool AddCardToHand(InGameCard card, int index = -1)
+    {
+        if (_hand.Count >= MAX_HAND_SIZE) return false;
+
+        _hand.Add(card);
+        GameObject cardObj = Instantiate(_cardPrefab, _handPanel.transform);
+        cardObj.GetComponent<CardDisplay>().Card = card;
+        if (index >= 0) cardObj.transform.SetSiblingIndex(index);
+
+        return true;
+    }
+
+    private List<CardDisplay> GetExtraPreviewCards()
+    {
+        List<CardDisplay> cards = new List<CardDisplay>();
+
+        for (int i = 0; i < _previewContainer.transform.childCount; i++)
+        {
+            CardDisplay child = _previewContainer.transform.GetChild(i).GetComponent<CardDisplay>();
+            if (child == _previewCard) continue;
+            cards.Add(child);
+        }
+
+        return cards;
     }
 }

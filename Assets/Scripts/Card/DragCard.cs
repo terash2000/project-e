@@ -37,8 +37,6 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (CardManager.Instance.IsSelectingCard()) return;
-
         // adjust the position of the card
         _dragRectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
 
@@ -75,8 +73,8 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                 if (combo != null)
                 {
                     InGameCard upgradedCard = new InGameCard(_card);
-                    upgradedCard.GainComboBonus(combo);
-                    CardManager.Instance.PreviewCard(upgradedCard);
+                    List<InGameCard> createdCards = upgradedCard.GainComboBonus(combo);
+                    CardManager.Instance.Preview(upgradedCard, createdCards);
                 }
                 return;
             }
@@ -87,7 +85,11 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (CardManager.Instance.IsSelectingCard()) return;
+        if (CardManager.Instance.IsSelectingCard())
+        {
+            _isSelected = false;
+            CardManager.Instance.SelectingCard = null;
+        }
 
         // Insert a new place holder to the hand panel
         _placeholder = new GameObject();
@@ -150,13 +152,15 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                 Destroy(_cardToCombine.gameObject);
 
                 // Add old card to graveyard
-                CardManager.Instance.AddCardToGraveyard(_card);
+                CardManager.Instance.AddCardToGraveyard(new InGameCard(_card));
 
                 // Upgrade base card
                 _card.IsToken = true;
                 _card.GainComboBonus(combo);
-
                 GetComponent<CardDisplay>().render();
+
+                // Add other created cards to hand
+                CardManager.Instance.MovePreviewToHand(_placeholder.transform.GetSiblingIndex() + 1);
             }
         }
 

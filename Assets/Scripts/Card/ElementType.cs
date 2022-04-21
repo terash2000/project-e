@@ -11,5 +11,6 @@ public enum ElementType
     H2O,
     HCl,
     CO,
-    CCl4
+    CCl4,
+    NaOH
 }

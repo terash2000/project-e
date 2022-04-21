@@ -2031,7 +2031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edec46f155ba00340af7f7e0d78fca2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllCards:
+  _allCards:
   - {fileID: 11400000, guid: a6308af5cdec28b48a02f2ab4963d307, type: 2}
   - {fileID: 11400000, guid: ec56484ac74c1c04ba91b737928e3194, type: 2}
   - {fileID: 11400000, guid: 7c5bc709221dd2c43b7ec419a71ee3f1, type: 2}
@@ -2041,7 +2041,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f5da397d61098424d9c4881c929cb9d7, type: 2}
   - {fileID: 11400000, guid: 887e0d52c28857e46a3ccf66aa466211, type: 2}
   - {fileID: 11400000, guid: 7f09ee3b21fe4ca44b91c3743aac5740, type: 2}
-  AllCombo:
+  - {fileID: 11400000, guid: dc769739786f4604cb8c38fbb748b4f3, type: 2}
+  - {fileID: 11400000, guid: c36963ae9ca8acb4d8d063706e275cbc, type: 2}
+  _allCombo:
   - Base1: 6
     Base2: 2
     Result: 6
@@ -2049,9 +2051,11 @@ MonoBehaviour:
     - type: 1
       amount: 6
       statusType: 0
+      card: {fileID: 0}
     - type: 4
       amount: 1
       statusType: 2
+      card: {fileID: 0}
     SkillCardBonuses: []
   - Base1: 6
     Base2: 1
@@ -2060,13 +2064,16 @@ MonoBehaviour:
     - type: 2
       amount: 1
       statusType: 0
+      card: {fileID: 0}
     - type: 4
       amount: 1
       statusType: 2
+      card: {fileID: 0}
     SkillCardBonuses:
     - type: 3
       amount: 1
       statusType: 0
+      card: {fileID: 0}
   - Base1: 6
     Base2: 5
     Result: 6
@@ -2074,9 +2081,11 @@ MonoBehaviour:
     - type: 1
       amount: 6
       statusType: 0
+      card: {fileID: 0}
     - type: 4
       amount: 1
       statusType: 2
+      card: {fileID: 0}
     SkillCardBonuses: []
   - Base1: 1
     Base2: 2
@@ -2085,10 +2094,12 @@ MonoBehaviour:
     - type: 0
       amount: -2
       statusType: 0
+      card: {fileID: 0}
     SkillCardBonuses:
     - type: 0
       amount: -2
       statusType: 0
+      card: {fileID: 0}
   - Base1: 1
     Base2: 4
     Result: 9
@@ -2096,6 +2107,7 @@ MonoBehaviour:
     - type: 4
       amount: 3
       statusType: 1
+      card: {fileID: 0}
     SkillCardBonuses: []
   - Base1: 5
     Base2: 2
@@ -2104,10 +2116,12 @@ MonoBehaviour:
     - type: 4
       amount: 1
       statusType: 3
+      card: {fileID: 0}
     SkillCardBonuses:
     - type: 3
       amount: 1
       statusType: 0
+      card: {fileID: 0}
   - Base1: 5
     Base2: 4
     Result: 11
@@ -2115,6 +2129,7 @@ MonoBehaviour:
     - type: 4
       amount: 1
       statusType: 3
+      card: {fileID: 0}
     SkillCardBonuses: []
   - Base1: 1
     Base2: 1
@@ -2123,19 +2138,53 @@ MonoBehaviour:
     - type: 0
       amount: 2
       statusType: 0
+      card: {fileID: 0}
     - type: 1
       amount: 20
       statusType: 0
+      card: {fileID: 0}
     - type: 2
       amount: 1
       statusType: 0
+      card: {fileID: 0}
+    - type: 5
+      amount: 1
+      statusType: 0
+      card: {fileID: 11400000, guid: c36963ae9ca8acb4d8d063706e275cbc, type: 2}
     SkillCardBonuses:
     - type: 0
       amount: 2
       statusType: 0
+      card: {fileID: 0}
     - type: 3
       amount: 3
       statusType: 0
+      card: {fileID: 0}
+    - type: 5
+      amount: 1
+      statusType: 0
+      card: {fileID: 11400000, guid: c36963ae9ca8acb4d8d063706e275cbc, type: 2}
+  - Base1: 3
+    Base2: 8
+    Result: 12
+    AttackCardBonuses:
+    - type: 0
+      amount: -3
+      statusType: 0
+      card: {fileID: 0}
+    - type: 5
+      amount: 2
+      statusType: 0
+      card: {fileID: 11400000, guid: dc769739786f4604cb8c38fbb748b4f3, type: 2}
+    SkillCardBonuses:
+    - type: 0
+      amount: -3
+      statusType: 0
+      card: {fileID: 0}
+    - type: 5
+      amount: 2
+      statusType: 0
+      card: {fileID: 11400000, guid: dc769739786f4604cb8c38fbb748b4f3, type: 2}
   _newCardPopup: {fileID: 5781192978451266083, guid: 4fa99ae6d71c4e440b36df87a482ac4a,
     type: 3}
   _chooseCardPopup: {fileID: 1809415070924254837, guid: aa97780a3a93ac44ba69e5b07b7a07e7,
