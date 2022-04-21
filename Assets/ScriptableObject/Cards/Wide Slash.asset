@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wide Slash
   m_EditorClassIdentifier: 
   CardName: Wide Slash
-  Description: Deal 14 damage to all enemies in cone area
+  Description: Deal 15 damage to all enemies in cone area
   Type: 0
   BaseElement: 2
   Rarity: 1
@@ -24,9 +24,10 @@ MonoBehaviour:
   TargetShape: 3
   CastRange: 3
   Radius: 3
-  Damage: 14
+  Damage: 15
   Effects: []
   UpgradeBonus:
   - type: 1
     amount: 9
     statusType: 0
+    card: {fileID: 0}

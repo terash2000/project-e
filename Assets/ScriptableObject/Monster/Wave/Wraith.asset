@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Monsters:
   - Monster: {fileID: 11400000, guid: d3a189673fee9ae438d13e6c83305de2, type: 2}
-    Tile: {x: 3, y: 2}
+    Tile: {x: 3, y: -2}
     CurrentMove: 0
   - Monster: {fileID: 11400000, guid: d3a189673fee9ae438d13e6c83305de2, type: 2}
     Tile: {x: -3, y: 0}

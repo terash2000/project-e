@@ -25,10 +25,10 @@ MonoBehaviour:
       m_keys: 
       m_values: 
   - Pattern: 2
-    Damage: 5
+    Damage: 8
     AttackRange: 0
     MoveRange: 3
-    BlockGain: 5
+    BlockGain: 8
     AttackStatusEffect:
       m_keys: 
       m_values: 

@@ -17,12 +17,12 @@ MonoBehaviour:
     Tile: {x: 2, y: 0}
     CurrentMove: 0
   - Monster: {fileID: 11400000, guid: ef009c6eff90a0d448f99fb70a59297a, type: 2}
-    Tile: {x: -2, y: -3}
+    Tile: {x: -2, y: -2}
     CurrentMove: 0
-  - Monster: {fileID: 11400000, guid: cf2e318339fde8f4caebcf0f3056a6a6, type: 2}
+  - Monster: {fileID: 11400000, guid: 59ca8c6503123b3479b9c3db5278b057, type: 2}
     Tile: {x: 0, y: -2}
     CurrentMove: 0
-  - Monster: {fileID: 11400000, guid: cf2e318339fde8f4caebcf0f3056a6a6, type: 2}
-    Tile: {x: -2, y: 2}
+  - Monster: {fileID: 11400000, guid: 59ca8c6503123b3479b9c3db5278b057, type: 2}
+    Tile: {x: -2, y: 1}
     CurrentMove: 0
   Reward: 1
