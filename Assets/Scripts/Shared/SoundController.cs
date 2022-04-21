@@ -3,49 +3,50 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class SoundController : MonoBehaviourSingletonPersistent<SoundController>
+public class SoundController : MonoBehaviour
 {
     public static float MasterVolume;
     public static float BGMVolume;
     public static float SEVolume;
     public static float VoiceVolume;
 
-    public GameObject Source;
+    public static GameObject Source;
 
-    // Use only single source for voice
-    private AudioSource _voiceSource;
+    private static AudioSource _voiceSource;
 
-    void Start()
+    static void Start()
     {
+        Source = GameObject.Find("Sound");
+        if (Source == null) Source = GameObject.Find("Sound(Clone)");
         SaveSystem.LoadOptionMenu();
         _voiceSource = CreateSource();
     }
 
-    public void SetMasterVolume(float sliderValue)
+    public static void SetMasterVolume(float sliderValue)
     {
         SoundController.MasterVolume = sliderValue;
         SaveSystem.SaveOptionMenu();
     }
 
-    public void SetBGMVolume(float sliderValue)
+    public static void SetBGMVolume(float sliderValue)
     {
         SoundController.BGMVolume = sliderValue;
         SaveSystem.SaveOptionMenu();
     }
 
-    public void SetSEVolume(float sliderValue)
+    public static void SetSEVolume(float sliderValue)
     {
         SoundController.SEVolume = sliderValue;
         SaveSystem.SaveOptionMenu();
     }
 
-    public void SetVoiceVolume(float sliderValue)
+    public static void SetVoiceVolume(float sliderValue)
     {
         SoundController.VoiceVolume = sliderValue;
         SaveSystem.SaveOptionMenu();
     }
 
-    public AudioSource CreateSource(AudioClip sound = null)
+    public static AudioSource CreateSource(AudioClip sound = null)
     {
         GameObject obj = Instantiate(Source);
         DontDestroyOnLoad(obj);
@@ -55,8 +56,9 @@ public class SoundController : MonoBehaviourSingletonPersistent<SoundController>
         return source;
     }
 
-    public void Play(AudioClip sound)
+    public static void Play(AudioClip sound)
     {
+        if (Source == null) Start();
         AudioSource source = GameObject.FindObjectsOfType<AudioSource>().ToList().Find(x => x.clip == sound);
 
         if (source == default(AudioSource)) source = CreateSource(sound);
@@ -65,7 +67,7 @@ public class SoundController : MonoBehaviourSingletonPersistent<SoundController>
         source.Play();
     }
 
-    public void PlayVoice(AudioClip sound)
+    public static void PlayVoice(AudioClip sound)
     {
         _voiceSource.clip = sound;
         _voiceSource.volume = VoiceVolume * MasterVolume;
