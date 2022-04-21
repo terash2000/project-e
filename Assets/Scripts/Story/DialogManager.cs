@@ -163,9 +163,9 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
         }
 
         // shake
-        if (_current.Shake)
-        {
-            BackgroundShake.Instance.Shake();
-        }
+        if (_current.Shake) BackgroundShake.Instance.Shake();
+
+        // voice
+        if (_current.Voice != null) SoundController.Instance.PlayVoice(_current.Voice);
     }
 }

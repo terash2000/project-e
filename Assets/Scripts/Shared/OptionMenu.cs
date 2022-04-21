@@ -6,13 +6,22 @@ public class OptionMenu : MonoBehaviour
 {
     public static bool AutoEndTurn;
     public static bool ShowMonstersAttackArea;
+
+    [SerializeField] private Slider _masterVolumeSlider;
+    [SerializeField] private Slider _bgmVolumeSlider;
+    [SerializeField] private Slider _seVolumeSlider;
+    [SerializeField] private Slider _voiceVolumeSlider;
     [SerializeField] private Toggle _autoEndTurnTog;
     [SerializeField] private Toggle _showAttackAreaTog;
     [SerializeField] private GameObject _confirmationPopup;
 
     public void Start()
     {
-        SaveSystem.LoadOptionMenu();
+        _masterVolumeSlider.value = SoundController.MasterVolume;
+        _bgmVolumeSlider.value = SoundController.BGMVolume;
+        _seVolumeSlider.value = SoundController.SEVolume;
+        _voiceVolumeSlider.value = SoundController.VoiceVolume;
+
         _autoEndTurnTog.isOn = AutoEndTurn;
         _showAttackAreaTog.isOn = ShowMonstersAttackArea;
     }

@@ -58,6 +58,12 @@ public static class SaveSystem
         FileStream file = File.Create(Application.persistentDataPath + "/Setting.dat");
 
         UserSetting setting = new UserSetting();
+
+        setting.masterVolume = SoundController.MasterVolume;
+        setting.BGMVolume = SoundController.BGMVolume;
+        setting.SEVolume = SoundController.SEVolume;
+        setting.voiceVolume = SoundController.VoiceVolume;
+
         setting.autoEndTurn = OptionMenu.AutoEndTurn;
         setting.showMonstersAttackArea = OptionMenu.ShowMonstersAttackArea;
 
@@ -75,11 +81,21 @@ public static class SaveSystem
             UserSetting setting = (UserSetting)formatter.Deserialize(file);
             file.Close();
 
+            SoundController.MasterVolume = setting.masterVolume;
+            SoundController.BGMVolume = setting.BGMVolume;
+            SoundController.SEVolume = setting.SEVolume;
+            SoundController.VoiceVolume = setting.voiceVolume;
+
             OptionMenu.AutoEndTurn = setting.autoEndTurn;
             OptionMenu.ShowMonstersAttackArea = setting.showMonstersAttackArea;
         }
         else
         {
+            SoundController.MasterVolume = 1f;
+            SoundController.BGMVolume = 1f;
+            SoundController.SEVolume = 1f;
+            SoundController.VoiceVolume = 1f;
+
             OptionMenu.AutoEndTurn = true;
             OptionMenu.ShowMonstersAttackArea = true;
         }

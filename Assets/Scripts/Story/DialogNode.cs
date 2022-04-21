@@ -14,4 +14,5 @@ public class DialogNode : ScriptableObject
     public List<string> Choice;
     public Wave NextWave;
     public bool Shake;
+    public AudioClip Voice;
 }

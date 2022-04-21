@@ -5,11 +5,40 @@ using UnityEngine;
 
 public class SoundController : MonoBehaviourSingleton<SoundController>
 {
+    public static float MasterVolume;
+    public static float BGMVolume;
+    public static float SEVolume;
+    public static float VoiceVolume;
+
     public GameObject Source;
 
     void Start()
     {
+        SaveSystem.LoadOptionMenu();
+    }
 
+    public void SetMasterVolume(float sliderValue)
+    {
+        SoundController.MasterVolume = sliderValue;
+        SaveSystem.SaveOptionMenu();
+    }
+
+    public void SetBGMVolume(float sliderValue)
+    {
+        SoundController.BGMVolume = sliderValue;
+        SaveSystem.SaveOptionMenu();
+    }
+
+    public void SetSEVolume(float sliderValue)
+    {
+        SoundController.SEVolume = sliderValue;
+        SaveSystem.SaveOptionMenu();
+    }
+
+    public void SetVoiceVolume(float sliderValue)
+    {
+        SoundController.VoiceVolume = sliderValue;
+        SaveSystem.SaveOptionMenu();
     }
 
     public AudioSource CreateSource(AudioClip sound)
@@ -24,11 +53,21 @@ public class SoundController : MonoBehaviourSingleton<SoundController>
 
     public void Play(AudioClip sound)
     {
-        //if (_sources == null) Start();
         AudioSource source = GameObject.FindObjectsOfType<AudioSource>().ToList().Find(x => x.clip == sound);
-        //Debug.Log(source);
 
         if (source == default(AudioSource)) source = CreateSource(sound);
+
+        source.volume = SEVolume * MasterVolume;
+        source.Play();
+    }
+
+    public void PlayVoice(AudioClip sound)
+    {
+        AudioSource source = GameObject.FindObjectsOfType<AudioSource>().ToList().Find(x => x.clip == sound);
+
+        if (source == default(AudioSource)) source = CreateSource(sound);
+
+        source.volume = VoiceVolume * MasterVolume;
         source.Play();
     }
 }
