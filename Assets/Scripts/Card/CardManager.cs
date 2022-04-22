@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using TMPro;
 
 public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
 {
@@ -18,8 +19,10 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
 
     [SerializeField] private HorizontalLayoutGroup _handPanel;
     [SerializeField] private GameObject _cardPrefab;
-    [SerializeField] private CanvasGroup _deckUI;
-    [SerializeField] private CanvasGroup _gravyardUI;
+    [SerializeField] private Button _deckButton;
+    [SerializeField] private Button _gravyardButton;
+    [SerializeField] private TextMeshProUGUI _deckText;
+    [SerializeField] private TextMeshProUGUI _gravyardText;
     [SerializeField] private CardPage _cardPage;
     [SerializeField] private CardDisplay _previewCard;
 
@@ -147,8 +150,8 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         if (card.IsToken) return;
 
         _graveyard.Add(card);
-        _gravyardUI.alpha = 1;
-        _gravyardUI.blocksRaycasts = true;
+        _gravyardButton.interactable = true;
+        _gravyardText.text = _graveyard.Count.ToString();
     }
 
     public void DrawCard()
@@ -158,21 +161,15 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         if (_deck.Count == 0)
         {
             RefillDeck();
-            _gravyardUI.alpha = 0;
-            _gravyardUI.blocksRaycasts = false;
-            _deckUI.alpha = 1;
-            _deckUI.blocksRaycasts = true;
+            _gravyardButton.interactable = false;
         }
         if (_deck.Count > 0)
         {
             AddCardToHand(_deck[0]);
             _deck.RemoveAt(0);
         }
-        if (_deck.Count == 0)
-        {
-            _deckUI.alpha = 0;
-            _deckUI.blocksRaycasts = false;
-        }
+        _deckButton.interactable = _deck.Count > 0;
+        _deckText.text = _deck.Count.ToString();
     }
 
     public void RefillDeck()

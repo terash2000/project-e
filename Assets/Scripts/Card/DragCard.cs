@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    private const float COMBINE_RANGE = 80f;
+    private const float COMBINE_RANGE = 70f;
 
     private Transform _handPanel;
     private RectTransform _dragRectTransform;
