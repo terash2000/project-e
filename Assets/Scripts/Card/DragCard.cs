@@ -91,6 +91,7 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             CardManager.Instance.SelectingCard = null;
         }
 
+        SoundController.Play(SoundCollection.Instance.GetSound("CardHover"));
         // Insert a new place holder to the hand panel
         _placeholder = new GameObject();
         _placeholder.transform.SetParent(_handPanel);
@@ -193,11 +194,13 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     {
         if (_isSelected)
         {
+            SoundController.Play(SoundCollection.Instance.GetSound("CardHover"));
             _isSelected = false;
             CardManager.Instance.SelectingCard = null;
         }
         else if (_card.IsCastable())
         {
+            SoundController.Play(SoundCollection.Instance.GetSound("CardHover"));
             if (CardManager.Instance.IsSelectingCard())
             {
                 CardManager.Instance.SelectingCard.HidePreviewCardEffect();

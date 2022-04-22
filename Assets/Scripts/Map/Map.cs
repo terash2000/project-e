@@ -20,7 +20,6 @@ public class Map : MonoBehaviourSingleton<Map>
     [SerializeField] private GameObject _edgePrefab;
     [SerializeField] private GameObject _completePopup;
     [SerializeField] private List<float> _weights;
-    [SerializeField] private AudioClip _completeSound;
     private List<Node> _nodes = new List<Node>();
     private List<LineRenderer> _edges = new List<LineRenderer>();
     private Node _curNode;
@@ -63,7 +62,7 @@ public class Map : MonoBehaviourSingleton<Map>
         if (PlayerData.Path != null && PlayerData.Path.Last() == _nodes.Count - 1)
         {
             _completePopup.SetActive(true);
-            SoundController.Play(_completeSound);
+            SoundController.Play(SoundCollection.Instance.GetSound("Complete"));
         }
         SaveSystem.Save();
         CameraMovement.Instance.SetPosition(_curNode.transform.position);

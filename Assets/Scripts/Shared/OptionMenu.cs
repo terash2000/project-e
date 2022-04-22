@@ -22,14 +22,14 @@ public class OptionMenu : MonoBehaviour
         gameObject.SetActive(true);
         SoundController.Pause();
         Time.timeScale = 0f;
-        GameManager.GameState = GameState.Pause;
+        if (GameManager.GameState == GameState.Running) GameManager.GameState = GameState.Pause;
     }
 
     public void Resume()
     {
         gameObject.SetActive(false);
         Time.timeScale = 1f;
-        GameManager.GameState = GameState.Running;
+        if (GameManager.GameState == GameState.Pause) GameManager.GameState = GameState.Running;
     }
 
     public void TogAutoEndTurn(bool tog)

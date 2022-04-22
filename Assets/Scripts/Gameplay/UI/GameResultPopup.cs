@@ -6,8 +6,6 @@ using TMPro;
 public class GameResultPopup : MonoBehaviour
 {
     //[SerializeField] private GameObject _soundController;
-    [SerializeField] private AudioClip _winSound;
-    [SerializeField] private AudioClip _loseSound;
     private const int MIN_GOLD_REWARD = 30;
     private const int MAX_GOLD_REWARD = 50;
 
@@ -31,7 +29,7 @@ public class GameResultPopup : MonoBehaviour
         UnityAction action = () => SceneChanger.Instance.LoadScene("MainMenuScene");
         _confirmButton.onClick.AddListener(action);
         gameObject.SetActive(true);
-        SoundController.Play(_loseSound);
+        SoundController.Play(SoundCollection.Instance.GetSound("Lose"));
         Time.timeScale = 0f;
     }
 
@@ -41,7 +39,7 @@ public class GameResultPopup : MonoBehaviour
         _bg.color = Color.green;
         _confirmButton.onClick.AddListener(GainReward);
         gameObject.SetActive(true);
-        SoundController.Play(_winSound);
+        SoundController.Play(SoundCollection.Instance.GetSound("Win"));
         Time.timeScale = 0f;
     }
 

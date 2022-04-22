@@ -9,7 +9,6 @@ public class Node : MonoBehaviour
     private SpriteRenderer _check;
     private SpriteOutline _outline;
     private SpriteRenderer _bg;
-
     public void Init(int layer)
     {
         Next = new List<Node>();
@@ -26,6 +25,7 @@ public class Node : MonoBehaviour
     void OnMouseEnter()
     {
         transform.localScale = transform.localScale * 1.2f;
+        SoundController.Play(SoundCollection.Instance.GetSound("IconHover"));
     }
 
     void OnMouseExit()
@@ -35,6 +35,7 @@ public class Node : MonoBehaviour
 
     void OnMouseUp()
     {
+        SoundController.Play(SoundCollection.Instance.GetSound("IconClick"));
         Map.Instance.AddNodeToPath(this);
         ChangeScene();
     }
