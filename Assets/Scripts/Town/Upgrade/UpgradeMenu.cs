@@ -25,7 +25,11 @@ public class UpgradeMenu : CardPage
 
             Button cardButton = cardObj.AddComponent(typeof(Button)) as Button;
 
-            UnityAction action = () => Upgrade(_cards[cardIndex]);
+            UnityAction action = () =>
+            {
+                Upgrade(_cards[cardIndex]);
+                SoundController.Play(SoundCollection.Instance.GetSound("CardClick"));
+            };
             cardButton.onClick.AddListener(action);
         }
     }

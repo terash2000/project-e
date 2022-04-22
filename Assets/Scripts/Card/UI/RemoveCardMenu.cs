@@ -22,8 +22,11 @@ public class RemoveCardMenu : CardPage
             cardObj.GetComponent<CardDisplay>().Card = _cards[cardIndex];
 
             Button cardButton = cardObj.AddComponent(typeof(Button)) as Button;
-
-            UnityAction action = () => Remove(cardIndex);
+            UnityAction action = () =>
+            {
+                Remove(cardIndex);
+                SoundController.Play(SoundCollection.Instance.GetSound("CardClick"));
+            };
             cardButton.onClick.AddListener(action);
         }
     }
