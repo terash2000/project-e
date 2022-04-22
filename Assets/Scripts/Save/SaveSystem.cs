@@ -146,6 +146,14 @@ public static class SaveSystem
         }
     }
 
+    public static void DeleteUnlockData()
+    {
+        if (File.Exists(Application.persistentDataPath + "/UnlockData.dat"))
+        {
+            File.Delete(Application.persistentDataPath + "/UnlockData.dat");
+        }
+    }
+
     private static List<KeyValuePair<string, bool>> DeckToString(List<InGameCard> deck)
     {
         List<KeyValuePair<string, bool>> deckString = deck.Select(card =>

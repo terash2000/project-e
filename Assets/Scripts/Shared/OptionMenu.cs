@@ -7,21 +7,12 @@ public class OptionMenu : MonoBehaviour
     public static bool AutoEndTurn;
     public static bool ShowMonstersAttackArea;
 
-    [SerializeField] private Slider _masterVolumeSlider;
-    [SerializeField] private Slider _bgmVolumeSlider;
-    [SerializeField] private Slider _seVolumeSlider;
-    [SerializeField] private Slider _voiceVolumeSlider;
     [SerializeField] private Toggle _autoEndTurnTog;
     [SerializeField] private Toggle _showAttackAreaTog;
     [SerializeField] private GameObject _confirmationPopup;
 
     public void Start()
     {
-        _masterVolumeSlider.value = SoundController.MasterVolume;
-        _bgmVolumeSlider.value = SoundController.BGMVolume;
-        _seVolumeSlider.value = SoundController.SEVolume;
-        _voiceVolumeSlider.value = SoundController.VoiceVolume;
-
         _autoEndTurnTog.isOn = AutoEndTurn;
         _showAttackAreaTog.isOn = ShowMonstersAttackArea;
     }
@@ -62,7 +53,7 @@ public class OptionMenu : MonoBehaviour
         else
         {
             GameObject newPopup = Instantiate(_confirmationPopup, transform.parent);
-            string message = "Are you sure? Abandoning the run will result in a loss";
+            string message = "Are you sure?\nAbandoning the run will result in a loss";
             UnityAction action = () => Abandon(true);
             newPopup.GetComponent<ConfirmationPopup>().Init(message, action);
         }
