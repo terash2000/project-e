@@ -9,8 +9,12 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     private const int START_HAND_AMOUNT = 5;
     private const int MAX_HAND_SIZE = 9;
     private const int CARD_PER_TURN = 2;
+
     private const float PREVIEW_DELAY = 0.8f;
     private const float FADING_SPEED = 10f;
+    private const float DRAW_COOLDOWN = 0.2f;
+    private const float DRAW_ANIMATION_SCALE = 1.8f;
+    private const float SINKING_SPEED = 8f;
 
     [SerializeField] private HorizontalLayoutGroup _handPanel;
     [SerializeField] private GameObject _cardPrefab;
@@ -29,6 +33,8 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     private Color _black = new Color(0f, 0f, 0f);
     private Color _red = new Color(1f, 0f, 0f);
     private float _previewAlpha = 1f;
+    private Queue<GameObject> _drawQueue = new Queue<GameObject>();
+    private float _drawCooldown = 0f;
 
     public bool IsDraggingCard
     {
@@ -79,6 +85,18 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
             _selectingCard = null;
         }
 
+        // Draw animation
+        if (_drawCooldown > 0)
+        {
+            _drawCooldown -= Time.deltaTime;
+        }
+        else if (_drawQueue.Count != 0)
+        {
+            StartCoroutine(DrawAnimation(_drawQueue.Dequeue()));
+            _drawCooldown = DRAW_COOLDOWN;
+        }
+
+        // Mana color
         for (int i = 0; i < _handPanel.transform.childCount; i++)
         {
             CardDisplay cardDisplay = _handPanel.transform.GetChild(i).GetComponent<CardDisplay>();
@@ -216,9 +234,12 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
 
     public void MovePreviewToHand(int index)
     {
+        int i = 0;
         foreach (CardDisplay card in CardManager.Instance.GetExtraPreviewCards())
         {
-            if (!AddCardToHand(card.Card, index)) return;
+
+            if (!AddCardToHand(card.Card, index + i)) return;
+            i++;
         }
     }
 
@@ -290,11 +311,32 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         if (_hand.Count >= MAX_HAND_SIZE) return false;
 
         _hand.Add(card);
+
         GameObject cardObj = Instantiate(_cardPrefab, _handPanel.transform);
         cardObj.GetComponent<CardDisplay>().Card = card;
         if (index >= 0) cardObj.transform.SetSiblingIndex(index);
+        cardObj.SetActive(false);
 
+        _drawQueue.Enqueue(cardObj);
         return true;
+    }
+
+    private IEnumerator DrawAnimation(GameObject cardObj)
+    {
+        cardObj.SetActive(true);
+
+        Transform cardTransform = cardObj.transform;
+        float scale = DRAW_ANIMATION_SCALE;
+        cardTransform.localScale = new Vector3(scale, scale, 1f);
+
+        while (scale > 1f)
+        {
+            if (cardTransform == null) yield break;
+            scale -= SINKING_SPEED * Time.deltaTime;
+            cardTransform.localScale = new Vector3(scale, scale, 1f);
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        cardTransform.localScale = new Vector3(1f, 1f, 1f);
     }
 
     private List<CardDisplay> GetExtraPreviewCards()
