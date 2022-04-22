@@ -15,8 +15,9 @@ public class SoundController : MonoBehaviour
 
     static void Start()
     {
-        Source = GameObject.Find("Sound");
-        if (Source == null) Source = GameObject.Find("Sound(Clone)");
+        Source = new GameObject("Sound");
+        Source.AddComponent<AudioSource>();
+        DontDestroyOnLoad(Source);
         SaveSystem.LoadOptionMenu();
 
         if (_voiceSource == null) _voiceSource = CreateSource();
