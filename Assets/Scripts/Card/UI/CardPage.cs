@@ -17,6 +17,7 @@ public class CardPage : Pagination
                 .ThenBy(card => card.IsUpgraded).ToList();
 
         gameObject.SetActive(true);
+        SoundController.Pause();
         Time.timeScale = 0f;
         GameManager.GameState = GameState.Pause;
 

@@ -9,7 +9,6 @@ public class SoundController : MonoBehaviour
     public static float BGMVolume;
     public static float SEVolume;
     public static float VoiceVolume;
-
     public static GameObject Source;
 
     private static AudioSource _voiceSource;
@@ -19,7 +18,8 @@ public class SoundController : MonoBehaviour
         Source = GameObject.Find("Sound");
         if (Source == null) Source = GameObject.Find("Sound(Clone)");
         SaveSystem.LoadOptionMenu();
-        _voiceSource = CreateSource();
+
+        if (_voiceSource == null) _voiceSource = CreateSource();
     }
 
     public static void SetMasterVolume(float sliderValue)
@@ -67,10 +67,15 @@ public class SoundController : MonoBehaviour
         source.Play();
     }
 
-    public static void PlayVoice(AudioClip sound)
+    public static void PlayVoice(AudioClip sound = null)
     {
         _voiceSource.clip = sound;
         _voiceSource.volume = VoiceVolume * MasterVolume;
         _voiceSource.Play();
+    }
+
+    public static void Pause()
+    {
+        _voiceSource.Stop();
     }
 }

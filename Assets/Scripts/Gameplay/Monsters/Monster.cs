@@ -24,6 +24,8 @@ public class Monster : GameCharacter
     [SerializeField]
     private GameObject _previewDamage;
     [SerializeField]
+    private GameObject _deathIcon;
+    [SerializeField]
     private HorizontalLayoutGroup _statusContainer;
     [SerializeField]
     private GameObject _statusPrefab;
@@ -134,11 +136,18 @@ public class Monster : GameCharacter
             CardManager.Instance.IsSelectingCard() &&
             CardManager.Instance.SelectingCard.Card.BaseCard.Type == CardType.Attack)
         {
-            _previewDamage.SetActive(true);
             int cardDamage = CardManager.Instance.SelectingCard.Card.Damage;
+            _previewDamage.SetActive(true);
+            _deathIcon.SetActive(false);
             _previewDamage.GetComponent<TextMeshProUGUI>().text = cardDamage.ToString();
+
+            _deathIcon.SetActive(cardDamage >= Health + Block);
         }
-        else _previewDamage.SetActive(false);
+        else
+        {
+            _previewDamage.SetActive(false);
+            _deathIcon.SetActive(false);
+        }
 
         // damage popup
         if (_damagePopupCooldown > 0)

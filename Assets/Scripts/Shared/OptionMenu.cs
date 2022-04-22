@@ -20,6 +20,7 @@ public class OptionMenu : MonoBehaviour
     public void Pause()
     {
         gameObject.SetActive(true);
+        SoundController.Pause();
         Time.timeScale = 0f;
         GameManager.GameState = GameState.Pause;
     }
