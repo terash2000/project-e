@@ -17,10 +17,11 @@ MonoBehaviour:
   Quote: I let Hydrogen do as she want. We succussfuly operate the airship and ride
     it through the journey.
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: f2a683f1785f1af41b56e2cf86101906, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: 62b552d6bb123514280b2fd4472beb0f, type: 2}
   Choice: []
   NextWave: {fileID: 0}
   Shake: 0
+  Voice: {fileID: 0}

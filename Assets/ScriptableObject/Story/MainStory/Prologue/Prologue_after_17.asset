@@ -18,7 +18,7 @@ MonoBehaviour:
     If you don't have any specific destination in mind, do you want to join this
     journey with us.
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: c4658681181eb314ba822bb9c295b23a, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: f460c1f4fef0c5144a45a5c4f73cd9dd, type: 2}

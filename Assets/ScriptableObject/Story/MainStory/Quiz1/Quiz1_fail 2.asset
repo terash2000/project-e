@@ -16,9 +16,10 @@ MonoBehaviour:
   Character: {fileID: 11400000, guid: 023d19118fe4ba347a0d4cca9668092d, type: 2}
   Quote: Don't be depressed. You can try this test again later.
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: e275bc0b22fc1c14e8f1d071dd27ef92, type: 3}
   Actions: []
   Child: []
   Choice: []
   NextWave: {fileID: 0}
   Shake: 0
+  Voice: {fileID: 0}

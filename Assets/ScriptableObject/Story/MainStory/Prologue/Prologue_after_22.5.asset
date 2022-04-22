@@ -18,10 +18,11 @@ MonoBehaviour:
     them are being dragged and piled together by Hydrogen. I guess she know how to
     get rid of the radiation.
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: bbc9d5938ff001f4e993101a4ce552a5, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: 5e17468f76a104b48af997667ad335e2, type: 2}
   Choice: []
   NextWave: {fileID: 0}
   Shake: 0
+  Voice: {fileID: 0}

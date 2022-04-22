@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   Character: {fileID: 0}
-  Quote: You come across a huge airship which appears abandoned. Inside, you can't
+  Quote: I come across a huge airship which appears abandoned. Inside, I can't find
     anything useful but the airship itself seem to be operational if we have some
     lifting gas.
   Background: {fileID: 21300000, guid: db103d9d7924efc4a8085de44cffeb04, type: 3}
@@ -25,3 +25,4 @@ MonoBehaviour:
   Choice: []
   NextWave: {fileID: 0}
   Shake: 0
+  Voice: {fileID: 0}

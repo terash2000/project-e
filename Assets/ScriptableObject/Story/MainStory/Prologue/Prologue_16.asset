@@ -16,7 +16,7 @@ MonoBehaviour:
   Character: {fileID: 11400000, guid: cc45d51f1678ff74d928069e7c663ca4, type: 2}
   Quote: Look like the villagers are in danger! Can you help me fight these demons?
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: c1e4faad63f61e446b4bfe81be17de11, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: 3f3d141837dceaa4fb5494cc3d466843, type: 2}

@@ -17,7 +17,7 @@ MonoBehaviour:
   Quote: Normally no one can see us. You are the exception, I guess. You aren't living
     in this village aren't you? I've never seen you before.
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: a56461458369740469e2174e8e990432, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: 071f2be2611f88743905f54927d9fc00, type: 2}

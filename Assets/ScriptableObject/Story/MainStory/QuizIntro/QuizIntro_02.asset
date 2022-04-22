@@ -17,7 +17,7 @@ MonoBehaviour:
   Quote: Hydrogen know their location. Maybe, if you pass her test. She will tell
     you more.
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: e183d6cd8ba4034468bd6d43fb61f91f, type: 3}
   Actions:
   - Type: 1
     Amount: 0
@@ -27,3 +27,4 @@ MonoBehaviour:
   Choice: []
   NextWave: {fileID: 0}
   Shake: 0
+  Voice: {fileID: 0}

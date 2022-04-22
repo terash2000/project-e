@@ -16,7 +16,7 @@ MonoBehaviour:
   Character: {fileID: 11400000, guid: 545756ae3372a914e89f3d166d598476, type: 2}
   Quote: Aaaah! Demon!!! It's attacking the village!
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: a56461458369740469e2174e8e990432, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: 5cdba3af0742cf147b01b730b47b490d, type: 2}

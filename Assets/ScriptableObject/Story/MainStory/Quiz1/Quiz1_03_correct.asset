@@ -16,7 +16,7 @@ MonoBehaviour:
   Character: {fileID: 11400000, guid: 023d19118fe4ba347a0d4cca9668092d, type: 2}
   Quote: Correct! As promised, Here's your reward.
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: f2a683f1785f1af41b56e2cf86101906, type: 3}
   Actions:
   - Type: 1
     Amount: 0
@@ -30,3 +30,4 @@ MonoBehaviour:
   Choice: []
   NextWave: {fileID: 0}
   Shake: 0
+  Voice: {fileID: 0}

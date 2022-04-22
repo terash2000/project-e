@@ -16,7 +16,7 @@ MonoBehaviour:
   Character: {fileID: 0}
   Quote: You succussfuly operated the airship and rided it through the journey. You
     had a good rest in the airship. Your Health is retored!
-  Background: {fileID: 0}
+  Background: {fileID: 21300000, guid: 7459f481fc0317841b8c8119e3702de9, type: 3}
   Sprite: {fileID: 0}
   Actions:
   - Type: 3
@@ -27,3 +27,4 @@ MonoBehaviour:
   Choice: []
   NextWave: {fileID: 0}
   Shake: 0
+  Voice: {fileID: 0}

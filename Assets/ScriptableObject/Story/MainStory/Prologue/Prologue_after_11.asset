@@ -16,7 +16,7 @@ MonoBehaviour:
   Character: {fileID: 11400000, guid: 1d8826336a6e72649af7f39e9286e0b6, type: 2}
   Quote: Because we are element. It's that simple.
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 771dd5c5bae706847b14699f744adb09, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: 6b08bac5108716344b0167f064b12350, type: 2}

@@ -5,12 +5,14 @@ using UnityEngine.UI;
 public class ResetGame : MonoBehaviour
 {
     [SerializeField] private GameObject _confirmationPopup;
+    [SerializeField] private Button _continueButton;
 
     public void ResetData(bool confirm = false)
     {
         if (confirm)
         {
             SaveSystem.DeleteSave();
+            _continueButton.interactable = false;
             SaveSystem.DeleteUnlockData();
             SaveSystem.LoadUnlockData();
         }

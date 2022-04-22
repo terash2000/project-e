@@ -17,7 +17,7 @@ MonoBehaviour:
   Quote: You'll got nothing. But you have nowhere to go in the first place. Therefore,
     joining us seem not a bad decision. You might find your way home during the adventure.
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 883f9a58179f1fa4d9c2da029ebf280d, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: 89fc3e2f9ee013e4d93f5c9a184b4081, type: 2}

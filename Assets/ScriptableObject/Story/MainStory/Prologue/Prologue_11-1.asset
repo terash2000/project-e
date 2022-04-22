@@ -16,7 +16,7 @@ MonoBehaviour:
   Character: {fileID: 11400000, guid: cc45d51f1678ff74d928069e7c663ca4, type: 2}
   Quote: Impossible.. This is weird.
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: bf3d815dd77ea1740bf33003ddd17e54, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: 74f50a36b78eab540addfe18faffba14, type: 2}

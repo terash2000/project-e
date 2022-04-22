@@ -17,7 +17,7 @@ MonoBehaviour:
   Quote: And why I am the only spirit summoned in this fight. Helium! you're always
     nowhere to be found in the battle.
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: d978924420437544e9161eb67510bb17, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: 18b59f156f8b56c4e9ddfbf1e2aa116f, type: 2}

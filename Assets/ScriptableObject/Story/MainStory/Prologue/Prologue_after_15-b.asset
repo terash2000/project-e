@@ -17,7 +17,7 @@ MonoBehaviour:
   Quote: Really!? You're from another world!! How could you travel to this world?
     Do you know how to go back? Where you gonna go next?
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: c33bac1c71adc984f973a803bc7a2a2a, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: 89fafd99e4451c944918a1f5fffd63c5, type: 2}

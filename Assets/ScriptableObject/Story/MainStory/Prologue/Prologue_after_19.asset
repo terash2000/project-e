@@ -17,7 +17,7 @@ MonoBehaviour:
   Quote: I don't know where she at. But if we follow the trace the radioactivity,
     I will eventually find her.
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: e331c88fc8699b14ca386f82f325892f, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: 07261fa8bf9866e408fec56acd4557ad, type: 2}

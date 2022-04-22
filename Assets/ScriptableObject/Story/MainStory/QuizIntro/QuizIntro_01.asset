@@ -16,10 +16,11 @@ MonoBehaviour:
   Character: {fileID: 11400000, guid: 1d8826336a6e72649af7f39e9286e0b6, type: 2}
   Quote: Hmm? Are you asking me about the other elements?
   Background: {fileID: 21300000, guid: 3fda5bf2366760f4b96758883eb55b18, type: 3}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: a56461458369740469e2174e8e990432, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: 4c8f3d4b9be77fd48b16efc8174c9d16, type: 2}
   Choice: []
   NextWave: {fileID: 0}
   Shake: 0
+  Voice: {fileID: 0}

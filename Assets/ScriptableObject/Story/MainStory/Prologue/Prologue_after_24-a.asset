@@ -18,7 +18,7 @@ MonoBehaviour:
     her back and cage her in the radiation protection room such as concrete or lead
     so she can't escape.
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: bf3d815dd77ea1740bf33003ddd17e54, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: 5e17468f76a104b48af997667ad335e2, type: 2}

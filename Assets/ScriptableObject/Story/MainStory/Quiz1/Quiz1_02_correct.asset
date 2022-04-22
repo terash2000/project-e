@@ -16,10 +16,11 @@ MonoBehaviour:
   Character: {fileID: 11400000, guid: 023d19118fe4ba347a0d4cca9668092d, type: 2}
   Quote: Correct!  Hydrogen is the lightest element with atomic number 1.
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: bbc9d5938ff001f4e993101a4ce552a5, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: cfbaca8838bd7ee4495f98ceed15057d, type: 2}
   Choice: []
   NextWave: {fileID: 0}
   Shake: 0
+  Voice: {fileID: 0}

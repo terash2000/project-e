@@ -16,7 +16,7 @@ MonoBehaviour:
   Character: {fileID: 11400000, guid: 1d8826336a6e72649af7f39e9286e0b6, type: 2}
   Quote: .....
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 8cbdcbdba65114943bc1d8d3da6cdfd5, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: 563f1989f3d36154d9c352a9f534f94c, type: 2}

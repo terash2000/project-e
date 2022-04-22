@@ -16,7 +16,7 @@ MonoBehaviour:
   Character: {fileID: 11400000, guid: 1d8826336a6e72649af7f39e9286e0b6, type: 2}
   Quote: I see. So, you don't know the way home... What you gonna do next?
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: c1e4faad63f61e446b4bfe81be17de11, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: 89fafd99e4451c944918a1f5fffd63c5, type: 2}

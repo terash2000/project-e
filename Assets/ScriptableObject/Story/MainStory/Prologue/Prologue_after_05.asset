@@ -16,7 +16,7 @@ MonoBehaviour:
   Character: {fileID: 11400000, guid: 1d8826336a6e72649af7f39e9286e0b6, type: 2}
   Quote: I'm too lazy. That's it!
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 92a20f55a75dbed4f82c2a6d8f1e6fd5, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: 78e6b14660530454d98ce5e4ca7beca3, type: 2}

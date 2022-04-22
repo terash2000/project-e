@@ -17,7 +17,7 @@ MonoBehaviour:
   Quote: Or even if you don't have any special power, having more people to talk
     in the party is always more funny, aren't it?
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: e1f52e9974c64424d9be33e47a9a3dac, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: 5e17468f76a104b48af997667ad335e2, type: 2}

@@ -16,7 +16,7 @@ MonoBehaviour:
   Character: {fileID: 11400000, guid: 1d8826336a6e72649af7f39e9286e0b6, type: 2}
   Quote: She is the one who unleash those demons...
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: bf3d815dd77ea1740bf33003ddd17e54, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: 88dcf3e3ad1c7094e893c974aa8cd690, type: 2}

@@ -16,7 +16,7 @@ MonoBehaviour:
   Character: {fileID: 11400000, guid: 023d19118fe4ba347a0d4cca9668092d, type: 2}
   Quote: Oh! I haven't introduce myself yet. My name is Hydrogen. Happy to meet you!
   Background: {fileID: 0}
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: f2a683f1785f1af41b56e2cf86101906, type: 3}
   Actions: []
   Child:
   - {fileID: 11400000, guid: eb3ced6762efc284ebde715c2357a676, type: 2}

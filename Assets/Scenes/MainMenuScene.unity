@@ -1614,6 +1614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _confirmationPopup: {fileID: 5984139876473836622, guid: d17398450ca033342ae5014d530fb58f,
     type: 3}
+  _continueButton: {fileID: 279754541}
 --- !u!114 &576441568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4563,6 +4564,23 @@ MonoBehaviour:
       amount: 2
       statusType: 0
       card: {fileID: 11400000, guid: dc769739786f4604cb8c38fbb748b4f3, type: 2}
+  - Base1: 4
+    Base2: 8
+    Result: 13
+    AttackCardBonuses:
+    - type: 0
+      amount: -3
+      statusType: 0
+      card: {fileID: 0}
+    - type: 4
+      amount: 2
+      statusType: 1
+      card: {fileID: 0}
+    SkillCardBonuses:
+    - type: 0
+      amount: -3
+      statusType: 0
+      card: {fileID: 0}
   _newCardPopup: {fileID: 5781192978451266083, guid: 4fa99ae6d71c4e440b36df87a482ac4a,
     type: 3}
   _chooseCardPopup: {fileID: 1809415070924254837, guid: aa97780a3a93ac44ba69e5b07b7a07e7,
