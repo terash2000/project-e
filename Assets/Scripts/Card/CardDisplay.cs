@@ -32,10 +32,10 @@ public class CardDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        render();
+        Render();
     }
 
-    public void render()
+    public void Render()
     {
         if (_card == null)
         {

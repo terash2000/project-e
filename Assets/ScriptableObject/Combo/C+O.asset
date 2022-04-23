@@ -22,8 +22,9 @@ MonoBehaviour:
     card: {fileID: 0}
   SkillCardBonuses:
   - type: 3
-    amount: 1
+    amount: 2
     statusType: 0
     card: {fileID: 0}
   Equation: "C + O \u2192 CO"
-  Description: 
+  Description: 'Attack: Stun +1___Skill: Range +2, Gain Weak'
+  Type: 0

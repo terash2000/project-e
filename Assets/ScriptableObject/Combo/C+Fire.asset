@@ -30,9 +30,10 @@ MonoBehaviour:
     card: {fileID: 11400000, guid: 29c9bb8948c9cef4dbab804a5fec51a1, type: 2}
   SkillCardBonuses:
   - type: 5
-    amount: 1
+    amount: 2
     statusType: 0
     card: {fileID: 11400000, guid: 29c9bb8948c9cef4dbab804a5fec51a1, type: 2}
-  Equation: "C (Fuel) + O2 \u2192 CO2 + H2O + Energy"
-  Description: 
+  Equation: Carbon (Fuel) Combustion
+  Description: 'Attack: Damage +5, Burn +1, Create a Smoke card___Skill: Create two
+    Smoke cards.'
   Type: 1

@@ -29,6 +29,6 @@ MonoBehaviour:
     amount: 1
     statusType: 0
     card: {fileID: 0}
-  Equation: "H2 + O2 \u2192 H2O + Energy"
-  Description: 
+  Equation: Hydrogen Combustion
+  Description: 'Attack: Radius +1, Burn +1___Skill: Range +1'
   Type: 1

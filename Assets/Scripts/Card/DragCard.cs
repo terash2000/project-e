@@ -163,7 +163,7 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                 // Upgrade base card
                 _card.IsToken = true;
                 _card.GainComboBonus(combo);
-                GetComponent<CardDisplay>().render();
+                GetComponent<CardDisplay>().Render();
 
                 // Add other created cards to hand
                 CardManager.Instance.MovePreviewToHand(_placeholder.transform.GetSiblingIndex() + 1);

@@ -204,7 +204,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     public void Preview(InGameCard card, List<InGameCard> otherCards = null)
     {
         _previewCard.Card = card;
-        _previewCard.render();
+        _previewCard.Render();
 
         _previewContainer.SetActive(true);
 

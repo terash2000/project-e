@@ -22,4 +22,5 @@ MonoBehaviour:
     card: {fileID: 0}
   SkillCardBonuses: []
   Equation: "H + Cl \u2192 HCl"
-  Description: 
+  Description: 'Attack: Acid +3___Skill: Gain Strong +1'
+  Type: 0

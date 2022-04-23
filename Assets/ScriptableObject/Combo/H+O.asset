@@ -26,5 +26,5 @@ MonoBehaviour:
     statusType: 0
     card: {fileID: 0}
   Equation: "H2 + O2 \u2192 H2O"
-  Description: 
+  Description: Reduce mana used by 2.
   Type: 0

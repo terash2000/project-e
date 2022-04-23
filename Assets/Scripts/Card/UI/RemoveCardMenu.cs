@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class RemoveCardMenu : CardPage
@@ -27,6 +28,17 @@ public class RemoveCardMenu : CardPage
                 SoundController.Play(SoundCollection.Instance.GetSound("CardClick"));
             };
             cardButton.onClick.AddListener(action);
+
+            EventTrigger trigger = cardObj.AddComponent(typeof(EventTrigger)) as EventTrigger;
+            EventTrigger.Entry entryEnter = new EventTrigger.Entry();
+            entryEnter.eventID = EventTriggerType.PointerEnter;
+            entryEnter.callback.AddListener((data) => { cardObj.GetComponent<CardDisplay>().Highlight(); SoundController.Play(SoundCollection.Instance.GetSound("CardHover")); });
+            trigger.triggers.Add(entryEnter);
+
+            EventTrigger.Entry entryExit = new EventTrigger.Entry();
+            entryExit.eventID = EventTriggerType.PointerExit;
+            entryExit.callback.AddListener((data) => { cardObj.GetComponent<CardDisplay>().Unhighlight(); });
+            trigger.triggers.Add(entryExit);
         }
     }
 
