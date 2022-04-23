@@ -190,14 +190,14 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
 
     public void ShowDeck()
     {
-        _cardPage.Cards = _deck;
-        _cardPage.Open();
+        string header = "Draw Pile";
+        _cardPage.Open(_deck, header);
     }
 
     public void ShowGravyard()
     {
-        _cardPage.Cards = _graveyard;
-        _cardPage.Open();
+        string header = "Discard Pile";
+        _cardPage.Open(_graveyard, header);
     }
 
     public void Preview(InGameCard card, List<InGameCard> otherCards = null)

@@ -35,6 +35,7 @@ public class StoryAction
 
                 StoryMenu.CompletedStory.Add(rootEvent.name);
                 SaveSystem.Save();
+                SaveSystem.SaveUnlockData();
                 break;
 
             case ActionType.AddCardToDeck:
@@ -105,6 +106,7 @@ public class StoryAction
                     if (PlayerData.Health <= 0) PlayerData.Health = 1;
                     BackgroundShake.Instance.Shake();
                 }
+                SaveSystem.Save();
                 break;
         }
     }

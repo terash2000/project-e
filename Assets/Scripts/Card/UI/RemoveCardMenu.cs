@@ -8,8 +8,7 @@ public class RemoveCardMenu : CardPage
 
     public void OpenRemoveCardMenu()
     {
-        _cards = PlayerData.Deck;
-        Open();
+        Open(PlayerData.Deck);
     }
 
     protected override void RenderCard()

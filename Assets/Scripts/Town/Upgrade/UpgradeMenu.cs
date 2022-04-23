@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -10,8 +11,8 @@ public class UpgradeMenu : CardPage
 
     public void OpenUpgradeMenu()
     {
-        _cards = PlayerData.Deck.FindAll(card => !card.IsUpgraded);
-        Open();
+        List<InGameCard> upgradableCards = PlayerData.Deck.FindAll(card => !card.IsUpgraded);
+        Open(upgradableCards);
     }
 
     protected override void RenderCard()

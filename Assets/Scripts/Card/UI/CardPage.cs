@@ -1,16 +1,23 @@
+using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class CardPage : Pagination
 {
+    [SerializeField] private TextMeshProUGUI _header;
+
     public void OpenPlayerDeck()
     {
-        _cards = PlayerData.Deck;
-        Open();
+        string header = "Deck";
+        Open(PlayerData.Deck, header);
     }
 
-    public void Open()
+    public void Open(List<InGameCard> cards, string header = null)
     {
+        _cards = cards;
+        if (header != null) _header.text = header;
+
         _cards = _cards.OrderBy(card => card.BaseCard.ManaCost)
                 .ThenBy(card => card.BaseCard.Rarity)
                 .ThenBy(card => card.BaseCard.CardName)
