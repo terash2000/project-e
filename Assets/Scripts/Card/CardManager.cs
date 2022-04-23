@@ -163,6 +163,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         {
             RefillDeck();
             _gravyardButton.interactable = false;
+            _gravyardText.text = "0";
         }
         if (_deck.Count > 0)
         {

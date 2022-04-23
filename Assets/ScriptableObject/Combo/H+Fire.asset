@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee132ecb7a1202344b66e53400f8ac76, type: 3}
+  m_Name: H+Fire
+  m_EditorClassIdentifier: 
+  Base1: 1
+  Base2: 6
+  Result: 6
+  AttackCardBonuses:
+  - type: 2
+    amount: 1
+    statusType: 0
+    card: {fileID: 0}
+  - type: 4
+    amount: 1
+    statusType: 2
+    card: {fileID: 0}
+  SkillCardBonuses:
+  - type: 3
+    amount: 1
+    statusType: 0
+    card: {fileID: 0}
+  Equation: "H2 + O2 \u2192 H2O + Energy"
+  Description: 
+  Type: 1

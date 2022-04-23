@@ -19,6 +19,7 @@ public class CardCollection : MonoBehaviourSingletonPersistent<CardCollection>
         set { _unlockDict = value; }
     }
 
+    public List<Combo> AllCombo { get { return _allCombo; } }
     public GameObject NewCardPopup { get { return _newCardPopup; } }
     public GameObject ChooseCardPopup { get { return _chooseCardPopup; } }
     public GameObject CardPrefab { get { return _cardPrefab; } }
