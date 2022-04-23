@@ -24,20 +24,29 @@ public class Node : MonoBehaviour
 
     void OnMouseEnter()
     {
-        transform.localScale = transform.localScale * 1.2f;
-        SoundController.Play(SoundCollection.Instance.GetSound("IconHover"));
+        if (Map.Instance.OnMap())
+        {
+            transform.localScale = transform.localScale * 1.2f;
+            SoundController.Play(SoundCollection.Instance.GetSound("IconHover"));
+        }
     }
 
     void OnMouseExit()
     {
-        transform.localScale = transform.localScale / 1.2f;
+        if (Map.Instance.OnMap())
+        {
+            transform.localScale = transform.localScale / 1.2f;
+        }
     }
 
     void OnMouseUp()
     {
-        SoundController.Play(SoundCollection.Instance.GetSound("IconClick"));
-        Map.Instance.AddNodeToPath(this);
-        ChangeScene();
+        if (Map.Instance.OnMap())
+        {
+            SoundController.Play(SoundCollection.Instance.GetSound("IconClick"));
+            Map.Instance.AddNodeToPath(this);
+            ChangeScene();
+        }
     }
 
     public void OnClickable()

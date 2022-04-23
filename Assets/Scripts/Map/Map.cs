@@ -364,4 +364,9 @@ public class Map : MonoBehaviourSingleton<Map>
         GetComponent<RectTransform>().position = pos;
     }
 
+    public bool OnMap()
+    {
+        return GameObject.Find("TipsMenu") == null && GameObject.Find("Deck List") == null && GameObject.Find("Option Menu") == null;
+    }
+
 }
