@@ -20,6 +20,7 @@ public class Map : MonoBehaviourSingleton<Map>
     [SerializeField] private GameObject _edgePrefab;
     [SerializeField] private GameObject _completePopup;
     [SerializeField] private List<float> _weights;
+    [SerializeField] private float _nodeAreaRatio;
     private List<Node> _nodes = new List<Node>();
     private List<LineRenderer> _edges = new List<LineRenderer>();
     private Node _curNode;
@@ -88,8 +89,8 @@ public class Map : MonoBehaviourSingleton<Map>
             }*/
         }
         _nodes = _nodes.OrderByDescending(x => x.gameObject.transform.position.x).ToList();
-        _nodes[0].transform.position = new Vector3(_nodes[0].transform.position.x, 0, transform.position.z);
-        _nodes.Last().transform.position = new Vector3(_nodes.Last().transform.position.x, 0, transform.position.z);
+        _nodes[0].transform.position = new Vector3(_nodes[0].transform.position.x, -0.25f, transform.position.z);
+        _nodes.Last().transform.position = new Vector3(_nodes.Last().transform.position.x, -0.25f, transform.position.z);
 
         for (int i = 1; i < _numNode; i++)
         {
@@ -219,9 +220,13 @@ public class Map : MonoBehaviourSingleton<Map>
 
     public Vector3 RandomPos(int layer)
     {
-        float startX = GetXMin() + GetMapSize().x * (layer + 0.25f) / _numLayer;
-        float x = Random.Range(startX, startX + 0.5f * GetMapSize().x / _numLayer);
         float y = Random.Range(-GetMapSize().y / 2, GetMapSize().y / 2 - 0.5f);
+        float nodeAreaRatio = _nodeAreaRatio;
+        float startRatio = (1 - _nodeAreaRatio) / 2;
+        if (layer == 1 || layer == _numLayer - 2) nodeAreaRatio = _nodeAreaRatio * (1 - 1.5f * Mathf.Abs((y + 0.25f) / (GetMapSize().y - 0.5f)));
+        if (layer == _numLayer - 2) startRatio = 1 - nodeAreaRatio;
+        float startX = GetXMin() + GetMapSize().x * (layer + startRatio) / _numLayer;
+        float x = Random.Range(startX, startX + nodeAreaRatio * GetMapSize().x / _numLayer);
         foreach (Node node in _nodes)
         {
             if ((Mathf.Abs(x - node.transform.position.x) < _minGap && Mathf.Abs(y - node.transform.position.y) < _minGap))
