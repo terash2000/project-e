@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    private const float COMBINE_RANGE = 70f;
+    private const float COMBINE_RANGE = 80f;
 
     private Transform _handPanel;
     private RectTransform _dragRectTransform;
@@ -16,6 +16,7 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     private InGameCard _card;
     private CardDisplay _cardToCombine;
     private bool _isSelected = false;
+    private bool _isZoom;
 
     // A card placeholder that take a space of hand panel when the actual card is being dragged aroud
     public GameObject Placeholder { get { return _placeholder; } }
@@ -25,6 +26,10 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     {
         get { return _isSelected; }
         set { _isSelected = value; }
+    }
+    public bool IsZoom
+    {
+        get { return _isZoom; }
     }
 
     private void Start()
@@ -218,11 +223,24 @@ public class DragCard : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     {
         Arena.Instance.HideRadius();
         GetComponent<Image>().color = Color.white;
+
+        _isZoom = false;
+        if (Mathf.Approximately(gameObject.transform.localScale.x, CardManager.ZOOM_CARD_SCALE))
+        {
+            gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+        }
     }
 
     private void ShowPreviewCardEffect()
     {
         Arena.Instance.ShowRadius(_card);
         GetComponent<Image>().color = Color.yellow;
+
+        _isZoom = true;
+        if (Mathf.Approximately(gameObject.transform.localScale.x, 1f))
+        {
+            float scale = CardManager.ZOOM_CARD_SCALE;
+            gameObject.transform.localScale = new Vector3(scale, scale, 1f);
+        }
     }
 }

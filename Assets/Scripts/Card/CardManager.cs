@@ -11,11 +11,12 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     private const int MAX_HAND_SIZE = 9;
     private const int CARD_PER_TURN = 2;
 
+    public const float ZOOM_CARD_SCALE = 1.1f;
     private const float PREVIEW_DELAY = 0.8f;
     private const float FADING_SPEED = 10f;
     private const float DRAW_COOLDOWN = 0.2f;
-    private const float DRAW_ANIMATION_SCALE = 1.8f;
-    private const float SINKING_SPEED = 8f;
+    private const float DRAW_ANIMATION_SCALE = 1.4f;
+    private const float SINKING_SPEED = 3f;
 
     [SerializeField] private HorizontalLayoutGroup _handPanel;
     [SerializeField] private GameObject _cardPrefab;
@@ -323,6 +324,8 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         cardObj.SetActive(true);
 
         Transform cardTransform = cardObj.transform;
+        DragCard dragCard = cardObj.GetComponent<DragCard>();
+
         float scale = DRAW_ANIMATION_SCALE;
         cardTransform.localScale = new Vector3(scale, scale, 1f);
 
@@ -331,9 +334,21 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
             if (cardTransform == null) yield break;
             scale -= SINKING_SPEED * Time.deltaTime;
             cardTransform.localScale = new Vector3(scale, scale, 1f);
+            if (dragCard.IsZoom && scale < ZOOM_CARD_SCALE)
+            {
+                cardTransform.localScale = new Vector3(ZOOM_CARD_SCALE, ZOOM_CARD_SCALE, 1f);
+            }
             yield return new WaitForSeconds(Time.deltaTime);
         }
-        cardTransform.localScale = new Vector3(1f, 1f, 1f);
+
+        if (dragCard.IsZoom)
+        {
+            cardTransform.localScale = new Vector3(ZOOM_CARD_SCALE, ZOOM_CARD_SCALE, 1f);
+        }
+        else
+        {
+            cardTransform.localScale = new Vector3(1f, 1f, 1f);
+        }
     }
 
     private List<CardDisplay> GetExtraPreviewCards()
