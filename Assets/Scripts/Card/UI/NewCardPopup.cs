@@ -7,6 +7,11 @@ public class NewCardPopup : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _header;
     [SerializeField] private GridLayoutGroup _cardContainer;
 
+    public void Update()
+    {
+        Time.timeScale = 0f;
+    }
+
     public void Init(string message, InGameCard card)
     {
         _header.text = message;
@@ -17,9 +22,8 @@ public class NewCardPopup : MonoBehaviour
         }
         GameObject cardObj = Instantiate(CardCollection.Instance.CardPrefab, _cardContainer.transform);
         cardObj.GetComponent<CardDisplay>().Card = card;
-
-        Time.timeScale = 0f;
     }
+
     public void HidePopup()
     {
         Destroy(gameObject);

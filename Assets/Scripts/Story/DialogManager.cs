@@ -128,16 +128,16 @@ public class DialogManager : MonoBehaviourSingleton<DialogManager>
                 _characterName.SetActive(true);
             }
             else _characterName.SetActive(false);
-        }
 
-        // image
-        if (_current.Background != null) _background.sprite = _current.Background;
-        if (_current.Sprite != null)
-        {
-            _sprite.sprite = _current.Sprite;
-            _sprite.gameObject.SetActive(true);
+            // image
+            if (_current.Background != null) _background.sprite = _current.Background;
+            if (_current.Sprite != null)
+            {
+                _sprite.sprite = _current.Sprite;
+                _sprite.gameObject.SetActive(true);
+            }
+            else _sprite.gameObject.SetActive(false);
         }
-        else _sprite.gameObject.SetActive(false);
 
         // choice
         for (int i = 0; i < _choiceContainer.transform.childCount; i++)

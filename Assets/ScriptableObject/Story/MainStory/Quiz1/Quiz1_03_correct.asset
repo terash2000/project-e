@@ -24,9 +24,14 @@ MonoBehaviour:
     rootEvent: {fileID: 11400000, guid: 92a9de745ea828547aa73c84b1103dbb, type: 2}
   - Type: 5
     Amount: 0
-    Name: German Suplex
-    rootEvent: {fileID: 11400000, guid: 92a9de745ea828547aa73c84b1103dbb, type: 2}
-  Child: []
+    Name: Trust
+    rootEvent: {fileID: 0}
+  - Type: 5
+    Amount: 0
+    Name: Wide Slash
+    rootEvent: {fileID: 0}
+  Child:
+  - {fileID: 11400000, guid: bf41c4682ea37af4e8bffe6a0adf132a, type: 2}
   Choice: []
   NextWave: {fileID: 0}
   Shake: 0

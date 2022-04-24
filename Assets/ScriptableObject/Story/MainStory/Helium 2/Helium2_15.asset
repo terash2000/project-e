@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
+  m_Name: Helium2_15
+  m_EditorClassIdentifier: 
+  Type: 0
+  Character: {fileID: 11400000, guid: 1d8826336a6e72649af7f39e9286e0b6, type: 2}
+  Quote: Correct! Seem like this question is too easy. Let's make next question harder,
+    shall we?
+  Background: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: bfe85f4a574ef7946be716d236aaa1c8, type: 3}
+  Actions: []
+  Child:
+  - {fileID: 11400000, guid: 61ee910249709d04ba306370fcc0042e, type: 2}
+  Choice: []
+  NextWave: {fileID: 0}
+  Shake: 0
+  Voice: {fileID: 0}

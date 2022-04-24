@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   Character: {fileID: 11400000, guid: 1d8826336a6e72649af7f39e9286e0b6, type: 2}
-  Quote: Well, We are on a mission finding and bringing back our friend, Uranium.
+  Quote: Well then... We are on a mission finding and bringing back our friend, Uranium...
     If you don't have any specific destination in mind, do you want to join this
     journey with us.
   Background: {fileID: 0}

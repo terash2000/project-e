@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: QuizIntro
   m_EditorClassIdentifier: 
   DialogNode: {fileID: 11400000, guid: a2a9914673fb0274eb0420bdbb120e3e, type: 2}
-  Text: About other elements?
+  Text: About other elements and cards?
+  Banner: {fileID: 21300000, guid: 8d6adc72f9289d541b64ea112f87551c, type: 3}
   PreviousEvents: []

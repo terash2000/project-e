@@ -26,3 +26,4 @@ MonoBehaviour:
   - Are you a ghost?
   NextWave: {fileID: 0}
   Shake: 0
+  Voice: {fileID: 0}

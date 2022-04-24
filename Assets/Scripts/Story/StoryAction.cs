@@ -69,6 +69,7 @@ public class StoryAction
                 break;
 
             case ActionType.UnlockCard:
+                if (CardCollection.UnlockDict[Name]) break;
                 CardCollection.UnlockCard(Name);
                 InGameCard unlockedCard = new InGameCard(CardCollection.Instance.FindCardByName(Name));
                 DialogManager.Instance.ShowPopup("Unlock!", unlockedCard);

@@ -28,3 +28,4 @@ MonoBehaviour:
   - Can't you fight those DEMONS yourself?
   NextWave: {fileID: 0}
   Shake: 0
+  Voice: {fileID: 0}

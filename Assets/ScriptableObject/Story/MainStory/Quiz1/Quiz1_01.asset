@@ -15,8 +15,8 @@ MonoBehaviour:
   Type: 0
   Character: {fileID: 11400000, guid: 023d19118fe4ba347a0d4cca9668092d, type: 2}
   Quote: Welcome, I have a lot of questions prepared for you. Hehe! This is your
-    first test. Therefore, let's start with only 2 question.
-  Background: {fileID: 21300000, guid: 3fda5bf2366760f4b96758883eb55b18, type: 3}
+    first test. Therefore, let's start with only two questions.
+  Background: {fileID: 21300000, guid: 8f2da5ecce685d74dab7a5da5ae52fc5, type: 3}
   Sprite: {fileID: 21300000, guid: e1f52e9974c64424d9be33e47a9a3dac, type: 3}
   Actions: []
   Child:

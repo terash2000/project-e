@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   Character: {fileID: 11400000, guid: 1d8826336a6e72649af7f39e9286e0b6, type: 2}
-  Quote: Hydrogen know their location. Maybe, if you pass her test. She will tell
-    you more.
+  Quote: Hydrogen know their location. Maybe, if you pass her test. She will let
+    you meet them.
   Background: {fileID: 0}
   Sprite: {fileID: 21300000, guid: e183d6cd8ba4034468bd6d43fb61f91f, type: 3}
   Actions:

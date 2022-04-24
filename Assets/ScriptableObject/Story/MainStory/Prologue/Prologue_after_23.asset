@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 1
   Character: {fileID: 0}
-  Quote: 
+  Quote: What should I say?
   Background: {fileID: 0}
   Sprite: {fileID: 0}
   Actions: []

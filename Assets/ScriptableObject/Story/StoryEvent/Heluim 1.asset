@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53231fe4de8b4784ba7370c482dd0968, type: 3}
+  m_Name: Heluim 1
+  m_EditorClassIdentifier: 
+  DialogNode: {fileID: 11400000, guid: 51ddae0adcdf8554c961c986b8950583, type: 2}
+  Text: Heluim Side Story 1
+  Banner: {fileID: 21300000, guid: 00d31382ffbf2e94b8a466d4ee042fa0, type: 3}
+  PreviousEvents:
+  - {fileID: 11400000, guid: 92a9de745ea828547aa73c84b1103dbb, type: 2}

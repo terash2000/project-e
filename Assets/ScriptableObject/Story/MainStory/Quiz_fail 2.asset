@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
+  m_Name: Quiz_fail 2
+  m_EditorClassIdentifier: 
+  Type: 0
+  Character: {fileID: 11400000, guid: 023d19118fe4ba347a0d4cca9668092d, type: 2}
+  Quote: Don't be depressed. You can try this test again later.
+  Background: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: e275bc0b22fc1c14e8f1d071dd27ef92, type: 3}
+  Actions: []
+  Child: []
+  Choice: []
+  NextWave: {fileID: 0}
+  Shake: 0
+  Voice: {fileID: 0}

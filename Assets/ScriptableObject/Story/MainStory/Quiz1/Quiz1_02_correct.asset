@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   Character: {fileID: 11400000, guid: 023d19118fe4ba347a0d4cca9668092d, type: 2}
-  Quote: Correct!  Hydrogen is the lightest element with atomic number 1.
+  Quote: Correct! Hydrogen is the lightest element with atomic number 1.
   Background: {fileID: 0}
   Sprite: {fileID: 21300000, guid: bbc9d5938ff001f4e993101a4ce552a5, type: 3}
   Actions: []

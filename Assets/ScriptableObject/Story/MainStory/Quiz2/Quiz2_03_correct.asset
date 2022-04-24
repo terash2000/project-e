@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
+  m_Name: Quiz2_03_correct
+  m_EditorClassIdentifier: 
+  Type: 0
+  Character: {fileID: 11400000, guid: 023d19118fe4ba347a0d4cca9668092d, type: 2}
+  Quote: Correct! Chlorine was named after its color. Here's your reward.
+  Background: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: f2a683f1785f1af41b56e2cf86101906, type: 3}
+  Actions:
+  - Type: 1
+    Amount: 0
+    Name: 
+    rootEvent: {fileID: 11400000, guid: a0a058f7d4cd6a04cbda44bde0f5ef4f, type: 2}
+  - Type: 5
+    Amount: 0
+    Name: German Suplex
+    rootEvent: {fileID: 0}
+  - Type: 5
+    Amount: 0
+    Name: Acid Bomb
+    rootEvent: {fileID: 0}
+  Child:
+  - {fileID: 11400000, guid: 61be89680f0e5ef43a4484ecfa2b439f, type: 2}
+  Choice: []
+  NextWave: {fileID: 0}
+  Shake: 0
+  Voice: {fileID: 0}

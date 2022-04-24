@@ -24,13 +24,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aff9eb8c393f7834db72cb4a7375677f, type: 2}
   - {fileID: 11400000, guid: 6fdafb5693bc4284cb01634dbb2b69ed, type: 2}
   - {fileID: 11400000, guid: cdc10fec62f04f242908e75952542587, type: 2}
-  - {fileID: 11400000, guid: 04d885ccbbc77b842ad4fe505373e9d7, type: 2}
   - {fileID: 11400000, guid: b20a9f87af1dd6d47bd274009060de47, type: 2}
+  - {fileID: 11400000, guid: 04d885ccbbc77b842ad4fe505373e9d7, type: 2}
   Choice:
   - Offer a random Oxygen card
   - Offer a random Carbon card
   - Offer a random Hydrogen card
-  - Leave
   - Extinguish the flame.
+  - Leave
   NextWave: {fileID: 0}
   Shake: 0
+  Voice: {fileID: 0}

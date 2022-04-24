@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   Character: {fileID: 11400000, guid: 1d8826336a6e72649af7f39e9286e0b6, type: 2}
-  Quote: Because she is our friend! And we don't have to kill her. We could bring
+  Quote: Because she is our friend!! And we don't have to kill her. We could bring
     her back and cage her in the radiation protection room such as concrete or lead
     so she can't escape.
   Background: {fileID: 0}

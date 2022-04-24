@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
-  m_Name: Quiz1_fail 1
+  m_Name: Helium1_10
   m_EditorClassIdentifier: 
   Type: 0
-  Character: {fileID: 11400000, guid: 023d19118fe4ba347a0d4cca9668092d, type: 2}
-  Quote: Worng!
-  Background: {fileID: 0}
-  Sprite: {fileID: 21300000, guid: 28c246068049a8746a628ef7d5e8972a, type: 3}
+  Character: {fileID: 11400000, guid: 1d8826336a6e72649af7f39e9286e0b6, type: 2}
+  Quote: No way! Sleeping is essential for health. I sleep only 20 hours a day. This
+    is average sleep time everyone should have, isn't it?
+  Background: {fileID: 21300000, guid: 8f2da5ecce685d74dab7a5da5ae52fc5, type: 3}
+  Sprite: {fileID: 21300000, guid: 8801dd7f1e4a88e42930c42e49eec7ec, type: 3}
   Actions: []
   Child:
-  - {fileID: 11400000, guid: 46c4a9049a71bd143a31f8af373f4b82, type: 2}
+  - {fileID: 11400000, guid: 6a9410c26b8706d4ca04c104507e79c5, type: 2}
   Choice: []
   NextWave: {fileID: 0}
   Shake: 0

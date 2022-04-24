@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53231fe4de8b4784ba7370c482dd0968, type: 3}
+  m_Name: Quiz2
+  m_EditorClassIdentifier: 
+  DialogNode: {fileID: 11400000, guid: 1aa85b0d60c57444594564fa1b131da7, type: 2}
+  Text: Quiz 2
+  Banner: {fileID: 21300000, guid: f2f61d3a6c07061408ad92ee3a5f4b68, type: 3}
+  PreviousEvents:
+  - {fileID: 11400000, guid: 92a9de745ea828547aa73c84b1103dbb, type: 2}
