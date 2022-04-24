@@ -24,12 +24,12 @@ public class Map : MonoBehaviourSingleton<Map>
     private List<Node> _nodes = new List<Node>();
     private List<LineRenderer> _edges = new List<LineRenderer>();
     private Node _curNode;
-    private float _widthScale;
+    private float _widthExtend;
     private List<int> _addableLayers;
 
-    public float WidthScale
+    public float WidthExtend
     {
-        get { return _widthScale; }
+        get { return _widthExtend; }
     }
 
     void Start()
@@ -359,14 +359,22 @@ public class Map : MonoBehaviourSingleton<Map>
 
     public void SetMapSize()
     {
+        GameObject mapBg = transform.Find("Map Background").gameObject;
         Vector2 size = GetMapSize();
+        Vector3 sizeBg = mapBg.GetComponent<SpriteRenderer>().size;
         float oriWidth = size.x;
         size.x = _numLayer * _layerWidth;
-        _widthScale = size.x / oriWidth;
+        sizeBg.x = size.x;
+        _widthExtend = size.x - oriWidth;
         GetComponent<RectTransform>().sizeDelta = size;
+        mapBg.GetComponent<SpriteRenderer>().size = sizeBg;
         Vector3 pos = transform.position;
+        Vector3 posBg = mapBg.transform.position;
         pos.x = (_numLayer * _layerWidth - oriWidth) / 2;
+        posBg.x = pos.x;
         GetComponent<RectTransform>().position = pos;
+        mapBg.transform.position = posBg;
+
     }
 
     public bool OnMap()

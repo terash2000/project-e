@@ -69,11 +69,11 @@ public class CameraMovement : MonoBehaviourSingleton<CameraMovement>
         transform.Translate(move, Space.World);
     }
 
-    public Rect GetArea(float widthScale = 1)
+    public Rect GetArea(float widthExtend = 0)
     {
         Vector3 posTopLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
         Vector3 posBottomRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, Camera.main.nearClipPlane));
-        return new Rect(posTopLeft.x, posTopLeft.y, (posBottomRight.x - posTopLeft.x) * widthScale, posBottomRight.y - posTopLeft.y);
+        return new Rect(posTopLeft.x, posTopLeft.y, posBottomRight.x - posTopLeft.x + widthExtend, posBottomRight.y - posTopLeft.y);
     }
 
     public List<bool> InsideArea(Rect rect)
@@ -100,7 +100,7 @@ public class CameraMovement : MonoBehaviourSingleton<CameraMovement>
 
     public void SetPosition(Vector3 pos)
     {
-        _rectOrigin = GetArea(Map.Instance.WidthScale);
+        _rectOrigin = GetArea(Map.Instance.WidthExtend);
         float x = pos.x;
         if (_rectOrigin.xMin > x - GetArea().width / 2)
         {
