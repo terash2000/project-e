@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class CardDisplay : MonoBehaviour
 {
@@ -47,7 +48,7 @@ public class CardDisplay : MonoBehaviour
         }
 
         _nameText.text = Card.BaseCard.CardName;
-        _descriptionText.text = Card.BaseCard.Description;
+        _descriptionText.text = Card.BaseCard.Type == CardType.Attack ? createAttackDescribtion() : Card.BaseCard.Description;
         _typeText.text = Card.BaseCard.Type.ToString();
         _elementText.text = Card.Element.ToString();
         _artworkImage.sprite = Card.BaseCard.Artwork;
@@ -64,5 +65,53 @@ public class CardDisplay : MonoBehaviour
     public void Unhighlight()
     {
         _glowborder.SetActive(false);
+    }
+
+    private string createAttackDescribtion()
+    {
+        string description = "";
+        if (Card.Damage != 0 && Card.Effects.Count != 0)
+        {
+            string statuses = createStatusDescribtion();
+            description += $"Deal {Card.Damage} and give {statuses} ";
+        }
+        else if (Card.Damage != 0)
+        {
+            description += $"Deal {Card.Damage} ";
+        }
+        else if (Card.Effects.Count != 0)
+        {
+            string statuses = createStatusDescribtion();
+            description += $"Give {statuses} ";
+        }
+        description += createAreaDescribtion();
+        return description;
+    }
+
+    private string createAreaDescribtion()
+    {
+        switch (Card.BaseCard.TargetShape)
+        {
+            case AreaShape.Single:
+                return "to an enemy";
+            case AreaShape.Line:
+                return $"to all enemies in {Card.CastRange} straight line";
+            case AreaShape.Hexagon:
+                return "to all enemies in circle area";
+            case AreaShape.Cone:
+                return "to all enemies in cone area";
+            default:
+                return "";
+        }
+    }
+
+    private string createStatusDescribtion()
+    {
+        string description = "";
+        foreach (Status status in Card.Effects)
+        {
+            description += $"{status.value} {status.type}";
+        }
+        return description;
     }
 }
