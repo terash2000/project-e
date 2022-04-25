@@ -45,9 +45,7 @@ public class SceneChanger : MonoBehaviourSingletonPersistent<SceneChanger>
 
     public bool NeedLoadScene(string scenename)
     {
-        return scenename == "CombatScene"
-            || (scenename == "MapScene" && (_previousScene == "MainMenuScene" || PlayerData.Path == null))
-            || scenename == "MainMenuScene";
+        return scenename == "CombatScene" || (scenename == "MapScene" && (_previousScene == "MainMenuScene" || PlayerData.Path == null));
     }
 
     public IEnumerator GetSceneLoadProgress()
