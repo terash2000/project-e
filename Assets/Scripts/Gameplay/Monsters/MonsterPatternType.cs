@@ -3,5 +3,6 @@ public enum MonsterPatternType
     Basic,
     Range,
     AttackAndBlock,
-    Beam
+    Beam,
+    Star
 }

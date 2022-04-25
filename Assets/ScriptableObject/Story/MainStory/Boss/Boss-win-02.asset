@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
+  m_Name: Boss-win-02
+  m_EditorClassIdentifier: 
+  Type: 0
+  Character: {fileID: 0}
+  Quote: We successfully managed to capture her alive. Then we build a radiation
+    protection room and cage her there so that she couldn't escape forever.
+  Background: {fileID: 0}
+  Sprite: {fileID: 0}
+  Actions: []
+  Child: []
+  Choice: []
+  NextWave: {fileID: 0}
+  Shake: 0
+  Voice: {fileID: 0}

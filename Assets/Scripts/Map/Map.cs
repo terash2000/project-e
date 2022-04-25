@@ -17,6 +17,7 @@ public class Map : MonoBehaviourSingleton<Map>
     [SerializeField] private GameObject _battleNodePrefab;
     [SerializeField] private GameObject _eventNodePrefab;
     [SerializeField] private GameObject _townNodePrefab;
+    [SerializeField] private GameObject _bossNodePrefab;
     [SerializeField] private GameObject _edgePrefab;
     [SerializeField] private GameObject _completePopup;
     [SerializeField] private List<float> _weights;
@@ -147,6 +148,10 @@ public class Map : MonoBehaviourSingleton<Map>
     }
     private GameObject CreateRandomNode(int layer)
     {
+        if (layer == 0) return CreateBattleNode();
+        if (layer == _numLayer - 1) return CreateBossNode();
+        if (layer == _numLayer - 2) return CreateTownNode();
+
         float randf = Random.Range(0.0f, 1.0f);
         int rand = 0;
         foreach (float weight in _weights)
@@ -158,8 +163,6 @@ public class Map : MonoBehaviourSingleton<Map>
                 rand++;
             }
         }
-        if (layer == 0 || layer == _numLayer - 1) rand = 0;
-        if (layer == _numLayer - 2) rand = 2;
         switch (rand)
         {
             case 0:
@@ -193,6 +196,12 @@ public class Map : MonoBehaviourSingleton<Map>
     {
         GameObject townNode = Instantiate(_townNodePrefab);
         return townNode;
+    }
+
+    private GameObject CreateBossNode()
+    {
+        GameObject bossNode = Instantiate(_bossNodePrefab);
+        return bossNode;
     }
 
     public void SetAddableLayers(int layer)

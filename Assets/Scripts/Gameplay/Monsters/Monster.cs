@@ -248,6 +248,9 @@ public class Monster : GameCharacter
             case MonsterPatternType.Beam:
                 area.AddRange(Arena.Instance.GetPosListBeam(pattern.AttackRange, CurrentTile, _attackDirection));
                 break;
+            case MonsterPatternType.Star:
+                area.AddRange(Arena.Instance.GetPosList(AreaShape.Line, pattern.AttackRange, CurrentTile));
+                break;
         }
 
         return area;
@@ -279,6 +282,7 @@ public class Monster : GameCharacter
             {
                 case MonsterPatternType.Basic:
                 case MonsterPatternType.AttackAndBlock:
+                case MonsterPatternType.Star:
                     targetTiles = ShortenDistance(moveableTiles, characterTile);
                     break;
                 case MonsterPatternType.Range:
@@ -378,7 +382,8 @@ public class Monster : GameCharacter
     public bool ShowAttackArea()
     {
         return _info.Patterns[_currentMove].Pattern == MonsterPatternType.Range ||
-            _info.Patterns[_currentMove].Pattern == MonsterPatternType.Beam;
+            _info.Patterns[_currentMove].Pattern == MonsterPatternType.Beam ||
+            _info.Patterns[_currentMove].Pattern == MonsterPatternType.Star;
     }
 
     private IEnumerator Die()
@@ -470,6 +475,7 @@ public class Monster : GameCharacter
         switch (_info.Patterns[_currentMove].Pattern)
         {
             case MonsterPatternType.Basic:
+            case MonsterPatternType.Star:
                 _damageIcon.sprite = MonsterManager.Instance.SwordIcon;
                 break;
             case MonsterPatternType.Range:

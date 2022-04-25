@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16278ba643f4de64b842bc931527db2f, type: 3}
-  m_Name: Elite Wraith
+  m_Name: Boss
   m_EditorClassIdentifier: 
   Monsters:
   - Monster: {fileID: 11400000, guid: 862735f5054331841aea33b4c41520b9, type: 2}
-    Tile: {x: 3, y: 0}
+    Tile: {x: 4, y: 0}
     CurrentMove: 0
-  Reward: 1
+  Reward: 0

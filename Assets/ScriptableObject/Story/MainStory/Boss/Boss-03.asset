@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
+  m_Name: Boss-03
+  m_EditorClassIdentifier: 
+  Type: 0
+  Character: {fileID: 11400000, guid: 1d8826336a6e72649af7f39e9286e0b6, type: 2}
+  Quote: Be careful! Uranium is here! I can sense her.
+  Background: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: a56461458369740469e2174e8e990432, type: 3}
+  Actions: []
+  Child:
+  - {fileID: 11400000, guid: 4b6b83a021374054392f7234870c65f4, type: 2}
+  Choice: []
+  NextWave: {fileID: 11400000, guid: 05f7a19290e2f6244aecb4e3dc714207, type: 2}
+  Shake: 0
+  Voice: {fileID: 0}
