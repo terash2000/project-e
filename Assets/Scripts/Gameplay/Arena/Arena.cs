@@ -193,7 +193,7 @@ public class Arena : MonoBehaviourSingleton<Arena>
 
     public List<Vector3Int> GetPosListTarget(AreaShape areaShape, int range, Vector3Int curPos, Vector3 targetPos)
     {
-        Vector3 playerPos = PlayerManager.Instance.Player.transform.position;
+        Vector3 playerPos = _grid.CellToWorld(PlayerManager.Instance.Player.CurrentTile);
         List<int> directions = Arena.Instance.FindDirections(playerPos, targetPos);
         switch (areaShape)
         {

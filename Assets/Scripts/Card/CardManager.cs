@@ -81,8 +81,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         if (Input.GetMouseButtonUp(0) && IsSelectingCard() && _hoveringCard != _selectingCard)
         {
             Vector3 oriPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int mousePos = Arena.Instance.Grid.WorldToCell(new Vector3(oriPos.x, oriPos.y, 0));
-            CastCard(_selectingCard.Card, mousePos);
+            CastCard(_selectingCard.Card, oriPos);
 
             _selectingCard.HidePreviewCardEffect();
             _selectingCard.IsSelected = false;
@@ -157,6 +156,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
 
     public void DrawCard()
     {
+
         if (_hand.Count >= MAX_HAND_SIZE) return;
 
         if (_deck.Count == 0)
@@ -259,11 +259,16 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         _previewCard.transform.parent.gameObject.SetActive(false);
     }
 
-    private void CastCard(InGameCard card, Vector3Int mousePos)
+    private void CastCard(InGameCard card, Vector3 targetPos)
     {
-        // TODO: cast the card based on the actual card data
+        Vector3Int mousePos = Arena.Instance.Grid.WorldToCell(new Vector3(targetPos.x, targetPos.y, 0));
         Tile tile = (Tile)Arena.Instance.Tilemap.GetTile(mousePos);
         if (tile == null) return;
+
+        foreach (CardEffect effect in card.BaseCard.Effects)
+        {
+            if (!CheckEffectCondition(effect, mousePos)) return;
+        }
 
         bool success = false;
         if (card.BaseCard.Type == CardType.Attack)
@@ -274,9 +279,9 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
                 if (monster != null)
                 {
                     monster.TakeDamage(card.Damage);
-                    foreach (Status effect in card.Effects)
+                    foreach (Status status in card.Statuses)
                     {
-                        monster.GainStatus(effect.type, effect.value);
+                        monster.GainStatus(status.type, status.value);
                     }
                     success = true;
                 }
@@ -284,24 +289,87 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         }
         else if (card.BaseCard.Type == CardType.Skill)
         {
-            if (tile != null && Arena.Instance.AreaPosList.Contains(mousePos) && MonsterManager.Instance.FindMonsterByTile(mousePos) == null)
+            if (Arena.Instance.AreaPosList.Contains(mousePos) && MonsterManager.Instance.FindMonsterByTile(mousePos) == null)
             {
                 PlayerManager.Instance.Player.SetMovement(mousePos);
                 success = true;
             }
         }
 
-        if (success)
+        if (!success) return;
+
+        // other effects
+        foreach (CardEffect effect in card.BaseCard.Effects)
         {
-            PlayerData.Mana -= card.ManaCost;
-            MoveFromHandToGraveyard(_selectingCard.Card);
-            Destroy(_selectingCard.gameObject);
+            TriggerEffect(effect, card, targetPos);
         }
+
+        PlayerData.Mana -= card.ManaCost;
+        MoveFromHandToGraveyard(_selectingCard.Card);
+        Destroy(_selectingCard.gameObject);
 
         // auto end turn
         if (OptionMenu.AutoEndTurn && _hand.FindAll(card => card.IsCastable()).Count == 0)
         {
             GameManager.Instance.EndTurn();
+        }
+    }
+
+    private bool CheckEffectCondition(CardEffect effect, Vector3Int mousePos)
+    {
+        switch (effect)
+        {
+            case CardEffect.Move:
+                if (MonsterManager.Instance.FindMonsterByTile(mousePos) != null) return false;
+                break;
+        }
+        return true;
+    }
+
+    private void TriggerEffect(CardEffect effect, InGameCard card, Vector3 targetPos)
+    {
+        Vector3 playerPos = Arena.Instance.Grid.CellToWorld(PlayerManager.Instance.Player.CurrentTile);
+        Vector3Int mousePos = Arena.Instance.Grid.WorldToCell(new Vector3(targetPos.x, targetPos.y, 0));
+        List<int> directions;
+
+        if (Arena.Instance.IsDirectionTarget(card.BaseCard.TargetShape))
+        {
+            directions = Arena.Instance.FindDirections(playerPos, targetPos);
+        }
+        else
+        {
+            directions = Arena.Instance.FindDirections(playerPos, Arena.Instance.Grid.CellToWorld(mousePos));
+        }
+
+        switch (effect)
+        {
+            case CardEffect.Draw:
+                DrawCard();
+                break;
+
+            case CardEffect.Move:
+                PlayerManager.Instance.Player.SetMovement(mousePos);
+                break;
+
+            case CardEffect.MoveBack:
+                int reverseDirection = directions[directions.Count - 1];
+                PlayerManager.Instance.Player.MoveDirection(reverseDirection);
+                break;
+
+            case CardEffect.RepeatAttack:
+                foreach (Vector3Int pos in Arena.Instance.TargetPosList)
+                {
+                    Monster monster = MonsterManager.Instance.FindMonsterByTile(pos);
+                    if (monster != null)
+                    {
+                        monster.TakeDamage(card.Damage);
+                        foreach (Status status in card.Statuses)
+                        {
+                            monster.GainStatus(status.type, status.value);
+                        }
+                    }
+                }
+                break;
         }
     }
 

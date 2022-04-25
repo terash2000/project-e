@@ -30,5 +30,5 @@ MonoBehaviour:
     statusType: 0
     card: {fileID: 0}
   Equation: "H2O + Cl2 \u2192 HCl + HClO"
-  Description: 'Change mana used to 0.___Attack: Acid +3___Skill: Gain Strong +1'
+  Description: 'Change mana used to 0.___Attack: Acid +3'
   Type: 0

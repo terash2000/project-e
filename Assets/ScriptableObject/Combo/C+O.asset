@@ -26,5 +26,5 @@ MonoBehaviour:
     statusType: 0
     card: {fileID: 0}
   Equation: "C + O \u2192 CO"
-  Description: 'Attack: Stun +1___Skill: Range +2, Gain Weak'
+  Description: 'Attack: Stun +1'
   Type: 0

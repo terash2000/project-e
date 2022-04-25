@@ -25,9 +25,10 @@ MonoBehaviour:
   CastRange: 3
   Radius: 1
   Damage: 2
-  Effects:
+  Statuses:
   - type: 1
     value: 2
+  Effects: 
   UpgradeBonus:
   - type: 1
     amount: 2

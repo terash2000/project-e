@@ -25,10 +25,12 @@ MonoBehaviour:
   CastRange: 1
   Radius: 0
   Damage: 0
-  Effects:
+  Statuses:
   - type: 2
     value: 2
+  Effects: 
   UpgradeBonus:
   - type: 4
     amount: 2
     statusType: 2
+    card: {fileID: 0}

@@ -23,7 +23,7 @@ public class SoundController : MonoBehaviour
         {
             _bgmSource = CreateSource(SceneChanger.Instance.MainBGM);
             _bgmSource.loop = true;
-            _bgmSource.volume = BGMVolume;
+            _bgmSource.volume = BGMVolume * MasterVolume;
             _bgmSource.Play();
         }
     }
@@ -31,13 +31,14 @@ public class SoundController : MonoBehaviour
     public static void SetMasterVolume(float sliderValue)
     {
         SoundController.MasterVolume = sliderValue;
+        _bgmSource.volume = BGMVolume * MasterVolume;
         SaveSystem.SaveOptionMenu();
     }
 
     public static void SetBGMVolume(float sliderValue)
     {
-        _bgmSource.volume = sliderValue;
         SoundController.BGMVolume = sliderValue;
+        _bgmSource.volume = BGMVolume * MasterVolume;
         SaveSystem.SaveOptionMenu();
     }
 

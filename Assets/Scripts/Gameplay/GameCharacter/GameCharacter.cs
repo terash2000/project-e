@@ -77,7 +77,7 @@ public class GameCharacter : MonoBehaviour
     {
         if (CurrentTile == tile) return;
         Vector2 position = Grid.CellToWorld(tile);
-        OldPosition = Grid.CellToWorld(CurrentTile);
+        OldPosition = transform.position;
         NextPosition = position;
         CurrentTile = tile;
         if (!IsMoving())
@@ -144,6 +144,19 @@ public class GameCharacter : MonoBehaviour
 
         UpdateStatusIcon();
         return true;
+    }
+
+    public bool MoveDirection(int direction)
+    {
+        Vector3Int targetPos = Arena.Instance.GetPosDirection(CurrentTile, direction);
+        if (Arena.Instance.Tilemap.GetTile(targetPos) != null
+                && MonsterManager.Instance.FindMonsterByTile(targetPos) == null
+                && PlayerManager.Instance.Player.CurrentTile != targetPos)
+        {
+            SetMovement(targetPos);
+            return true;
+        }
+        return false;
     }
 
     public virtual int TakeDamage(int damage, Status.Type? damageStatusEffect = null)

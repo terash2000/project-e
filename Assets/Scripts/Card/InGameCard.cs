@@ -11,8 +11,7 @@ public class InGameCard
     private int _additionalDamage = 0;
     private int _additionalRadius = 0;
     private int _additionalCastRange = 0;
-    private List<Status> _additionalEffect = new List<Status>();
-
+    private List<Status> _additionalStatuses = new List<Status>();
 
     private bool _isUpgraded = false;
     public bool _isToken = false;
@@ -43,9 +42,9 @@ public class InGameCard
     {
         get { return _baseCard.CastRange + _additionalCastRange; }
     }
-    public List<Status> Effects
+    public List<Status> Statuses
     {
-        get { return _baseCard.Effects.Concat(_additionalEffect).ToList(); }
+        get { return _baseCard.Statuses.Concat(_additionalStatuses).ToList(); }
     }
 
     public bool IsUpgraded
@@ -74,7 +73,7 @@ public class InGameCard
         _additionalDamage = other._additionalDamage;
         _additionalRadius = other._additionalRadius;
         _additionalCastRange = other._additionalCastRange;
-        _additionalEffect = new List<Status>(other._additionalEffect);
+        _additionalStatuses = new List<Status>(other._additionalStatuses);
 
 
         _isUpgraded = other._isUpgraded;
@@ -121,7 +120,7 @@ public class InGameCard
                 break;
 
             case Bonus.Type.AddStatus:
-                _additionalEffect.Add(new Status(bonus.statusType, bonus.amount));
+                _additionalStatuses.Add(new Status(bonus.statusType, bonus.amount));
                 break;
 
             case Bonus.Type.CreateCard:

@@ -24,7 +24,15 @@ MonoBehaviour:
     rootEvent: {fileID: 11400000, guid: 92a9de745ea828547aa73c84b1103dbb, type: 2}
   - Type: 5
     Amount: 0
+    Name: Sweeping
+    rootEvent: {fileID: 0}
+  - Type: 5
+    Amount: 0
     Name: Trust
+    rootEvent: {fileID: 0}
+  - Type: 5
+    Amount: 0
+    Name: Moonblade
     rootEvent: {fileID: 0}
   - Type: 5
     Amount: 0
@@ -36,3 +44,4 @@ MonoBehaviour:
   NextWave: {fileID: 0}
   Shake: 0
   Voice: {fileID: 0}
+  BGM: {fileID: 0}

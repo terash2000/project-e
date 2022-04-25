@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee132ecb7a1202344b66e53400f8ac76, type: 3}
   m_Name: Na+Cl
   m_EditorClassIdentifier: 
-  Base1: 1
-  Base2: 2
-  Result: 8
+  Base1: 3
+  Base2: 4
+  Result: 4
   AttackCardBonuses:
   - type: 0
     amount: -2

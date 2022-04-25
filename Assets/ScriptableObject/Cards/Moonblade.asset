@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cae679194d7e69b4b91681558c55e2e1, type: 3}
-  m_Name: German Suplex
+  m_Name: Moonblade
   m_EditorClassIdentifier: 
-  CardName: German Suplex
-  Description: Deal 12 circle area damage on an adjacent tile.
+  CardName: Moonblade
+  Description: Deal 3 damage 3 times to all enemies in 3 straight tiles.
   Type: 0
-  BaseElement: 3
+  BaseElement: 2
   Rarity: 1
-  Artwork: {fileID: 21300000, guid: 6a00aedfaa63a114ab871586ab1bcd11, type: 3}
+  Artwork: {fileID: 21300000, guid: 3e4bd52d31d24c74b99df70ac3ee1796, type: 3}
   ManaCost: 2
   IsUnlocked: 0
-  AreaShape: 1
-  TargetShape: 1
-  CastRange: 1
-  Radius: 1
-  Damage: 12
+  AreaShape: 2
+  TargetShape: 2
+  CastRange: 0
+  Radius: 2
+  Damage: 3
   Statuses: []
-  Effects: 
+  Effects: 0300000003000000
   UpgradeBonus:
   - type: 1
-    amount: 8
+    amount: 2
     statusType: 0
     card: {fileID: 0}

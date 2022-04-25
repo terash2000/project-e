@@ -22,5 +22,5 @@ MonoBehaviour:
     card: {fileID: 0}
   SkillCardBonuses: []
   Equation: "C + Cl \u2192 CCl3"
-  Description: 'Attack: Stun +1___Skill: Remove all Burn'
+  Description: 'Attack: Stun +1'
   Type: 0

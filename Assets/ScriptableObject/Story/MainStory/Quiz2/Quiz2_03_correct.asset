@@ -28,6 +28,14 @@ MonoBehaviour:
     rootEvent: {fileID: 0}
   - Type: 5
     Amount: 0
+    Name: Recoil
+    rootEvent: {fileID: 0}
+  - Type: 5
+    Amount: 0
+    Name: Hit & Run
+    rootEvent: {fileID: 0}
+  - Type: 5
+    Amount: 0
     Name: Acid Bomb
     rootEvent: {fileID: 0}
   Child:
@@ -36,3 +44,4 @@ MonoBehaviour:
   NextWave: {fileID: 0}
   Shake: 0
   Voice: {fileID: 0}
+  BGM: {fileID: 0}

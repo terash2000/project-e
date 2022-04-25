@@ -48,7 +48,8 @@ public class CardDisplay : MonoBehaviour
         }
 
         _nameText.text = Card.BaseCard.CardName;
-        _descriptionText.text = Card.BaseCard.Type == CardType.Attack ? createAttackDescribtion() : Card.BaseCard.Description;
+        //_descriptionText.text = Card.BaseCard.Type == CardType.Attack ? createAttackDescribtion() : Card.BaseCard.Description;
+        _descriptionText.text = Card.BaseCard.Description;
         _typeText.text = Card.BaseCard.Type.ToString();
         _elementText.text = Card.Element.ToString();
         _artworkImage.sprite = Card.BaseCard.Artwork;
@@ -70,7 +71,7 @@ public class CardDisplay : MonoBehaviour
     private string createAttackDescribtion()
     {
         string description = "";
-        if (Card.Damage != 0 && Card.Effects.Count != 0)
+        if (Card.Damage != 0 && Card.Statuses.Count != 0)
         {
             string statuses = createStatusDescribtion();
             description += $"Deal {Card.Damage} and give {statuses} ";
@@ -79,7 +80,7 @@ public class CardDisplay : MonoBehaviour
         {
             description += $"Deal {Card.Damage} ";
         }
-        else if (Card.Effects.Count != 0)
+        else if (Card.Statuses.Count != 0)
         {
             string statuses = createStatusDescribtion();
             description += $"Give {statuses} ";
@@ -95,7 +96,7 @@ public class CardDisplay : MonoBehaviour
             case AreaShape.Single:
                 return "to an enemy";
             case AreaShape.Line:
-                return $"to all enemies in {Card.CastRange} straight line";
+                return $"to all enemies in {Card.Radius} straight line";
             case AreaShape.Hexagon:
                 return "to all enemies in circle area";
             case AreaShape.Cone:
@@ -108,7 +109,7 @@ public class CardDisplay : MonoBehaviour
     private string createStatusDescribtion()
     {
         string description = "";
-        foreach (Status status in Card.Effects)
+        foreach (Status status in Card.Statuses)
         {
             description += $"{status.value} {status.type}";
         }

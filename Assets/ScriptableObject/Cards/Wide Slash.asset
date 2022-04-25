@@ -22,10 +22,11 @@ MonoBehaviour:
   IsUnlocked: 0
   AreaShape: 3
   TargetShape: 3
-  CastRange: 3
+  CastRange: 0
   Radius: 3
   Damage: 15
-  Effects: []
+  Statuses: []
+  Effects: 
   UpgradeBonus:
   - type: 1
     amount: 9

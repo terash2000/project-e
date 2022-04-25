@@ -22,12 +22,17 @@ MonoBehaviour:
   IsUnlocked: 0
   AreaShape: 2
   TargetShape: 2
-  CastRange: 3
+  CastRange: 0
   Radius: 3
   Damage: 7
-  Effects: []
+  Statuses: []
+  Effects: 
   UpgradeBonus:
   - type: 1
     amount: 5
+    statusType: 0
+    card: {fileID: 0}
+  - type: 2
+    amount: 1
     statusType: 0
     card: {fileID: 0}

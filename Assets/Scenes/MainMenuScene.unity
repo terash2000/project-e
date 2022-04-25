@@ -4457,6 +4457,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f5da397d61098424d9c4881c929cb9d7, type: 2}
   - {fileID: 11400000, guid: 887e0d52c28857e46a3ccf66aa466211, type: 2}
   - {fileID: 11400000, guid: 7f09ee3b21fe4ca44b91c3743aac5740, type: 2}
+  - {fileID: 11400000, guid: b8ef9e3bb0d4de749b17fbe2c40abe98, type: 2}
+  - {fileID: 11400000, guid: 1a325d637d4f2d94895769ea886f1614, type: 2}
+  - {fileID: 11400000, guid: 47491c12817d4f24da09545588924ba5, type: 2}
+  - {fileID: 11400000, guid: f7bf2eff087626b45a8c1c10aa6b0bdc, type: 2}
   - {fileID: 11400000, guid: dc769739786f4604cb8c38fbb748b4f3, type: 2}
   - {fileID: 11400000, guid: c36963ae9ca8acb4d8d063706e275cbc, type: 2}
   - {fileID: 11400000, guid: 29c9bb8948c9cef4dbab804a5fec51a1, type: 2}
@@ -5446,7 +5450,7 @@ MonoBehaviour:
     type: 3}
   _prologue: {fileID: 11400000, guid: 6f4e9b4c01f3dcc41b40eadc1fb52e6c, type: 2}
   _tutorialWave: {fileID: 11400000, guid: d1a0ac6bb5fd0a74399917888e464db4, type: 2}
-  _starterDeck: {fileID: 11400000, guid: fc741fda57565074cb34db557a3d124f, type: 2}
+  _starterDeck: {fileID: 11400000, guid: 26e0d2e762950074382018cd480dad12, type: 2}
 --- !u!114 &2052182261
 MonoBehaviour:
   m_ObjectHideFlags: 0
