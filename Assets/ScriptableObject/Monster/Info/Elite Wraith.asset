@@ -14,48 +14,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MonsterName: Elite Wraith
   MaxHealth: 80
-  InitialBlock: 0
+  InitialBlock: 40
   Patterns:
-  - Pattern: 1
-    Damage: 10
-    AttackRange: 4
-    MoveRange: 3
-    BlockGain: 0
-    AttackStatusEffect:
-      m_keys: 
-      m_values: 
-  - Pattern: 0
-    Damage: 10
-    AttackRange: 0
-    MoveRange: 3
-    BlockGain: 0
-    AttackStatusEffect:
-      m_keys: 
-      m_values: 
-  - Pattern: 1
-    Damage: 10
-    AttackRange: 4
-    MoveRange: 1
-    BlockGain: 0
-    AttackStatusEffect:
-      m_keys: 
-      m_values: 
-  - Pattern: 0
-    Damage: 10
-    AttackRange: 0
-    MoveRange: 3
-    BlockGain: 0
-    AttackStatusEffect:
-      m_keys: 
-      m_values: 
   - Pattern: 3
     Damage: 15
-    AttackRange: 7
+    AttackRange: 12
     MoveRange: 3
     BlockGain: 0
     AttackStatusEffect:
       m_keys: 02000000
       m_values: 03000000
+  - Pattern: 1
+    Damage: 12
+    AttackRange: 5
+    MoveRange: 3
+    BlockGain: 0
+    AttackStatusEffect:
+      m_keys: 
+      m_values: 
+  - Pattern: 4
+    Damage: 12
+    AttackRange: 2
+    MoveRange: 3
+    BlockGain: 0
+    AttackStatusEffect:
+      m_keys: 
+      m_values: 
+  - Pattern: 1
+    Damage: 12
+    AttackRange: 5
+    MoveRange: 1
+    BlockGain: 0
+    AttackStatusEffect:
+      m_keys: 
+      m_values: 
+  - Pattern: 4
+    Damage: 12
+    AttackRange: 2
+    MoveRange: 2
+    BlockGain: 0
+    AttackStatusEffect:
+      m_keys: 
+      m_values: 
   AnimatorController: {fileID: 9100000, guid: c03567ca8cb6a70429aca2aa301ac0b2, type: 2}
   SpriteColor: {r: 1, g: 1, b: 1, a: 1}
-  SpriteScale: 0.2
+  SpriteScale: 0.24

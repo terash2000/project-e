@@ -514,7 +514,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 157a8daf598889d45b0912e15b73f089, type: 2}
   - {fileID: 11400000, guid: b098e1fa5c9210847a9fa05db2a47e2a, type: 2}
   - {fileID: 11400000, guid: a59aa7c54b07f394896284d96f3871d3, type: 2}
-  - {fileID: 11400000, guid: 05f7a19290e2f6244aecb4e3dc714207, type: 2}
   - {fileID: 11400000, guid: 6ca61944bd14aec4ca48e7e30eda8a4b, type: 2}
   - {fileID: 11400000, guid: 4417d540a2757a845a88a67c9eae6ddc, type: 2}
   AllRandomEvents:
@@ -535,6 +534,8 @@ MonoBehaviour:
   _eventNodePrefab: {fileID: 5473315819909535326, guid: bc448c64fe64faa4dbc6abdce7dd60cd,
     type: 3}
   _townNodePrefab: {fileID: 8762319075834260163, guid: edf4b50b025c86c4e842bc78658ce56b,
+    type: 3}
+  _bossNodePrefab: {fileID: 5473315819909535326, guid: 08095f5cc8b4af241ad75cd309428239,
     type: 3}
   _edgePrefab: {fileID: 4733582419107687985, guid: edcffc1d61444b74cb3ecd41cfed1b62,
     type: 3}

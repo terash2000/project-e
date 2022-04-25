@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed77376b85975347a30d4f6fee9c31a, type: 3}
+  m_Name: Boss-win-01
+  m_EditorClassIdentifier: 
+  Type: 0
+  Character: {fileID: 11400000, guid: 1d8826336a6e72649af7f39e9286e0b6, type: 2}
+  Quote: We did it!
+  Background: {fileID: 21300000, guid: 7cc6934de7b5abd4492486a4fbb5af4d, type: 3}
+  Sprite: {fileID: 21300000, guid: bfe85f4a574ef7946be716d236aaa1c8, type: 3}
+  Actions: []
+  Child:
+  - {fileID: 11400000, guid: 8b86f45c18a6bc4409e576c21b77c4ec, type: 2}
+  Choice: []
+  NextWave: {fileID: 0}
+  Shake: 0
+  Voice: {fileID: 0}
+  BGM: {fileID: 8300000, guid: f4d7e6f7a9a5dc94cae95f025ffc81e1, type: 3}
