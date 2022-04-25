@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hit & Run
   m_EditorClassIdentifier: 
   CardName: Hit & Run
-  Description: Deal 5 damage. Move back 1 tile.
+  Description: Deal _d_ damage. Move back 1 tile.
   Type: 0
   BaseElement: 4
   Rarity: 1

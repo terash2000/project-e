@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Explosion
   m_EditorClassIdentifier: 
   CardName: Mini Explosion
-  Description: Deal 10 damage to all enemies in a circle area.
+  Description: Deal _d_ damage to all enemies within _di_ tiles circle.
   Type: 0
   BaseElement: 1
   Rarity: 3
@@ -25,5 +25,6 @@ MonoBehaviour:
   CastRange: 3
   Radius: 1
   Damage: 10
-  Effects: []
+  Statuses: []
+  Effects: 
   UpgradeBonus: []

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Recoil
   m_EditorClassIdentifier: 
   CardName: Recoil
-  Description: Move 2 tiles. Draw 2 cards.
+  Description: Move _rn_. Draw 2 cards.
   Type: 1
   BaseElement: 3
   Rarity: 0

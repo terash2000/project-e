@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Smoke
   m_EditorClassIdentifier: 
   CardName: Smoke
-  Description: Stun an adjacent  enemy.
+  Description: Stun an adjacent enemy.
   Type: 0
   BaseElement: 10
   Rarity: 3

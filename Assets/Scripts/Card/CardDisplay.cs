@@ -47,15 +47,103 @@ public class CardDisplay : MonoBehaviour
             return;
         }
 
-        _nameText.text = Card.BaseCard.CardName;
-        //_descriptionText.text = Card.BaseCard.Type == CardType.Attack ? createAttackDescribtion() : Card.BaseCard.Description;
-        _descriptionText.text = Card.BaseCard.Description;
-        _typeText.text = Card.BaseCard.Type.ToString();
-        _elementText.text = Card.Element.ToString();
-        _artworkImage.sprite = Card.BaseCard.Artwork;
-        _manaText.text = Card.ManaCost.ToString();
+        _nameText.text = _card.BaseCard.CardName;
+        _typeText.text = _card.BaseCard.Type.ToString();
+        _elementText.text = _card.Element.ToString();
+        _artworkImage.sprite = _card.BaseCard.Artwork;
+        _manaText.text = _card.ManaCost.ToString();
+        RenderDescriptionText();
 
-        _nameBorder.color = Card.IsUpgraded ? _golden : _white;
+        _nameBorder.color = _card.IsUpgraded ? _golden : _white;
+    }
+
+    private void RenderDescriptionText()
+    {
+        _descriptionText.text = _card.BaseCard.Description;
+
+        // damage
+        if (_descriptionText.text.IndexOf("_d_") != -1)
+        {
+            _descriptionText.text = _descriptionText.text.Replace("_d_", _card.Damage.ToString());
+        }
+        else if (_card.Damage > 0)
+        {
+            _descriptionText.text += $" Deal {_card.Damage} damage.";
+        }
+
+        // status
+        Dictionary<Status.Type, int> statuses = new Dictionary<Status.Type, int>();
+        foreach (Status status in Card.Statuses)
+        {
+            if (statuses.ContainsKey(status.type))
+            {
+                statuses[status.type] += status.value;
+            }
+            else
+            {
+                statuses.Add(status.type, status.value);
+            }
+        }
+        if (statuses.ContainsKey(Status.Type.Burn))
+        {
+            if (_descriptionText.text.IndexOf("_b_") != -1)
+            {
+                _descriptionText.text = _descriptionText.text.Replace("_b_", statuses[Status.Type.Burn].ToString());
+            }
+            else
+            {
+                _descriptionText.text += $" Give {statuses[Status.Type.Burn]} Burn.";
+            }
+        }
+        if (statuses.ContainsKey(Status.Type.Acid))
+        {
+            if (_descriptionText.text.IndexOf("_a_") != -1)
+            {
+                _descriptionText.text = _descriptionText.text.Replace("_a_", statuses[Status.Type.Acid].ToString());
+            }
+            else
+            {
+                _descriptionText.text += $" Give {statuses[Status.Type.Acid]} Acid.";
+            }
+        }
+        if (statuses.ContainsKey(Status.Type.Stun)
+                && _card.BaseCard.Statuses.FindAll(status => status.type == Status.Type.Stun).Count == 0)
+        {
+            _descriptionText.text += $" Stun.";
+        }
+
+        // radius
+        if (_descriptionText.text.IndexOf("_rd_") != -1)
+        {
+            _descriptionText.text = _descriptionText.text.Replace("_rd_", _card.Radius.ToString());
+        }
+        else if (_descriptionText.text.IndexOf("_di_") != -1)
+        {
+            _descriptionText.text = _descriptionText.text.Replace("_di_", (_card.Radius * 2 + 1).ToString());
+        }
+        else
+        {
+            int additionalRadius = _card.Radius - _card.BaseCard.Radius;
+            if (additionalRadius > 0)
+            {
+                _descriptionText.text += $" Area +{additionalRadius}";
+            }
+        }
+
+        // range
+        if (_descriptionText.text.IndexOf("_rn_") != -1)
+        {
+            _descriptionText.text =
+                _descriptionText.text.Replace("_rn_", _card.CastRange.ToString() + " tile" + (_card.CastRange > 1 ? "s" : ""));
+        }
+        else
+        {
+            int additionalRange = _card.CastRange - _card.BaseCard.CastRange;
+            if (additionalRange > 0)
+            {
+                _descriptionText.text += $" Range +{additionalRange}";
+            }
+        }
     }
 
     public void Highlight()
@@ -68,6 +156,7 @@ public class CardDisplay : MonoBehaviour
         _glowborder.SetActive(false);
     }
 
+    /*
     private string createAttackDescribtion()
     {
         string description = "";
@@ -115,4 +204,5 @@ public class CardDisplay : MonoBehaviour
         }
         return description;
     }
+    */
 }

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Fire Bomb
   m_EditorClassIdentifier: 
   CardName: Fire Bomb
-  Description: Deal 10 damage to all enemies in a circle area and give them 2 Burn.
+  Description: Deal _d_ damage to all enemies within _di_ tiles circle and give them
+    _b_ Burn.
   Type: 0
   BaseElement: 6
   Rarity: 1

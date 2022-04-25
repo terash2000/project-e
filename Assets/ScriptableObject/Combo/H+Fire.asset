@@ -30,5 +30,5 @@ MonoBehaviour:
     statusType: 0
     card: {fileID: 0}
   Equation: Hydrogen Combustion
-  Description: 'Attack: Radius +1, Burn +1___Skill: Range +1'
+  Description: 'Attack: Area +1, Burn +1___Skill: Range +1'
   Type: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Slash
   m_EditorClassIdentifier: 
   CardName: Slash
-  Description: Deal 5 damage to an adjacent enemy.
+  Description: Deal _d_ damage.
   Type: 0
   BaseElement: 1
   Rarity: 0
@@ -25,8 +25,10 @@ MonoBehaviour:
   CastRange: 1
   Radius: 0
   Damage: 5
-  Effects: []
+  Statuses: []
+  Effects: 
   UpgradeBonus:
   - type: 1
     amount: 4
     statusType: 0
+    card: {fileID: 0}

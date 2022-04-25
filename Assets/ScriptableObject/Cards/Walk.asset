@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Walk
   m_EditorClassIdentifier: 
   CardName: Walk
-  Description: Move to an adjacent tile.
+  Description: Move _rn_.
   Type: 1
   BaseElement: 1
   Rarity: 0

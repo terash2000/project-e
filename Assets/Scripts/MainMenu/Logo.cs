@@ -26,7 +26,7 @@ public class Logo : MonoBehaviour
         _names = new List<string>();
         _colors = new List<Color>();
         _groups = new List<string>();
-        for (int i = 1; i < elements.Length; i++)
+        for (int i = 0; i < elements.Length - 1; i++)
         {
             string[] atts = elements[i].Split(new string[] { "," }, System.StringSplitOptions.None);
             _symbols.Add(atts[1].Trim('\"'));

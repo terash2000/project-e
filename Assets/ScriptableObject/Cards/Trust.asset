@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Trust
   m_EditorClassIdentifier: 
   CardName: Trust
-  Description: Deal 7 damage to all enemies in 3 straight tiles.
+  Description: Deal _d_ damage to all enemies in _rd_ straight tiles.
   Type: 0
   BaseElement: 5
   Rarity: 1

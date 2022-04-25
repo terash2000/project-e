@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ignite
   m_EditorClassIdentifier: 
   CardName: Ignite
-  Description: Give an adjacent enemy 2 Burn.
+  Description: Give _b_ Burn.
   Type: 0
   BaseElement: 6
   Rarity: 0

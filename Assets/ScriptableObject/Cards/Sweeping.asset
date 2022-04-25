@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sweeping
   m_EditorClassIdentifier: 
   CardName: Sweeping
-  Description: Move 1 tile and deal 5 damage to adjacent enemies.
+  Description: Move _rn_ and deal _d_ damage to the nearby enemies.
   Type: 0
   BaseElement: 5
   Rarity: 1

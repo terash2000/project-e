@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Acid Bomb
   m_EditorClassIdentifier: 
   CardName: Acid Bomb
-  Description: Deal 2 damage to all enemies in a circle area and give them 2 Acid.
+  Description: Deal _d_ damage to all enemies within _di_ tiles circle and give them
+    _a_ Acid.
   Type: 0
   BaseElement: 4
   Rarity: 1
