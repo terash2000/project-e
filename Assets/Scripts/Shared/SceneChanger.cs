@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviourSingletonPersistent<SceneChanger>
 {
+    public AudioClip MainBGM;
+    public AudioClip CombatBGM;
+
     private Stack<string> _nextSceneStack = new Stack<string>();
     private string _previousScene = "MainMenuScene";
     private AsyncOperation _sceneLoading;
@@ -36,6 +39,8 @@ public class SceneChanger : MonoBehaviourSingletonPersistent<SceneChanger>
             StartCoroutine(GetSceneLoadProgress());
         }
         else SceneManager.LoadScene(scenename);
+
+        SoundController.PlayBGM(GetSceneBGM(scenename));
     }
 
     public bool NeedLoadScene(string scenename)
@@ -66,5 +71,16 @@ public class SceneChanger : MonoBehaviourSingletonPersistent<SceneChanger>
     public void PreviousScene()
     {
         LoadScene(_previousScene);
+    }
+
+    private AudioClip GetSceneBGM(string scenename)
+    {
+        switch (scenename)
+        {
+            case "CombatScene":
+                return CombatBGM;
+            default:
+                return MainBGM;
+        }
     }
 }

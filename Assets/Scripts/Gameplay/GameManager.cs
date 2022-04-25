@@ -32,8 +32,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     void Start()
     {
-        SaveSystem.LoadOptionMenu();
-
         _round = 0;
         _gameState = GameState.Running;
 

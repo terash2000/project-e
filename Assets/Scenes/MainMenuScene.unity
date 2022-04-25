@@ -5507,6 +5507,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14edd476dad10446b3f95fe6353edf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainBGM: {fileID: 8300000, guid: 0643908ea2a90c341a1f488fb302af76, type: 3}
+  CombatBGM: {fileID: 8300000, guid: f480091c3c59e4f49a590777b7d70f20, type: 3}
 --- !u!4 &2094261976
 Transform:
   m_ObjectHideFlags: 0

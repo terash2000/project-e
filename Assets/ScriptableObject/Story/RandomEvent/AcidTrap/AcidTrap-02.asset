@@ -27,3 +27,5 @@ MonoBehaviour:
   - Hide behide the glass wall.
   NextWave: {fileID: 0}
   Shake: 1
+  Voice: {fileID: 0}
+  BGM: {fileID: 8300000, guid: 68db71da3f965874fbf8c6646524d4e9, type: 3}

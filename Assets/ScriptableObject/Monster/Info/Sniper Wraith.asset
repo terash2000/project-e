@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sniper Wraith
   m_EditorClassIdentifier: 
   MonsterName: Wraith
-  MaxHealth: 20
+  MaxHealth: 15
   InitialBlock: 0
   Patterns:
   - Pattern: 3
