@@ -388,6 +388,10 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
 
                 PlayerManager.Instance.Player.SetMovement(mouseTile);
                 break;
+
+            case CardEffect.GainBlock:
+                PlayerManager.Instance.Player.Block += card.Damage;
+                break;
         }
     }
 
