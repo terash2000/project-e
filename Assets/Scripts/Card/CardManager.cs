@@ -20,8 +20,6 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
 
     [SerializeField] private HorizontalLayoutGroup _handPanel;
     [SerializeField] private GameObject _cardPrefab;
-    [SerializeField] private Button _deckButton;
-    [SerializeField] private Button _gravyardButton;
     [SerializeField] private TextMeshProUGUI _deckText;
     [SerializeField] private TextMeshProUGUI _gravyardText;
     [SerializeField] private CardPage _cardPage;
@@ -151,7 +149,6 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         if (card.IsToken) return;
 
         _graveyard.Add(card);
-        _gravyardButton.interactable = true;
         _gravyardText.text = _graveyard.Count.ToString();
     }
 
@@ -163,7 +160,6 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         if (_deck.Count == 0)
         {
             RefillDeck();
-            _gravyardButton.interactable = false;
             _gravyardText.text = "0";
         }
         if (_deck.Count > 0)
@@ -171,7 +167,6 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
             AddCardToHand(_deck[0]);
             _deck.RemoveAt(0);
         }
-        _deckButton.interactable = _deck.Count > 0;
         _deckText.text = _deck.Count.ToString();
     }
 
