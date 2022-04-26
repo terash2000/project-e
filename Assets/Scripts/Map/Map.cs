@@ -341,6 +341,7 @@ public class Map : MonoBehaviourSingleton<Map>
     {
         PlayerData.SeedJSON = null;
         PlayerData.Path = null;
+        PlayerData.Health = PlayerData.MaxHealth;
         SceneChanger.Instance.LoadScene("TownScene");
     }
 
