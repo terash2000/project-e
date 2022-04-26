@@ -77,7 +77,6 @@ public class Logo : MonoBehaviour
             _curElement = 0;
             return;
         }
-        Debug.Log(_groups[_curElement]);
         GameObject.Find("Symbol").GetComponent<TextMeshProUGUI>().text = _symbols[_curElement];
         GameObject.Find("Name").GetComponent<TextMeshProUGUI>().text = _names[_curElement];
         GameObject.Find("AtomicNumber").GetComponent<TextMeshProUGUI>().text = (_curElement + 1).ToString();
