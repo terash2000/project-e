@@ -21,6 +21,16 @@ public class StatusDisplay : MonoBehaviour
                 _icon.color = GameManager.Instance.BurnColor;
                 _amountText.color = GameManager.Instance.BurnColor;
                 break;
+            case Status.Type.Strong:
+                _icon.sprite = GameManager.Instance.StrongIcon;
+                _icon.color = GameManager.Instance.StrongColor;
+                _amountText.color = GameManager.Instance.StrongColor;
+                break;
+            case Status.Type.Weak:
+                _icon.sprite = GameManager.Instance.WeakIcon;
+                _icon.color = GameManager.Instance.WeakColor;
+                _amountText.color = GameManager.Instance.WeakColor;
+                break;
         }
         _amountText.text = amount.ToString();
     }

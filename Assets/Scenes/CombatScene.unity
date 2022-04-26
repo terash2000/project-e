@@ -724,6 +724,10 @@ MonoBehaviour:
   AcidColor: {r: 0.78431374, g: 1, b: 0, a: 1}
   BurnIcon: {fileID: 21300000, guid: 3068b0e02813be54bb651355d4590437, type: 3}
   BurnColor: {r: 1, g: 0.39215687, b: 0, a: 1}
+  StrongIcon: {fileID: 21300000, guid: 87bf430d29c6a274d97efd7daea5a43c, type: 3}
+  StrongColor: {r: 0.21960783, g: 1, b: 0.23150544, a: 1}
+  WeakIcon: {fileID: 21300000, guid: d5dbc17564b9f3644bf26f41a464d229, type: 3}
+  WeakColor: {r: 0.6509434, g: 0.29169634, b: 0.29169634, a: 1}
   GameResultPopup: {fileID: 8495098981698586526}
 --- !u!4 &424601450
 Transform:
