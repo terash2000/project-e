@@ -28,7 +28,7 @@ MonoBehaviour:
   Damage: 10
   Statuses:
   - type: 2
-    value: 2
+    value: 3
   Effects: 
   UpgradeBonus:
   - type: 1

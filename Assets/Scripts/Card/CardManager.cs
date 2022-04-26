@@ -328,17 +328,18 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
 
     private void TriggerEffect(CardEffect effect, InGameCard card, Vector3 targetPos)
     {
-        Vector3 playerPos = Arena.Instance.Grid.CellToWorld(PlayerManager.Instance.Player.CurrentTile);
-        Vector3Int mousePos = Arena.Instance.Grid.WorldToCell(new Vector3(targetPos.x, targetPos.y, 0));
-        List<int> directions;
+        Vector3Int playerTile = PlayerManager.Instance.Player.CurrentTile;
+        Vector3 playerPos = Arena.Instance.Grid.CellToWorld(playerTile);
 
+        Vector3Int mouseTile = Arena.Instance.Grid.WorldToCell(new Vector3(targetPos.x, targetPos.y, 0));
+        List<int> directions;
         if (Arena.Instance.IsDirectionTarget(card.BaseCard.TargetShape))
         {
             directions = Arena.Instance.FindDirections(playerPos, targetPos);
         }
         else
         {
-            directions = Arena.Instance.FindDirections(playerPos, Arena.Instance.Grid.CellToWorld(mousePos));
+            directions = Arena.Instance.FindDirections(playerPos, Arena.Instance.Grid.CellToWorld(mouseTile));
         }
 
         switch (effect)
@@ -348,7 +349,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
                 break;
 
             case CardEffect.Move:
-                PlayerManager.Instance.Player.SetMovement(mousePos);
+                PlayerManager.Instance.Player.SetMovement(mouseTile);
                 break;
 
             case CardEffect.MoveBack:
@@ -369,6 +370,16 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
                         }
                     }
                 }
+                break;
+
+            case CardEffect.SwitchPosition:
+                Monster monsterToSwitch = MonsterManager.Instance.FindMonsterByTile(mouseTile);
+                if (monsterToSwitch != null)
+                {
+                    monsterToSwitch.SetMovement(playerTile);
+                }
+
+                PlayerManager.Instance.Player.SetMovement(mouseTile);
                 break;
         }
     }

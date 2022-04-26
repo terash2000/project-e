@@ -6,5 +6,6 @@ public enum CardEffect
     Draw,
     Move,
     MoveBack,
-    RepeatAttack
+    RepeatAttack,
+    SwitchPosition
 }
