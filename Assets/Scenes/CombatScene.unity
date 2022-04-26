@@ -5515,6 +5515,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 4511883482971468098, guid: e584268edccc6ce409b0083f5c3c6983,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.08563137
+      objectReference: {fileID: 0}
     - target: {fileID: 5101690373994188827, guid: e584268edccc6ce409b0083f5c3c6983,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -6259,7 +6264,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1777097913}
   m_OnClick:
     m_PersistentCalls:
@@ -6434,8 +6439,6 @@ MonoBehaviour:
   _handPanel: {fileID: 815820978}
   _cardPrefab: {fileID: 1180706490461034317, guid: 0c4aa7a852a1b434d898dd218bd4521c,
     type: 3}
-  _deckButton: {fileID: 1335810896}
-  _gravyardButton: {fileID: 1777097911}
   _deckText: {fileID: 1586959872}
   _gravyardText: {fileID: 1442748568}
   _cardPage: {fileID: 1971193703}

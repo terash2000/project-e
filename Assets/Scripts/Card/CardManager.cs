@@ -20,8 +20,6 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
 
     [SerializeField] private HorizontalLayoutGroup _handPanel;
     [SerializeField] private GameObject _cardPrefab;
-    [SerializeField] private Button _deckButton;
-    [SerializeField] private Button _gravyardButton;
     [SerializeField] private TextMeshProUGUI _deckText;
     [SerializeField] private TextMeshProUGUI _gravyardText;
     [SerializeField] private CardPage _cardPage;
@@ -97,6 +95,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         {
             StartCoroutine(DrawAnimation(_drawQueue.Dequeue()));
             _drawCooldown = DRAW_COOLDOWN;
+            SoundController.Play(SoundCollection.Instance.GetSound("CardHover"));
         }
 
         // Mana color
@@ -150,7 +149,6 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         if (card.IsToken) return;
 
         _graveyard.Add(card);
-        _gravyardButton.interactable = true;
         _gravyardText.text = _graveyard.Count.ToString();
     }
 
@@ -162,7 +160,6 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         if (_deck.Count == 0)
         {
             RefillDeck();
-            _gravyardButton.interactable = false;
             _gravyardText.text = "0";
         }
         if (_deck.Count > 0)
@@ -170,7 +167,6 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
             AddCardToHand(_deck[0]);
             _deck.RemoveAt(0);
         }
-        _deckButton.interactable = _deck.Count > 0;
         _deckText.text = _deck.Count.ToString();
     }
 
@@ -308,6 +304,12 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         MoveFromHandToGraveyard(_selectingCard.Card);
         Destroy(_selectingCard.gameObject);
 
+        // sound
+        if (card.BaseCard.PlaySound != null)
+        {
+            SoundController.Play(card.BaseCard.PlaySound);
+        }
+
         // auto end turn
         if (OptionMenu.AutoEndTurn && _hand.FindAll(card => card.IsCastable()).Count == 0)
         {
@@ -328,17 +330,18 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
 
     private void TriggerEffect(CardEffect effect, InGameCard card, Vector3 targetPos)
     {
-        Vector3 playerPos = Arena.Instance.Grid.CellToWorld(PlayerManager.Instance.Player.CurrentTile);
-        Vector3Int mousePos = Arena.Instance.Grid.WorldToCell(new Vector3(targetPos.x, targetPos.y, 0));
-        List<int> directions;
+        Vector3Int playerTile = PlayerManager.Instance.Player.CurrentTile;
+        Vector3 playerPos = Arena.Instance.Grid.CellToWorld(playerTile);
 
+        Vector3Int mouseTile = Arena.Instance.Grid.WorldToCell(new Vector3(targetPos.x, targetPos.y, 0));
+        List<int> directions;
         if (Arena.Instance.IsDirectionTarget(card.BaseCard.TargetShape))
         {
             directions = Arena.Instance.FindDirections(playerPos, targetPos);
         }
         else
         {
-            directions = Arena.Instance.FindDirections(playerPos, Arena.Instance.Grid.CellToWorld(mousePos));
+            directions = Arena.Instance.FindDirections(playerPos, Arena.Instance.Grid.CellToWorld(mouseTile));
         }
 
         switch (effect)
@@ -348,7 +351,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
                 break;
 
             case CardEffect.Move:
-                PlayerManager.Instance.Player.SetMovement(mousePos);
+                PlayerManager.Instance.Player.SetMovement(mouseTile);
                 break;
 
             case CardEffect.MoveBack:
@@ -369,6 +372,20 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
                         }
                     }
                 }
+                break;
+
+            case CardEffect.SwitchPosition:
+                Monster monsterToSwitch = MonsterManager.Instance.FindMonsterByTile(mouseTile);
+                if (monsterToSwitch != null)
+                {
+                    monsterToSwitch.SetMovement(playerTile);
+                }
+
+                PlayerManager.Instance.Player.SetMovement(mouseTile);
+                break;
+
+            case CardEffect.GainBlock:
+                PlayerManager.Instance.Player.Block += card.Damage;
                 break;
         }
     }

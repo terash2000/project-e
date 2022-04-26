@@ -32,3 +32,4 @@ MonoBehaviour:
     amount: -1
     statusType: 0
     card: {fileID: 0}
+  PlaySound: {fileID: 0}

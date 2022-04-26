@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Heavy Slash
   m_EditorClassIdentifier: 
   CardName: Heavy Slash
-  Description: Deal _d_ damage and stun an enemy.
+  Description: Deal _d_ damage and stun the target.
   Type: 0
   BaseElement: 1
   Rarity: 1
@@ -34,3 +34,4 @@ MonoBehaviour:
     amount: 7
     statusType: 0
     card: {fileID: 0}
+  PlaySound: {fileID: 8300000, guid: 1785fff83652f42399d9b2017b05656c, type: 3}

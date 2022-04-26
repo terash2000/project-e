@@ -13,22 +13,25 @@ MonoBehaviour:
   m_Name: German Suplex
   m_EditorClassIdentifier: 
   CardName: German Suplex
-  Description: Deal _d_ circle area damage on an adjacent tile.
+  Description: Stun and switch position with an enemy.
   Type: 0
   BaseElement: 3
   Rarity: 1
   Artwork: {fileID: 21300000, guid: 6a00aedfaa63a114ab871586ab1bcd11, type: 3}
-  ManaCost: 2
+  ManaCost: 1
   IsUnlocked: 0
   AreaShape: 1
-  TargetShape: 1
+  TargetShape: 0
   CastRange: 1
-  Radius: 1
-  Damage: 13
-  Statuses: []
-  Effects: 
+  Radius: 0
+  Damage: 0
+  Statuses:
+  - type: 3
+    value: 1
+  Effects: 04000000
   UpgradeBonus:
   - type: 1
-    amount: 8
+    amount: 5
     statusType: 0
     card: {fileID: 0}
+  PlaySound: {fileID: 8300000, guid: 89001e92ca492453599bb2bc49326e85, type: 3}

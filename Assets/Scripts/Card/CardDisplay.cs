@@ -55,6 +55,7 @@ public class CardDisplay : MonoBehaviour
         RenderDescriptionText();
 
         _nameBorder.color = _card.IsUpgraded ? _golden : _white;
+        if (_card.IsUpgraded) _nameText.text += "+";
     }
 
     private void RenderDescriptionText()

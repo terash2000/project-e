@@ -18,21 +18,22 @@ MonoBehaviour:
   BaseElement: 5
   Rarity: 1
   Artwork: {fileID: 21300000, guid: fe8da812816f83f4f966492470b0aab3, type: 3}
-  ManaCost: 1
+  ManaCost: 2
   IsUnlocked: 0
   AreaShape: 1
   TargetShape: 1
   CastRange: 1
   Radius: 1
-  Damage: 5
+  Damage: 7
   Statuses: []
   Effects: 01000000
   UpgradeBonus:
   - type: 1
-    amount: 4
+    amount: 5
     statusType: 0
     card: {fileID: 0}
   - type: 3
     amount: 1
     statusType: 0
     card: {fileID: 0}
+  PlaySound: {fileID: 8300000, guid: 4a578695dfac4422d81299af3481ea10, type: 3}

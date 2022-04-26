@@ -21,4 +21,5 @@ public class Card : ScriptableObject
     public List<Status> Statuses;
     public List<CardEffect> Effects;
     public List<Bonus> UpgradeBonus;
+    public AudioClip PlaySound;
 }
