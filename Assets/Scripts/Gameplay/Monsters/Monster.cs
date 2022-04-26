@@ -138,6 +138,10 @@ public class Monster : GameCharacter
         {
             InGameCard selectingCard = CardManager.Instance.SelectingCard.Card;
             int cardDamage = selectingCard.Damage;
+            if (PlayerManager.Instance.Player.StatusDict.ContainsKey(Status.Type.Strong))
+                cardDamage *= (int)Status.STRONG_DAMAGE_MULTIPLIER;
+            else if (PlayerManager.Instance.Player.StatusDict.ContainsKey(Status.Type.Weak))
+                cardDamage *= (int)Status.WEAK_DAMAGE_MULTIPLIER;
             int attackCount = selectingCard.BaseCard.Effects.FindAll(effect => effect == CardEffect.RepeatAttack).Count + 1;
             TextMeshProUGUI previewText = _previewDamage.GetComponent<TextMeshProUGUI>();
             _previewDamage.SetActive(true);
