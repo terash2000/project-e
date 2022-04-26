@@ -33,6 +33,6 @@ MonoBehaviour:
     amount: 1
     statusType: 0
     card: {fileID: 11400000, guid: 9068bcdcde2b10949842a262d485fe6b, type: 2}
-  Equation: "H2O + Cl2 \u2192 HCl + HOCl"
+  Equation: "H<sub>2</sub>O + Cl<sub>2</sub> \u2192 HCl + HOCl"
   Description: Change mana used to 0.___Create a Strong Acid card.
   Type: 0
