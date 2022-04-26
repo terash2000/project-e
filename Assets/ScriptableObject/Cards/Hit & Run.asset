@@ -21,9 +21,9 @@ MonoBehaviour:
   ManaCost: 1
   IsUnlocked: 0
   AreaShape: 1
-  TargetShape: 2
+  TargetShape: 1
   CastRange: 1
-  Radius: 1
+  Radius: 0
   Damage: 5
   Statuses: []
   GainStatuses: []
