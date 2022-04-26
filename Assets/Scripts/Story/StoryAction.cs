@@ -39,21 +39,21 @@ public class StoryAction
                 break;
 
             case ActionType.AddCardToDeck:
-                InGameCard newCard;
+                Card newCard;
                 if (Name != "")
                 {
-                    newCard = new InGameCard(CardCollection.Instance.FindCardByName(Name));
+                    newCard = CardCollection.Instance.FindCardByName(Name);
                 }
-                else newCard = new InGameCard(CardCollection.Instance.RandomCard());
+                else newCard = CardCollection.Instance.RandomCard();
 
                 for (int i = 0; i < Amount; i++)
                 {
-                    PlayerData.Deck.Add(newCard);
+                    PlayerData.Deck.Add(new InGameCard(newCard));
                 }
 
                 string acquireHeader = "Acquire";
                 if (Amount > 1) acquireHeader += " x" + Amount.ToString();
-                DialogManager.Instance.ShowPopup(acquireHeader, newCard);
+                DialogManager.Instance.ShowPopup(acquireHeader, new InGameCard(newCard));
                 break;
 
             case ActionType.ChangeHP:

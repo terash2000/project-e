@@ -80,7 +80,7 @@ public class InGameCard
         _additionalRadius = other._additionalRadius;
         _additionalCastRange = other._additionalCastRange;
         _additionalStatuses = new List<Status>(other._additionalStatuses);
-        _additionalStatuses = new List<Status>(other._additionalGainStatuses);
+        _additionalGainStatuses = new List<Status>(other._additionalGainStatuses);
 
 
         _isUpgraded = other._isUpgraded;
