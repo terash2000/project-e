@@ -8,6 +8,7 @@ public class Monster : GameCharacter
 {
     public const float DAMAGE_COOLDOWN_TIME = 0.2f;
     private const float ATTACK_ANIMATION_RANGE = 0.4f;
+    private const int PREVIEW_ATTACK_COUNT_SIZE_PERCENT = 75;
 
     [SerializeField]
     private GameObject _healthBar;
@@ -143,7 +144,8 @@ public class Monster : GameCharacter
             _previewDamage.SetActive(true);
             _deathIcon.SetActive(false);
             previewText.text = cardDamage.ToString();
-            if (attackCount > 1) previewText.text += $"x{attackCount}";
+            if (attackCount > 1)
+                previewText.text += $"<size={PREVIEW_ATTACK_COUNT_SIZE_PERCENT}%>x{attackCount}</size>";
 
             _deathIcon.SetActive(cardDamage * attackCount >= Health + Block);
         }
