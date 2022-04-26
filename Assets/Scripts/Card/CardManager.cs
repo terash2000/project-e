@@ -97,6 +97,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         {
             StartCoroutine(DrawAnimation(_drawQueue.Dequeue()));
             _drawCooldown = DRAW_COOLDOWN;
+            SoundController.Play(SoundCollection.Instance.GetSound("CardHover"));
         }
 
         // Mana color
@@ -307,6 +308,12 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         PlayerData.Mana -= card.ManaCost;
         MoveFromHandToGraveyard(_selectingCard.Card);
         Destroy(_selectingCard.gameObject);
+
+        // sound
+        if (card.BaseCard.PlaySound != null)
+        {
+            SoundController.Play(card.BaseCard.PlaySound);
+        }
 
         // auto end turn
         if (OptionMenu.AutoEndTurn && _hand.FindAll(card => card.IsCastable()).Count == 0)

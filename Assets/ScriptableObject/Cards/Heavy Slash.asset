@@ -34,3 +34,4 @@ MonoBehaviour:
     amount: 7
     statusType: 0
     card: {fileID: 0}
+  PlaySound: {fileID: 8300000, guid: 1785fff83652f42399d9b2017b05656c, type: 3}
