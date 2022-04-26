@@ -33,6 +33,6 @@ MonoBehaviour:
     amount: 2
     statusType: 0
     card: {fileID: 11400000, guid: dc769739786f4604cb8c38fbb748b4f3, type: 2}
-  Equation: "Na + H2O \u2192 NaOH + H2"
+  Equation: "Na + H<sub>2</sub>O \u2192 NaOH + H<sub>2</sub>"
   Description: Change mana used to 0.___Create two Explosion cards.
   Type: 0
