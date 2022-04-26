@@ -63,13 +63,20 @@ public class CardDisplay : MonoBehaviour
         _descriptionText.text = _card.BaseCard.Description;
 
         // damage
+        int damage = _card.GetRealDamage();
         if (_descriptionText.text.IndexOf("_d_") != -1)
         {
-            _descriptionText.text = _descriptionText.text.Replace("_d_", _card.Damage.ToString());
+            _descriptionText.text = _descriptionText.text.Replace("_d_", damage.ToString());
         }
-        else if (_card.Damage > 0)
+        else if (damage > 0)
         {
-            _descriptionText.text += $" Deal {_card.Damage} damage.";
+            _descriptionText.text += $" Deal {damage} damage.";
+        }
+
+        // block
+        if (_descriptionText.text.IndexOf("_bl_") != -1)
+        {
+            _descriptionText.text = _descriptionText.text.Replace("_bl_", _card.Damage.ToString());
         }
 
         // status

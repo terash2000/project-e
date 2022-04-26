@@ -19,6 +19,7 @@ public class Card : ScriptableObject
     public int Radius;
     public int Damage;
     public List<Status> Statuses;
+    public List<Status> GainStatuses;
     public List<CardEffect> Effects;
     public List<Bonus> UpgradeBonus;
     public AudioClip PlaySound;

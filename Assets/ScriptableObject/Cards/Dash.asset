@@ -10,27 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cae679194d7e69b4b91681558c55e2e1, type: 3}
-  m_Name: Parry
+  m_Name: Dash
   m_EditorClassIdentifier: 
-  CardName: Parry
-  Description: Deal _d_ damage. Gain _bl_ Block.
-  Type: 0
-  BaseElement: 5
+  CardName: Dash
+  Description: Move _rn_. Deal double damage this turn.
+  Type: 1
+  BaseElement: 2
   Rarity: 0
-  Artwork: {fileID: 21300000, guid: bcb1bc8a7db057f409ecffe2b9b93191, type: 3}
-  ManaCost: 1
+  Artwork: {fileID: 21300000, guid: e41224053731ea143a238df7c2b642c6, type: 3}
+  ManaCost: 2
   IsUnlocked: 0
   AreaShape: 1
-  TargetShape: 1
+  TargetShape: 0
   CastRange: 1
   Radius: 0
-  Damage: 5
+  Damage: 0
   Statuses: []
-  GainStatuses: []
-  Effects: 05000000
+  GainStatuses:
+  - type: 4
+    value: 1
+  Effects: 
   UpgradeBonus:
-  - type: 1
-    amount: 4
+  - type: 0
+    amount: -1
     statusType: 0
     card: {fileID: 0}
-  PlaySound: {fileID: 8300000, guid: 4a578695dfac4422d81299af3481ea10, type: 3}
+  PlaySound: {fileID: 0}

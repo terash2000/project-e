@@ -122,7 +122,7 @@ public class GameCharacter : MonoBehaviour
         }
     }
 
-    public bool TriggerStatus()
+    public virtual bool TriggerStatus()
     {
         if (_statusDict.Count == 0) return false;
 

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InGameCard
 {
@@ -12,6 +13,7 @@ public class InGameCard
     private int _additionalRadius = 0;
     private int _additionalCastRange = 0;
     private List<Status> _additionalStatuses = new List<Status>();
+    private List<Status> _additionalGainStatuses = new List<Status>();
 
     private bool _isUpgraded = false;
     public bool _isToken = false;
@@ -46,6 +48,10 @@ public class InGameCard
     {
         get { return _baseCard.Statuses.Concat(_additionalStatuses).ToList(); }
     }
+    public List<Status> GainStatuses
+    {
+        get { return _baseCard.GainStatuses.Concat(_additionalGainStatuses).ToList(); }
+    }
 
     public bool IsUpgraded
     {
@@ -74,10 +80,27 @@ public class InGameCard
         _additionalRadius = other._additionalRadius;
         _additionalCastRange = other._additionalCastRange;
         _additionalStatuses = new List<Status>(other._additionalStatuses);
+        _additionalStatuses = new List<Status>(other._additionalGainStatuses);
 
 
         _isUpgraded = other._isUpgraded;
         _isToken = other._isToken;
+    }
+
+    public int GetRealDamage()
+    {
+        int realDamage = Damage;
+
+        if (SceneManager.GetActiveScene().name == "CombatScene")
+        {
+            Dictionary<Status.Type, int> statuses = PlayerManager.Instance.Player.StatusDict;
+            if (statuses.ContainsKey(Status.Type.Strong))
+                realDamage = (int)(realDamage * Status.STRONG_DAMAGE_MULTIPLIER);
+            else if (statuses.ContainsKey(Status.Type.Weak))
+                realDamage = (int)(realDamage * Status.WEAK_DAMAGE_MULTIPLIER);
+        }
+
+        return realDamage;
     }
 
     public bool Upgrade()

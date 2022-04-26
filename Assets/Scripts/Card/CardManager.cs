@@ -38,6 +38,11 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     private Queue<GameObject> _drawQueue = new Queue<GameObject>();
     private float _drawCooldown = 0f;
 
+    public HorizontalLayoutGroup HandPanel
+    {
+        get { return _handPanel; }
+        set { _handPanel = value; }
+    }
     public bool IsDraggingCard
     {
         get { return _isDraggingCard; }
@@ -272,23 +277,13 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
             foreach (Vector3Int pos in Arena.Instance.TargetPosList)
             {
                 Monster monster = MonsterManager.Instance.FindMonsterByTile(pos);
-                Player player = PlayerManager.Instance.Player;
                 if (monster != null)
                 {
-                    int realDamage = card.Damage;
-                    if (player.StatusDict.ContainsKey(Status.Type.Strong))
-                        realDamage *= (int)Status.STRONG_DAMAGE_MULTIPLIER;
-                    else if (player.StatusDict.ContainsKey(Status.Type.Weak))
-                        realDamage *= (int)Status.WEAK_DAMAGE_MULTIPLIER;
-                    monster.TakeDamage(realDamage);
+                    monster.TakeDamage(card.GetRealDamage());
 
                     foreach (Status status in card.Statuses)
                     {
-                        // Add status effect to player if it's Strong
-                        if (status.type == Status.Type.Strong)
-                            player.GainStatus(status.type, status.value);
-                        else
-                            monster.GainStatus(status.type, status.value);
+                        monster.GainStatus(status.type, status.value);
                     }
                     success = true;
                 }
@@ -304,6 +299,12 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
         }
 
         if (!success) return;
+
+        // player gain status
+        foreach (Status status in card.GainStatuses)
+        {
+            PlayerManager.Instance.Player.GainStatus(status.type, status.value);
+        }
 
         // other effects
         foreach (CardEffect effect in card.BaseCard.Effects)
@@ -376,7 +377,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
                     Monster monster = MonsterManager.Instance.FindMonsterByTile(pos);
                     if (monster != null)
                     {
-                        monster.TakeDamage(card.Damage);
+                        monster.TakeDamage(card.GetRealDamage());
                         foreach (Status status in card.Statuses)
                         {
                             monster.GainStatus(status.type, status.value);

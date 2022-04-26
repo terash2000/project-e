@@ -66,6 +66,37 @@ public class Player : GameCharacter
         }
     }
 
+    public override void GainStatus(Status.Type status, int amount = 1)
+    {
+        base.GainStatus(status, amount);
+        if (status == Status.Type.Strong || status == Status.Type.Weak)
+        {
+            // rewrite card text
+            Transform hand = CardManager.Instance.HandPanel.transform;
+            for (int i = 0; i < hand.childCount; i++)
+            {
+                CardDisplay cardDisplay = hand.GetChild(i).GetComponent<CardDisplay>();
+                cardDisplay.Render();
+            }
+        }
+    }
+
+    public override bool TriggerStatus()
+    {
+        if (base.TriggerStatus())
+        {
+            // rewrite card text
+            Transform hand = CardManager.Instance.HandPanel.transform;
+            for (int i = 0; i < hand.childCount; i++)
+            {
+                CardDisplay cardDisplay = hand.GetChild(i).GetComponent<CardDisplay>();
+                cardDisplay.Render();
+            }
+            return true;
+        }
+        return false;
+    }
+
     protected override void UpdateStatusIcon()
     {
         for (int i = 0; i < _statusContainer.transform.childCount; i++)

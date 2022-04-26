@@ -36,6 +36,10 @@ MonoBehaviour:
     rootEvent: {fileID: 0}
   - Type: 5
     Amount: 0
+    Name: Dash
+    rootEvent: {fileID: 0}
+  - Type: 5
+    Amount: 0
     Name: Moonblade
     rootEvent: {fileID: 0}
   - Type: 5

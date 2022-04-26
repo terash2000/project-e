@@ -10,27 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cae679194d7e69b4b91681558c55e2e1, type: 3}
-  m_Name: Parry
+  m_Name: Acid
   m_EditorClassIdentifier: 
-  CardName: Parry
-  Description: Deal _d_ damage. Gain _bl_ Block.
+  CardName: Strong Acid
+  Description: Deal _d_ damage to all enemies within _di_ tiles circle and give them
+    _a_ Acid.
   Type: 0
-  BaseElement: 5
-  Rarity: 0
-  Artwork: {fileID: 21300000, guid: bcb1bc8a7db057f409ecffe2b9b93191, type: 3}
+  BaseElement: 9
+  Rarity: 3
+  Artwork: {fileID: 21300000, guid: fe0d1ba424e1ffe41ab53d06b9ea7fdb, type: 3}
   ManaCost: 1
   IsUnlocked: 0
   AreaShape: 1
   TargetShape: 1
-  CastRange: 1
-  Radius: 0
-  Damage: 5
-  Statuses: []
-  GainStatuses: []
-  Effects: 05000000
-  UpgradeBonus:
+  CastRange: 3
+  Radius: 1
+  Damage: 2
+  Statuses:
   - type: 1
-    amount: 4
-    statusType: 0
-    card: {fileID: 0}
-  PlaySound: {fileID: 8300000, guid: 4a578695dfac4422d81299af3481ea10, type: 3}
+    value: 3
+  GainStatuses: []
+  Effects: 
+  UpgradeBonus: []
+  PlaySound: {fileID: 8300000, guid: 670023a95d5524aa79ad7583b1534d22, type: 3}

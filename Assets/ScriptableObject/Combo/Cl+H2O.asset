@@ -14,21 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Base1: 4
   Base2: 8
-  Result: 9
+  Result: 13
   AttackCardBonuses:
   - type: 0
     amount: -3
     statusType: 0
     card: {fileID: 0}
-  - type: 4
-    amount: 3
-    statusType: 1
-    card: {fileID: 0}
+  - type: 5
+    amount: 1
+    statusType: 0
+    card: {fileID: 11400000, guid: 9068bcdcde2b10949842a262d485fe6b, type: 2}
   SkillCardBonuses:
   - type: 0
     amount: -3
     statusType: 0
     card: {fileID: 0}
-  Equation: "H2O + Cl2 \u2192 HCl + HClO"
-  Description: 'Change mana used to 0.___Attack: Acid +3'
+  - type: 5
+    amount: 1
+    statusType: 0
+    card: {fileID: 11400000, guid: 9068bcdcde2b10949842a262d485fe6b, type: 2}
+  Equation: "H2O + Cl2 \u2192 HCl + HOCl"
+  Description: Change mana used to 0.___Create a Strong Acid card.
   Type: 0
