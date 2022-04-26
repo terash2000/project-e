@@ -21,11 +21,12 @@ MonoBehaviour:
   ManaCost: 1
   IsUnlocked: 0
   AreaShape: 1
-  TargetShape: 1
+  TargetShape: 2
   CastRange: 1
-  Radius: 0
+  Radius: 1
   Damage: 5
   Statuses: []
+  GainStatuses: []
   Effects: 02000000
   UpgradeBonus:
   - type: 1

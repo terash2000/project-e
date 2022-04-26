@@ -288,6 +288,12 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
                     success = true;
                 }
             }
+
+            if (card.CanUseOnEmpty() &&
+                (Arena.Instance.AreaPosList.Contains(mousePos) || Arena.Instance.IsDirectionTarget(card.BaseCard.TargetShape)))
+            {
+                success = true;
+            }
         }
         else if (card.BaseCard.Type == CardType.Skill)
         {

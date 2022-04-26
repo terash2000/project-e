@@ -185,4 +185,16 @@ public class InGameCard
     {
         return ManaCost <= PlayerData.Mana;
     }
+
+    public bool CanUseOnEmpty()
+    {
+        foreach (CardEffect effect in BaseCard.Effects)
+        {
+            if (effect == CardEffect.Move || effect == CardEffect.MoveBack)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
