@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public Color AcidColor;
     public Sprite BurnIcon;
     public Color BurnColor;
+    public Sprite StrongIcon;
+    public Color StrongColor;
+    public Sprite WeakIcon;
+    public Color WeakColor;
     public GameResultPopup GameResultPopup;
 
     public static GameState GameState
@@ -51,12 +55,14 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         {
             if (PlayerData.Health <= 0)
             {
+                PlayerData.Block = 0;
                 SaveSystem.DeleteSave();
                 GameResultPopup.OnLose();
                 _gameState = GameState.Lose;
             }
             else if (MonsterManager.Instance.Monsters.Count == 0)
             {
+                PlayerData.Block = 0;
                 StartCoroutine(WinAfterDelay());
             }
         }

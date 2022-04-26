@@ -7,7 +7,9 @@ public class Status
         None,
         Acid,
         Burn,
-        Stun
+        Stun,
+        Strong,
+        Weak,
     }
 
     public Status(Type type, int value)

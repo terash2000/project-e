@@ -529,18 +529,4 @@ public class Monster : GameCharacter
 
         _damagePopupCooldown = DAMAGE_COOLDOWN_TIME;
     }
-
-    private class DamageQueueData
-    {
-        public int damage;
-        public int block;
-        public Color color;
-
-        public DamageQueueData(int damageParam, int blockParam, Color colorParam)
-        {
-            damage = damageParam;
-            block = blockParam;
-            color = colorParam;
-        }
-    }
 }
