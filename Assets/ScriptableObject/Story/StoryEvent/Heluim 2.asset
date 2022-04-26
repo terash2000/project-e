@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Heluim 2
   m_EditorClassIdentifier: 
   DialogNode: {fileID: 11400000, guid: 9309830519a0ed54295d13b8d65cf65c, type: 2}
-  Text: Heluim Side Story 2
+  Text: Helium Side Story 2
   Banner: {fileID: 21300000, guid: fff47dece72f091428b0423c59998b5e, type: 3}
   PreviousEvents:
   - {fileID: 11400000, guid: 08cb66e17ae278c4f95da2048b380fa5, type: 2}

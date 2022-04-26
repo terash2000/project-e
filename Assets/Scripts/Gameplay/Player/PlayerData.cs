@@ -5,7 +5,6 @@ public static class PlayerData
 {
     private static int _maxHealth;
     private static int _health;
-    private static int _block = 0;
     private static int _maxMana;
     private static int _mana;
     private static int _gold;
@@ -31,15 +30,6 @@ public static class PlayerData
             _health = value;
             if (_health < 0) _health = 0;
             else if (_health > _maxHealth) _health = _maxHealth;
-        }
-    }
-    public static int Block
-    {
-        get { return _block; }
-        set
-        {
-            _block = value;
-            if (_block < 0) _block = 0;
         }
     }
     public static int MaxMana

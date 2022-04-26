@@ -21,11 +21,7 @@ public class Player : GameCharacter
     [SerializeField]
     private GameObject _blockText;
     [SerializeField]
-    private SpriteRenderer _damageIcon;
-    [SerializeField]
     private GameObject _previewDamage;
-    [SerializeField]
-    private GameObject _deathIcon;
     [SerializeField]
     private HorizontalLayoutGroup _statusContainer;
     [SerializeField]
@@ -55,9 +51,9 @@ public class Player : GameCharacter
         _healthBar.transform.localScale = _healthLocalScale;
         _healthText.GetComponent<TextMeshProUGUI>().text = PlayerData.Health.ToString();
 
-        _blockText.GetComponent<TextMeshProUGUI>().text = PlayerData.Block.ToString();
-        _blockText.SetActive(PlayerData.Block > 0);
-        _blockBar.SetActive(PlayerData.Block > 0);
+        _blockText.GetComponent<TextMeshProUGUI>().text = Block.ToString();
+        _blockText.SetActive(Block > 0);
+        _blockBar.SetActive(Block > 0);
 
         // damage popup
         if (_damagePopupCooldown > 0)
@@ -86,7 +82,7 @@ public class Player : GameCharacter
 
     public override int TakeDamage(int damage, Status.Type? damageStatusEffect = null)
     {
-        // Prevent Die() from being executed twice when the monster has more than one status effect
+        // Prevent Die() from being executed twice when player has more than one status effect
         if (PlayerData.Health == 0)
             return 0;
 
@@ -99,23 +95,23 @@ public class Player : GameCharacter
             color = _damageColor;
 
         int blockedAmount = 0;
-        if (PlayerData.Block != 0)
+        if (Block != 0)
         {
             if (damageStatusEffect == Status.Type.Acid)
             {
                 // Acid attack will deal "Status.ACID_TO_BLOCK_MULTIPLIER" of damage to block but cannot carry over to health
                 int damageToBlock = System.Convert.ToInt32(System.Math.Floor(damage * Status.ACID_TO_BLOCK_MULTIPLIER));
-                blockedAmount = PlayerData.Block - damageToBlock < 0 ? PlayerData.Block : damageToBlock;
+                blockedAmount = Block - damageToBlock < 0 ? Block : damageToBlock;
                 damage = 0;
             }
             else
             {
                 // Normal scenario, if the attack damage is more than the block, it'll get carried over to the health
-                blockedAmount = PlayerData.Block - damage < 0 ? PlayerData.Block : damage;
+                blockedAmount = Block - damage < 0 ? Block : damage;
                 damage -= blockedAmount;
             }
             // Debug.Log("Attack damage of type " + damageStatusEffect + " has been blocked by " + blockedAmount + " and get carried over by " + damage);
-            PlayerData.Block -= blockedAmount;
+            Block -= blockedAmount;
         }
 
         if (damage != 0 || blockedAmount != 0)
@@ -140,7 +136,6 @@ public class Player : GameCharacter
         else
         {
             Canvas playerCanvas = GetComponentInChildren<Canvas>();
-            Debug.Log("Player Canvas : ", playerCanvas);
 
             if (data.damage != 0 || data.color == _damageColor)
             {
@@ -169,8 +164,7 @@ public class Player : GameCharacter
                 blockPopup.AddComponent<BlockPopup>();
                 blockPopup.transform.SetParent(Arena.Instance.transform);
             }
+            _damagePopupCooldown = DAMAGE_COOLDOWN_TIME;
         }
-
-        _damagePopupCooldown = DAMAGE_COOLDOWN_TIME;
     }
 }

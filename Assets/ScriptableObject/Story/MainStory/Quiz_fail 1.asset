@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   Character: {fileID: 11400000, guid: 023d19118fe4ba347a0d4cca9668092d, type: 2}
-  Quote: Worng!
+  Quote: Wrong!
   Background: {fileID: 0}
   Sprite: {fileID: 21300000, guid: 28c246068049a8746a628ef7d5e8972a, type: 3}
   Actions: []
@@ -24,3 +24,4 @@ MonoBehaviour:
   NextWave: {fileID: 0}
   Shake: 0
   Voice: {fileID: 0}
+  BGM: {fileID: 0}

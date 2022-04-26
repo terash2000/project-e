@@ -145,7 +145,7 @@ public class Monster : GameCharacter
             previewText.text = cardDamage.ToString();
             if (attackCount > 1) previewText.text += $"x{attackCount}";
 
-            _deathIcon.SetActive(cardDamage >= Health + Block);
+            _deathIcon.SetActive(cardDamage * attackCount >= Health + Block);
         }
         else
         {
@@ -529,8 +529,7 @@ public class Monster : GameCharacter
                 blockPopup.AddComponent<BlockPopup>();
                 blockPopup.transform.SetParent(Arena.Instance.transform);
             }
+            _damagePopupCooldown = DAMAGE_COOLDOWN_TIME;
         }
-
-        _damagePopupCooldown = DAMAGE_COOLDOWN_TIME;
     }
 }
