@@ -137,6 +137,12 @@ public class Monster : GameCharacter
             CardManager.Instance.SelectingCard.Card.BaseCard.Type == CardType.Attack)
         {
             int cardDamage = CardManager.Instance.SelectingCard.Card.Damage;
+            // Calculate Strong and Weak status effect on damage preview
+            if (PlayerManager.Instance.Player.StatusDict.ContainsKey(Status.Type.Strong))
+                cardDamage *= (int)Status.STRONG_DAMAGE_MULTIPLIER;
+            else if (PlayerManager.Instance.Player.StatusDict.ContainsKey(Status.Type.Weak))
+                cardDamage *= (int)Status.WEAK_DAMAGE_MULTIPLIER;
+
             _previewDamage.SetActive(true);
             _deathIcon.SetActive(false);
             _previewDamage.GetComponent<TextMeshProUGUI>().text = cardDamage.ToString();

@@ -272,12 +272,23 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
             foreach (Vector3Int pos in Arena.Instance.TargetPosList)
             {
                 Monster monster = MonsterManager.Instance.FindMonsterByTile(pos);
+                Player player = PlayerManager.Instance.Player;
                 if (monster != null)
                 {
-                    monster.TakeDamage(card.Damage);
+                    int realDamage = card.Damage;
+                    if (player.StatusDict.ContainsKey(Status.Type.Strong))
+                        realDamage *= (int)Status.STRONG_DAMAGE_MULTIPLIER;
+                    else if (player.StatusDict.ContainsKey(Status.Type.Weak))
+                        realDamage *= (int)Status.WEAK_DAMAGE_MULTIPLIER;
+                    monster.TakeDamage(realDamage);
+
                     foreach (Status status in card.Statuses)
                     {
-                        monster.GainStatus(status.type, status.value);
+                        // Add status effect to player if it's Strong
+                        if (status.type == Status.Type.Strong)
+                            player.GainStatus(status.type, status.value);
+                        else
+                            monster.GainStatus(status.type, status.value);
                     }
                     success = true;
                 }
