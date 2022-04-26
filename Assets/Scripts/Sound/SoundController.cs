@@ -11,7 +11,7 @@ public class SoundController : MonoBehaviour
     private static AudioSource _bgmSource;
     private static AudioSource _voiceSource;
 
-    static void Start()
+    public static void Init()
     {
         Source = new GameObject("Sound");
         Source.AddComponent<AudioSource>();
@@ -65,7 +65,7 @@ public class SoundController : MonoBehaviour
 
     public static void Play(AudioClip sound)
     {
-        if (Source == null) Start();
+        if (Source == null) Init();
         AudioSource source = GameObject.FindObjectsOfType<AudioSource>().ToList().Find(x => x.clip == sound);
 
         if (source == default(AudioSource)) source = CreateSource(sound);
