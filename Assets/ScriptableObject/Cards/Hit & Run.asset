@@ -28,8 +28,8 @@ MonoBehaviour:
   Statuses: []
   Effects: 02000000
   UpgradeBonus:
-  - type: 0
-    amount: -1
+  - type: 1
+    amount: 4
     statusType: 0
     card: {fileID: 0}
   PlaySound: {fileID: 8300000, guid: 01999991d21504b5abb7a554bba05227, type: 3}

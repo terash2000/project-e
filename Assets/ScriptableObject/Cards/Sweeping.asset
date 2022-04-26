@@ -29,7 +29,7 @@ MonoBehaviour:
   Effects: 01000000
   UpgradeBonus:
   - type: 1
-    amount: 4
+    amount: 5
     statusType: 0
     card: {fileID: 0}
   - type: 3
