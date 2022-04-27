@@ -6443,6 +6443,7 @@ MonoBehaviour:
   _gravyardText: {fileID: 1442748568}
   _cardPage: {fileID: 1971193703}
   _previewCard: {fileID: 229280348}
+  _fatigueCard: {fileID: 11400000, guid: 6ab9c6f45b5507b46958207a72dcadbc, type: 2}
 --- !u!4 &1915862162
 Transform:
   m_ObjectHideFlags: 0

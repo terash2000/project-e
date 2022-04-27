@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Header: Shuffling
   Text: When your draw pile is empty, drawing another card will shuffle all cards
-    in your discard pile back into your draw pile.
+    in your discard pile back into your draw pile and also shuffle a Fatigue card
+    into your draw pile.
   Image: {fileID: 21300000, guid: 8fdc3e3cba56f644cab48d77c5173761, type: 3}

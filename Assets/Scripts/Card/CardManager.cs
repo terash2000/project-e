@@ -10,6 +10,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     private const int START_HAND_AMOUNT = 5;
     private const int MAX_HAND_SIZE = 9;
     private const int CARD_PER_TURN = 2;
+    private const int FATIGUE_COUNT = 1;
 
     public const float ZOOM_CARD_SCALE = 1.1f;
     private const float PREVIEW_DELAY = 0.8f;
@@ -24,6 +25,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     [SerializeField] private TextMeshProUGUI _gravyardText;
     [SerializeField] private CardPage _cardPage;
     [SerializeField] private CardDisplay _previewCard;
+    [SerializeField] private Card _fatigueCard;
 
     private GameObject _previewContainer;
     private List<InGameCard> _deck = new List<InGameCard>();
@@ -178,6 +180,13 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
     public void RefillDeck()
     {
         (_deck, _graveyard) = (_graveyard, _deck);
+
+        // add fatigue card to deck
+        for (int i = 0; i < FATIGUE_COUNT; i++)
+        {
+            _deck.Add(new InGameCard(_fatigueCard));
+        }
+
         ShuffleDeck();
     }
 
