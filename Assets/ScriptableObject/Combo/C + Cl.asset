@@ -21,6 +21,6 @@ MonoBehaviour:
     statusType: 3
     card: {fileID: 0}
   SkillCardBonuses: []
-  Equation: "C + Cl \u2192 CCl<sub>4</sub>"
+  Equation: "C<sup>+</sup> + Cl<sup>-</sup> \u2192 CCl<sub>4</sub>"
   Description: 'Attack: Stun +1'
   Type: 0

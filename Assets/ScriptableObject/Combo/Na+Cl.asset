@@ -25,6 +25,6 @@ MonoBehaviour:
     amount: -2
     statusType: 0
     card: {fileID: 0}
-  Equation: "Na + Cl \u2192 NaCl"
+  Equation: "Na<sup>+</sup> + Cl<sup>-</sup> \u2192 NaCl"
   Description: Reduce mana used by 2.
   Type: 0

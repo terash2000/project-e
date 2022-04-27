@@ -25,6 +25,6 @@ MonoBehaviour:
     amount: 1
     statusType: 0
     card: {fileID: 11400000, guid: 29c9bb8948c9cef4dbab804a5fec51a1, type: 2}
-  Equation: "C + O \u2192 CO"
+  Equation: "C<sup>+</sup> + O<sup>-</sup> \u2192 CO"
   Description: 'Attack: Stun +1___Skill: Create a Smoke card'
   Type: 0
