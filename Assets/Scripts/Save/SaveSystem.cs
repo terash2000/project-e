@@ -109,6 +109,7 @@ public static class SaveSystem
         UnlockData data = new UnlockData();
         data.unlockDict = CardCollection.UnlockDict;
         data.completedStory = StoryMenu.CompletedStory;
+        data.paidStory = StoryMenu.PaidStory;
 
         formatter.Serialize(file, data);
         file.Close();
@@ -126,10 +127,13 @@ public static class SaveSystem
 
             List<Card> allNonSpecialCards = CardCollection.Instance.GetNonSpecialCards();
             if (data.unlockDict.Count == allNonSpecialCards.Count &&
-                    data.unlockDict.Keys.SequenceEqual(allNonSpecialCards.Select(card => card.CardName)))
+                    data.unlockDict.Keys.SequenceEqual(allNonSpecialCards.Select(card => card.CardName)) &&
+                    data.completedStory != null &&
+                    data.paidStory != null)
             {
                 CardCollection.UnlockDict = data.unlockDict;
                 StoryMenu.CompletedStory = data.completedStory;
+                StoryMenu.PaidStory = data.paidStory;
             }
             else
             {
@@ -137,6 +141,7 @@ public static class SaveSystem
                 File.Delete(Application.persistentDataPath + "/UnlockData.dat");
                 CardCollection.UnlockDict = CardCollection.Instance.StarterCards();
                 StoryMenu.CompletedStory = new List<string>();
+                StoryMenu.PaidStory = new List<string>();
             }
         }
         else

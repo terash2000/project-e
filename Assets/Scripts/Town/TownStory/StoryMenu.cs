@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,32 +10,38 @@ public class StoryMenu : MonoBehaviour
     [SerializeField] private List<StoryEvent> _eventList;
 
     private static List<string> _completedStory;
+    private static List<string> _paidStory;
 
     public static List<string> CompletedStory
     {
         get { return _completedStory; }
         set { _completedStory = value; }
     }
+    public static List<string> PaidStory
+    {
+        get { return _paidStory; }
+        set { _paidStory = value; }
+    }
 
     public void Start()
     {
-        List<StoryEvent> uncompleted = _eventList.FindAll(storyEvent =>
+        List<StoryEvent> availableStory = _eventList.FindAll(storyEvent => !IsAvailable(storyEvent));
+
+        availableStory = availableStory.OrderBy(storyEvent => _completedStory.Contains(storyEvent.name)).ToList();
+
+        foreach (StoryEvent storyEvent in availableStory)
+        {
+            GameObject storyButton = Instantiate(_storyEventPrefab, _eventContainer.transform);
+            storyButton.GetComponent<StoryButtonHandle>().Init(storyEvent);
+
+            if (storyEvent.UnlockCost > 0)
             {
-                return !_completedStory.Contains(storyEvent.name) && !IsLock(storyEvent);
-            });
-
-        List<StoryEvent> completed = _eventList.FindAll(storyEvent => _completedStory.Contains(storyEvent.name));
-
-        foreach (StoryEvent storyEvent in uncompleted)
-        {
-            GameObject storyButton = Instantiate(_storyEventPrefab, _eventContainer.transform);
-            storyButton.GetComponent<StoryButtonHandle>().Init(storyEvent);
-        }
-
-        foreach (StoryEvent storyEvent in completed)
-        {
-            GameObject storyButton = Instantiate(_storyEventPrefab, _eventContainer.transform);
-            storyButton.GetComponent<StoryButtonHandle>().Init(storyEvent);
+                storyButton.GetComponent<GoldChecker>().GoldNeeded = storyEvent.UnlockCost;
+            }
+            else
+            {
+                Destroy(storyButton.GetComponent<GoldChecker>());
+            }
         }
     }
 
@@ -48,7 +55,7 @@ public class StoryMenu : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private bool IsLock(StoryEvent storyEvent)
+    private bool IsAvailable(StoryEvent storyEvent)
     {
         return storyEvent.PreviousEvents != null &&
                 storyEvent.PreviousEvents.FindAll(storyEvent => !_completedStory.Contains(storyEvent.name)).Count != 0;

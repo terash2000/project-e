@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 5451338360080157132}
   - component: {fileID: 5451338360080157134}
   - component: {fileID: 4845967055280330918}
+  - component: {fileID: 5629922227880132174}
   m_Layer: 5
   m_Name: StoryEvent
   m_TagString: Untagged
@@ -321,8 +322,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4845967055280330918}
-        m_TargetAssemblyTypeName: StoryEvent, Assembly-CSharp
-        m_MethodName: ChangeScene
+        m_TargetAssemblyTypeName: StoryButtonHandle, Assembly-CSharp
+        m_MethodName: Click
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -361,6 +362,22 @@ MonoBehaviour:
   _text: {fileID: 5451338360905141055}
   _banner: {fileID: 5302554503527423270}
   _mask: {fileID: 4748492913803447768}
+  _confirmationPopup: {fileID: 5984139876473836622, guid: d17398450ca033342ae5014d530fb58f,
+    type: 3}
+--- !u!114 &5629922227880132174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5451338360080157128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 494c82a25e8b61b49a61a812d36fafa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GoldNeeded: 0
+  _text: {fileID: 5451338360905141055}
 --- !u!1 &5451338360905141049
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,8 +452,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278228735
-  m_fontColor: {r: 1, g: 0.5882353, b: 0, a: 1}
+    rgba: 4278236415
+  m_fontColor: {r: 1, g: 0.7058824, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

@@ -6,4 +6,5 @@ public class UnlockData
 {
     public Dictionary<string, bool> unlockDict;
     public List<string> completedStory;
+    public List<string> paidStory;
 }
