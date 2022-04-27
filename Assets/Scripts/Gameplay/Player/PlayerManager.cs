@@ -34,7 +34,7 @@ public class PlayerManager : MonoBehaviourSingleton<PlayerManager>, ITurnHandler
     public void OnStartTurn()
     {
         // block exist only one turn
-        Player.Block = 0;
+        Player.ResetBlock();
     }
 
     public void OnEndTurn()

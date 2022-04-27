@@ -412,7 +412,7 @@ public class CardManager : MonoBehaviourSingleton<CardManager>, ITurnHandler
                 break;
 
             case CardEffect.GainBlock:
-                PlayerManager.Instance.Player.Block += card.Damage;
+                PlayerManager.Instance.Player.GainBlock(card.Damage);
                 break;
         }
     }

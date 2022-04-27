@@ -2,48 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Monster : GameCharacter
 {
-    public const float DAMAGE_COOLDOWN_TIME = 0.2f;
     private const float ATTACK_ANIMATION_RANGE = 0.4f;
     private const int PREVIEW_ATTACK_COUNT_SIZE_PERCENT = 75;
 
-    [SerializeField]
-    private GameObject _healthBar;
-    [SerializeField]
-    private GameObject _blockBar;
-    [SerializeField]
-    private GameObject _healthText;
-    [SerializeField]
-    private GameObject _damageText;
-    [SerializeField]
-    private GameObject _blockText;
-    [SerializeField]
-    private SpriteRenderer _damageIcon;
-    [SerializeField]
-    private GameObject _previewDamage;
-    [SerializeField]
-    private GameObject _deathIcon;
-    [SerializeField]
-    private HorizontalLayoutGroup _statusContainer;
-    [SerializeField]
-    private GameObject _statusPrefab;
-    [SerializeField]
-    private Color _damageColor;
+    [SerializeField] private GameObject _damageText;
+    [SerializeField] private SpriteRenderer _damageIcon;
+    [SerializeField] private GameObject _deathIcon;
 
     private MonsterInfo _info;
+    private int _health;
     private int _currentMove = 0;
     private bool _hasMoved;
     private bool _hasAttacked;
     private bool _isStuned;
-    private Vector3 _healthLocalScale;
-    private float _healthBarSize;
     private int _attackDirection = -1;
     private float _radiant2 = 0f;
-    private float _damagePopupCooldown = 0f;
-    private Queue<DamageQueueData> _damageQueue = new Queue<DamageQueueData>();
 
     public MonsterInfo Info
     {
@@ -73,8 +49,6 @@ public class Monster : GameCharacter
 
     protected override void Start()
     {
-        base.Start();
-
         Animator.runtimeAnimatorController = _info.AnimatorController;
         Sprite.GetComponent<SpriteRenderer>().color = _info.SpriteColor;
         Sprite.transform.localScale = new Vector3(_info.SpriteScale, _info.SpriteScale, transform.localScale.z);
@@ -84,10 +58,10 @@ public class Monster : GameCharacter
         direction.Normalize();
         LookDirection = direction;
 
-        Health = _info.MaxHealth;
-        _healthLocalScale = _healthBar.transform.localScale;
-        _healthBarSize = _healthLocalScale.x;
-        Block = _info.InitialBlock;
+        _health = _info.MaxHealth;
+        GainBlock(_info.InitialBlock);
+
+        base.Start();
     }
 
     protected override void Update()
@@ -111,27 +85,6 @@ public class Monster : GameCharacter
             LookDirection = Arena.Instance.GetDirectionVector(_attackDirection);
         }
 
-        // hp
-        _healthLocalScale.x = _healthBarSize * (float)Health / (float)_info.MaxHealth;
-        _healthBar.transform.localScale = _healthLocalScale;
-        _healthText.GetComponent<TextMeshProUGUI>().text = Health.ToString();
-
-        _blockText.GetComponent<TextMeshProUGUI>().text = Block.ToString();
-        _blockText.SetActive(Block > 0);
-        _blockBar.SetActive(Block > 0);
-
-        // attack damage
-        if (_isStuned)
-        {
-            _damageText.SetActive(false);
-        }
-        else
-        {
-            _damageText.SetActive(true);
-            int damage = _info.Patterns[_currentMove].Damage;
-            _damageText.GetComponent<TextMeshProUGUI>().text = damage.ToString();
-        }
-
         // preview damage
         if (Arena.Instance.TargetPosList.Contains(CurrentTile) &&
             CardManager.Instance.IsSelectingCard() &&
@@ -147,71 +100,30 @@ public class Monster : GameCharacter
             if (attackCount > 1)
                 previewText.text += $"<size={PREVIEW_ATTACK_COUNT_SIZE_PERCENT}%>x{attackCount}</size>";
 
-            _deathIcon.SetActive(cardDamage * attackCount >= Health + Block);
+            _deathIcon.SetActive(cardDamage * attackCount >= _health + Block);
         }
         else
         {
             _previewDamage.SetActive(false);
             _deathIcon.SetActive(false);
         }
-
-        // damage popup
-        if (_damagePopupCooldown > 0)
-        {
-            _damagePopupCooldown -= Time.deltaTime;
-        }
-        else if (_damageQueue.Count != 0)
-        {
-            CreateDamagePopup(_damageQueue.Dequeue());
-        }
     }
 
     public override int TakeDamage(int damage, Status.Type? damageStatusEffect = null)
     {
-        // Prevent Die() from being executed twice when the monster has more than one status effect
-        if (Health == 0)
-            return 0;
-
-        Color color;
-        if (damageStatusEffect == Status.Type.Acid)
-            color = GameManager.Instance.AcidColor;
-        else if (damageStatusEffect == Status.Type.Burn)
-            color = GameManager.Instance.BurnColor;
-        else
-            color = _damageColor;
-
-        int blockedAmount = 0;
-        if (Block != 0)
+        base.TakeDamage(damage, damageStatusEffect);
+        if (_health <= 0)
         {
-            if (damageStatusEffect == Status.Type.Acid)
-            {
-                // Acid attack will deal "Status.ACID_TO_BLOCK_MULTIPLIER" of damage to block but cannot carry over to health
-                int damageToBlock = System.Convert.ToInt32(System.Math.Floor(damage * Status.ACID_TO_BLOCK_MULTIPLIER));
-                blockedAmount = Block - damageToBlock < 0 ? Block : damageToBlock;
-                damage = 0;
-            }
-            else
-            {
-                // Normal scenario, if the attack damage is more than the block, it'll get carried over to the health
-                blockedAmount = Block - damage < 0 ? Block : damage;
-                damage = damage - blockedAmount;
-            }
-            // Debug.Log("Attack damage of type " + damageStatusEffect + " has been blocked by " + blockedAmount + " and get carried over by " + damage);
-            Block -= blockedAmount;
-        }
-
-        if (damage != 0 || blockedAmount != 0)
-        {
-            CreateDamagePopup(new DamageQueueData(damage, blockedAmount, color));
-        }
-
-        Health -= damage;
-        if (Health <= 0)
-        {
-            Health = 0;
+            _health = 0;
             StartCoroutine(Die());
         }
-        return Health;
+        return _health;
+    }
+
+    public override void GainStatus(Status.Type status, int amount = 1)
+    {
+        base.GainStatus(status, amount);
+        UpdateAttack();
     }
 
     protected override void Stun()
@@ -219,21 +131,21 @@ public class Monster : GameCharacter
         RemoveHighlight();
         _isStuned = true;
         Animator.SetBool("Stuned", true);
-        SetAttackIcon();
     }
 
-    protected override void UpdateStatusIcon()
+    protected override int GetHealth()
     {
-        for (int i = 0; i < _statusContainer.transform.childCount; i++)
-        {
-            Destroy(_statusContainer.transform.GetChild(i).gameObject);
-        }
+        return _health;
+    }
 
-        foreach (KeyValuePair<Status.Type, int> status in StatusDict)
-        {
-            GameObject statusObj = Instantiate(_statusPrefab, _statusContainer.transform);
-            statusObj.GetComponent<StatusDisplay>().Init(status.Key, status.Value);
-        }
+    protected override void SetHealth(int value)
+    {
+        _health = value >= 0 ? value : 0;
+    }
+
+    protected override int GetMaxHealth()
+    {
+        return _info.MaxHealth;
     }
 
     public List<Vector3Int> AttackArea()
@@ -321,7 +233,7 @@ public class Monster : GameCharacter
         _hasAttacked = false;
         _isStuned = false;
         _attackDirection = CalAttackDirection();
-        SetAttackIcon();
+        UpdateAttack();
 
         Animator.SetBool("Stuned", false);
     }
@@ -355,7 +267,7 @@ public class Monster : GameCharacter
         Vector3Int characterTile = PlayerManager.Instance.Player.CurrentTile;
         if (AttackArea().Contains(characterTile))
         {
-            Block += _info.Patterns[_currentMove].BlockGain;
+            GainBlock(_info.Patterns[_currentMove].BlockGain);
             PlayerManager.Instance.Player.TakeDamage(_info.Patterns[_currentMove].Damage);
             foreach (Status.Type status in _info.Patterns[_currentMove].AttackStatusEffect.Keys)
             {
@@ -400,7 +312,7 @@ public class Monster : GameCharacter
         {
             yield return new WaitForEndOfFrame();
         }
-        while (_damageQueue.Count > 0);
+        while (DamageQueue.Count > 0);
 
         Destroy(gameObject);
     }
@@ -471,7 +383,22 @@ public class Monster : GameCharacter
         SetMovement(destination);
     }
 
-    private void SetAttackIcon()
+    private void UpdateAttack()
+    {
+        if (_isStuned)
+        {
+            _damageText.SetActive(false);
+        }
+        else
+        {
+            _damageText.SetActive(true);
+            int damage = _info.Patterns[_currentMove].Damage;
+            _damageText.GetComponent<TextMeshProUGUI>().text = damage.ToString();
+        }
+        UpdateAttackIcon();
+    }
+
+    private void UpdateAttackIcon()
     {
         if (_isStuned)
         {
@@ -491,47 +418,6 @@ public class Monster : GameCharacter
             case MonsterPatternType.AttackAndBlock:
                 _damageIcon.sprite = MonsterManager.Instance.SwordAndShieldIcon;
                 break;
-        }
-    }
-
-    private void CreateDamagePopup(DamageQueueData data)
-    {
-        if (_damagePopupCooldown > 0)
-        {
-            _damageQueue.Enqueue(data);
-        }
-        else
-        {
-            Canvas monsterCanvas = GetComponentInChildren<Canvas>();
-
-            if (data.damage != 0 || data.color == _damageColor)
-            {
-                GameObject damagePopup = Instantiate(_previewDamage, monsterCanvas.transform);
-                damagePopup.SetActive(true);
-                damagePopup.name = "Popup Damage";
-
-                TextMeshProUGUI damagePopupText = damagePopup.GetComponent<TextMeshProUGUI>();
-                damagePopupText.text = data.damage.ToString();
-                damagePopupText.color = data.color;
-
-                damagePopup.AddComponent<DamagePopup>();
-                damagePopup.transform.SetParent(Arena.Instance.transform);
-            }
-
-            if (data.block != 0)
-            {
-                GameObject blockPopup = Instantiate(_previewDamage, monsterCanvas.transform);
-                blockPopup.SetActive(true);
-                blockPopup.name = "Popup Block";
-
-                TextMeshProUGUI blockPopupText = blockPopup.GetComponent<TextMeshProUGUI>();
-                blockPopupText.text = data.block.ToString();
-                blockPopupText.color = data.color;
-
-                blockPopup.AddComponent<BlockPopup>();
-                blockPopup.transform.SetParent(Arena.Instance.transform);
-            }
-            _damagePopupCooldown = DAMAGE_COOLDOWN_TIME;
         }
     }
 }

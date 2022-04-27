@@ -1,14 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameCharacter : MonoBehaviour
 {
-    [SerializeField]
-    protected float Speed;
+    public const float DAMAGE_COOLDOWN_TIME = 0.2f;
 
     public Vector3Int CurrentTile;
+
+    [SerializeField] protected float Speed;
+    [SerializeField] private HorizontalLayoutGroup _statusContainer;
+    [SerializeField] private GameObject _statusPrefab;
+    [SerializeField] protected GameObject _previewDamage;
+    [SerializeField] private GameObject _healthBar;
+    [SerializeField] private GameObject _blockBar;
+    [SerializeField] private GameObject _healthText;
+    [SerializeField] private GameObject _blockText;
+    [SerializeField] private Color _damageColor;
 
     protected GridLayout Grid;
     protected Vector2 Displacement;
@@ -20,27 +31,32 @@ public class GameCharacter : MonoBehaviour
     protected GameObject Sprite;
     protected Animator Animator;
 
-    private int _health;
+    private Vector3 _healthLocalScale;
+    private float _healthBarSize;
     private int _block;
     private Dictionary<Status.Type, int> _statusDict = new Dictionary<Status.Type, int>();
+    private float _damagePopupCooldown = 0f;
+    private Queue<DamageQueueData> _damageQueue = new Queue<DamageQueueData>();
 
-    public int Health
-    {
-        get { return _health; }
-        set { _health = value; }
-    }
     public int Block
     {
         get { return _block; }
-        set { _block = value; }
     }
     public Dictionary<Status.Type, int> StatusDict
     {
         get { return _statusDict; }
-        set { }
+    }
+    public Queue<DamageQueueData> DamageQueue
+    {
+        get { return _damageQueue; }
     }
 
-    protected virtual void Start()
+    protected virtual void Stun() { }
+    protected virtual int GetHealth() { return 0; }
+    protected virtual void SetHealth(int value) { }
+    protected virtual int GetMaxHealth() { return 0; }
+
+    void Awake()
     {
         Transform spriteTransform = transform.Find("Sprite");
         if (spriteTransform)
@@ -49,9 +65,18 @@ public class GameCharacter : MonoBehaviour
             Animator = Sprite.GetComponent<Animator>();
         }
         else Animator = GetComponent<Animator>();
+    }
 
+    protected virtual void Start()
+    {
         Grid = Arena.Instance.GetComponentInChildren<GridLayout>();
         transform.position = OldPosition = NextPosition = Grid.CellToWorld(CurrentTile);
+
+        _healthLocalScale = _healthBar.transform.localScale;
+        _healthBarSize = _healthLocalScale.x;
+
+        UpdateHealthBar();
+        UpdateBlockBar();
     }
 
     protected virtual void Update()
@@ -71,6 +96,16 @@ public class GameCharacter : MonoBehaviour
         Animator.SetFloat("Look X", LookDirection.x);
         Animator.SetFloat("Look Y", LookDirection.y);
         Animator.SetFloat("Speed", Movement.magnitude);
+
+        // damage popup
+        if (_damagePopupCooldown > 0)
+        {
+            _damagePopupCooldown -= Time.deltaTime;
+        }
+        else if (_damageQueue.Count != 0)
+        {
+            CreateDamagePopup(_damageQueue.Dequeue());
+        }
     }
 
     public void SetMovement(Vector3Int tile)
@@ -161,10 +196,129 @@ public class GameCharacter : MonoBehaviour
 
     public virtual int TakeDamage(int damage, Status.Type? damageStatusEffect = null)
     {
-        return 0;
+        // Prevent Die() from being executed twice when having more than one status effect
+        if (GetHealth() == 0)
+            return 0;
+
+        int blockedAmount = 0;
+        if (_block != 0)
+        {
+            if (damageStatusEffect == Status.Type.Acid)
+            {
+                // Acid attack will deal "Status.ACID_TO_BLOCK_MULTIPLIER" of damage to block but cannot carry over to health
+                int damageToBlock = System.Convert.ToInt32(System.Math.Floor(damage * Status.ACID_TO_BLOCK_MULTIPLIER));
+                blockedAmount = _block - damageToBlock < 0 ? _block : damageToBlock;
+                damage = 0;
+            }
+            else
+            {
+                // Normal scenario, if the attack damage is more than the block, it'll get carried over to the health
+                blockedAmount = _block - damage < 0 ? _block : damage;
+                damage = damage - blockedAmount;
+            }
+            // Debug.Log("Attack damage of type " + damageStatusEffect + " has been blocked by " + blockedAmount + " and get carried over by " + damage);
+            _block -= blockedAmount;
+        }
+
+        if (damage != 0 || blockedAmount != 0)
+        {
+            Color color;
+            if (damageStatusEffect == Status.Type.Acid)
+                color = GameManager.Instance.AcidColor;
+            else if (damageStatusEffect == Status.Type.Burn)
+                color = GameManager.Instance.BurnColor;
+            else
+                color = _damageColor;
+
+            CreateDamagePopup(new DamageQueueData(damage, blockedAmount, color));
+        }
+
+        SetHealth(GetHealth() - damage);
+
+        UpdateHealthBar();
+        UpdateBlockBar();
+
+        return GetHealth();
     }
 
-    protected virtual void Stun() { }
+    public void GainBlock(int amount)
+    {
+        _block += amount;
+        UpdateBlockBar();
+    }
 
-    protected virtual void UpdateStatusIcon() { }
+    public void ResetBlock()
+    {
+        _block = 0;
+        UpdateBlockBar();
+    }
+
+    protected void UpdateHealthBar()
+    {
+        _healthLocalScale.x = _healthBarSize * (float)GetHealth() / (float)GetMaxHealth();
+        _healthBar.transform.localScale = _healthLocalScale;
+        _healthText.GetComponent<TextMeshProUGUI>().text = GetHealth().ToString();
+    }
+
+    protected void UpdateBlockBar()
+    {
+        _blockText.GetComponent<TextMeshProUGUI>().text = _block.ToString();
+        _blockText.SetActive(_block > 0);
+        _blockBar.SetActive(_block > 0);
+    }
+
+    protected void UpdateStatusIcon()
+    {
+        for (int i = 0; i < _statusContainer.transform.childCount; i++)
+        {
+            Destroy(_statusContainer.transform.GetChild(i).gameObject);
+        }
+
+        foreach (KeyValuePair<Status.Type, int> status in StatusDict)
+        {
+            GameObject statusObj = Instantiate(_statusPrefab, _statusContainer.transform);
+            statusObj.GetComponent<StatusDisplay>().Init(status.Key, status.Value);
+        }
+    }
+
+    private void CreateDamagePopup(DamageQueueData data)
+    {
+        if (_damagePopupCooldown > 0)
+        {
+            _damageQueue.Enqueue(data);
+        }
+        else
+        {
+            Canvas monsterCanvas = GetComponentInChildren<Canvas>();
+
+            if (data.damage != 0 || data.color == _damageColor)
+            {
+                GameObject damagePopup = Instantiate(_previewDamage, monsterCanvas.transform);
+                damagePopup.SetActive(true);
+                damagePopup.name = "Popup Damage";
+
+                TextMeshProUGUI damagePopupText = damagePopup.GetComponent<TextMeshProUGUI>();
+                damagePopupText.text = data.damage.ToString();
+                damagePopupText.color = data.color;
+
+                damagePopup.AddComponent<DamagePopup>();
+                damagePopup.transform.SetParent(Arena.Instance.transform);
+            }
+
+            if (data.block != 0)
+            {
+                GameObject blockPopup = Instantiate(_previewDamage, monsterCanvas.transform);
+                blockPopup.SetActive(true);
+                blockPopup.name = "Popup Block";
+
+                TextMeshProUGUI blockPopupText = blockPopup.GetComponent<TextMeshProUGUI>();
+                blockPopupText.text = data.block.ToString();
+                blockPopupText.color = data.color;
+
+                blockPopup.AddComponent<BlockPopup>();
+                blockPopup.transform.SetParent(Arena.Instance.transform);
+            }
+            _damagePopupCooldown = DAMAGE_COOLDOWN_TIME;
+        }
+    }
 }
