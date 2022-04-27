@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fatigue
   m_EditorClassIdentifier: 
   CardName: Fatigue
-  Description: Does nothing.
+  Description: A buildup of acid in the muscles.
   Type: 1
   BaseElement: 14
   Rarity: 3
