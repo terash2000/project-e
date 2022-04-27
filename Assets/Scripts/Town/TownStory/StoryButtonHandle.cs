@@ -69,7 +69,7 @@ public class StoryButtonHandle : MonoBehaviour
         }
         else
         {
-            GameObject newPopup = Instantiate(_confirmationPopup, transform.parent.parent);
+            GameObject newPopup = Instantiate(_confirmationPopup, transform.parent.parent.parent);
             string message = $"Use {_storyEvent.UnlockCost} Gold to unlock this event.";
             UnityAction action = () => PayToUnlockEvent(true);
             newPopup.GetComponent<ConfirmationPopup>().Init(message, action);
