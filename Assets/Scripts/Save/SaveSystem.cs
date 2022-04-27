@@ -148,6 +148,7 @@ public static class SaveSystem
         {
             CardCollection.UnlockDict = CardCollection.Instance.StarterCards();
             StoryMenu.CompletedStory = new List<string>();
+            StoryMenu.PaidStory = new List<string>();
         }
     }
 

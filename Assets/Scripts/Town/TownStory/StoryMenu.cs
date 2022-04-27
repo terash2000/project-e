@@ -34,7 +34,7 @@ public class StoryMenu : MonoBehaviour
             GameObject storyButton = Instantiate(_storyEventPrefab, _eventContainer.transform);
             storyButton.GetComponent<StoryButtonHandle>().Init(storyEvent);
 
-            if (storyEvent.UnlockCost > 0)
+            if (storyEvent.UnlockCost > 0 && !StoryMenu.PaidStory.Contains(storyEvent.name))
             {
                 storyButton.GetComponent<GoldChecker>().GoldNeeded = storyEvent.UnlockCost;
             }
