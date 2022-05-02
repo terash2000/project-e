@@ -31,4 +31,5 @@ MonoBehaviour:
   - Acid-forming
   NextWave: {fileID: 0}
   Shake: 0
-  Voice: {fileID: 0}
+  Voice: {fileID: 8300000, guid: f74f889048b34db4995f197c110f1e52, type: 3}
+  BGM: {fileID: 0}

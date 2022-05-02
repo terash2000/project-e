@@ -30,4 +30,5 @@ MonoBehaviour:
   - Deep red
   NextWave: {fileID: 0}
   Shake: 0
-  Voice: {fileID: 0}
+  Voice: {fileID: 8300000, guid: 2bca7146c345aae49a536afa8b3ea8fb, type: 3}
+  BGM: {fileID: 0}

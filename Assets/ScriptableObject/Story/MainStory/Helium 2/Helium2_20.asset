@@ -30,4 +30,5 @@ MonoBehaviour:
   - Winter
   NextWave: {fileID: 0}
   Shake: 0
-  Voice: {fileID: 0}
+  Voice: {fileID: 8300000, guid: 2f79a3c6881cde748ba63cf215248e14, type: 3}
+  BGM: {fileID: 0}

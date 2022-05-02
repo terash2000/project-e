@@ -23,5 +23,5 @@ MonoBehaviour:
   Choice: []
   NextWave: {fileID: 0}
   Shake: 0
-  Voice: {fileID: 8300000, guid: 0b843a710dddaf1448e912cbd6c3a591, type: 3}
+  Voice: {fileID: 8300000, guid: b1e868a6ba179d940b3551851d2bf485, type: 3}
   BGM: {fileID: 8300000, guid: a72be6dbb33ae1d48b44895f4943bee6, type: 3}
