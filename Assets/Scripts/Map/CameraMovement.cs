@@ -10,10 +10,12 @@ public class CameraMovement : MonoBehaviourSingleton<CameraMovement>
     public float DragSpeed;
     private Vector3 _dragOrigin;
     private Rect _rectOrigin;
+    private Vector2 _velocity;
 
     void Update()
     {
-        if (Time.timeScale > 0f)
+        if (!Input.GetMouseButton(0) && _velocity != Vector2.zero) Spring();
+        else if (Time.timeScale > 0f)
         {
             Zoom();
             Drag();
@@ -52,6 +54,7 @@ public class CameraMovement : MonoBehaviourSingleton<CameraMovement>
         if (Input.GetMouseButtonDown(0))
         {
             _dragOrigin = Input.mousePosition;
+            _velocity = new Vector2(DragSpeed, DragSpeed);
             return;
         }
         if (!Input.GetMouseButton(0)) return;
@@ -61,12 +64,17 @@ public class CameraMovement : MonoBehaviourSingleton<CameraMovement>
 
         Rect currentRect = GetArea();
 
-        if (currentRect.xMin + move.x < _rectOrigin.xMin) move.x = _rectOrigin.xMin - currentRect.xMin;
-        if (currentRect.yMin + move.y < _rectOrigin.yMin) move.y = _rectOrigin.yMin - currentRect.yMin;
-        if (currentRect.xMax + move.x > _rectOrigin.xMax) move.x = _rectOrigin.xMax - currentRect.xMax;
-        if (currentRect.yMax + move.y > _rectOrigin.yMax) move.y = _rectOrigin.yMax - currentRect.yMax;
+        if (currentRect.xMin + move.x < _rectOrigin.xMin) move.x = RubberDelta(move.x, currentRect.width);
+        if (currentRect.yMin + move.y < _rectOrigin.yMin) move.y = RubberDelta(move.y, currentRect.height);
+        if (currentRect.xMax + move.x > _rectOrigin.xMax) move.x = RubberDelta(move.x, currentRect.width);
+        if (currentRect.yMax + move.y > _rectOrigin.yMax) move.y = RubberDelta(move.y, currentRect.height);
 
         transform.Translate(move, Space.World);
+    }
+
+    private float RubberDelta(float overStretching, float viewSize)
+    {
+        return (1 - (1 / ((Mathf.Abs(overStretching) * 0.55f / viewSize) + 1))) * viewSize * Mathf.Sign(overStretching);
     }
 
     public Rect GetArea(float widthExtend = 0)
@@ -81,21 +89,54 @@ public class CameraMovement : MonoBehaviourSingleton<CameraMovement>
         return new List<bool>() { _rectOrigin.xMin <= rect.xMin, _rectOrigin.xMax >= rect.xMax, _rectOrigin.yMin <= rect.yMin, _rectOrigin.yMax >= rect.yMax };
     }
 
+    public List<float> GetOffset(Rect rect)
+    {
+        return new List<float>() { _rectOrigin.xMin - rect.xMin, _rectOrigin.xMax - rect.xMax, _rectOrigin.yMin - rect.yMin, _rectOrigin.yMax - rect.yMax };
+    }
+
     public void BoundCameraPos()
     {
-        if (_rectOrigin.width - GetArea().width < 0.002f || _rectOrigin.height - GetArea().height < 0.002f) return;
-        while (InsideArea(GetArea()).Contains(false))
+        List<bool> inside = InsideArea(GetArea());
+        Vector3 pos = transform.position;
+        float offsetX = 0;
+        float offsetY = 0;
+        for (int i = 0; i < 4; i++)
         {
-            List<bool> inside = InsideArea(GetArea());
-            if (!inside[0] && !inside[1]) return;
-            if (!inside[2] && !inside[3]) return;
-            Vector3 pos = transform.position;
-            if (!inside[0]) pos.x += 0.001f;
-            if (!inside[1]) pos.x -= 0.001f;
-            if (!inside[2]) pos.y += 0.001f;
-            if (!inside[3]) pos.y -= 0.001f;
-            transform.position = pos;
+            if (!inside[i] && i < 2) offsetX = GetOffset(GetArea())[i];
+            else if (!inside[i]) offsetY = GetOffset(GetArea())[i];
         }
+        if (!inside[0] || !inside[1]) pos.x = pos.x + offsetX;
+        if (!inside[2] || !inside[3]) pos.y = pos.y + offsetY;
+        transform.position = pos;
+    }
+
+    public void Spring()
+    {
+        Vector2 speed = _velocity;
+        float smoothTime = 0.1f;
+        float deltaTime = Time.unscaledDeltaTime;
+        List<bool> inside = InsideArea(GetArea());
+        Vector3 pos = transform.position;
+        float offsetX = 0;
+        float offsetY = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            if (!inside[i] && i < 2) offsetX = GetOffset(GetArea())[i];
+            else if (!inside[i]) offsetY = GetOffset(GetArea())[i];
+        }
+        if (offsetX < 0 && speed.x > 0) speed.x = -speed.x;
+        if (offsetY < 0 && speed.y > 0) speed.y = -speed.y;
+        if (!inside[0] || !inside[1]) pos.x = Mathf.SmoothDamp(pos.x, pos.x + offsetX, ref speed.x, smoothTime, Mathf.Infinity, deltaTime);
+        else speed.x = 0;
+        if (!inside[2] || !inside[3]) pos.y = Mathf.SmoothDamp(pos.y, pos.y + offsetY, ref speed.y, smoothTime, Mathf.Infinity, deltaTime);
+        else speed.y = 0;
+        transform.position = pos;
+        if (Mathf.Abs(speed.x) < 1)
+            speed.x = 0;
+        if (Mathf.Abs(speed.y) < 1)
+            speed.y = 0;
+        _velocity = speed;
+        if (_velocity == Vector2.zero) BoundCameraPos();
     }
 
     public void SetPosition(Vector3 pos)
