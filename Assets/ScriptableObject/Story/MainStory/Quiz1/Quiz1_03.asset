@@ -28,3 +28,5 @@ MonoBehaviour:
   - It is aloha.
   NextWave: {fileID: 0}
   Shake: 0
+  Voice: {fileID: 8300000, guid: 4ed6d365d2687874eb59ef6e0e0f4835, type: 3}
+  BGM: {fileID: 0}
