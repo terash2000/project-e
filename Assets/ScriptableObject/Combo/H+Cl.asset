@@ -25,6 +25,6 @@ MonoBehaviour:
     amount: 1
     statusType: 0
     card: {fileID: 11400000, guid: 9068bcdcde2b10949842a262d485fe6b, type: 2}
-  Equation: "H<sup>+</sup> + Cl<sup>-</sup> \u2192 HCl"
+  Equation: H + Cl
   Description: 'Attack: Acid +3___Skill: Create a Strong Acid card.'
   Type: 0

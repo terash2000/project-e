@@ -45,7 +45,7 @@ MonoBehaviour:
     amount: 1
     statusType: 0
     card: {fileID: 11400000, guid: c36963ae9ca8acb4d8d063706e275cbc, type: 2}
-  Equation: "H + H \u2192 He + Energy"
+  Equation: H + H
   Description: 'Increase mana used by 2.___Create a Radioactive Waste card.___Attack:
     Damage +20, Area +1___Skill: Range +3'
   Type: 2

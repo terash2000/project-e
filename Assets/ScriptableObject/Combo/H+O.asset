@@ -25,6 +25,6 @@ MonoBehaviour:
     amount: -2
     statusType: 0
     card: {fileID: 0}
-  Equation: "H<sub>2</sub> + O<sub>2</sub> \u2192 H<sub>2</sub>O"
+  Equation: H + O
   Description: Reduce mana used by 2.
   Type: 0

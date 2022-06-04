@@ -29,6 +29,6 @@ MonoBehaviour:
     amount: 1
     statusType: 0
     card: {fileID: 11400000, guid: 29c9bb8948c9cef4dbab804a5fec51a1, type: 2}
-  Equation: Oxygen Combustion
+  Equation: O + Fire
   Description: 'Attack: Damage +5, Burn +1___Skill: Create a Smoke card.'
   Type: 1
